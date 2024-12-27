@@ -1,0 +1,457 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+    overflow-x: hidden;
+    font-family: Arial,'ヒラギノ明朝 ProN', sans-serif;
+}
+
+body {
+    background-color: #000000;
+    position: relative;
+}
+
+* {
+    margin: 0px
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.WATER_CURTAIN_WATER {
+    translate: -50% -50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+
+    -webkit-mask: radial-gradient(
+      circle at center,
+      transparent calc(270px / 2 - 8px),
+      white calc(270px / 2 - 8px),
+      white
+    );
+}
+
+.LED {
+    position: absolute;
+    width: 45px;
+    height: 8px;
+    translate: -50% -50%;
+    /*filter: brightness(250%);*/
+    opacity: 0;
+}
+
+.WATER_LIGHT {
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+    translate: -50% -50%;
+    z-index: 20;
+}
+
+.WHITE_LIGHT div {
+    position: absolute;
+    height: 30px;
+    width: 45px;
+    clip-path: polygon(20% 0, 80% 0, 100% 50%, 80% 100%, 20% 100%, 0% 50%);
+    background-color: #FFFFFF;
+    translate: -50% -50%;
+}
+
+.WHITE_LIGHT {
+    filter: drop-shadow(0px 0px 8px #FFFFFF);
+}
+
+.PAR_LIGHT {
+    filter: drop-shadow(0px 0px 8px #000);
+}
+
+.PAR_LIGHT div {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: #000;
+    border-radius: 50%;
+    translate: -50% -50%;
+}
+
+.SPOT_LIGHT div {
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    background-color: #FFDC96;
+    border-radius: 50%;
+    translate: -50% -50%;
+    opacity: 0;
+}
+
+.AUDIENCE_LIGHT {
+    filter: drop-shadow(0px 0px 6px #FFDC96);
+}
+
+.AUDIENCE_LIGHT div {
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    background-color: #FFDC96;
+    border-radius: 50%;
+    translate: -50% -50%;
+}
+
+.STAGE_LIGHT div {
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    background-color: #FFDC96;
+    border-radius: 50%;
+    translate: -50% -50%;
+    opacity: 0;
+}
+
+.WATER_CANNON {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: #000;
+    border-radius: 50%;
+    translate: -50% -50%;
+    z-index: 10;
+}
+
+.WATER_CANNON div {
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    background-color: rgb(50,50,50);
+    border-radius: 50%;
+    translate: -50% -50%;
+    top: 50%;
+    left: 50%;
+}
+
+.MOVING_LIGHT {
+    position: absolute;
+    height: 4px;
+    width: 8px;
+    background: linear-gradient(to top, #FFFFFF 4px, #555555 4px);
+    translate: -50% -50%;
+}
+
+.MOVING_LIGHT_PICTURE_PARENT {
+    position: absolute;
+    width: 140px;
+    top: 20px;
+}
+
+.MOVING_LIGHT_PICTURE {
+    height: 190px;
+}
+
+.MOVING_LIGHT_PICTURE p {
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align: center;
+}
+
+.MOVING_LIGHT_PICTURE_CONTENT {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    /*background: radial-gradient(#000000 69%, #000000 69%), linear-gradient(45deg, #00FFFF 30% ,#FFFFFF 70%);*/
+    translate: -50% -50%;
+    margin-top: 84px;
+    margin-left: 70px;
+    opacity: 0;/*
+    mask-image: radial-gradient(rgb(0 0 0 / 100%) 40%, rgb(0 0 0 / 0%) 65%);
+    mask-composite: intersect;*/
+}
+
+.MOVING_LIGHT_PICTURE_SINGLEtype {
+    width: 100%;
+    position: absolute;
+    translate: -50% -50%;
+    top: 50%;
+    left: 50%;
+}
+
+.MOVING_LIGHT_PICTURE_CONTENT_TRIPLE {
+    position: absolute;
+    translate: -50% -50%;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+}
+
+.MOVING_LIGHT_PICTURE_TRIPLEtype {
+    width: 100%;
+    position: absolute;
+    translate: -50% -50%;
+    top: 50%;
+    left: 50%;
+}
+
+.MOVING_LIGHT_PICTURE_PARENT_1 {
+    left: 830px;
+}
+
+.MOVING_LIGHT_PICTURE_PARENT_2 {
+    left: 990px;
+}
+
+.MOVING_LIGHT_PICTURE_PARENT_3 {
+    left: 1150px;
+}
+
+.LOGOBORD {
+    position: absolute;
+    width: 250px;
+    height: 55px;
+    background-color: #FFFFFF;
+    border: 8px solid #AAAAAA;
+    left: 1150px;
+    top: 220px;
+    display: flex;
+    align-items: center;
+}
+
+.LOGOBORD img {
+    width: 60%;
+    margin: 0 auto;
+    opacity: 1;
+    transition: 1s;
+    display: block;
+}
+
+.LOGOBORD_LIGHT {
+    position: absolute;
+    width: 100px;
+    height: 55px;
+    top: 220px;
+    /*filter: brightness(150%);*/
+}
+
+.LOGOBORD_LIGHT_BROKE_1 {
+    left: 1172px;
+}
+
+.LOGOBORD_LIGHT_BROKE_2 {
+    left: 1222px;
+}
+
+.LOGOBORD_LIGHT_BROKE_3 {
+    left: 1272px;
+}
+
+.LOGOBORD_LIGHT_BROKE_4 {
+    left: 1322px;
+}
+
+#SMOKE_PARENT {
+    opacity: 0;
+}
+
+.SMOKE {
+    position: absolute;
+    translate: -50% -50%;
+    width: 100px;
+}
+
+#SNOW_PARENT {
+    opacity: 0;
+}
+
+.SNOW {
+    position: absolute;
+    translate: -50% -50%;
+    width: 50px;
+}
+
+#WATER_CURTAIN {
+    position: absolute;
+    translate: -50% -50%;
+    width: 270px;
+    aspect-ratio: 1 / 1;
+    /*background-color: #000;*/
+}
+
+.WATER_CURTAIN_VIDEO {
+    width: 100%;
+}
+
+.setting {
+    position: absolute;
+    left: 1150px;
+    top: 350px;
+    background-color: #ffffff;
+    width: 266px;
+    height: 420px;
+    border-radius: 10px;
+}
+
+.setting-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 10px;
+    font-family: 'Arial Black';
+    border-bottom: 2px solid #000;
+}
+
+.setting-sub-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.setting-sub-title::before {
+    content: "▶";
+    margin-right: 10px;
+    display: inline-block;
+    transition: 1s;
+}
+
+.performance_select {
+    margin: 0px 10px;
+    width: 90%;
+    font-size: 20px;
+    height: 35px;
+    border-radius: 10px;
+    padding: 0 5px;
+    border: 1.5px solid black;
+    font-family: 'Yu Gothic Medium';
+}
+
+.performance_select option {
+    font-family: 'Yu Gothic Medium';
+    font-size: 18px;
+}
+
+.performance_select option :hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.pagenumber {
+    margin: 8px 10px;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.pagenumber p {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#dn, #mainnowpage , #subnowpage {
+    font-size: 26px;
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+#maintotalpage , #subtotalpage {
+    font-size: 20px;
+    margin-left: 2px;
+}
+
+.machine_onoff {
+    margin: 8px 10px;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.machine_onoff p {
+    margin-bottom: 8px;
+    line-height: 30px;
+}
+
+.machine_onoff span {
+    font-weight: bold;
+    font-size: 24px;
+    margin-right: 10px;
+    float: right;
+}
+
+#setting1 {
+    visibility: hidden;
+    opacity: 0;
+    transition: 2s;
+}
+
+.logodisplay {
+    visibility: hidden;
+    opacity: 0;
+    transition: 1s;
+    margin: 4px 0;
+    margin-bottom: 30px;
+}
+
+.logodisplay input {
+    float: right;
+    margin-right: 20px;
+}
+
+.logodisplay label {
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+#logodisplay {
+    display: none;
+}
+
+#setting1:checked ~ .logodisplay {
+    visibility: visible;
+    opacity: 1;
+    transition: 1s;
+}
+
+#setting1:checked ~ #setting1-label::before {
+    transform: rotate(90deg);
+}
+
+#logodisplay:checked ~ img {
+    opacity: 0;
+}
+
+.MOVING_LIGHT_DOUBLE_PICTURE_HIDE {
+    background-color: #000;
+    position: absolute;
+}
+
+.MOVING_LIGHT_DOUBLE_PICTURE_HIDE_NUMBER_0 {
+    top: 0;
+    right: 0;
+}
+
+.MOVING_LIGHT_DOUBLE_PICTURE_HIDE_NUMBER_1 {
+    bottom: 0;
+    left: 0;
+}
+
+.MOVING_LIGHT_DOUBLE_PICTURE_IMG {
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    bottom: 0;
+    right: 0;
+}
+
+.MOVING_LIGHT_DOUBLE_PICTURE_IMG img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
