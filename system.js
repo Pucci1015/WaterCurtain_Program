@@ -267,7 +267,7 @@ document.addEventListener("keydown", (e) => {
     const key = e.key;
     const code = e.keyCode;
 
-    console.log(key);
+    //console.log(key);
 
     if ( subSelectStyle === 0 ) {
         if ( code >= 112 && code <= 123 ) subCode = code - 111;
