@@ -1290,11 +1290,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED HI1 *****/
+                    /***** LED HI2 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberHI1);
+                    let ledSetInterval = setInterval(ledNumberHI2);
 
-                    function ledNumberHI1() {
+                    function ledNumberHI2() {
                         let ledFadeTime = 1800;
                         let ledRepeatTime = 1500;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);

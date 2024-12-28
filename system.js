@@ -208,16 +208,14 @@ for (let i = 0; i < text.length; i++) {
 var subSelectStyle = 0;
 var subCode = -1;
 var insCode = 45;
+var delCode = 0;
 var ua = window.navigator.userAgent.toLowerCase();
 if(ua.indexOf("mac os x") !== -1) {
     insCode = 124;
 }
 
 var ub = window.navigator.userAgent.toLowerCase();
-if (
-    ub.indexOf("ipad") > -1 ||
-    (ub.indexOf("macintosh") > -1 && "ontouchend" in document)
-) {
+if ( ub.indexOf("ipad") > -1 || ( ub.indexOf("macintosh") > -1 && "ontouchend" in document ) ) {
     subSelectStyle = 1;
     insCode = 8;
 }
@@ -298,7 +296,7 @@ document.addEventListener("keydown", (e) => {
 
             pageText3.innerHTML = mainNowPage;
 
-        } else if ( code === insCode ) { // Ins
+        } else if ( !(e.metaKey) && code === insCode ) { // Ins
             if ( subNowPage < subTotalPage ) {
                 subNowPage++;
             } else {
@@ -307,7 +305,7 @@ document.addEventListener("keydown", (e) => {
 
             pageText4.innerHTML = subNowPage;
 
-        } else if ( code === 46 ) { // Del
+        } else if ( subSelectStyle === 0 && code === 46 || subSelectStyle === 1 && e.metaKey && key === 'Backspace' ) { // Del
             dnNowSelect = 1 - dnNowSelect;
 
             dnScript();

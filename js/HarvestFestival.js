@@ -78,7 +78,7 @@ document.addEventListener("keydown", (e) => {
                 } else if ( key === 'h' ) {
                     let startTime = Date.now();
 
-                    /***** 水中照明 DSF2 *****/
+                    /***** 水中照明 HF2 *****/
                     let waterLightMyNumber = waterLightSetting();
                     let waterLightSetInterval = setInterval(waterLightNumberHF2);
 
@@ -5137,11 +5137,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AH *****/
                     waterCurtain("AH");
 
-                    /***** LED DSF14 *****/
+                    /***** LED DSF13 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF14);
+                    let ledSetInterval = setInterval(ledNumberDSF13);
 
-                    function ledNumberDSF14() {
+                    function ledNumberDSF13() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 1500;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
@@ -5190,11 +5190,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン Y *****/
                     waterCurtain("Y");
 
-                    /***** LED DSF14 *****/
+                    /***** LED DSF13 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF14);
+                    let ledSetInterval = setInterval(ledNumberDSF13);
 
-                    function ledNumberDSF14() {
+                    function ledNumberDSF13() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 1500;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
@@ -5394,11 +5394,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED DSF14 *****/
+                    /***** LED DSF13 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF14);
+                    let ledSetInterval = setInterval(ledNumberDSF13);
 
-                    function ledNumberDSF14() {
+                    function ledNumberDSF13() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 1500;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;

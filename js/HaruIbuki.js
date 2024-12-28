@@ -742,7 +742,7 @@ document.addEventListener("keydown", (e) => {
 
                     },movingLightSetTimeoutDelay[0]);
 
-                    movingLightSetTimeoutDelay[1] = 64000;
+                    movingLightSetTimeoutDelay[1] = 63000;
                     movingLightSetTimeout[1] = setTimeout( function() {
                         movingLightSetting(0);
 
@@ -869,11 +869,11 @@ document.addEventListener("keydown", (e) => {
                         }
                     },movingLightSetTimeoutDelay[6]);
 
-                    /*movingLightSetTimeoutDelay[7] = 141000;
+                    movingLightSetTimeoutDelay[7] = 221000;
                     movingLightSetTimeout[7] = setTimeout( function() {
                         movingLightSetting(0);
 
-                        let movingLightColorFadeTime = 1800;
+                        let movingLightColorFadeTime = 2800;
 
                         movingLightSetInterval[8] = setInterval(movingLightNumberHI7_8);
 
@@ -881,43 +881,35 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[7],0,movingLightUseNumber,movingLightSetInterval[8],movingLightMyNumber);
                             
                             if ( nowTime[0] <= movingLightColorFadeTime ) {
-                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,255,255,1,movingLightColorFadeTime,nowTime[0],1);
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,0,200,1,movingLightColorFadeTime,nowTime[0],1);
 
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,0,180,255,1,1200,nowTime[0],1);
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,200,0,255,1,movingLightColorFadeTime,nowTime[0],1);
                             } else {
                                 clearInterval(movingLightSetInterval[8]);
                             }
                             
                         }
 
-                        movingLightSetInterval[4] = setInterval(movingLightNumberHI7_4);
-
-                        function movingLightNumberHI7_4() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[4],0,movingLightRotateUseNumber,movingLightSetInterval[4],movingLightMyNumber);
-                            let movingLightRotateDeg = 360 / 5000 * ( nowTime[0] % 5000 );
-                            let movingLightTripleRotateDeg = -360 / 12000 * ( nowTime[0] % 12000 );
-
-                            for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
-                                movingLightRotateChange(2,i,movingLightRotateDeg);
-                                movingLightTripleRotateChange(2,i,movingLightTripleRotateDeg + 60 * ( i % 2 ));
-                            }
-
-                        }
-
                     },movingLightSetTimeoutDelay[7]);
 
-                    movingLightSetTimeoutDelay[8] = 176000;
+                    movingLightSetTimeoutDelay[8] = 264000;
                     movingLightSetTimeout[8] = setTimeout( function() {
-                        clearInterval(movingLightSetInterval[4]);
                         movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 1800;
 
                         movingLightSetInterval[9] = setInterval(movingLightNumberHI7_9);
 
                         function movingLightNumberHI7_9() {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[8],0,movingLightUseNumber,movingLightSetInterval[9],movingLightMyNumber);
                             
-                            if ( nowTime[0] <= 100 ) {
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,255,255,255,-1);
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,255,255,255,-1,300,nowTime[0]);
+                                    movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                }
+
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
                             } else {
                                 clearInterval(movingLightSetInterval[9]);
                             }
@@ -926,39 +918,16 @@ document.addEventListener("keydown", (e) => {
 
                     },movingLightSetTimeoutDelay[8]);
 
-                    movingLightSetTimeoutDelay[9] = 178000;
+                    movingLightSetTimeoutDelay[9] = 265800;
                     movingLightSetTimeout[9] = setTimeout( function() {
                         movingLightSetting(0);
 
-                        let movingLightColorFadeTime = 2000;
+                        let movingLightAngleFadeTime = 800;
 
                         movingLightSetInterval[10] = setInterval(movingLightNumberHI7_10);
 
                         function movingLightNumberHI7_10() {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[9],0,movingLightUseNumber,movingLightSetInterval[10],movingLightMyNumber);
-                            
-                            if ( nowTime[0] <= movingLightColorFadeTime ) {
-                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
-
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
-                            } else {
-                                clearInterval(movingLightSetInterval[10]);
-                            }
-                            
-                        }
-
-                    },movingLightSetTimeoutDelay[9]);
-
-                    movingLightSetTimeoutDelay[10] = 180800;
-                    movingLightSetTimeout[10] = setTimeout( function() {
-                        movingLightSetting(0);
-
-                        let movingLightAngleFadeTime = 600;
-
-                        movingLightSetInterval[11] = setInterval(movingLightNumberHI7_11);
-
-                        function movingLightNumberHI7_11() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[10],0,movingLightUseNumber,movingLightSetInterval[11],movingLightMyNumber);
                             
                             if ( nowTime[0] <= movingLightAngleFadeTime ) {
                                 for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
@@ -967,10 +936,10 @@ document.addEventListener("keydown", (e) => {
                             } else {
                                 clearInterval(movingLightSetInterval[11]);
                             }
-
+                            
                         }
 
-                    },movingLightSetTimeoutDelay[10]);*/
+                    },movingLightSetTimeoutDelay[9]);
 
                 } else if ( key === 'r' ) {
                     let startTime = Date.now();
@@ -1133,31 +1102,30 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BG *****/
                     waterCurtain("BG");
 
-                    /***** LED HI4 *****/
+                    /***** LED HI1 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberHI4);
-        
-                    function ledNumberHI4() {
-                        let ledFadeTime = 2800;
-                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);        
-                        let ledRepeatTime = 1600;
+                    let ledSetInterval = setInterval(ledNumberHI1);
 
+                    function ledNumberHI1() {
+                        let ledFadeTime = 800;
+                        let ledRepeatTime = 3000;
                         let ledRepeatTimeSplit = ledRepeatTime / 4;
-                        let ledBasicColor = [ [ 255 , 255 , 255 ] , [ 220 , 180 , 255 ] , [ 255 , 120 , 200 ] , [ 255 , 0 , 150 ] ];
-                        let ledLapTimeSplit = ledRepeatTime / 9;
+                        let ledLapTimeSplit = 188;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+                        let ledBasicColor1 = [ 255 , 255 , 255 ];
+                        let ledBasicColor2 = [ [ 50 , 255 , 255 ] , [ 0 , 220 , 255 ] ];
 
                         for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
                             let ledColor = [];
-                            let j;
-
-                            if ( i <= 11 ) j = i - 1;
-                            else j = 21 - i;
-
+                            let j = ledNumberInside - i;
                             let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
 
-                            for ( var l = 0 ; l < 4 ; l++ ) {
-                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
-                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 4 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                            for ( var l = 0 ; l < 2 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l * 2 + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor2[l][k] + ( ledBasicColor1[k] - ledBasicColor2[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 ) ) ;
+                                    break;
+                                } else if ( ledJudgeTime < ledRepeatTimeSplit * ( ( l + 1 ) * 2 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor1[k] + ( ledBasicColor2[ ( l + 1 ) % 2 ][k] - ledBasicColor1[k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 + 1 ) );
                                     break;
                                 }
                             }
@@ -1165,22 +1133,17 @@ document.addEventListener("keydown", (e) => {
                             ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
                         }
 
-                        ledRepeatTimeSplit = ledRepeatTime / 2;
-                        ledBasicColor = [ [ 255 , 180 , 240 ] , [ 255 , 255 , 255 ] ];
-                        ledLapTimeSplit = ledRepeatTime / 12;
-
                         for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
                             let ledColor = [];
-                            let j;
-
-                            if ( i <= 24 ) j = i - 1;
-                            else j = 48 - i;
-
+                            let j = ledNumberOutside - i;
                             let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
 
                             for ( var l = 0 ; l < 2 ; l++ ) {
-                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
-                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 2 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l * 2 + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor2[l][k] + ( ledBasicColor1[k] - ledBasicColor2[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 ) ) ;
+                                    break;
+                                } else if ( ledJudgeTime < ledRepeatTimeSplit * ( ( l + 1 ) * 2 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor1[k] + ( ledBasicColor2[ ( l + 1 ) % 2 ][k] - ledBasicColor1[k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 + 1 ) );
                                     break;
                                 }
                             }
@@ -1310,11 +1273,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED HI1 *****/
+                    /***** LED HI2 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberHI1);
+                    let ledSetInterval = setInterval(ledNumberHI2);
 
-                    function ledNumberHI1() {
+                    function ledNumberHI2() {
                         let ledFadeTime = 1800;
                         let ledRepeatTime = 1500;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -1363,11 +1326,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BA *****/
                     waterCurtain("BA");
 
-                    /***** LED HI1 *****/
+                    /***** LED HI2 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberHI1);
+                    let ledSetInterval = setInterval(ledNumberHI2);
 
-                    function ledNumberHI1() {
+                    function ledNumberHI2() {
                         let ledFadeTime = 1800;
                         let ledRepeatTime = 1500;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -1442,6 +1405,116 @@ document.addEventListener("keydown", (e) => {
                         for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,0,nowTime[0],fadeTime);
                     }
         
+                } else if ( key === ';' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン AH *****/
+                    waterCurtain("AH");
+
+                    /***** LED HI3 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumberHI3);
+
+                    function ledNumberHI3() {
+                        let ledFadeTime = 3000;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+                        let ledRepeatTime = 4500;
+                        let ledRepeatTimeSplit = ledRepeatTime / 30;
+                        let j = Math.trunc( nowTime[1] / ledRepeatTimeSplit ) % 30;
+                        let ledJudgeTime = nowTime[1] % ledRepeatTimeSplit;                        
+                        let ledBasicColor = [ [ 240 , 180 , 255 ] , [ 200 , 100 , 255 ] , [ 255 , 0 , 150 ] ];
+
+                        let ledArray = [[1,0,0,0,0,2,0,0,0,0,0,2,2,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],[1,2,0,1,0,1,1,0,0,0,1,1,0,1,1,1,2,0,2,0,1,0,0,2,0,0,0,1,2,2],[0,0,0,0,0,0,2,0,1,0,0,0,2,2,1,0,1,2,2,0,0,0,1,0,2,0,1,0,2,1],[1,0,1,1,0,0,0,0,1,0,0,0,1,2,2,2,2,0,1,1,0,1,2,1,0,1,2,2,0,0],[2,1,0,2,0,2,0,0,0,2,2,1,2,1,0,2,0,0,1,1,2,0,0,2,1,0,0,2,1,0],[2,0,2,0,2,2,1,0,0,0,0,1,1,2,2,0,1,0,1,1,2,0,2,2,1,0,1,1,0,0],[1,2,0,0,0,0,0,2,0,1,1,1,0,0,1,2,2,0,0,0,1,0,2,1,0,1,2,0,0,0],[2,0,0,1,0,0,2,0,0,2,1,1,0,0,2,1,0,0,1,0,1,1,0,0,1,0,1,2,2,0],[1,0,2,1,1,1,0,0,1,1,1,0,1,1,1,0,0,2,0,0,2,1,2,0,0,1,2,2,1,0],[0,0,0,1,0,0,1,1,1,0,0,0,0,0,0,2,0,0,2,0,2,0,1,0,0,0,0,1,0,0],[1,0,2,1,1,0,0,0,0,2,2,0,2,2,0,2,0,1,0,1,0,1,2,0,1,0,0,0,0,1],[1,2,0,0,1,2,0,2,1,0,1,0,2,0,1,0,2,2,2,1,1,2,0,1,1,0,0,0,1,0],[2,0,1,2,0,1,0,0,2,0,0,0,0,1,1,2,2,1,1,2,1,0,2,1,1,1,0,0,2,0],[1,0,1,1,0,0,0,1,1,1,0,0,2,0,1,0,1,2,0,0,2,2,2,0,0,1,2,1,0,0],[1,0,1,1,0,0,0,0,0,1,0,1,0,1,2,0,0,2,1,1,0,2,0,0,2,0,0,2,1,1],[0,0,0,2,0,2,2,1,2,2,0,2,1,0,2,0,1,0,1,0,0,1,2,0,0,0,1,1,0,1],[0,0,2,0,2,0,0,0,2,0,0,0,0,1,0,0,2,0,2,1,1,2,0,2,0,0,1,1,1,1],[0,0,2,0,0,2,2,1,2,0,0,0,0,1,0,0,1,0,0,2,1,0,0,0,0,0,2,0,0,0],[1,2,1,0,1,1,0,0,2,1,2,1,2,0,1,1,0,1,0,1,2,2,0,0,0,0,2,2,0,0],[1,1,2,2,0,0,2,0,0,0,0,0,0,0,2,2,1,2,0,2,0,0,1,0,0,1,1,1,1,2]];
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
+                            let ledColor = [];
+                            let m = ledArray[i-1][j];
+                            let n = ledArray[i-1][ ( j + 1 ) % 30 ];
+
+                            if ( m === n ) {
+                                for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[m][k];
+                            } else {
+                                for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[m][k] + ( ledBasicColor[n][k] - ledBasicColor[m][k] ) / ledRepeatTimeSplit * ledJudgeTime;
+                            }
+
+                            ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+
+                        ledArray = [[0,1,0,0,2,0,1,0,0,0,2,0,1,1,0,1,0,0,0,0,1,0,1,2,0,1,1,0,1,0],[2,0,0,1,0,0,2,1,0,1,0,1,1,0,1,0,1,1,2,2,0,1,2,2,1,0,0,1,0,1],[1,0,0,1,0,1,0,1,0,0,2,1,2,0,0,1,0,0,0,2,1,0,0,1,1,1,2,2,0,0],[0,1,1,0,0,0,0,1,1,0,2,0,0,0,0,1,0,0,0,2,0,0,1,0,0,1,0,0,1,0],[0,0,2,2,2,2,1,0,0,0,0,0,1,1,0,0,2,0,2,1,0,0,1,2,0,1,0,0,0,0],[0,1,2,0,2,2,2,1,0,1,0,0,1,0,2,2,1,1,0,0,0,1,2,0,2,0,0,0,0,0],[0,1,0,1,2,0,0,0,0,0,0,2,1,0,0,2,2,2,0,0,1,0,2,2,1,2,2,0,1,0],[0,0,0,0,2,0,0,0,0,2,0,1,0,1,0,0,0,0,2,1,0,1,0,1,1,2,2,2,0,1],[0,1,0,1,1,2,0,0,0,1,1,2,2,1,1,0,0,2,2,0,0,0,1,0,0,0,1,2,0,0],[1,0,1,0,0,0,1,2,0,0,1,1,2,1,0,0,1,2,0,2,0,0,1,0,0,0,2,0,0,0],[2,2,1,1,0,0,2,1,1,0,1,0,0,2,1,1,2,0,1,0,2,0,0,1,1,2,0,2,0,0],[0,2,1,1,2,1,2,0,0,0,0,2,0,1,0,1,0,0,1,2,0,0,0,2,1,2,0,1,0,2],[2,1,0,1,0,0,0,0,2,2,2,0,2,2,1,0,1,1,0,0,1,0,0,0,0,0,2,1,2,1],[2,0,0,1,2,1,0,1,0,0,0,0,0,2,0,0,0,0,1,0,0,0,2,1,0,1,1,2,0,0],[0,0,0,1,0,0,0,0,1,0,0,0,2,2,0,1,0,1,2,0,2,1,0,0,0,2,1,0,1,2],[2,2,0,0,0,1,0,1,1,1,2,0,0,0,0,1,0,0,2,0,0,1,1,2,0,1,0,1,1,1],[0,0,1,1,2,0,1,0,1,1,0,1,0,0,2,0,0,1,2,0,2,0,1,0,1,0,2,1,0,2],[0,0,1,2,1,0,1,2,2,0,1,0,1,0,0,1,2,0,1,0,1,0,0,0,0,0,1,1,0,2],[0,2,0,1,2,0,1,2,0,2,1,1,0,2,1,0,0,0,0,1,0,0,1,0,0,0,1,0,2,0],[2,2,0,2,2,0,0,0,0,0,2,0,1,0,0,1,0,0,0,0,2,1,0,2,2,0,0,0,1,0],[1,0,0,2,0,1,0,2,1,0,0,0,0,0,0,0,2,2,2,2,0,0,2,0,2,2,0,2,1,0],[2,2,2,1,2,2,2,0,0,0,0,1,0,0,0,0,0,1,0,0,0,2,1,2,0,0,2,1,1,2],[1,0,0,1,0,1,1,0,1,0,1,1,0,1,0,1,0,0,0,2,0,0,0,0,1,0,0,0,0,1],[0,2,1,0,0,1,0,1,0,0,2,0,0,0,0,1,0,0,0,1,1,2,2,1,1,0,0,0,1,1],[2,0,0,2,0,0,2,1,0,0,0,1,1,0,0,0,1,1,0,2,2,2,1,0,0,0,0,0,0,1],[1,2,0,2,0,0,2,1,1,1,2,0,0,2,1,0,0,0,1,1,1,0,1,2,2,1,0,0,1,2],[2,2,1,0,0,0,2,0,1,0,2,0,1,2,0,0,0,0,2,0,0,0,1,0,2,0,0,0,0,2],[0,1,0,1,1,2,0,2,0,0,0,0,0,1,2,2,0,0,0,1,0,0,1,2,0,1,2,0,0,1],[0,2,1,0,2,1,0,1,0,1,1,1,1,0,2,2,1,1,1,0,1,0,1,2,1,0,0,0,0,1],[1,0,0,1,0,1,0,2,0,1,0,2,2,0,1,1,2,0,2,0,1,0,1,1,1,0,0,2,0,1],[1,0,2,0,0,2,2,0,2,1,1,2,2,0,0,0,0,2,0,0,0,0,2,0,2,0,2,2,1,1],[1,0,1,1,1,1,0,1,0,0,2,0,0,1,0,0,0,2,2,1,0,2,1,0,1,2,0,1,0,0],[1,0,0,0,0,2,0,1,0,1,2,2,0,2,0,0,2,0,0,0,0,2,0,1,1,1,0,2,0,2],[1,0,1,2,0,0,0,1,2,1,0,0,2,1,0,1,0,0,1,1,0,0,1,2,1,0,1,0,0,1],[2,0,1,0,0,2,0,0,0,0,0,2,0,1,0,2,0,0,0,0,2,1,0,2,0,2,0,0,0,0],[2,1,2,1,2,2,0,2,0,0,1,0,2,0,1,1,1,2,0,0,0,0,1,1,0,0,0,0,2,0],[2,1,0,1,0,1,0,0,0,1,0,0,1,0,0,0,2,0,1,0,1,0,1,0,1,0,1,0,2,0],[1,0,1,0,0,0,0,1,0,0,2,1,0,1,0,0,0,1,2,1,0,1,0,0,0,1,2,2,1,0],[2,0,0,0,0,0,0,0,1,0,0,2,0,0,0,1,0,0,1,0,2,1,0,0,1,0,1,0,0,0],[0,0,0,2,0,1,1,0,0,2,2,0,1,2,1,0,2,1,1,0,2,0,1,2,0,0,1,0,0,2],[1,2,0,0,1,1,0,1,1,0,1,0,0,1,2,1,2,2,2,0,1,0,0,0,0,1,0,0,1,2],[0,1,0,1,1,0,2,1,1,0,2,0,0,1,0,1,0,0,2,2,0,0,0,0,1,0,0,2,2,0],[1,2,2,0,0,0,0,2,0,0,0,1,2,2,0,2,2,1,0,1,0,0,0,2,1,0,0,1,0,1],[0,0,2,2,0,0,0,1,0,0,0,2,0,2,0,0,0,2,1,2,0,1,1,1,2,0,1,1,1,0],[1,2,0,2,1,0,0,0,1,2,0,2,0,2,0,0,1,2,0,0,0,0,0,1,0,0,1,0,0,1],[0,1,1,0,1,2,1,0,1,1,0,0,0,0,1,1,0,0,2,1,0,0,0,2,0,0,1,0,0,0],[2,2,1,0,0,0,1,0,0,0,0,2,1,0,0,0,2,0,2,0,1,0,0,1,0,1,2,0,2,1],[2,0,0,2,1,1,2,0,1,2,1,2,0,1,2,1,0,1,1,0,1,0,1,2,1,0,0,1,2,0]];
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
+                            let ledColor = [];
+                            let m = ledArray[i-1][j];
+                            let n = ledArray[i-1][ ( j + 1 ) % 30 ];
+
+                            if ( m === n ) {
+                                for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[m][k];
+                            } else {
+                                for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[m][k] + ( ledBasicColor[n][k] - ledBasicColor[m][k] ) / ledRepeatTimeSplit * ledJudgeTime;
+                            }
+
+                            ledColorChange(2,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+
+                    }
+
+                } else if ( key === ':' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン G *****/
+                    waterCurtain("G");
+
+                    /***** LED HI4 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumberHI4);
+
+                    function ledNumberHI4() {
+                        let ledFadeTime = 2500;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+                        let ledRepeatTime = 1800;
+                        let ledRepeatTimeSplit = ledRepeatTime / 4;
+                        let ledLapTimeSplit = 225;
+                        let ledBasicColor1 = [ 255 , 0 , 150 ];
+                        let ledBasicColor2 = [ [ 240 , 220 , 255 ] , [ 255 , 80 , 200 ] ];
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
+                            let ledColor = [];
+                            let j = ledNumberInside - i;
+                            let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j + 200 ) % ledRepeatTime;
+
+                            for ( var l = 0 ; l < 2 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l * 2 + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor2[l][k] + ( ledBasicColor1[k] - ledBasicColor2[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 ) ) ;
+                                    break;
+                                } else if ( ledJudgeTime < ledRepeatTimeSplit * ( ( l + 1 ) * 2 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor1[k] + ( ledBasicColor2[ ( l + 1 ) % 2 ][k] - ledBasicColor1[k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 + 1 ) );
+                                    break;
+                                }
+                            }
+
+                            ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
+                            let ledColor = [];
+                            let j = ledNumberOutside - i;
+                            let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+
+                            for ( var l = 0 ; l < 2 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l * 2 + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor2[l][k] + ( ledBasicColor1[k] - ledBasicColor2[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 ) ) ;
+                                    break;
+                                } else if ( ledJudgeTime < ledRepeatTimeSplit * ( ( l + 1 ) * 2 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor1[k] + ( ledBasicColor2[ ( l + 1 ) % 2 ][k] - ledBasicColor1[k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 + 1 ) );
+                                    break;
+                                }
+                            }
+
+                            ledColorChange(2,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+
+                    }
+
                 }
             }
 
@@ -1449,12 +1522,12 @@ document.addEventListener("keydown", (e) => {
                 if ( subCode === 6 ) { //f6
                     let startTime = Date.now();
     
-                    /***** 看板照明 Splash1 *****/
+                    /***** 看板照明 HI1 *****/
                     let logoboardLightMyNumber = logoboardLightSetting(0);
                     let logoboardLightFadeTime = 2300;
-                    let logoboardLightSetInterval = setInterval(logoboardLightNumberSplash1);
+                    let logoboardLightSetInterval = setInterval(logoboardLightNumberHI1);
         
-                    function logoboardLightNumberSplash1() {
+                    function logoboardLightNumberHI1() {
                         let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
     
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
@@ -1602,6 +1675,77 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 800);
                     },800);
     
+                }
+            } else if ( subNowPage === 2 ) {
+                if ( subCode === 6 ) { //f6
+                    let startTime = Date.now();
+    
+                    /***** 看板照明 HI4 *****/
+                    let logoboardLightMyNumber = logoboardLightSetting(1);
+                    let logoboardLightSetInterval = setInterval(logoboardLightNumberHI4_1);
+        
+                    function logoboardLightNumberHI4_1() {
+                        let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[1],logoboardLightSetInterval,logoboardLightMyNumber);
+                        let logoboardRepeatTime = 5000;
+                        let logoboardChangeTime = logoboardRepeatTime / 8;
+                        let logoboardRepeatTimeSplit = logoboardRepeatTime / 2;
+                        let logoboardRepeatTimeSplit2 = logoboardChangeTime;
+                        let logoboardBasicColor = [ [ 100 , 0 , 255 ] , [ 255 , 0 , 220 ] ];
+        
+                        for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
+                            let logoboardColor = [];
+                            let logoboardLapTimeSplit;
+
+                            if ( i <= 12 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit2 * ( Math.trunc( ( 12 - i ) / 3 ) + 4 );
+                            else if ( i <= 27 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit2 * Math.trunc( ( i - 13 ) / 3 );
+                            else logoboardLapTimeSplit = logoboardRepeatTimeSplit2 * ( Math.trunc( ( 48 - i ) / 3 ) + 1 );
+
+                            let logoboardJudgeTime = ( nowTime[0] + logoboardLapTimeSplit ) % logoboardRepeatTime;
+
+                            for ( var l = 0 ; l < 2 ; l++ ) {
+                                if ( logoboardJudgeTime < logoboardRepeatTimeSplit * l + logoboardChangeTime ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 2 ][k] - logoboardBasicColor[l][k] ) / logoboardChangeTime * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
+                                    break;
+                                } else if ( logoboardJudgeTime < logoboardRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) logoboardColor[k] = logoboardBasicColor[ ( l + 1 ) % 2 ][k];
+                                    break;
+                                }
+                            }
+        
+                            logoboardLightAnimateChange(i,logoboardColor[0],logoboardColor[1],logoboardColor[2],-1);
+                        }
+                    }
+
+                    logoboardLightSetTimeout[0] = setTimeout(function() {
+                        let logoboardLightMyNumber2 = logoboardLightSetting(0);
+                        let logoboardLightFadeTime = 1800;
+                        let logoboardLightSetInterval2 = setInterval(logoboardLightNumberHI4_2);
+            
+                        function logoboardLightNumberHI4_2() {
+                            let nowTime = nowTimeGet(startTime+100,0,logoboardLightUseNumber[0],logoboardLightSetInterval2,logoboardLightMyNumber2);
+        
+                            for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) logoboardLightFadeChage(i,-1,-1,-1,150,1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval2,0);
+                        }
+                    },100);
+                    
+                    /***** パーライト HI3 *****/
+                    let parLightSetInterval = setInterval(parLightNumberHI3);
+
+                    function parLightNumberHI3() {
+                        let parLightFadeTime = 1800;
+                        var nowTime = nowTimeGet(startTime,0);
+
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,100,200,nowTime[0],parLightFadeTime,parLightSetInterval);
+                    }
+
+                    setTimeout( function () {
+                        /***** スポットライト *****/
+                        let spotFadeTime = 1300;
+                        spotLightChange(1,spotFadeTime,startTime + 500);
+                    },500);
+    
+                } else if ( subCode === 7 ) {
+                    let startTime = Date.now();
                 }
             }
         }

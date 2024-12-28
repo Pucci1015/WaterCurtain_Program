@@ -1038,11 +1038,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BG *****/
                     waterCurtain("BG");
 
-                    /***** LED DSF9 *****/
+                    /***** LED HI1 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF9);
+                    let ledSetInterval = setInterval(ledNumberHI1);
 
-                    function ledNumberDSF9() {
+                    function ledNumberHI1() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 3000;
                         let ledRepeatTimeSplit = ledRepeatTime / 4;
@@ -1614,11 +1614,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン K *****/
                     waterCurtain("K");
 
-                    /***** LED DSF10 *****/
+                    /***** LED DSF9 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF10);
+                    let ledSetInterval = setInterval(ledNumberDSF9);
 
-                    function ledNumberDSF10() {
+                    function ledNumberDSF9() {
                         let ledFadeTime = 1500;
                         let ledRepeatTime = 5000;
                         let ledRepeatTimeSplit = ledRepeatTime / 8;
@@ -1689,11 +1689,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AU *****/
                     waterCurtain("AU");
 
-                    /***** LED DSF11 *****/
+                    /***** LED DSF10 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF11);
+                    let ledSetInterval = setInterval(ledNumberDSF10);
 
-                    function ledNumberDSF11() {
+                    function ledNumberDSF10() {
                         let ledFadeTime = 1500;
                         let ledRepeatTime = 2800;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -1757,11 +1757,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED DSF10 *****/
+                    /***** LED DSF9 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF10);
+                    let ledSetInterval = setInterval(ledNumberDSF9);
 
-                    function ledNumberDSF10() {
+                    function ledNumberDSF9() {
                         let ledFadeTime = 1500;
                         let ledRepeatTime = 5000;
                         let ledRepeatTimeSplit = ledRepeatTime / 8;
@@ -1889,11 +1889,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BI *****/
                     waterCurtain("BI");
 
-                    /***** LED DSF10 *****/
+                    /***** LED DSF9 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF10);
+                    let ledSetInterval = setInterval(ledNumberDSF9);
 
-                    function ledNumberDSF10() {
+                    function ledNumberDSF9() {
                         let ledFadeTime = 1500;
                         let ledRepeatTime = 5000;
                         let ledRepeatTimeSplit = ledRepeatTime / 8;
@@ -1964,11 +1964,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AF *****/
                     waterCurtain("AF");
 
-                    /***** LED DSF12 *****/
+                    /***** LED DSF11 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF12);
+                    let ledSetInterval = setInterval(ledNumberDSF11);
 
-                    function ledNumberDSF12() {
+                    function ledNumberDSF11() {
                         let ledFadeTime = 500;
                         let ledRepeatTime = 3000;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -2025,7 +2025,7 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン N *****/
                     waterCurtain("N");
 
-                    /***** LED DSF13 *****/
+                    /***** LED DSF12 *****/
                     let ledMyNumber = ledSetting();
                     let ledSetTimeoutDelay = [];
                     let ledSetInterval = [];
@@ -2033,9 +2033,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[1] = 0;
                     ledSetTimeout[1] = setTimeout( function() {
                         let ledMyNumber1 = ledSetting(ledMyNumber);
-                        ledSetInterval[1] = setInterval(ledNumberDSF13_1);
+                        ledSetInterval[1] = setInterval(ledNumberDSF12_1);
                         
-                        function ledNumberDSF13_1() {
+                        function ledNumberDSF12_1() {
                             let ledFadeTime = 1000;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[1],ledFadeTime,ledUseNumber,ledSetInterval[1],ledMyNumber,ledUseChildrenNumber,ledMyNumber1);
                             
@@ -2059,9 +2059,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[2] = 10000;
                     ledSetTimeout[2] = setTimeout( function() {
                         let ledMyNumber2 = ledSetting(ledMyNumber);
-                        ledSetInterval[2] = setInterval(ledNumberDSF13_2);
+                        ledSetInterval[2] = setInterval(ledNumberDSF12_2);
                         
-                        function ledNumberDSF13_2() {
+                        function ledNumberDSF12_2() {
                             let ledFadeTime = 2000;
                             let ledRepeatTime = 1500;
                             let ledRepeatTimeSplit = ledRepeatTime / 2;
@@ -2109,9 +2109,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[3] = 32000;
                     ledSetTimeout[3] = setTimeout( function() {
                         let ledMyNumber3 = ledSetting(ledMyNumber);
-                        ledSetInterval[3] = setInterval(ledNumberDSF13_3);
+                        ledSetInterval[3] = setInterval(ledNumberDSF12_3);
                         
-                        function ledNumberDSF13_3() {
+                        function ledNumberDSF12_3() {
                             let ledFadeTime = 2000;
                             let ledRepeatTime = 3000;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[3],ledFadeTime,ledUseNumber,ledSetInterval[3],ledMyNumber,ledUseChildrenNumber,ledMyNumber3);
@@ -2269,11 +2269,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AH *****/
                     waterCurtain("AH");
 
-                    /***** LED DSF14 *****/
+                    /***** LED DSF13 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF14);
+                    let ledSetInterval = setInterval(ledNumberDSF13);
 
-                    function ledNumberDSF14() {
+                    function ledNumberDSF13() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 1500;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
@@ -2322,11 +2322,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AV *****/
                     waterCurtain("AV");
 
-                    /***** LED DSF15 *****/
+                    /***** LED DSF14 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF15);
+                    let ledSetInterval = setInterval(ledNumberDSF14);
 
-                    function ledNumberDSF15() {
+                    function ledNumberDSF14() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 3000;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -2377,11 +2377,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BN *****/
                     waterCurtain("BN");
 
-                    /***** LED DSF14 *****/
+                    /***** LED DSF13 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF14);
+                    let ledSetInterval = setInterval(ledNumberDSF13);
 
-                    function ledNumberDSF14() {
+                    function ledNumberDSF13() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 1500;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
@@ -2430,11 +2430,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AC *****/
                     waterCurtain("AC");
 
-                    /***** LED DSF14 *****/
+                    /***** LED DSF13 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF14);
+                    let ledSetInterval = setInterval(ledNumberDSF13);
 
-                    function ledNumberDSF14() {
+                    function ledNumberDSF13() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 1500;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
@@ -2483,11 +2483,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BB *****/
                     waterCurtain("BB");
 
-                    /***** LED DSF15 *****/
+                    /***** LED DSF14 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF15);
+                    let ledSetInterval = setInterval(ledNumberDSF14);
 
-                    function ledNumberDSF15() {
+                    function ledNumberDSF14() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 3000;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -2611,11 +2611,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BG *****/
                     waterCurtain("BG");
 
-                    /***** LED DSF9 *****/
+                    /***** LED HI1 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF9);
+                    let ledSetInterval = setInterval(ledNumberHI1);
 
-                    function ledNumberDSF9() {
+                    function ledNumberHI1() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 3000;
                         let ledRepeatTimeSplit = ledRepeatTime / 4;
@@ -2667,7 +2667,7 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED DSF16 *****/
+                    /***** LED DSF15 *****/
                     let ledMyNumber = ledSetting();
                     let ledSetTimeoutDelay = [];
                     let ledSetInterval = [];
@@ -2675,9 +2675,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[1] = 0;
                     ledSetTimeout[1] = setTimeout( function() {
                         let ledMyNumber1 = ledSetting(ledMyNumber);
-                        ledSetInterval[1] = setInterval(ledNumberDSF16_1);
+                        ledSetInterval[1] = setInterval(ledNumberDSF15_1);
                         
-                        function ledNumberDSF16_1() {
+                        function ledNumberDSF15_1() {
                             let ledFadeTime = 500;
                             let ledRepeatTime = 3000;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[1],ledFadeTime,ledUseNumber,ledSetInterval[1],ledMyNumber,ledUseChildrenNumber,ledMyNumber1);
@@ -2733,9 +2733,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[2] = 13000;
                     ledSetTimeout[2] = setTimeout( function() {
                         let ledMyNumber2 = ledSetting(ledMyNumber);
-                        ledSetInterval[2] = setInterval(ledNumberDSF16_2);
+                        ledSetInterval[2] = setInterval(ledNumberDSF15_2);
                         
-                        function ledNumberDSF16_2() {
+                        function ledNumberDSF15_2() {
                             let ledFadeTime = 500;
                             let ledRepeatTime = 1900;
                             let ledRepeatTimeSplit = ledRepeatTime / 2;
@@ -3216,11 +3216,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AB *****/
                     waterCurtain("AB");
 
-                    /***** LED DSF17 *****/
+                    /***** LED DSF16 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF17);
+                    let ledSetInterval = setInterval(ledNumberDSF16);
 
-                    function ledNumberDSF17() {
+                    function ledNumberDSF16() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 2000;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -3270,11 +3270,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED DSF18 *****/
+                    /***** LED DSF17 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF18);
+                    let ledSetInterval = setInterval(ledNumberDSF17);
 
-                    function ledNumberDSF18() {
+                    function ledNumberDSF17() {
                         let ledFadeTime = 500;
                         let ledRepeatTime = 2000;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -4568,11 +4568,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED DSF19 *****/
+                    /***** LED DSF18 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF19);
+                    let ledSetInterval = setInterval(ledNumberDSF18);
 
-                    function ledNumberDSF19() {
+                    function ledNumberDSF18() {
                         let ledFadeTime = 500;
                         let ledRepeatTime = 2000;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -4627,11 +4627,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED DSF20 *****/
+                    /***** LED DSF19 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF20);
+                    let ledSetInterval = setInterval(ledNumberDSF19);
 
-                    function ledNumberDSF20() {
+                    function ledNumberDSF19() {
                         let ledFadeTime = 1000;
                         let ledRepeatTime = 1500;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -4783,11 +4783,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED DSF21 *****/
+                    /***** LED DSF20 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberDSF21);
+                    let ledSetInterval = setInterval(ledNumberDSF20);
 
-                    function ledNumberDSF21() {
+                    function ledNumberDSF20() {
                         let ledFadeTime = 1500;
                         let ledRepeatTime = 1000;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
