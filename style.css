@@ -230,7 +230,7 @@ a {
     margin: 0 auto;
     opacity: 1;
     transition: 1s;
-    display: block;
+    display: none;
 }
 
 .LOGOBORD_LIGHT {
