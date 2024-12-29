@@ -1515,6 +1515,256 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
+                } else if ( key === ']' ) {
+                    let startTime = Date.now();
+
+                    /***** 水中照明 GATARI2 *****/
+                    let waterLightMyNumber = waterLightSetting();
+                    let waterLightSetInterval = setInterval(waterLightNumberGATARI2);
+
+                    function waterLightNumberGATARI2() {
+                        let fadeTime = 3200;
+                        let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
+                            waterLightColorChange(i,180,0,255,nowTime[0],fadeTime,0,waterLightSetInterval);
+                        }
+                    }
+
+                    /***** ムービングライト HI8 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        
+                        let movingLightAngleFadeTime = 1000;
+
+                        for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,50,100);
+                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,0,100,100);
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberHI8_1);
+
+                        function movingLightNumberHI8_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,180,0,255,0);
+
+                                for ( var i = 1 ; i <= 4 ; i++ ) {
+                                    movingLightColorChange(2,i,150,0,255,0);
+                                    movingLightAngleChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);
+                                }
+                                movingLightColorChange(2,5,0,0,0,0);
+                                movingLightAngleChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    /*movingLightSetTimeoutDelay[1] = 63000;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 2000;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberHI8_2);
+
+                        function movingLightNumberHI8_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+                            
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                    movingLightSetTimeoutDelay[2] = 103000;
+                    movingLightSetTimeout[2] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 3000;
+
+                        movingLightSetInterval[3] = setInterval(movingLightNumberHI8_3);
+
+                        function movingLightNumberHI8_3() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[2],0,movingLightUseNumber,movingLightSetInterval[3],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,0,150,255,-1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[3]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[2]);
+
+                    movingLightSetTimeoutDelay[3] = 148500;
+                    movingLightSetTimeout[3] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 2000;
+
+                        movingLightSetInterval[4] = setInterval(movingLightNumberHI8_4);
+
+                        function movingLightNumberHI8_4() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[3],0,movingLightUseNumber,movingLightSetInterval[4],movingLightMyNumber);
+                            
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,150,0,255,-1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[3]);
+                            }
+
+                        }
+
+                    },movingLightSetTimeoutDelay[3]);
+
+                    movingLightSetTimeoutDelay[4] = 171500;
+                    movingLightSetTimeout[4] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 1000;
+
+                        movingLightSetInterval[5] = setInterval(movingLightNumberHI8_5);
+
+                        function movingLightNumberHI8_5() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[4],0,movingLightUseNumber,movingLightSetInterval[5],movingLightMyNumber);
+                            
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,0,255,255,-1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[5]);
+                            }
+
+                        }
+
+                    },movingLightSetTimeoutDelay[4]);
+
+                    movingLightSetTimeoutDelay[5] = 196500;
+                    movingLightSetTimeout[5] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 2000;
+
+                        movingLightSetInterval[6] = setInterval(movingLightNumberHI8_6);
+
+                        function movingLightNumberHI8_6() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[5],0,movingLightUseNumber,movingLightSetInterval[6],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,255,100,0,-1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[6]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[5]);
+
+                    movingLightSetTimeoutDelay[6] = 220000;
+                    movingLightSetTimeout[6] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 200;
+
+                        movingLightSetInterval[7] = setInterval(movingLightNumberHI8_7);
+
+                        function movingLightNumberHI8_7() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[6],0,movingLightUseNumber,movingLightSetInterval[7],movingLightMyNumber);
+                            
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[7]);
+                            }
+                            
+                        }
+                    },movingLightSetTimeoutDelay[6]);
+
+                    movingLightSetTimeoutDelay[7] = 221000;
+                    movingLightSetTimeout[7] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 2800;
+
+                        movingLightSetInterval[8] = setInterval(movingLightNumberHI8_8);
+
+                        function movingLightNumberHI8_8() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[7],0,movingLightUseNumber,movingLightSetInterval[8],movingLightMyNumber);
+                            
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,0,200,1,movingLightColorFadeTime,nowTime[0],1);
+
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,200,0,255,1,movingLightColorFadeTime,nowTime[0],1);
+                            } else {
+                                clearInterval(movingLightSetInterval[8]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[7]);
+
+                    movingLightSetTimeoutDelay[8] = 264000;
+                    movingLightSetTimeout[8] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 1800;
+
+                        movingLightSetInterval[9] = setInterval(movingLightNumberHI8_9);
+
+                        function movingLightNumberHI8_9() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[8],0,movingLightUseNumber,movingLightSetInterval[9],movingLightMyNumber);
+                            
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,255,255,255,-1,300,nowTime[0]);
+                                    movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                }
+
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[9]);
+                            }
+
+                        }
+
+                    },movingLightSetTimeoutDelay[8]);
+
+                    movingLightSetTimeoutDelay[9] = 265800;
+                    movingLightSetTimeout[9] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightAngleFadeTime = 800;
+
+                        movingLightSetInterval[10] = setInterval(movingLightNumberHI8_10);
+
+                        function movingLightNumberHI8_10() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[9],0,movingLightUseNumber,movingLightSetInterval[10],movingLightMyNumber);
+                            
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                                
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(2,i,0,120,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[11]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[9]);*/
+
                 }
             }
 
