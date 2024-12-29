@@ -23,7 +23,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
                     
-                } else if ( key === 'h' ) {
+                } else if ( key === 'g' ) {
                     let startTime = Date.now();
                     
                     /***** ウォーターカーテン A *****/
@@ -57,7 +57,7 @@ document.addEventListener("keydown", (e) => {
                         ledSetInterval[2] = setInterval(ledNumberNLJ1_2);
                         
                         function ledNumberNLJ1_2() {
-                            let ledFadeTime = 1200;
+                            let ledFadeTime = 2000;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[2],ledFadeTime,ledUseNumber,ledSetInterval[2],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
                             
                             for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,255,255,255,nowTime[0],ledFadeTime,0,ledSetInterval[2]);
