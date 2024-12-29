@@ -68,7 +68,7 @@ document.addEventListener("keydown", (e) => {
                         
                     },ledSetTimeoutDelay[2]);
 
-                    ledSetTimeoutDelay[3] = 10000;
+                    ledSetTimeoutDelay[3] = 24000;
                     ledSetTimeout[3] = setTimeout( function() {
                         let ledChildrenMyNumber = ledSetting(ledMyNumber);
                         ledSetInterval[3] = setInterval(ledNumberNLJ1_3);
@@ -95,7 +95,7 @@ document.addEventListener("keydown", (e) => {
 
                             ledBasicColor = [ [ 255 , 255 , 255 ] , [ 0 , 150 , 255 ] ];
                             ledRepeatTimeSplit = ledRepeatTime / 10;
-                            let ledLapTimeSplit = ledRepeatTime / 6;
+                            let ledLapTimeSplit = ledRepeatTime / 6 / ledNumberOutside;
         
                             for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
                                 let ledColor = [];
