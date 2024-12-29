@@ -695,7 +695,7 @@ document.addEventListener("keydown", (e) => {
                     setTimeout( function () {
                         /***** スポットライト *****/
                         let spotFadeTime = 1000;
-                        spotLightChange(1,spotFadeTime,startTime + 500);
+                        spotLightChange(0.8,spotFadeTime,startTime + 500);
                     },500);
     
                 } else if ( subCode === 8 ) {
@@ -720,7 +720,7 @@ document.addEventListener("keydown", (e) => {
                             else if ( j <= 12 ) logoboardLightColor = [ 50 , 255 , 100 , 0 ];
                             else if ( j <= 15 ) logoboardLightColor = [ 100 , 50 , 0 , 255 ];
                             else if ( j <= 18 ) logoboardLightColor = [ 0 , 0 , 0 , 255 ];
-                            else logoboardLightColor = [ 150 , 255 , 50 , 0 ];
+                            else logoboardLightColor = [ 200 , 255 , 80 , 0 ];
     
                             logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                         }
@@ -739,7 +739,7 @@ document.addEventListener("keydown", (e) => {
                     setTimeout( function () {
                         /***** スポットライト *****/
                         let spotFadeTime = 1000;
-                        spotLightChange(1,spotFadeTime,startTime + 500);
+                        spotLightChange(0.8,spotFadeTime,startTime + 500);
 
                         /***** ステージライト *****/
                         let stageFadeTime = 1000;
@@ -768,7 +768,7 @@ document.addEventListener("keydown", (e) => {
                     setTimeout( function () {
                         /***** スポットライト *****/
                         let spotFadeTime = 1000;
-                        spotLightChange(0.5,spotFadeTime,startTime + 500);
+                        spotLightChange(0.8,spotFadeTime,startTime + 500);
                     },500);
     
                 } else if ( subCode === 10 ) {
@@ -817,7 +817,7 @@ document.addEventListener("keydown", (e) => {
                     setTimeout( function () {
                         /***** スポットライト *****/
                         let spotFadeTime = 1000;
-                        spotLightChange(0.5,spotFadeTime,startTime + 500);
+                        spotLightChange(1,spotFadeTime,startTime + 500);
                     },500);
     
                 } else if ( subCode === 11 ) {
@@ -864,7 +864,7 @@ document.addEventListener("keydown", (e) => {
                     setTimeout( function () {
                         /***** スポットライト *****/
                         let spotFadeTime = 700;
-                        spotLightChange(1,spotFadeTime,startTime + 300);
+                        spotLightChange(0.8,spotFadeTime,startTime + 300);
 
                         /***** ステージライト *****/
                         let stageFadeTime = 700;
@@ -915,7 +915,7 @@ document.addEventListener("keydown", (e) => {
                     setTimeout( function () {
                         /***** スポットライト *****/
                         let spotFadeTime = 1500;
-                        spotLightChange(1,spotFadeTime,startTime + 500);
+                        spotLightChange(0.8,spotFadeTime,startTime + 500);
                     },500);
     
                 }
