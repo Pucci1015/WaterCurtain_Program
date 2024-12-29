@@ -100,7 +100,7 @@ document.addEventListener("keydown", (e) => {
                             for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
                                 let ledColor = [];
                                 let j = i - 1;
-                                let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * ( j + 5 ) ) % ledRepeatTime;
+                                let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j + ledRepeatTime / 6 * 5 ) % ledRepeatTime;
         
                                 if ( ledJudgeTime < ledRepeatTimeSplit ) {
                                     for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[0][k] + ( ledBasicColor[1][k] - ledBasicColor[0][k] ) / ledRepeatTimeSplit * ledJudgeTime ;
