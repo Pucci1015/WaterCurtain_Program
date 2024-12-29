@@ -1,4 +1,3 @@
-//NorthernLightsJourney.js
 jsSetting("NorthernLightsJourney","Northern Lights Journey",1,1,1,1,2200);
 
 document.addEventListener("keydown", (e) => {
