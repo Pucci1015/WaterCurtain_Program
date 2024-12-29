@@ -1539,7 +1539,7 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[0] = setTimeout( function() {
                         movingLightSetting(0);
                         
-                        let movingLightAngleFadeTime = 1000;
+                        let movingLightAngleFadeTime = 2000;
 
                         for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,50,100);
                         for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,0,100,100);
@@ -1552,12 +1552,8 @@ document.addEventListener("keydown", (e) => {
                             if ( nowTime[0] <= movingLightAngleFadeTime ) {
                                 for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,180,0,255,0);
 
-                                for ( var i = 1 ; i <= 4 ; i++ ) {
-                                    movingLightColorChange(2,i,150,0,255,0);
-                                    movingLightAngleChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);
-                                }
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(2,i,0,120,movingLightAngleFadeTime,nowTime[0]);
                                 movingLightColorChange(2,5,0,0,0,0);
-                                movingLightAngleChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
                             } else {
                                 clearInterval(movingLightSetInterval[1]);
                             }
