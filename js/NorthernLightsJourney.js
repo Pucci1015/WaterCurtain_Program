@@ -643,13 +643,104 @@ document.addEventListener("keydown", (e) => {
                             else j = logoboardLightNumber - i + 1;
 
                             if ( j <= 3 ) logoboardLightColor = [ 0 , 0 , 0 , 255];
-                            else if ( j <= 12 ) logoboardLightColor = [ 100 , 255 , 255 , 255 ];
-                            else if ( j <= 21 ) logoboardLightColor = [ 0 , 100 , 255 , 100 ];
+                            else if ( j <= 12 ) logoboardLightColor = [ 180 , 255 , 255 , 255 ];
+                            else if ( j <= 21 ) logoboardLightColor = [ 0 , 50 , 255 , 150 ];
                             else logoboardLightColor = [ 0 , 0 , 0 , 255];
     
                             logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                         }
                     }
+    
+                } else if ( subCode === 7 ) {
+                    let startTime = Date.now();
+    
+                    /***** 看板照明 NLJ2 *****/
+                    let logoboardLightMyNumber = logoboardLightSetting(0);
+                    let logoboardLightFadeTime = 3500;
+                    let logoboardLightSetInterval = setInterval(logoboardLightNumberNLJ2);
+        
+                    function logoboardLightNumberNLJ2() {
+                        let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
+    
+                        for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
+                            let j;
+                            let logoboardLightColor = [];
+    
+                            if ( i <= logoboardLightNumber / 2 ) j = i - 1;
+                            else j = logoboardLightNumber - i;
+
+                            switch ( Math.trunc( j / 6 % 2 ) ) {
+                                case 0:
+                                    logoboardLightColor = [ 255 , 255 , 150 , 255 ];
+                                    break;
+                                case 1:
+                                    logoboardLightColor = [ 0 , 50 , 255 , 100 ];
+                                    break;
+                            }
+    
+                            logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
+                        }
+                    }
+
+                    /***** パーライト NLJ1 *****/
+                    let parLightSetInterval = setInterval(parLightNumberNLJ1);
+
+                    function parLightNumberNLJ1() {
+                        let parLightFadeTime = 1500;
+                        var nowTime = nowTimeGet(startTime,0);
+
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,240,150,nowTime[0],parLightFadeTime,parLightSetInterval);
+                    }
+
+                    setTimeout( function () {
+                        /***** スポットライト *****/
+                        let spotFadeTime = 1000;
+                        spotLightChange(1,spotFadeTime,startTime + 500);
+                    },500);
+    
+                } else if ( subCode === 8 ) {
+                    let startTime = Date.now();
+    
+                    /***** 看板照明 NLJ3 *****/
+                    let logoboardLightMyNumber = logoboardLightSetting(0);
+                    let logoboardLightFadeTime = 1500;
+                    let logoboardLightSetInterval = setInterval(logoboardLightNumberNLJ3);
+        
+                    function logoboardLightNumberNLJ3() {
+                        let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
+    
+                        for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
+                            let j;
+                            let logoboardLightColor = [];
+    
+                            if ( i <= logoboardLightNumber / 2 ) j = i - 1;
+                            else j = logoboardLightNumber - i;
+
+                            if ( j <= 6 ) logoboardLightColor = [ 0 , 0 , 50 , 255];
+                            else if ( j <= 12 ) logoboardLightColor = [ 50 , 255 , 50 , 0 ];
+                            else if ( j <= 15 ) logoboardLightColor = [ 50 , 50 , 0 , 255 ];
+                            else if ( j <= 18 ) logoboardLightColor = [ 0 , 0 , 0 , 255 ];
+                            else logoboardLightColor = [ 150 , 255 , 50 , 0 ];
+    
+                            logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
+                        }
+                    }
+
+                    /***** パーライト defult *****/
+                    let parLightSetInterval = setInterval(parLightNumberDefult);
+
+                    function parLightNumberDefult() {
+                        let parLightFadeTime = 1500;
+                        var nowTime = nowTimeGet(startTime,0);
+
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,255,255,nowTime[0],parLightFadeTime,parLightSetInterval);
+                    }
+
+                    setTimeout( function () {
+                        /***** スポットライト *****/
+                        let spotFadeTime = 1000;
+                        spotLightChange(1,spotFadeTime,startTime + 500);
+                    },500);
     
                 }
             }
