@@ -174,11 +174,11 @@ function characterLength(character) {
         case '{': long = 0.38; break;
         case ']': long = 0.38; break;
         case '}': long = 0.38; break;
-        //case '\': long = 0.58; break;
+        case '\\': long = 0.58; break;
         case '|': long = 0.38; break;
         case ';': long = 0.28; break;
         case ':': long = 0.28; break;
-        //case ''': long = 0.22; break;
+        case '\'': long = 0.22; break;
         case '"': long = 0.41; break;
         case ',': long = 0.26; break;
         case '<': long = 0.72; break;
@@ -668,7 +668,7 @@ function parLightColorFadeChange(parLightNowNumber,colorRed,colorGreen,colorBlue
     let parLightShadowCoordinateNumber = document.getElementById(`PAR_LIGHT_PARENT_${parLightNowNumber}`);
     let parLightCoordinateNumber = document.getElementById(`PAR_LIGHT_${parLightNowNumber}`);
     parLightCoordinateNumber.style.backgroundColor = "rgb(" + colorRed + "," + colorGreen + "," + colorBlue + ")";
-    parLightShadowCoordinateNumber.style.filter = "drop-shadow( 0 0 8px rgb(" + colorRed + "," + colorGreen + "," + colorBlue + ") )";
+    parLightShadowCoordinateNumber.style.filter = "drop-shadow( 0 0 " + parLightDiameter * 0.4 +"px rgb(" + colorRed + "," + colorGreen + "," + colorBlue + ") )";
 
 }
 
@@ -728,7 +728,7 @@ function spotLightChange(spotLightChangeStrength,spotLightChangeTime,startTime,s
         } else if ( nowTime <= spotLightChangeTime && spotLightChangeStrength >=0 && spotLightChangeStrength <= 1 ) {
             spotLightShadowProportion = spotLightShadowFirstStrength + ( spotLightChangeStrength - spotLightShadowFirstStrength ) / spotLightChangeTime * nowTime;
             let spotLightShadowCoordinate = document.getElementById(`SPOT_LIGHT`);
-            spotLightShadowCoordinate.style.filter = "drop-shadow( 0  0 " + 6 * Math.sin(spotLightShadowProportion/2*Math.PI) + "px #FFDC96 )";
+            spotLightShadowCoordinate.style.filter = "drop-shadow( 0  0 " + spotLightDiameter / 2 * Math.sin(spotLightShadowProportion/2*Math.PI) + "px #FFDC96 )";
 
             for ( var i = 1 ; i <= spotLightNumber ; i++ ) {
                 var spotLightNowChangeStrength = spotLightChangeStrength;
@@ -738,8 +738,8 @@ function spotLightChange(spotLightChangeStrength,spotLightChangeTime,startTime,s
                 spotLightProportion[i-1] = spotLightFirstStrength[i-1] + ( spotLightNowChangeStrength - spotLightFirstStrength[i-1] ) / spotLightChangeTime * nowTime;
                 let spotLightCoordinateNumber = document.getElementById(`SPOT_LIGHT_${i}`);
                 spotLightCoordinateNumber.style.opacity = 1;
-                spotLightCoordinateNumber.style.height = 12 * Math.sin(spotLightProportion[i-1]/2*Math.PI) + "px";
-                spotLightCoordinateNumber.style.width = 12 * Math.sin(spotLightProportion[i-1]/2*Math.PI) + "px";
+                spotLightCoordinateNumber.style.height = spotLightDiameter * Math.sin(spotLightProportion[i-1]/2*Math.PI) + "px";
+                spotLightCoordinateNumber.style.width = spotLightDiameter * Math.sin(spotLightProportion[i-1]/2*Math.PI) + "px";
             }
 
             spotLightShadowStrength = spotLightShadowProportion;
@@ -790,13 +790,13 @@ function audienceLightChange(audienceLightChangeStrength,audienceLightChangeTime
         } else if ( nowTime <= audienceLightChangeTime && audienceLightChangeStrength >=0 && audienceLightChangeStrength <= 1 ) {
             var audienceLightProportion = audienceLightFirstStrength + ( audienceLightChangeStrength - audienceLightFirstStrength ) / audienceLightChangeTime * nowTime;
             let audienceLightShadowCoordinate = document.getElementById(`AUDIENCE_LIGHT`);
-            audienceLightShadowCoordinate.style.filter = "drop-shadow( 0  0 " + 6 * Math.sin(audienceLightProportion/2*Math.PI) + "px #FFDC96 )";
+            audienceLightShadowCoordinate.style.filter = "drop-shadow( 0  0 " + audienceLightDiameter / 2 * Math.sin(audienceLightProportion/2*Math.PI) + "px #FFDC96 )";
 
             for ( var i = 1 ; i <= audienceLightNumber ; i++ ) {
                 let audienceLightCoordinateNumber = document.getElementById(`AUDIENCE_LIGHT_${i}`);
                 audienceLightCoordinateNumber.style.opacity = 1;
-                audienceLightCoordinateNumber.style.height = 12 * Math.sin(audienceLightProportion/2*Math.PI) + "px";
-                audienceLightCoordinateNumber.style.width = 12 * Math.sin(audienceLightProportion/2*Math.PI) + "px";
+                audienceLightCoordinateNumber.style.height = audienceLightDiameter * Math.sin(audienceLightProportion/2*Math.PI) + "px";
+                audienceLightCoordinateNumber.style.width = audienceLightDiameter * Math.sin(audienceLightProportion/2*Math.PI) + "px";
             }
 
             audienceLightStrength = audienceLightProportion;
@@ -832,13 +832,13 @@ function stageLightChange(stageLightChangeStrength,stageLightChangeTime,startTim
         } else if ( nowTime <= stageLightChangeTime && stageLightChangeStrength >=0 && stageLightChangeStrength <= 1 ) {
             var stageLightProportion = stageLightFirstStrength + ( stageLightChangeStrength - stageLightFirstStrength ) / stageLightChangeTime * nowTime;
             let stageLightShadowCoordinate = document.getElementById(`STAGE_LIGHT`);
-            stageLightShadowCoordinate.style.filter = "drop-shadow( 0  0 " + 6 * Math.sin(stageLightProportion/2*Math.PI) + "px #FFDC96 )";
+            stageLightShadowCoordinate.style.filter = "drop-shadow( 0  0 " + stageLightDiameter / 2 * Math.sin(stageLightProportion/2*Math.PI) + "px #FFDC96 )";
 
             for ( var i = 1 ; i <= 2 ; i++ ) {
                 let stageLightCoordinateNumber = document.getElementById(`STAGE_LIGHT_${i}`);
                 stageLightCoordinateNumber.style.opacity = 1;
-                stageLightCoordinateNumber.style.height = 12 * Math.sin(stageLightProportion/2*Math.PI) + "px";
-                stageLightCoordinateNumber.style.width = 12 * Math.sin(stageLightProportion/2*Math.PI) + "px";
+                stageLightCoordinateNumber.style.height = stageLightDiameter * Math.sin(stageLightProportion/2*Math.PI) + "px";
+                stageLightCoordinateNumber.style.width = stageLightDiameter * Math.sin(stageLightProportion/2*Math.PI) + "px";
             }
 
             stageLightStrength = stageLightProportion;
@@ -871,12 +871,12 @@ function waterCannonAngleChange(waterCannonNowNumber,waterCannonNowAngle,waterCa
         /*if ( waterCannonProportion < -0.01 ) {
             waterCannonProportion = -0.01;
         }*/
-        waterCannonCoordinateNumber.style.height = ( waterCannonFirstAngle[waterCannonNowNumber-1] + waterCannonProportion * nowTime ) / 90 * 12 + "px";
-        waterCannonCoordinateNumber.style.width = ( waterCannonFirstAngle[waterCannonNowNumber-1] + waterCannonProportion * nowTime ) / 90 * 12 + "px";
+        waterCannonCoordinateNumber.style.height = ( waterCannonFirstAngle[waterCannonNowNumber-1] + waterCannonProportion * nowTime ) / 90 * 70 + "%";
+        waterCannonCoordinateNumber.style.width = ( waterCannonFirstAngle[waterCannonNowNumber-1] + waterCannonProportion * nowTime ) / 90 * 70 + "%";
         waterCannonAngle[waterCannonNowNumber-1] = waterCannonFirstAngle[waterCannonNowNumber-1] + waterCannonProportion * nowTime;
     } else {
-        waterCannonCoordinateNumber.style.height = waterCannonNowAngle / 90 * 12 + "px";
-        waterCannonCoordinateNumber.style.width = waterCannonNowAngle / 90 * 12 + "px";
+        waterCannonCoordinateNumber.style.height = waterCannonNowAngle / 90 * 70 + "%";
+        waterCannonCoordinateNumber.style.width = waterCannonNowAngle / 90 * 70 + "%";
         waterCannonAngle[waterCannonNowNumber-1] = waterCannonNowAngle;
     }
 }
@@ -1151,12 +1151,12 @@ function movingLightAngleChange(movingLightIO,movingLightNowNumber,movingLightAn
 
     if ( movingLightAngleZ > 90 ) {
         movingLightAngleZ = 180 - movingLightAngleZ;
-        movingLightCoordinateNumber.style.background = "linear-gradient(to top, #FFFFFF 4px, #AAAAAA 4px)";
+        movingLightCoordinateNumber.style.background = "linear-gradient(to top, #FFFFFF " + movingLightWidth * 0.2 + "px, #AAAAAA " + movingLightWidth * 0.2 + "px)";
     } else {
-        movingLightCoordinateNumber.style.background = "linear-gradient(to top, #FFFFFF 4px, #555555 4px)";
+        movingLightCoordinateNumber.style.background = "linear-gradient(to top, #FFFFFF " + movingLightWidth * 0.2 + "px, #555555 " + movingLightWidth * 0.2 + "px)";
     }
 
-    movingLightCoordinateNumber.style.height = ( movingLightAngleZ / 90 * 16 + movingLightAngleZ / Math.abs(movingLightAngleZ) * 4 ) + "px";
+    movingLightCoordinateNumber.style.height = ( movingLightAngleZ / 90 * movingLightWidth * 0.8 + movingLightAngleZ / Math.abs(movingLightAngleZ) * movingLightWidth * 0.2 ) + "px";
     movingLightCoordinateNumber.style.transform = "rotateZ(" + movingLightAngleXY + "deg)"
 }
 
@@ -1835,15 +1835,13 @@ for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
     logoboardLightOpacity[i] = 0;
 }
 
-function logoboardLightSetting(logoboardLightMode,sustainable = 0) {
-    if ( sustainable !== 1 ) {
+function logoboardLightSetting(logoboardLightMode/*,sustainable = 0*/) {
+    if ( logoboardLightMode >= 2 ) {
         for ( var i = 0 ; i < logoboardLightSetTimeout.length ; i++ ) {
             clearTimeout(logoboardLightSetTimeout[i]);
         }
         logoboardLightSetTimeout = [];
-    }
-
-    if ( logoboardLightMode < 2 ) {
+    } else {
         for ( var i = 0 ; i < 4 ; i++ ) logoboardLightKeepColor[i] = 1;
 
         for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
@@ -2154,7 +2152,7 @@ document.addEventListener("keydown", (e) => {
                     nowTime = Date.now() - smokePushOFFTime;
                     if ( nowTime <= smokeFadeTime ) {
                         for ( var i = 0 ; i < smokeNumber ; i++ ) {
-                            smokeImgCoordinate[i].style.width = Math.sin( ( 1 - nowTime / smokeFadeTime ) / 2 * Math.PI ) * 100 + "px";
+                            smokeImgCoordinate[i].style.width = Math.sin( ( 1 - nowTime / smokeFadeTime ) / 2 * Math.PI ) * smokeWidth + "px";
                         }
                         smokeCoordinate.style.opacity = Math.sin( ( 1 - nowTime / smokeFadeTime ) / 2 * Math.PI );
                     } else {
@@ -2187,7 +2185,7 @@ document.addEventListener("keydown", (e) => {
                     nowTime = Date.now() - snowPushOFFTime;
                     if ( nowTime <= snowFadeTime ) {
                         for ( var i = 0 ; i < snowNumber ; i++ ) {
-                            snowImgCoordinate[i].style.width = Math.sin( ( 1 - nowTime / snowFadeTime ) / 2 * Math.PI ) * 50 + "px";
+                            snowImgCoordinate[i].style.width = Math.sin( ( 1 - nowTime / snowFadeTime ) / 2 * Math.PI ) * snowWidth + "px";
                         }
                         snowCoordinate.style.opacity = Math.sin( ( 1 - nowTime / snowFadeTime ) / 2 * Math.PI );
                     } else {
@@ -2221,6 +2219,7 @@ function waterCurtainSetting(waterCurtainWaterNumber) {
         let waterCurtain_div = document.createElement('div');
         waterCurtain_div.id = `WATER_CURTAIN_WATER_${waterCurtainUseNumber}-${i}`;
         waterCurtain_div.classList.add('WATER_CURTAIN_WATER');
+        waterCurtain_div.style.WebkitMask = "radial-gradient( circle at center, transparent " + ( waterCurtainWidth / 2 - waterCurtainWidth * 0.03 ) + "px, white " + ( waterCurtainWidth / 2 - waterCurtainWidth * 0.03 ) + "px, white )"; 
         waterCurtainCoordinate.appendChild(waterCurtain_div);
         waterCurtainChangeAngle(i,0,0);
     }
