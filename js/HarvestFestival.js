@@ -1651,8 +1651,10 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** 看板照明 HF5 *****/
+                    logoboardLightSetting(2);
+                    
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(1,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(1);
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberHF5);
             
                         function logoboardLightNumberHF5() {

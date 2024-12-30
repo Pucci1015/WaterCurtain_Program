@@ -48,6 +48,7 @@ document.addEventListener("keydown", (e) => {
                     },waterLightSetTimeoutDelay[1]);
 
                     /***** 看板照明 MIYABI1 *****/
+                    logoboardLightSetting(2);
                     let logoboardLightMyNumber = logoboardLightSetting(0);
                     let logoboardLightFadeTime = 3200;
                     let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI1_1);
@@ -71,7 +72,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        let logoboardLightMyNumber1 = logoboardLightSetting(1,1);
+                        let logoboardLightMyNumber1 = logoboardLightSetting(1);
                         let logoboardLightSetInterval1 = setInterval(logoboardLightNumberMIYABI1_2);
             
                         function logoboardLightNumberMIYABI1_2() {
@@ -1565,8 +1566,10 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** 看板照明 MIYABI4 *****/
+                    logoboardLightSetting(2);
+                    
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 2500;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI4);
             
@@ -1665,7 +1668,7 @@ document.addEventListener("keydown", (e) => {
 
                     let logoboardLightDelayTime = 3700;
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 3000;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI6);
             
@@ -2000,7 +2003,7 @@ document.addEventListener("keydown", (e) => {
 
                     let logoboardLightDelayTime = 3700;
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 2000;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI7);
             

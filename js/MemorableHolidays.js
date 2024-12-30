@@ -2080,8 +2080,10 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** 看板照明 MH3 *****/
+                    logoboardLightSetting(2);
+                    
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 1200;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberMH3);
             

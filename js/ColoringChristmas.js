@@ -82,7 +82,7 @@ document.addEventListener("keydown", (e) => {
 
                     let logoboardLightDelayTime = 4500;
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 3000;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberCC1);
             
@@ -242,7 +242,7 @@ document.addEventListener("keydown", (e) => {
 
                     let logoboardLightDelayTime = 4000;
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 3000;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberCC2);
             
@@ -573,7 +573,7 @@ document.addEventListener("keydown", (e) => {
 
                     let logoboardLightDelayTime = 3200;
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 1500;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberCC3);
             
@@ -902,7 +902,7 @@ document.addEventListener("keydown", (e) => {
 
                     let logoboardLightDelayTime = 3500;
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 3000;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberCC4);
             
@@ -1157,7 +1157,7 @@ document.addEventListener("keydown", (e) => {
 
                     let logoboardLightDelayTime = 3500;
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 2500;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberCC5);
             
@@ -1777,7 +1777,7 @@ document.addEventListener("keydown", (e) => {
 
                     let logoboardLightDelayTime = 3500;
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 3000;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberCC6);
             
@@ -1882,7 +1882,7 @@ document.addEventListener("keydown", (e) => {
 
                     let logoboardLightDelayTime = 4000;
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 2500;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberCC7);
             
@@ -2070,7 +2070,7 @@ document.addEventListener("keydown", (e) => {
 
                     let logoboardLightDelayTime = 3500;
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 3000;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberCC7);
             

@@ -24,6 +24,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** 看板照明 SM1 *****/
+                    logoboardLightSetting(2);
                     let logoboardLightMyNumber = logoboardLightSetting(0);
                     let logoboardLightFadeTime = 2300;
                     let logoboardLightSetInterval = setInterval(logoboardLightNumberSM1_1);
@@ -48,7 +49,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        let logoboardLightMyNumber1 = logoboardLightSetting(1,1);
+                        let logoboardLightMyNumber1 = logoboardLightSetting(1);
                         let logoboardLightSetInterval1 = setInterval(logoboardLightNumberSM1_2);
             
                         function logoboardLightNumberSM1_2() {
@@ -164,7 +165,7 @@ document.addEventListener("keydown", (e) => {
                     logoboardLightSetting(2);
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 3600;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberSM2_1);
             
@@ -180,7 +181,7 @@ document.addEventListener("keydown", (e) => {
                     },4000);
 
                     logoboardLightSetTimeout[2] = setTimeout(function() {
-                        let logoboardLightMyNumber = logoboardLightSetting(0,1);
+                        let logoboardLightMyNumber = logoboardLightSetting(0);
                         let logoboardLightFadeTime = 100;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberSM2_2);
             
