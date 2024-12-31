@@ -1343,7 +1343,7 @@ document.addEventListener("keydown", (e) => {
                             let ledRepeatTime = 5000;
 
                             let ledBasicColor = [ [ 200 , 220 , 255 ] , [ 255 , 150 , 0 ] ];
-                            let ledRepeatTimeSplit = ledRepeatTime / 3;
+                            let ledRepeatTimeSplit = ledRepeatTime / 2;
                             let ledLapTimeSplit = ledRepeatTime * 3 / 18;
         
                             for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
@@ -1665,7 +1665,7 @@ document.addEventListener("keydown", (e) => {
                             let ledRepeatTime = 5000;
 
                             let ledBasicColor = [ [ 200 , 220 , 255 ] , [ 255 , 150 , 0 ] ];
-                            let ledRepeatTimeSplit = ledRepeatTime / 3;
+                            let ledRepeatTimeSplit = ledRepeatTime / 2;
                             let ledLapTimeSplit = ledRepeatTime * 3 / 18;
         
                             for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
