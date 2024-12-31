@@ -1014,7 +1014,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[8],ledFadeTime,ledUseNumber,ledSetInterval[8],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
                             let ledRepeatTime = 5000;                            
                             let ledRepeatTimeSplit = ledRepeatTime / 6;
-                            let ledBasicColor1 = [ 150 , 200 , 255 ];
+                            let ledBasicColor1 = [ 50 , 150 , 255 ];
                             let ledBasicColor2 = [ [ 0 , 150 , 255 ] , [ 0 , 255 , 180 ] , [ 220 , 150 , 255 ] ];
                             let ledLapTimeSplit = ledRepeatTime * 2 / ledNumberInside;
 
