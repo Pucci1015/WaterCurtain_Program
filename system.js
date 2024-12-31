@@ -2140,7 +2140,7 @@ document.addEventListener("keydown", (e) => {
                 clearInterval(smokeSetInterval);
                 smokePushONTime = Date.now();
                 for ( var i = 0 ; i < smokeNumber ; i++ ) {
-                    smokeImgCoordinate[i].style.width = "100px";
+                    smokeImgCoordinate[i].style.width = smokeWidth;
                 }
                 smokeCoordinate.style.opacity = 1;
                 smokeWriteCoordinate.innerHTML = "ON";
@@ -2166,7 +2166,7 @@ document.addEventListener("keydown", (e) => {
                 clearInterval(snowSetInterval2);
                 snowPushONTime = Date.now();
                 for ( var i = 0 ; i < snowNumber ; i++ ) {
-                    snowImgCoordinate[i].style.width = "50px";
+                    snowImgCoordinate[i].style.width = snowWidth;
                 }
                 snowCoordinate.style.opacity = 1;
                 snowWriteCoordinate.innerHTML = "ON";
