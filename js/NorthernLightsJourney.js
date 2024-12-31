@@ -514,7 +514,7 @@ document.addEventListener("keydown", (e) => {
                             for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
                             
                             ledRepeatTimeSplit = ledRepeatTime / 3;
-                            ledBasicColor = [ [ 200 , 240 , 255 ] , [ 240 , 255 , 220 ] , [ 255 , 220 , 240 ] ];
+                            ledBasicColor = [ [ 200 , 240 , 255 ] , [ 240 , 255 , 220 ] , [ 255 , 255 , 255 ] ];
                             let ledLapTimeSplit = ledRepeatTime * 2 / 44;
 
                             for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
