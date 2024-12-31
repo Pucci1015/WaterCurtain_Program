@@ -309,7 +309,7 @@ for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
     let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${ i + 1 }`);
     logoboardCoordinateNumber.style.top = centerY - diameter / 4 * 0.9 + "px";
     logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + logoboardLightSimple * 5 * ( Math.trunc( i / 12 ) ) + radius * 0.015 + logoboardLightSimple * 2 - logoboardLightSimple * 2 - logoboardNumber1 / 2 ) + "px";
-    logoboardCoordinateNumber.style.height = radius * 0.145 + "px";
+    logoboardCoordinateNumber.style.height = logoboardWidth * 0.22 + "px";
 
     let logoboardNumber2 = logoboardNumber1 * ( i % 12 ) + logoboardLightSimple * 2 + logoboardNumber1 / 2;//3.5
     let logoboardNumber3 = logoboardNumber1 * 2 * ( i % 12 );//1
