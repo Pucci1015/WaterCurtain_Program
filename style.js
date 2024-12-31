@@ -290,6 +290,8 @@ for ( var i = 0 ; i < movingLightPictureCoordinateOneNumber.length ; i++ ) {
 // 看板照明座標決定
 const logoboardLightNumber = 48;
 const logoboardWidth = radius * 0.65;
+let logoboardLightSimple = radius * 0.65 / 23;
+let logoboardNumber1 = logoboardLightSimple * 4 / 12;//15
 
 let logoboardLightCoordinateNumber = document.getElementById(`LOGOBORD`);
 logoboardLightCoordinateNumber.style.top = centerY - diameter / 4 * 0.9 + "px";
@@ -303,15 +305,12 @@ for ( var i = 0 ; i < 4 ; i++ ) {
     logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + radius * 0.65 / 5 * ( i + 0.5 ) ) + "px";
 }*/
 
-let logoboardLightSimple = radius * 0.65 / 23;
-
 for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
     let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${ i + 1 }`);
     logoboardCoordinateNumber.style.top = centerY - diameter / 4 * 0.9 + "px";
-    logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + logoboardLightSimple * 5 * ( Math.trunc( i / 12 ) ) + radius * 0.015 + logoboardLightSimple * 2 ) + "px";
-    let logoboardNumber1 = logoboardLightSimple * 4 / 12;//15
-    let logoboardNumber2 = logoboardNumber1 * ( i % 12 );//3.5
-    let logoboardNumber3 = - logoboardLightSimple * 2 - logoboardNumber1 / 2 + logoboardNumber1 * 2 * ( i % 12 );//1
+    logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + logoboardLightSimple * 5 * ( Math.trunc( i / 12 ) ) + radius * 0.015 + logoboardLightSimple * 2 - logoboardLightSimple * 2 - logoboardNumber1 / 2 ) + "px";
+    let logoboardNumber2 = logoboardNumber1 * ( i % 12 ) + logoboardLightSimple * 2 + logoboardNumber1 / 2;//3.5
+    let logoboardNumber3 = logoboardNumber1 * 2 * ( i % 12 );//1
     let logoboardNumber4 = radius * 0.015;//6
     //logoboardCoordinateNumber.style.clipPath = "polygon(" + ( logoboardNumber1 + logoboardNumber2 * ( i % 12 ) ) + "px 0," + ( logoboardNumber1 + logoboardNumber2 * ( ( i % 12 ) + logoboardNumber3 ) ) + "px 0," +  ( logoboardNumber4 * ( ( i % 12 ) + 1 ) + logoboardNumber3 * 2 ) + "px 100%," + ( logoboardNumber4 * ( i % 12 ) - logoboardNumber3 * 2 ) + "px 100%)";
     logoboardCoordinateNumber.style.clipPath = "polygon(" + logoboardNumber2 + "px 0," + ( logoboardNumber2 + logoboardNumber1 ) + "px 0," +  ( logoboardNumber3 + logoboardNumber1 * 3 ) + "px 100%," + logoboardNumber3 + "px 100%)";
