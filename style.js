@@ -303,10 +303,12 @@ for ( var i = 0 ; i < 4 ; i++ ) {
     logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + radius * 0.65 / 5 * ( i + 0.5 ) ) + "px";
 }*/
 
+let logoboardLightSimple = radius * 0.65 / 23;
+
 for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
     let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${ i + 1 }`);
     logoboardCoordinateNumber.style.top = centerY - diameter / 4 * 0.9 + "px";
-    logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + radius * ( 0.15 * ( Math.trunc( i / 12 ) ) + 0.065 ) ) + "px";
+    logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + radius * ( logoboardLightSimple * 5 * ( Math.trunc( i / 12 ) ) + 0.015 + logoboardLightSimple * 2 ) ) + "px";
     let logoboardNumber1 = radius * 0.1 / 12;//15
     let logoboardNumber2 = logoboardNumber1 * ( i % 12 );//3.5
     let logoboardNumber3 = radius * 0.002;//1
