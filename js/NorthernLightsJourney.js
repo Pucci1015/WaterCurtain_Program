@@ -1790,6 +1790,7 @@ document.addEventListener("keydown", (e) => {
         
                             ledBasicColor = [ [ 150 , 255 , 255 ] , [ 255 , 255 , 255 ] ];
                             let ledArray = [ 12 , 3 , 18 , 34 , 41 , 25 , 43 , 21 , 31 , 37 , 3 , 37 , 6 , 32 , 2 , 28 , 41 , 23 , 7 , 3 , 0 , 13 , 44 , 40 , 9 , 15 , 14 , 7 , 35 , 14 , 35 , 5 , 41 , 4 , 19 , 32 , 32 , 5 , 44 , 28 , 20 , 42 , 37 , 2 , 38 , 45 , 17 , 45 ];
+                            let ledLapTimeSplit = ledRepeatTime / 50;
 
                             for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
                                 let ledColor = [];
@@ -1899,12 +1900,12 @@ document.addEventListener("keydown", (e) => {
                                 let j = ledNumberOutside - i;
                                 let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
         
-                                for ( var l = 0 ; l < 2 ; l++ ) {
+                                for ( var l = 0 ; l < 3 ; l++ ) {
                                     if ( ledJudgeTime < ledRepeatTimeSplit * ( l * 2 + 1 ) ) {
                                         for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor2[l][k] + ( ledBasicColor1[k] - ledBasicColor2[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 ) ) ;
                                         break;
                                     } else if ( ledJudgeTime < ledRepeatTimeSplit * ( ( l + 1 ) * 2 ) ) {
-                                        for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor1[k] + ( ledBasicColor2[ ( l + 1 ) % 2 ][k] - ledBasicColor1[k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 + 1 ) );
+                                        for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor1[k] + ( ledBasicColor2[ ( l + 1 ) % 3 ][k] - ledBasicColor1[k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 + 1 ) );
                                         break;
                                     }
                                 }
