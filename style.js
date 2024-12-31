@@ -306,12 +306,13 @@ for ( var i = 0 ; i < 4 ; i++ ) {
 for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
     let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${ i + 1 }`);
     logoboardCoordinateNumber.style.top = centerY - diameter / 4 * 0.9 + "px";
-    logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + radius * 0.65 / 5 * ( Math.trunc( i / 12 ) + 0.5 ) ) + "px";
-    let logoboardNumber1 = radius * 0.04;//15
-    let logoboardNumber2 = radius * 0.009;//3.5
+    logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + radius * 0.15 * ( Math.trunc( i / 12 ) ) ) + "px";
+    let logoboardNumber1 = radius * 0.1 / 12;//15
+    let logoboardNumber2 = logoboardNumber1 * ( i % 12 );//3.5
     let logoboardNumber3 = radius * 0.002;//1
     let logoboardNumber4 = radius * 0.015;//6
-    logoboardCoordinateNumber.style.clipPath = "polygon(" + ( logoboardNumber1 + logoboardNumber2 * ( i % 12 ) ) + "px 0," + ( logoboardNumber1 + logoboardNumber2 * ( ( i % 12 ) + logoboardNumber3 ) ) + "px 0," +  ( logoboardNumber4 * ( ( i % 12 ) + 1 ) + logoboardNumber3 * 2 ) + "px 100%," + ( logoboardNumber4 * ( i % 12 ) - logoboardNumber3 * 2 ) + "px 100%)";
+    //logoboardCoordinateNumber.style.clipPath = "polygon(" + ( logoboardNumber1 + logoboardNumber2 * ( i % 12 ) ) + "px 0," + ( logoboardNumber1 + logoboardNumber2 * ( ( i % 12 ) + logoboardNumber3 ) ) + "px 0," +  ( logoboardNumber4 * ( ( i % 12 ) + 1 ) + logoboardNumber3 * 2 ) + "px 100%," + ( logoboardNumber4 * ( i % 12 ) - logoboardNumber3 * 2 ) + "px 100%)";
+    logoboardCoordinateNumber.style.clipPath = "polygon(" + logoboardNumber2 + "px 0," + ( logoboardNumber2 + logoboardNumber1 ) + "px 0," +  ( logoboardNumber2 + logoboardNumber1 / 2 * 3 ) + "px 100%," + ( logoboardNumber2 - logoboardNumber1 / 2 ) + "px 100%)";
 }
 
 let settingCoordinateNumber = document.getElementById(`SETTING`);
