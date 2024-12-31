@@ -4293,7 +4293,7 @@ document.addEventListener("keydown", (e) => {
                         let ledRepeatTime = 700;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
-                        let ledBasicColor = [ [ 255 , 210 , 150 ] , [ 255 , 250 , 240 ] ];
+                        let ledBasicColor = [ [ 255 , 180 , 80 ] , [ 255 , 220 , 180 ] ];
                         
                         let ledLapTimeSplit = ledRepeatTime * 8 / ledNumberInside;
     
