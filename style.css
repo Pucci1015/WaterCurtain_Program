@@ -205,7 +205,7 @@ a {
 
 .LOGOBORD_LIGHT {
     position: absolute;
-    width: 100px;
+    /*width: 100px;
     height: 55px;
     top: 220px;
     /*filter: brightness(150%);*/
@@ -255,9 +255,6 @@ a {
 .setting {
     position: absolute;
     background-color: #ffffff;
-    width: 266px;
-    height: 420px;
-    border-radius: 10px;
 }
 
 .setting-title {

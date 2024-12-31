@@ -309,6 +309,8 @@ for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
     let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${ i + 1 }`);
     logoboardCoordinateNumber.style.top = centerY - diameter / 4 * 0.9 + "px";
     logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + logoboardLightSimple * 5 * ( Math.trunc( i / 12 ) ) + radius * 0.015 + logoboardLightSimple * 2 - logoboardLightSimple * 2 - logoboardNumber1 / 2 ) + "px";
+    logoboardCoordinateNumber.style.height = radius * 0.145 + "px";
+
     let logoboardNumber2 = logoboardNumber1 * ( i % 12 ) + logoboardLightSimple * 2 + logoboardNumber1 / 2;//3.5
     let logoboardNumber3 = logoboardNumber1 * 2 * ( i % 12 );//1
     let logoboardNumber4 = radius * 0.015;//6
@@ -321,6 +323,7 @@ settingCoordinateNumber.style.top = centerY - diameter / 4 * 0.4 + "px";
 settingCoordinateNumber.style.left = diameter * 0.95 + centerX + "px";
 settingCoordinateNumber.style.width = logoboardWidth * 1.06 + "px";
 settingCoordinateNumber.style.height = radius * 1.15 + "px";
+settingCoordinateNumber.style.borderRadius = radius * 0.026 + "px";
 
 //スモーク座標決定
 const smokeNumber = 6;
