@@ -314,7 +314,7 @@ for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
     let logoboardNumber3 = - logoboardLightSimple * 2 + logoboardNumber1 * 2 * ( i % 12 );//1
     let logoboardNumber4 = radius * 0.015;//6
     //logoboardCoordinateNumber.style.clipPath = "polygon(" + ( logoboardNumber1 + logoboardNumber2 * ( i % 12 ) ) + "px 0," + ( logoboardNumber1 + logoboardNumber2 * ( ( i % 12 ) + logoboardNumber3 ) ) + "px 0," +  ( logoboardNumber4 * ( ( i % 12 ) + 1 ) + logoboardNumber3 * 2 ) + "px 100%," + ( logoboardNumber4 * ( i % 12 ) - logoboardNumber3 * 2 ) + "px 100%)";
-    logoboardCoordinateNumber.style.clipPath = "polygon(" + logoboardNumber2 + "px 0," + ( logoboardNumber2 + logoboardNumber1 ) + "px 0," +  ( logoboardNumber3 + logoboardNumber1 / 2 ) + "px 100%," + logoboardNumber3 + "px 100%)";
+    logoboardCoordinateNumber.style.clipPath = "polygon(" + logoboardNumber2 + "px 0," + ( logoboardNumber2 + logoboardNumber1 ) + "px 0," +  ( logoboardNumber3 + logoboardNumber1 * 2 ) + "px 100%," + logoboardNumber3 + "px 100%)";
 }
 
 let settingCoordinateNumber = document.getElementById(`SETTING`);
