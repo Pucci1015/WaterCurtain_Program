@@ -228,6 +228,10 @@ window.document.onkeydown = function(event){
     }
 }
 
+let performanceTitleFontSize = parseFloat(window.getComputedStyle(performanceSelect).getPropertyValue('font-size'));
+let performanceTitleWidth = performanceSelect.clientWidth - 33;
+//console.log(performanceTitleFontSize)
+//console.log(performanceTitleWidth)
 function performanceChange(dnNowSelectNumber = 0) {
     dnNowSelect = dnNowSelectNumber;
 
@@ -250,16 +254,22 @@ function performanceChange(dnNowSelectNumber = 0) {
 
     //console.log(nowLong);
 
-    if ( nowLong >= 9.7 ) {
-        performanceSelect.style.fontSize = 20 - ( nowLong - 9.7 ) + "px";
+    let performanceTitleNowFontSize = nowLong * performanceTitleFontSize;
+    //console.log(performanceTitleNowFontSize)
+    if ( performanceTitleNowFontSize > performanceTitleWidth ) {//9.7
+        performanceSelect.style.fontSize = performanceTitleFontSize / performanceTitleNowFontSize * performanceTitleWidth + "px";
     } else {
-        performanceSelect.style.fontSize = "20px";
+        performanceSelect.style.fontSize = performanceTitleFontSize + "px";
     }
 
     //console.log(performanceSelect.style.fontSize);
 }
+/*let root = document.getElementById('performance_select'); //htmlのルート要素を取得
+let style = window.getComputedStyle(root).getPropertyValue('font-size'); //ルート要素のcssプロパティを全て取得し、その中からフォントサイズを取得
+let stFontSize = parseFloat(window.getComputedStyle(document.getElementById('performance_select')).getPropertyValue('font-size')); //float型の数値に変換
+console.log(stFontSize);*/
 
-performanceSelect.addEventListener("click", function() {
+performanceSelect.addEventListener("change", function() {
     performanceChange();
 });
 
@@ -2140,7 +2150,7 @@ document.addEventListener("keydown", (e) => {
                 clearInterval(smokeSetInterval);
                 smokePushONTime = Date.now();
                 for ( var i = 0 ; i < smokeNumber ; i++ ) {
-                    smokeImgCoordinate[i].style.width = smokeWidth;
+                    smokeImgCoordinate[i].style.width = smokeWidth + "px";
                 }
                 smokeCoordinate.style.opacity = 1;
                 smokeWriteCoordinate.innerHTML = "ON";
@@ -2166,7 +2176,7 @@ document.addEventListener("keydown", (e) => {
                 clearInterval(snowSetInterval2);
                 snowPushONTime = Date.now();
                 for ( var i = 0 ; i < snowNumber ; i++ ) {
-                    snowImgCoordinate[i].style.width = snowWidth;
+                    snowImgCoordinate[i].style.width = snowWidth + "px";
                 }
                 snowCoordinate.style.opacity = 1;
                 snowWriteCoordinate.innerHTML = "ON";

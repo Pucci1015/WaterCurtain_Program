@@ -1,7 +1,5 @@
-const width = document.documentElement.clientWidth
+const width = document.documentElement.clientWidth;
 const height = document.documentElement.clientHeight;
-//console.log(width);
-//console.log(height);
 
 let diameter, centerX, centerY;
 if ( height > width * 0.55 ) {//縦長
@@ -13,11 +11,8 @@ if ( height > width * 0.55 ) {//縦長
     centerX = ( width - diameter / 0.55 ) / 2 + diameter / 2;
     centerY = diameter / 2;
 }
-//console.log(centerX);
-//console.log(centerY);
 
 const radius = diameter / 2;
-//console.log(radius);
 
 // LED座標決定
 const ledNumberInside = 20;
@@ -26,8 +21,6 @@ const ledNumberOutside = 48;
 const ledRadiusOutside = radius * 0.88; //367, 48 * sin( ( 180 - 360 / ledNumberOutside ) / 2 / 180 * Math.PI ) / sin( 360 / ledNumberOutside / 180 * Math.PI );
 const ledWidth = ledRadiusOutside * Math.sin( 360 / ledNumberOutside / 180 * Math.PI ) / Math.sin( ( 180 - 360 / ledNumberOutside ) / 2 / 180 * Math.PI ) * 0.98;
 const ledRadiusInside = ledWidth / 0.98 * Math.sin( ( 180 - 360 / ledNumberInside ) / 2 / 180 * Math.PI ) / Math.sin( 360 / ledNumberInside / 180 * Math.PI ); //153, 48 * sin( ( 180 - 360 / ledNumberInside ) / 2 / 180 * Math.PI ) / sin( 360 / ledNumberInside / 180 * Math.PI );
-//console.log(ledWidth);
-//console.log(48 * Math.sin( ( 180 - 360 / ledNumberInside ) / 2 / 180 * Math.PI ) / Math.sin( 360 / ledNumberInside / 180 * Math.PI ));
 
 for ( var i = ledNumberInside - 1 ; i >= 0 ; i-- ) {
     let ledCoordinateNumber = document.getElementById(`LED_1-${ ledNumberInside - i }`);
@@ -308,14 +301,15 @@ for ( var i = 0 ; i < 4 ; i++ ) {
 for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
     let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${ i + 1 }`);
     logoboardCoordinateNumber.style.top = centerY - diameter / 4 * 0.9 + "px";
-    logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + logoboardLightSimple * 5 * ( Math.trunc( i / 12 ) ) + radius * 0.015 + logoboardLightSimple * 2 - logoboardLightSimple * 2 - logoboardNumber1 / 2 ) + "px";
+    logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + logoboardLightSimple * 5 * Math.trunc( i / 12 ) + radius * 0.015 + logoboardLightSimple /*- logoboardLightSimple * 2 / 3*/ - logoboardNumber1 / 4 ) + "px";
+    logoboardCoordinateNumber.style.width = logoboardLightSimple * 7 + "px";
     logoboardCoordinateNumber.style.height = logoboardWidth * 0.22 + "px";
 
-    let logoboardNumber2 = logoboardNumber1 * ( i % 12 ) + logoboardLightSimple * 2 + logoboardNumber1 / 2;//3.5
-    let logoboardNumber3 = logoboardNumber1 * 2 * ( i % 12 );//1
+    let logoboardNumber2 = logoboardNumber1 * ( i % 12 ) + logoboardLightSimple //* 2 + logoboardNumber1 / 2;//3.5
+    let logoboardNumber3 = logoboardNumber1 * 1.5 * ( i % 12 );//1
     let logoboardNumber4 = radius * 0.015;//6
     //logoboardCoordinateNumber.style.clipPath = "polygon(" + ( logoboardNumber1 + logoboardNumber2 * ( i % 12 ) ) + "px 0," + ( logoboardNumber1 + logoboardNumber2 * ( ( i % 12 ) + logoboardNumber3 ) ) + "px 0," +  ( logoboardNumber4 * ( ( i % 12 ) + 1 ) + logoboardNumber3 * 2 ) + "px 100%," + ( logoboardNumber4 * ( i % 12 ) - logoboardNumber3 * 2 ) + "px 100%)";
-    logoboardCoordinateNumber.style.clipPath = "polygon(" + logoboardNumber2 + "px 0," + ( logoboardNumber2 + logoboardNumber1 ) + "px 0," +  ( logoboardNumber3 + logoboardNumber1 * 3 ) + "px 100%," + logoboardNumber3 + "px 100%)";
+    logoboardCoordinateNumber.style.clipPath = "polygon(" + logoboardNumber2 + "px 0," + ( logoboardNumber2 + logoboardNumber1 ) + "px 0," +  ( logoboardNumber3 + logoboardNumber1 * 2 ) + "px 100%," + logoboardNumber3 + "px 100%)";
 }
 
 let settingCoordinateNumber = document.getElementById(`SETTING`);
@@ -363,7 +357,4 @@ let watercurtainCoordinate = document.getElementById(`WATER_CURTAIN`);
 watercurtainCoordinate.style.left = centerX + "px";
 watercurtainCoordinate.style.top = centerY + "px";
 watercurtainCoordinate.style.width = waterCurtainWidth + "px";
-console.log(waterCurtainWidth);
-//document.getElementById(`WATER_CURTAIN_WATER`).style.WebkitMask = "radial-gradient( circle at center, transparent calc( " + waterCurtainWidth / 2 - waterCurtainWidth * 0.03 + "px), white calc( " + waterCurtainWidth / 2 - waterCurtainWidth * 0.03 + "px), white )"; 
-
 

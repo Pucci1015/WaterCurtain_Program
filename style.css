@@ -142,7 +142,7 @@ a {
 
 .MOVING_LIGHT_PICTURE p {
     color: #FFFFFF;
-    font-size: 0.8vw;
+    font-size: 1.2vmin;
     text-align: center;
     width: 100%;
     height: 10%;
@@ -206,26 +206,7 @@ a {
 .LOGOBORD_LIGHT {
     position: absolute;
     width: 100%;
-    /*height: 55px;
-    top: 220px;
-    /*filter: brightness(150%);*/
 }
-/*
-.LOGOBORD_LIGHT_BROKE_1 {
-    left: 1172px;
-}
-
-.LOGOBORD_LIGHT_BROKE_2 {
-    left: 1222px;
-}
-
-.LOGOBORD_LIGHT_BROKE_3 {
-    left: 1272px;
-}
-
-.LOGOBORD_LIGHT_BROKE_4 {
-    left: 1322px;
-}*/
 
 #SMOKE_PARENT {
     opacity: 0;
@@ -249,7 +230,6 @@ a {
     position: absolute;
     translate: -50% -50%;
     aspect-ratio: 1 / 1;
-    /*background-color: #000;*/
 }
 
 .setting {
@@ -258,15 +238,15 @@ a {
 }
 
 .setting-title {
-    font-size: 1.3vw;
+    font-size: 1.8vmin;
     font-weight: bold;
-    margin: 10px 10px;
+    margin: 5% 4%;
     font-family: 'Arial Black';
     border-bottom: 2px solid #000;
 }
 
 .setting-sub-title {
-    font-size: 1.2vw;
+    font-size: 1.2vmin;
     font-weight: bold;
 }
 
@@ -278,19 +258,19 @@ a {
 }
 
 .performance_select {
-    margin: 0px 10px;
+    margin: 0px 5%;
     width: 90%;
-    font-size: 20px;
-    height: 35px;
+    font-size: 2vmin;
+    height: 8%;
     border-radius: 10px;
-    padding: 0 5px;
+    padding: 1% 2%;
     border: 1.5px solid black;
     font-family: 'Yu Gothic Medium';
 }
 
 .performance_select option {
     font-family: 'Yu Gothic Medium';
-    font-size: 18px;
+    font-size: 2vmin;
 }
 
 .performance_select option :hover {
@@ -299,43 +279,40 @@ a {
 }
 
 .pagenumber {
-    margin: 8px 10px;
-    font-size: 1.2vw;
-    margin-bottom: 5%;
-    display: inline-flex;
+    margin: 5%;
+    font-size: 2vmin;
 }
 
 .pagenumber p {
-    display: inline-block;
-    margin-right: 10px;
-    margin-top: 5px;
+    margin-right: 5%;
+    margin-top: 2%;
 }
 
 #dn, #mainnowpage , #subnowpage {
-    font-size: 2vw;
+    font-size: 2.8vmin;
     font-weight: bold;
-    margin-right: 2px;
+    margin-right: 2%;
 }
 
 #maintotalpage , #subtotalpage {
-    font-size: 1.5vw;
-    margin-left: 2px;
+    font-size: 2vmin;
+    margin-left: 1%;
 }
 
 .machine_onoff {
-    margin: 8px 10px;
-    font-size: 1.2vw;
-    margin-bottom: 30px;
+    margin: 5%;
+    font-size: 2vmin;
+    margin-bottom: 10%;
 }
 
 .machine_onoff p {
-    margin-bottom: 8px;
+    margin-bottom: 5%;
     line-height: 30px;
 }
 
 .machine_onoff span {
     font-weight: bold;
-    font-size: 1.8vw;
+    font-size: 2.5vmin;
     margin-right: 10px;
     float: right;
 }
@@ -361,7 +338,7 @@ a {
 
 .logodisplay label {
     margin-left: 20px;
-    font-size: 1.2vw;
+    font-size: 1.2vmin;
 }
 
 #logodisplay {
