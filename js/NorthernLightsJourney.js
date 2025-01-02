@@ -19,7 +19,7 @@ document.addEventListener("keydown", (e) => {
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
                         for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,200,220,255,nowTime[0],fadeTime,0,waterLightSetInterval);
+                            waterLightColorChange(i,180,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                         }
                     }
                     
@@ -281,7 +281,7 @@ document.addEventListener("keydown", (e) => {
                             let ledFadeTime = 2800;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[1],ledFadeTime,ledUseNumber,ledSetInterval[1],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
                             
-                            for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,200,255,255,nowTime[0],ledFadeTime,0,ledSetInterval[1]);
+                            for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,220,255,255,nowTime[0],ledFadeTime,0,ledSetInterval[1]);
         
                             for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval[1]);
         
@@ -306,7 +306,7 @@ document.addEventListener("keydown", (e) => {
                         
                     },ledSetTimeoutDelay[2]);
 
-                    ledSetTimeoutDelay[3] = 33000;
+                    ledSetTimeoutDelay[3] = 30000;
                     ledSetTimeout[3] = setTimeout( function() {
                         let ledChildrenMyNumber = ledSetting(ledMyNumber);
                         ledSetInterval[3] = setInterval(ledNumberNLJ2_3);
@@ -316,7 +316,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[3],ledFadeTime,ledUseNumber,ledSetInterval[3],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
                             let ledRepeatTime = 10500;
                             let ledRepeatTimeSplit = ledRepeatTime / 3;
-                            let ledBasicColor = [ [ 200 , 255 , 255 ] , [ 255 , 220 , 240 ] , [ 255 , 255 , 255 ] ];
+                            let ledBasicColor = [ [ 255 , 255 , 255 ] , [ 200 , 255 , 255 ] , [ 255 , 220 , 240 ] ];
                             let ledColor = [];
                             
                             let ledJudgeTime = nowTime[1] % ledRepeatTime;
@@ -513,7 +513,7 @@ document.addEventListener("keydown", (e) => {
                             }
                             for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
                             
-                            ledBasicColor = [ [ 200 , 240 , 255 ] , [ 240 , 255 , 220 ] , [ 255 , 255 , 255 ] ];
+                            ledBasicColor = [ [ 200 , 240 , 255 ] , [ 200 , 255 , 240 ] , [ 255 , 255 , 255 ] ];
                             let ledLapTimeSplit = ledRepeatTime * 2 / 44;
 
                             for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
@@ -614,7 +614,7 @@ document.addEventListener("keydown", (e) => {
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
                         for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,200,220,255,nowTime[0],fadeTime,0,waterLightSetInterval);
+                            waterLightColorChange(i,180,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                         }
                     }
 
@@ -1064,7 +1064,7 @@ document.addEventListener("keydown", (e) => {
                         let waterLightRepeatTime = 15000;
                         let waterLightRepeatTimeSplit = waterLightRepeatTime / 4;
                         let waterLightLapTimeSplit = waterLightRepeatTime / 6;
-                        let waterLightBasicColor = [ [ 0 , 255 , 150 ] , [ 150 , 0 , 255 ] , [ 100 , 150 , 255 ] , [ 0 , 0 , 255 ] ];
+                        let waterLightBasicColor = [ [ 0 , 255 , 150 ] , [ 150 , 0 , 255 ] , [ 50 , 150 , 255 ] , [ 0 , 0 , 255 ] ];
 
                         for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
                             let j = i - 1;
@@ -1096,24 +1096,28 @@ document.addEventListener("keydown", (e) => {
                         function logoboardLightNumberNLJ7_1() {
                             let nowTime = nowTimeGet(startTime+logoboardLightDelayTime[0],logoboardLightFadeTime,logoboardLightUseNumber[1],logoboardLightSetInterval,logoboardLightMyNumber);
                             let logoboardRepeatTime = 3200;
-                            let logoboardRepeatTimeSplit = logoboardRepeatTime / 2;
-                            let logoboardRepeatTimeSplit2 = logoboardRepeatTime / 8;
-                            let logoboardBasicColor = [ 0 , 200 ];
+                            let logoboardRepeatTimeSplit = logoboardRepeatTime / 3;
+                            let logoboardRepeatTimeSplit2 = logoboardRepeatTime / 16;
+                            let logoboardChangeTime = 500;
+                            let logoboardBasicColor = [ [ 0 , 0 ] , [ 120 , 0 ] , [ 0 , 200 ] ];
             
                             for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                                 let logoboardColor = [];
-                                let logoboardLapTimeSplit = logoboardRepeatTimeSplit2 * Math.trunc( ( 48 - i ) / 6 );
+                                let logoboardLapTimeSplit = logoboardRepeatTimeSplit2 * ( Math.trunc( ( 48 - i ) / 3 ) + 10 );
 
                                 let logoboardJudgeTime = ( nowTime[1] + logoboardLapTimeSplit ) % logoboardRepeatTime;
 
-                                for ( var l = 0 ; l < 2 ; l++ ) {
-                                    if ( logoboardJudgeTime < logoboardRepeatTimeSplit * ( l + 1 ) ) {
-                                        logoboardColor = logoboardBasicColor[l] + ( logoboardBasicColor[ ( l + 1 ) % 2 ] - logoboardBasicColor[l] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
+                                for ( var l = 0 ; l < 3 ; l++ ) {
+                                    if ( logoboardJudgeTime < logoboardRepeatTimeSplit * l + logoboardChangeTime ) {
+                                        for ( var k = 0 ; k < 3 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 3 ][k] - logoboardBasicColor[l][k] ) / logoboardChangeTime * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
+                                        break;
+                                    } else if ( logoboardJudgeTime < logoboardRepeatTimeSplit * ( l + 1 ) ) {
+                                        for ( var k = 0 ; k < 3 ; k++ ) logoboardColor[k] = logoboardBasicColor[ ( l + 1 ) % 3 ][k];
                                         break;
                                     }
                                 }
             
-                                logoboardLightAnimateChange(i,logoboardColor,-1,255,-1,1,logoboardLightFadeTime,nowTime[0]);
+                                logoboardLightAnimateChange(i,logoboardColor[0],-1,255,logoboardColor[1],1,logoboardLightFadeTime,nowTime[0]);
                             }
                         }
                     },logoboardLightDelayTime[0]);
@@ -1889,7 +1893,7 @@ document.addEventListener("keydown", (e) => {
                             }
 
                             let ledBasicColor1 = [ 255 , 255 , 255 ];
-                            let ledBasicColor2 = [ [ 120 , 255 , 255 ] , [ 220 , 200 , 255 ] , [ 180 , 255 , 0 ] ];
+                            let ledBasicColor2 = [ [ 120 , 255 , 255 ] , [ 220 , 200 , 255 ] , [ 200 , 255 , 0 ] ];
                             ledRepeatTimeSplit = ledRepeatTime / 6;
                             ledLapTimeSplit = ledRepeatTime * 4 / ledNumberOutside;
         
@@ -2038,27 +2042,6 @@ document.addEventListener("keydown", (e) => {
 
                     });
 
-                    movingLightSetTimeoutDelay[1] = 212000;
-                    movingLightSetTimeout[1] = setTimeout( function() {
-                        movingLightSetting(0);
-
-                        let movingLightColorFadeTime = 1500;
-
-                        movingLightSetInterval[2] = setInterval(movingLightNumberNLJ3_2);
-
-                        function movingLightNumberNLJ3_2() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
-                            
-                            if ( nowTime[0] <= movingLightColorFadeTime ) {
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
-                            } else {
-                                clearInterval(movingLightSetInterval[2]);
-                            }
-                            
-                        }
-
-                    },movingLightSetTimeoutDelay[1]);
-
                 } else if ( key === 'z' ) {
                     /***** ウォーターカーテン C *****/
                     waterCurtain("C");
@@ -2083,6 +2066,60 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AL *****/
                     waterCurtain("AL");
 
+                } else if ( key === ',' ) {
+                    let startTime = Date.now();
+
+                    /***** 水中照明 WP3 *****/
+                    let waterLightMyNumber = waterLightSetting();
+                    let waterLightSetInterval = setInterval(waterLightNumberWP3);
+
+                    function waterLightNumberWP3() {
+                        let fadeTime = 3200;
+                        let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
+                            waterLightColorChange(i,180,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
+                        }
+                    }
+
+                    /***** ムービングライト NLJ4 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,0,100,100);
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightAngleFadeTime = 1800;
+                        let movingLightColorFadeTime = 1500;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNLJ3_1);
+
+                        function movingLightNumberNLJ3_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,0,0,0,0);
+                                    movingLightAngleChange(1,i,0,35,movingLightAngleFadeTime,nowTime[0]);
+                                }
+
+                                for ( var i = 1 ; i <= 4 ; i++ ) {
+                                    movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);
+                                }
+                                
+                                movingLightColorChange(2,5,0,0,0,0);
+                                movingLightAngleChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                        }
+
+                    });
+
                 } else if ( key === '_' ) {
                     let startTime = Date.now();
 
@@ -2091,41 +2128,49 @@ document.addEventListener("keydown", (e) => {
                     let ledSetTimeoutDelay = [];
                     let ledSetInterval = [];
 
-                    ledSetTimeoutDelay[8] = 0;
-                    ledSetTimeout[8] = setTimeout( function() {
+                    ledSetTimeoutDelay[7] = 0;
+                    ledSetTimeout[7] = setTimeout( function() {
                         let ledChildrenMyNumber = ledSetting(ledMyNumber);
-                        ledSetInterval[8] = setInterval(ledNumberNLJ3_8);
+                        ledSetInterval[7] = setInterval(ledNumberNLJ2_7);
                         
-                        function ledNumberNLJ3_8() {
-                            let ledFadeTime = 2000;
-                            let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[8],ledFadeTime,ledUseNumber,ledSetInterval[8],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
-                            let ledRepeatTime = 5000;                            
-                            let ledRepeatTimeSplit = ledRepeatTime / 6;
-                            let ledBasicColor1 = [ 100 , 200 , 255 ];
-                            let ledBasicColor2 = [ [ 0 , 150 , 255 ] , [ 0 , 255 , 180 ] , [ 220 , 150 , 255 ] ];
-                            let ledLapTimeSplit = ledRepeatTime * 2 / ledNumberInside;
+                        function ledNumberNLJ2_7() {
+                            let ledFadeTime = 1000;
+                            let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[7],ledFadeTime,ledUseNumber,ledSetInterval[7],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
+                            let ledRepeatTime = 5000;
 
-                            for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
+                            let ledRepeatTimeSplit = ledRepeatTime / 3;
+                            let ledBasicColor = [ [ 200 , 255 , 240 ] , [ 200 , 255 , 255 ] , [ 255 , 255 , 255 ] ];
+                            let ledJudgeTime = nowTime[1] % ledRepeatTime;
+                            let ledColor = [];
+                            for ( var l = 0 ; l < 3 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                    break;
+                                }
+                            }
+                            for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                            
+                            ledBasicColor = [ [ 200 , 240 , 255 ] , [ 200 , 255 , 240 ] , [ 255 , 255 , 255 ] ];
+                            let ledLapTimeSplit = ledRepeatTime * 2 / 44;
+
+                            for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
                                 let ledColor = [];
                                 let j = i - 1;
-                                let ledJudgeTime = ledLapTimeSplit * j % ledRepeatTime;
+                                let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
 
                                 for ( var l = 0 ; l < 3 ; l++ ) {
-                                    if ( ledJudgeTime < ledRepeatTimeSplit * ( l * 2 + 1 ) ) {
-                                        for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor2[l][k] + ( ledBasicColor1[k] - ledBasicColor2[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 ) ) ;
-                                        break;
-                                    } else if ( ledJudgeTime < ledRepeatTimeSplit * ( ( l + 1 ) * 2 ) ) {
-                                        for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor1[k] + ( ledBasicColor2[ ( l + 1 ) % 3 ][k] - ledBasicColor1[k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * ( l * 2 + 1 ) );
+                                    if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                        for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
                                         break;
                                     }
                                 }
 
-                                ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime,0,ledSetInterval[8]);
+                                ledColorChange(2,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
                             }
 
                         }
                         
-                    },ledSetTimeoutDelay[8]);
+                    },ledSetTimeoutDelay[7]);
 
                 }
             }
@@ -2425,6 +2470,1406 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.8,spotFadeTime,startTime + 500);
                     },500);
     
+                }
+            }
+        } else if ( dnNowSelect === 1 ) {
+            if ( mainNowPage === 1 ) {
+                if ( key === 'f' ) {
+                    let startTime = Date.now();
+
+                    /***** 水中照明 BC1 *****/
+                    let waterLightMyNumber = waterLightSetting();
+                    let waterLightSetInterval = setInterval(waterLightNumberBC1);
+
+                    function waterLightNumberBC1() {
+                        let fadeTime = 3200;
+                        let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
+                            waterLightColorChange(i,50,150,255,nowTime[0],fadeTime,0,waterLightSetInterval);
+                        }
+                    }
+                    
+                } else if ( key === 'g' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン E *****/
+                    waterCurtain("E");
+
+                    /***** LED 0 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber0);
+
+                    function ledNumber0() {
+                        let ledFadeTime = 2700;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                    }
+
+                } else if ( key === 'h' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン AH *****/
+                    waterCurtain("AH");
+
+                    /***** LED 39 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber39);
+
+                    function ledNumber39() {
+                        let ledFadeTime = 2000;
+                        let ledRepeatTime = 2000;
+                        let ledRepeatTimeSplit = ledRepeatTime / 20;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+                        let ledBasicColor = [ [ 255 , 240 , 255 ] , [ 240 , 255 , 255 ] , [ 255 , 255 , 240 ] ];                    
+                        let ledJudgeTime = Math.trunc( ( nowTime[1] % ledRepeatTime ) / ledRepeatTimeSplit );
+                        
+                        let ledArray = [ [ 0 , 0 , 0 , 0 , 1 , 1 , 0 , 2 , 1 , 2 , 1 , 0 , 2 , 1 , 1 , 2 , 1 , 2 , 1 , 0 ] , [ 2 , 1 , 0 , 0 , 1 , 2 , 2 , 1 , 1 , 0 , 1 , 0 , 0 , 0 , 2 , 2 , 0 , 2 , 0 , 2 ] , [ 1 , 2 , 1 , 0 , 2 , 0 , 1 , 2 , 1 , 2 , 0 , 2 , 2 , 2 , 0 , 2 , 1 , 2 , 2 , 0 ] , [ 0 , 2 , 1 , 2 , 1 , 2 , 1 , 2 , 1 , 1 , 1 , 2 , 0 , 0 , 0 , 1 , 2 , 0 , 0 , 0 ] , [ 1 , 0 , 0 , 0 , 2 , 1 , 0 , 2 , 1 , 0 , 0 , 2 , 0 , 0 , 0 , 0 , 1 , 1 , 2 , 1 ] , [ 2 , 2 , 2 , 0 , 1 , 2 , 2 , 1 , 2 , 1 , 1 , 1 , 1 , 2 , 0 , 1 , 1 , 0 , 2 , 0 ] , [ 2 , 2 , 2 , 1 , 0 , 1 , 0 , 0 , 2 , 1 , 0 , 1 , 1 , 2 , 0 , 2 , 2 , 2 , 1 , 0 ] , [ 2 , 0 , 2 , 0 , 2 , 0 , 0 , 2 , 2 , 0 , 2 , 1 , 2 , 2 , 1 , 2 , 1 , 2 , 0 , 2 ] , [ 2 , 1 , 2 , 0 , 0 , 0 , 1 , 2 , 0 , 2 , 0 , 0 , 1 , 0 , 1 , 2 , 0 , 1 , 0 , 0 ] , [ 0 , 1 , 2 , 1 , 0 , 2 , 2 , 1 , 0 , 0 , 2 , 2 , 2 , 2 , 2 , 1 , 0 , 2 , 0 , 1 ] , [ 2 , 0 , 2 , 2 , 1 , 0 , 0 , 1 , 1 , 1 , 1 , 0 , 2 , 1 , 2 , 0 , 1 , 0 , 2 , 2 ] , [ 2 , 0 , 2 , 2 , 2 , 2 , 1 , 2 , 1 , 2 , 0 , 0 , 1 , 1 , 1 , 0 , 0 , 1 , 2 , 1 ] , [ 2 , 1 , 1 , 2 , 0 , 2 , 1 , 2 , 1 , 1 , 0 , 2 , 2 , 2 , 1 , 0 , 0 , 2 , 0 , 0 ] , [ 0 , 0 , 2 , 0 , 2 , 1 , 1 , 2 , 2 , 0 , 0 , 0 , 0 , 2 , 2 , 1 , 2 , 0 , 2 , 1 ] , [ 1 , 2 , 2 , 1 , 0 , 0 , 1 , 2 , 0 , 1 , 1 , 2 , 2 , 0 , 2 , 1 , 1 , 2 , 2 , 0 ] , [ 2 , 1 , 2 , 2 , 2 , 2 , 0 , 2 , 2 , 2 , 2 , 0 , 1 , 0 , 0 , 0 , 2 , 0 , 2 , 2 ] , [ 1 , 2 , 2 , 0 , 1 , 0 , 2 , 0 , 0 , 2 , 0 , 0 , 1 , 0 , 2 , 1 , 1 , 0 , 0 , 1 ] , [ 0 , 2 , 0 , 2 , 1 , 2 , 1 , 1 , 0 , 0 , 0 , 0 , 0 , 1 , 2 , 1 , 2 , 2 , 1 , 1 ] , [ 0 , 2 , 1 , 1 , 1 , 2 , 1 , 0 , 2 , 0 , 1 , 1 , 2 , 1 , 1 , 2 , 1 , 0 , 2 , 2 ] , [ 1 , 1 , 2 , 1 , 2 , 2 , 1 , 0 , 1 , 2 , 0 , 2 , 1 , 1 , 0 , 1 , 1 , 1 , 0 , 0 ] ];
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
+                            let ledColor = [];
+                            
+                            for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[ledArray[i-1][ledJudgeTime]][k];
+
+                            ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+                        
+                        ledArray = [ [ 0 , 0 , 2 , 2 , 0 , 1 , 2 , 2 , 0 , 0 , 1 , 1 , 0 , 2 , 2 , 1 , 0 , 2 , 0 , 1 ] , [ 1 , 1 , 2 , 1 , 1 , 0 , 0 , 0 , 1 , 2 , 2 , 1 , 0 , 0 , 2 , 0 , 2 , 0 , 0 , 2 ] , [ 0 , 1 , 0 , 1 , 0 , 0 , 2 , 1 , 1 , 0 , 0 , 1 , 0 , 0 , 1 , 1 , 0 , 2 , 1 , 2 ] , [ 2 , 0 , 1 , 1 , 0 , 2 , 1 , 1 , 1 , 2 , 2 , 2 , 0 , 2 , 0 , 1 , 1 , 2 , 2 , 2 ] , [ 0 , 2 , 0 , 2 , 1 , 0 , 0 , 0 , 1 , 1 , 2 , 2 , 2 , 1 , 1 , 1 , 0 , 1 , 0 , 1 ] , [ 2 , 2 , 0 , 2 , 1 , 0 , 2 , 0 , 2 , 2 , 2 , 0 , 0 , 2 , 1 , 0 , 2 , 0 , 1 , 1 ] , [ 0 , 2 , 1 , 0 , 2 , 0 , 0 , 0 , 1 , 1 , 1 , 1 , 0 , 0 , 0 , 1 , 0 , 0 , 2 , 1 ] , [ 2 , 2 , 2 , 1 , 0 , 0 , 1 , 1 , 1 , 0 , 2 , 0 , 1 , 2 , 0 , 2 , 0 , 0 , 2 , 0 ] , [ 0 , 2 , 1 , 2 , 0 , 1 , 0 , 2 , 0 , 0 , 0 , 2 , 2 , 0 , 2 , 0 , 0 , 1 , 1 , 0 ] , [ 2 , 1 , 2 , 1 , 1 , 2 , 0 , 2 , 2 , 1 , 2 , 0 , 1 , 1 , 2 , 2 , 0 , 2 , 0 , 1 ] , [ 0 , 2 , 0 , 2 , 0 , 2 , 1 , 1 , 0 , 0 , 2 , 1 , 1 , 0 , 1 , 2 , 0 , 0 , 0 , 2 ] , [ 0 , 2 , 2 , 1 , 0 , 0 , 2 , 0 , 2 , 1 , 0 , 0 , 1 , 1 , 2 , 1 , 0 , 1 , 0 , 1 ] , [ 2 , 0 , 1 , 1 , 1 , 1 , 1 , 2 , 2 , 1 , 1 , 1 , 0 , 0 , 2 , 0 , 2 , 0 , 0 , 1 ] , [ 2 , 1 , 1 , 1 , 2 , 0 , 0 , 1 , 0 , 0 , 0 , 2 , 2 , 1 , 0 , 2 , 0 , 0 , 1 , 1 ] , [ 0 , 1 , 1 , 0 , 0 , 0 , 1 , 2 , 0 , 2 , 2 , 1 , 1 , 0 , 0 , 0 , 1 , 2 , 2 , 0 ] , [ 1 , 2 , 1 , 0 , 2 , 2 , 0 , 0 , 0 , 0 , 0 , 2 , 2 , 1 , 0 , 0 , 0 , 2 , 2 , 2 ] , [ 0 , 2 , 1 , 0 , 0 , 1 , 0 , 2 , 2 , 1 , 1 , 0 , 1 , 0 , 1 , 0 , 1 , 0 , 0 , 2 ] , [ 1 , 0 , 0 , 2 , 2 , 0 , 2 , 0 , 1 , 0 , 2 , 2 , 1 , 2 , 2 , 0 , 1 , 2 , 1 , 2 ] , [ 2 , 2 , 1 , 2 , 2 , 2 , 2 , 2 , 0 , 2 , 2 , 1 , 0 , 2 , 0 , 2 , 0 , 1 , 2 , 2 ] , [ 0 , 2 , 2 , 1 , 1 , 1 , 0 , 1 , 1 , 2 , 2 , 1 , 0 , 1 , 2 , 1 , 0 , 2 , 0 , 1 ] , [ 2 , 0 , 1 , 0 , 0 , 2 , 0 , 1 , 1 , 1 , 2 , 0 , 2 , 0 , 0 , 0 , 2 , 1 , 1 , 2 ] , [ 2 , 0 , 0 , 1 , 2 , 2 , 1 , 1 , 1 , 1 , 0 , 1 , 0 , 2 , 2 , 0 , 2 , 0 , 1 , 1 ] , [ 0 , 1 , 0 , 2 , 2 , 2 , 2 , 1 , 1 , 0 , 0 , 0 , 2 , 1 , 0 , 2 , 1 , 1 , 1 , 0 ] , [ 0 , 1 , 0 , 0 , 2 , 0 , 1 , 2 , 0 , 2 , 1 , 2 , 2 , 0 , 1 , 1 , 1 , 2 , 2 , 1 ] , [ 2 , 1 , 2 , 1 , 0 , 0 , 1 , 2 , 1 , 0 , 1 , 1 , 0 , 2 , 0 , 2 , 2 , 2 , 0 , 1 ] ];
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
+                            let ledColor = [];
+
+                            for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[ledArray[ ( i - 1 ) % 25 ][ledJudgeTime]][k];
+
+                            ledColorChange(2,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+
+                    }
+
+                } else if ( key === 'i' ) {
+                    let startTime = Date.now();
+
+                    /***** ムービングライト Night3 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                        movingLightPictureChange(1,i,0,50,100);
+                    }
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 400;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight3_1);
+
+                        function movingLightNumberNight3_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,255,255,255,0);
+                                    movingLightAngleFadeChange(1,i,0,50,movingLightAngleFadeTime,nowTime[0]);
+                                }
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
+                                    movingLightColorChange(2,i,0,0,0,0);
+                                    movingLightAngleFadeChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);
+                                }
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 400;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 500;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight3_2);
+
+                        function movingLightNumberNight3_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 'j' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン A *****/
+                    waterCurtain("A");
+
+                    /***** LED 0 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber0);
+
+                    function ledNumber0() {
+                        let ledFadeTime = 3000;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                    }
+
+                    /***** ムービングライト Night4 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 2000;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight4_1);
+
+                        function movingLightNumberNight4_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleFadeChange(1,i,0,50,movingLightColorFadeTime,nowTime[0]);
+                                }
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
+                                    movingLightColorChange(2,i,0,0,0,0);
+                                    movingLightAngleFadeChange(2,i,0,70,movingLightColorFadeTime,nowTime[0]);
+                                }
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                } else if ( key === 'k' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン AF *****/
+                    waterCurtain("AF");
+
+                    /***** LED 0 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber0);
+
+                    function ledNumber0() {
+                        let ledFadeTime = 2700;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                    }
+
+                } else if ( key === 'l' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン D *****/
+                    waterCurtain("D");
+
+                    /***** LED 3 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber3);
+
+                    function ledNumber3() {
+                        let ledFadeTime = 2000;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+                        let ledRepeatTime = 1700;
+                        let ledRepeatTimeSplit = ledRepeatTime / 3;
+                        let ledBasicColor = [ [ 0 , 255 , 255 ] , [ 0 , 0 , 255 ] , [ 200 , 0 , 255 ] ];
+                        
+                        let ledLapTimeSplit = ledRepeatTime * 3 / ledNumberInside;
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
+                            let j = ledNumberInside - i;
+                            let ledColor = [];
+                            let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+
+                            for ( var l = 0 ; l < 3 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                    break;
+                                }
+                            }
+
+                            ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+                        
+                        ledLapTimeSplit = ledRepeatTime * 3 / ledNumberOutside;
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
+                            let j = ledNumberOutside - i;
+                            let ledColor = [];
+                            let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+
+                            for ( var l = 0 ; l < 3 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                    break;
+                                }
+                            }
+
+                            ledColorChange(2,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+
+                    }
+
+                    /***** ムービングライト Night1 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                        movingLightPictureChange(1,i,0,100,100);
+                    }
+                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
+                        movingLightPictureChange(2,i,0,100,100);
+                    }
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight1_1);
+
+                        function movingLightNumberNight1_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                if ( nowTime[0] < 100 ) {
+                                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,255,255,0);
+                                    for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,255,255,255,0);
+                                    movingLightColorChange(2,5,0,0,0,0);
+                                }
+
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleFadeChange(1,i,0,50,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightAngleFadeChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);                            
+                                movingLightAngleFadeChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 500;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 1500;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight1_2);
+
+                        function movingLightNumberNight1_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 'm' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン E *****/
+                    waterCurtain("E");
+
+                    /***** LED 0 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber0);
+
+                    function ledNumber0() {
+                        let ledFadeTime = 2700;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                    }
+
+                    /***** ムービングライト Night2 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 2800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight2_1);
+
+                        function movingLightNumberNight2_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleFadeChange(1,i,0,50,movingLightColorFadeTime,nowTime[0]);
+                                }
+                                for ( var i = 1 ; i <= 4 ; i++ ) {
+                                    movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleFadeChange(2,i,0,70,movingLightColorFadeTime,nowTime[0]);
+                                }
+                                movingLightColorChange(2,5,0,0,0,0);
+                                movingLightAngleFadeChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 2800;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 1800;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight2_2);
+
+                        function movingLightNumberNight2_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleFadeChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightAngleFadeChange(2,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 'n' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン AF *****/
+                    waterCurtain("AF");
+
+                    /***** LED 92 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber92);
+
+                    function ledNumber92() {
+                        let ledFadeTime = 2000;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,255,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                    }
+
+                    /***** ムービングライト Night1 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                        movingLightPictureChange(1,i,0,100,100);
+                    }
+                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
+                        movingLightPictureChange(2,i,0,100,100);
+                    }
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight1_1);
+
+                        function movingLightNumberNight1_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                if ( nowTime[0] < 100 ) {
+                                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,255,255,0);
+                                    for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,255,255,255,0);
+                                    movingLightColorChange(2,5,0,0,0,0);
+                                }
+
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleFadeChange(1,i,0,50,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightAngleFadeChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);                            
+                                movingLightAngleFadeChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 500;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 1500;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight1_2);
+
+                        function movingLightNumberNight1_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 'o' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン C *****/
+                    waterCurtain("C");
+
+                    /***** LED 0 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber0);
+
+                    function ledNumber0() {
+                        let ledFadeTime = 2700;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                    }
+
+                    /***** ムービングライト Night2 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 2800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight2_1);
+
+                        function movingLightNumberNight2_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleFadeChange(1,i,0,50,movingLightColorFadeTime,nowTime[0]);
+                                }
+                                for ( var i = 1 ; i <= 4 ; i++ ) {
+                                    movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleFadeChange(2,i,0,70,movingLightColorFadeTime,nowTime[0]);
+                                }
+                                movingLightColorChange(2,5,0,0,0,0);
+                                movingLightAngleFadeChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 2800;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 1800;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight2_2);
+
+                        function movingLightNumberNight2_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleFadeChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightAngleFadeChange(2,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 'p' ) {
+                    let startTime = Date.now();
+
+                    /***** 水中照明 BC2 *****/
+                    let waterLightMyNumber = waterLightSetting();
+                    let waterLightSetInterval = setInterval(waterLightNumberBC2);
+
+                    function waterLightNumberBC2() {
+                        let fadeTime = 2300;
+                        let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
+                            waterLightColorChange(i,0,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
+                        }
+                    }
+
+                    /***** ムービングライト Night5 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                        movingLightPictureChange(1,i,0,50,100);
+                    }
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight5_1);
+
+                        function movingLightNumberNight5_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,255,255,255,0);
+                                    movingLightAngleFadeChange(1,i,0,35,movingLightAngleFadeTime,nowTime[0]);
+                                }
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
+                                    movingLightColorChange(2,i,0,0,0,0);
+                                    movingLightAngleFadeChange(2,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                                }
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 800;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 5000;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight5_2);
+
+                        function movingLightNumberNight5_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime + 100 ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 'q' ) {
+                    let startTime = Date.now();
+        
+                    /***** ウォーターカーテン A *****/
+                    waterCurtain("A");
+
+                    /***** LED 103 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber103);
+        
+                    function ledNumber103() {
+                        let fadeTime = 2000;
+                        let nowTime = nowTimeGet( startTime , fadeTime , ledUseNumber ,  ledSetInterval , ledMyNumber );
+        
+                        let repeatTime = 900;
+        
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
+                            let j = ledNumberInside - i;
+                            let ledColorRed1 = ( nowTime[1] + repeatTime * 8 / ledNumberInside * j ) % repeatTime;
+                            let ledColorRed2;
+                            if ( ledColorRed1 < repeatTime / 2 ) {
+                                ledColorRed2 = 255 / repeatTime * 2 * ledColorRed1;
+                            } else {
+                                ledColorRed2 = 255 - 255 / repeatTime * 2 * ( ledColorRed1 - repeatTime / 2 );
+                            }
+        
+                            ledColorChange(1,i,ledColorRed2,255,255,nowTime[0],fadeTime);
+                        }
+        
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,0,nowTime[0],fadeTime);
+                    }
+        
+                } else if ( key === 'r' ) {
+                    let startTime = Date.now();
+
+                    /***** 水中照明 BC3 *****/
+                    let waterLightMyNumber = waterLightSetting();
+                    let waterLightSetInterval = setInterval(waterLightNumberBC3);
+
+                    function waterLightNumberBC3() {
+                        let fadeTime = 2300;
+                        let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
+                            waterLightColorChange(i,0,100,255,nowTime[0],fadeTime,0,waterLightSetInterval);
+                        }
+                    }
+
+                } else if ( key === 's' ) {
+                    let startTime = Date.now();
+
+                    /***** ムービングライト Night6 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 5000;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight6_1);
+
+                        function movingLightNumberNight6_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleFadeChange(1,i,0,35,movingLightColorFadeTime,nowTime[0]);
+                                }
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
+                                    movingLightColorChange(2,i,0,0,0,0);
+                                    movingLightAngleFadeChange(2,i,0,0,movingLightColorFadeTime,nowTime[0]);
+                                }
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 5000;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 800;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight6_2);
+
+                        function movingLightNumberNight6_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleFadeChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 't' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン A *****/
+                    waterCurtain("A");
+
+                    /***** LED 93 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber93);
+
+                    function ledNumber93() {
+                        let ledFadeTime = 2000;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,0,0,150,nowTime[0],ledFadeTime,0,ledSetInterval);
+        
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,150,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                    }
+
+                    /***** ムービングライト Night1 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                        movingLightPictureChange(1,i,0,100,100);
+                    }
+                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
+                        movingLightPictureChange(2,i,0,100,100);
+                    }
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight1_1);
+
+                        function movingLightNumberNight1_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                if ( nowTime[0] < 100 ) {
+                                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,255,255,0);
+                                    for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,255,255,255,0);
+                                    movingLightColorChange(2,5,0,0,0,0);
+                                }
+
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleFadeChange(1,i,0,50,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightAngleFadeChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);                            
+                                movingLightAngleFadeChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 500;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 1500;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight1_2);
+
+                        function movingLightNumberNight1_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 'u' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン AC *****/
+                    waterCurtain("AC");
+
+                    /***** LED 34 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber34);
+        
+                    function ledNumber34() {
+                        let ledFadeTime = 1800;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+        
+                        let ledRepeatTime = 1600;
+                        let ledRepeatTimeSplit = ledRepeatTime / 2;
+                        let ledBasicColor = [ [ 0 , 255 , 255 ]  , [ 255 , 220 , 180 ] ];
+                        
+                        let ledLapTimeSplit = ledRepeatTime * 6 / ledNumberInside;
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
+                            let ledColor = [];
+                            let j = ledNumberInside - i;
+
+                            let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+
+                            for ( var l = 0 ; l < 2 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 2 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                    break;
+                                }
+                            }
+
+                            ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+                        
+                        ledLapTimeSplit = ledRepeatTime * 6 / ledNumberOutside;
+        
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
+                            let ledColor = [];
+                            let j = ledNumberOutside - i;
+
+                            let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+
+                            for ( var l = 0 ; l < 2 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 2 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                    break;
+                                }
+                            }
+
+                            ledColorChange(2,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+
+                    }
+
+                } else if ( key === 'v' ) {
+                    let startTime = Date.now();
+
+                    /***** 水中照明 BC4 *****/
+                    let waterLightMyNumber = waterLightSetting();
+                    let waterLightSetInterval = setInterval(waterLightNumberBC4);
+
+                    function waterLightNumberBC4() {
+                        let fadeTime = 3200;
+                        let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
+                            waterLightColorChange(i,0,220,255,nowTime[0],fadeTime,0,waterLightSetInterval);
+                        }
+                    }
+                    
+                } else if ( key === 'w' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン AD *****/
+                    waterCurtain("AD");
+
+                    /***** LED 35 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber35);
+        
+                    function ledNumber35() {
+                        let ledFadeTime = 1800;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+        
+                        let ledRepeatTime = 8000;
+                        let ledRepeatTimeSplit = ledRepeatTime / 2;
+                        let ledBasicColor = [ [ 200 , 0 , 255 ] , [ 0 , 255 , 200 ] ];
+                        let ledLapTimeSplit = ledRepeatTime / ledNumberOutside * 2;
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
+                            let ledColor = [];
+                            let j;
+
+                            if ( i >= 7 && i < 17 ) j = 16 - i;
+                            else if ( i < 7 ) j = i + 3;
+                            else j = i - 17;
+
+                            j += ( ledNumberOutside - ledNumberInside ) / 8;
+
+                            let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+
+                            for ( var l = 0 ; l < 2 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 2 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                    break;
+                                }
+                            }
+
+                            ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
+                            let ledColor = [];
+                            let j;
+
+                            if ( i >= 13 && i < 37 ) j = 36 - i;
+                            else if ( i < 13 ) j = i + 11;
+                            else j = i - 37;
+
+                            let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+
+                            for ( var l = 0 ; l < 2 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 2 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                    break;
+                                }
+                            }
+
+                            ledColorChange(2,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+
+                    }
+
+                    /***** ムービングライト Night1 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                        movingLightPictureChange(1,i,0,100,100);
+                    }
+                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
+                        movingLightPictureChange(2,i,0,100,100);
+                    }
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight1_1);
+
+                        function movingLightNumberNight1_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                if ( nowTime[0] < 100 ) {
+                                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,255,255,0);
+                                    for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,255,255,255,0);
+                                    movingLightColorChange(2,5,0,0,0,0);
+                                }
+
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleFadeChange(1,i,0,50,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightAngleFadeChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);                            
+                                movingLightAngleFadeChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 500;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 1500;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight1_2);
+
+                        function movingLightNumberNight1_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 'x' ) {
+                    let startTime = Date.now();
+
+                    /***** 水中照明 BC5 *****/
+                    let waterLightMyNumber = waterLightSetting();
+                    let waterLightSetInterval = setInterval(waterLightNumberBC5);
+
+                    function waterLightNumberBC5() {
+                        let fadeTime = 2300;
+                        let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
+                            waterLightColorChange(i,50,120,255,nowTime[0],fadeTime,0,waterLightSetInterval);
+                        }
+                    }
+                    
+                } else if ( key === 'y' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン AL *****/
+                    waterCurtain("AL");
+
+                    /***** LED 64 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber64);
+
+                    function ledNumber64() {
+                        let ledFadeTime = 2000;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+                        let ledRepeatTime = 1000;
+                        let ledChangeTime = 200;
+                        let ledRepeatTimeSplit = ledRepeatTime / 3;
+                        let ledBasicColor = [ [ 0 , 255 , 255 ] , [ 220 , 100 , 255 ] , [ 0 , 0 , 255 ] ];
+                        
+                        ledLapTimeSplit = ledRepeatTime * 5 / ledNumberInside;
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
+                            let j = ledNumberInside - i;
+                            let ledColor = [];
+                            let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+
+                            for ( var l = 0 ; l < 3 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) - ledChangeTime ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k];
+                                    break;
+                                } else if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledChangeTime * ( ledJudgeTime - ( ledRepeatTimeSplit * ( l + 1 ) - ledChangeTime ) ) ;
+                                    break;
+                                }
+                            }
+
+                            ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+                        
+                        ledLapTimeSplit = ledRepeatTime * 5 / ledNumberOutside;
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
+                            let j = ledNumberOutside - i;
+                            let ledColor = [];
+                            let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+
+                            for ( var l = 0 ; l < 3 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) - ledChangeTime ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k];
+                                    break;
+                                } else if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledChangeTime * ( ledJudgeTime - ( ledRepeatTimeSplit * ( l + 1 ) - ledChangeTime ) ) ;
+                                    break;
+                                }
+                            }
+
+
+                            ledColorChange(2,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                        }
+
+                    }
+
+                    /***** ムービングライト Night1 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                        movingLightPictureChange(1,i,0,100,100);
+                    }
+                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
+                        movingLightPictureChange(2,i,0,100,100);
+                    }
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight1_1);
+
+                        function movingLightNumberNight1_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                if ( nowTime[0] < 100 ) {
+                                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,255,255,0);
+                                    for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,255,255,255,0);
+                                    movingLightColorChange(2,5,0,0,0,0);
+                                }
+
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleFadeChange(1,i,0,50,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightAngleFadeChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);                            
+                                movingLightAngleFadeChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 500;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 1500;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight1_2);
+
+                        function movingLightNumberNight1_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 'z' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン A *****/
+                    waterCurtain("A");
+
+                    /***** LED 0 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber0);
+
+                    function ledNumber0() {
+                        let ledFadeTime = 3000;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                    }
+
+                    /***** ムービングライト Night2 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightColorFadeTime = 2800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight2_1);
+
+                        function movingLightNumberNight2_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleFadeChange(1,i,0,50,movingLightColorFadeTime,nowTime[0]);
+                                }
+                                for ( var i = 1 ; i <= 4 ; i++ ) {
+                                    movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleFadeChange(2,i,0,70,movingLightColorFadeTime,nowTime[0]);
+                                }
+                                movingLightColorChange(2,5,0,0,0,0);
+                                movingLightAngleFadeChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 2800;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 1800;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight2_2);
+
+                        function movingLightNumberNight2_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleFadeChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightAngleFadeChange(2,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === '@' ) {
+                    let startTime = Date.now();
+                    
+                    /***** ウォーターカーテン M *****/
+                    waterCurtain("M");
+
+                    /***** LED 5 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber5);
+
+                    function ledNumber5() {
+                        let fadeTime = 2200;
+                        let nowTime = nowTimeGet( startTime , fadeTime , ledUseNumber ,  ledSetInterval , ledMyNumber );
+
+                        let repeatTime = 900;
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
+                            let j = ledNumberInside - i;
+                            let ledColorRed1 = ( nowTime[1] + repeatTime * 8 / ledNumberInside * j ) % repeatTime;
+                            let ledColorRed2;
+                            if ( ledColorRed1 < repeatTime / 2 ) {
+                                ledColorRed2 = 255 / repeatTime * 2 * ledColorRed1;
+                            } else {
+                                ledColorRed2 = 255 - 255 / repeatTime * 2 * ( ledColorRed1 - repeatTime / 2 );
+                            }
+
+                            ledColorChange(1,i,ledColorRed2,255,255,nowTime[0],fadeTime);
+                        }
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
+                            let j = ledNumberOutside - i;
+                            let ledColorRed1 = ( nowTime[1] + repeatTime * 8 / ledNumberOutside * j ) % repeatTime;
+                            let ledColorRed2;
+                            if ( ledColorRed1 < repeatTime / 2 ) {
+                                ledColorRed2 = 255 / repeatTime * 2 * ledColorRed1;
+                            } else {
+                                ledColorRed2 = 255 - 255 / repeatTime * 2 * ( ledColorRed1 - repeatTime / 2 );
+                            }
+                            
+                            ledColorChange(2,i,ledColorRed2,255,255,nowTime[0],fadeTime);
+                        }
+                    }
+
+                } else if ( key === '[' ) {
+                    let startTime = Date.now();
+
+                    /***** ムービングライト Night7 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                        movingLightPictureChange(1,i,0,50,100);
+                    }
+                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
+                        movingLightPictureChange(2,i,0,50,100);
+                    }
+
+                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+                        let movingLightAngleFadeTime = 800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight7_1);
+
+                        function movingLightNumberNight7_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,255,255,255,0);
+                                    movingLightAngleFadeChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                                }
+                                for ( var i = 1 ; i <= 4 ; i++ ) {
+                                    movingLightColorChange(2,i,255,255,255,0);
+                                    if ( i % 2 === 1 ) movingLightAngleFadeChange(2,i,20,50,movingLightAngleFadeTime,nowTime[0]);
+                                    else movingLightAngleFadeChange(2,i,-20,50,movingLightAngleFadeTime,nowTime[0]);
+                                }
+                                movingLightColorChange(2,5,0,0,0,0);
+                                movingLightAngleFadeChange(2,5,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 0;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 4500;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight7_2);
+
+                        function movingLightNumberNight7_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] < movingLightColorFadeTime ) {
+                                for ( var i = 2 ; i <= movingLightInsideNumber ; i += 2 ) movingLightColorChange(1,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,-1,-1,-1,1,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                }
+            }
+
+            if ( subNowPage === 1 ) {
+                if ( subCode === 6 ) { //f6
+                    let startTime = Date.now();
+
+                    /***** 看板照明 BC1 *****/
+                    let logoboardLightMyNumber = logoboardLightSetting(0);
+                    let logoboardLightFadeTime = 2300;
+                    let logoboardLightSetInterval = setInterval(logoboardLightNumberBC1);
+        
+                    function logoboardLightNumberBC1() {
+                        let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
+                        for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
+                            let j;
+                            let logoboardLightColor = [];
+
+                            if ( i <= logoboardLightNumber / 2 ) j = i;
+                            else j = logoboardLightNumber - i + 1;
+
+                            if ( j <= 6 ) logoboardLightColor = [ 200 , 100 , 255 , 0 ];
+                            else if ( j <= 12 ) logoboardLightColor = [ 0 , 50 , 255 , 150 ];
+                            else if ( j <= 15 ) logoboardLightColor = [ 0 , 200 , 255 , 150 ];
+                            else if ( j <= 18 ) logoboardLightColor = [ 0 , 120 , 220 , 255 ];
+                            else if ( j <= 21 ) logoboardLightColor = [ 0 , 50 , 150 , 255 ];
+                            else logoboardLightColor = [ 0 , 0 , 100 , 255 ];
+
+                            logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
+                        }
+                    }
+
+                } else if ( subCode === 7 ) { //f7
+                    let startTime = Date.now();
+
+                    /***** パーライト BC1 *****/
+                    let parLightSetInterval = setInterval(parLightNumberBC1);
+
+                    function parLightNumberBC1() {
+                        let parLightFadeTime = 3000;
+                        var nowTime = nowTimeGet(startTime,0);
+
+                        for ( var i = 1 ; i <= 8 ; i++ )parLightColorFadeChange(i,80,180,255,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                    }
+
+                    setTimeout( function () {
+                        /***** スポットライト *****/
+                        let spotFadeTime = 1000;
+                        spotLightChange(0.5,spotFadeTime,startTime + 2000);
+                    },2000);
+
+                } else if ( subCode === 8 ) { //f8
+                    let startTime = Date.now();
+
+                    /***** 看板照明 BC1 *****/
+                    let logoboardLightMyNumber = logoboardLightSetting(0);
+                    let logoboardLightFadeTime = 2300;
+                    let logoboardLightSetInterval = setInterval(logoboardLightNumberBC1);
+        
+                    function logoboardLightNumberBC1() {
+                        let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
+                        for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
+                            let j;
+                            let logoboardLightColor = [];
+
+                            if ( i <= logoboardLightNumber / 2 ) j = i;
+                            else j = logoboardLightNumber - i + 1;
+
+                            if ( j <= 6 ) logoboardLightColor = [ 200 , 100 , 255 , 0 ];
+                            else if ( j <= 12 ) logoboardLightColor = [ 0 , 50 , 255 , 150 ];
+                            else if ( j <= 15 ) logoboardLightColor = [ 0 , 200 , 255 , 150 ];
+                            else if ( j <= 18 ) logoboardLightColor = [ 0 , 120 , 220 , 255 ];
+                            else if ( j <= 21 ) logoboardLightColor = [ 0 , 50 , 150 , 255 ];
+                            else logoboardLightColor = [ 0 , 0 , 100 , 255 ];
+
+                            logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
+                        }
+                    }
+
+                    /***** ステージライト *****/
+                    stageLightChange(1,1800,startTime);
+
                 }
             }
         }
