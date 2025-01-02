@@ -1,10 +1,10 @@
 //プルダウンメニュー
-let performanceSelect = document.getElementById('performance_select');
-performanceSelect.options[0].selected = true;
+//let performanceSelect = document.getElementById('performance_select');
+//performanceSelect.options[0].selected = true;
 
 var performanceNowSelect;
 let ledNow10FadeTime = 2000;
-let totalPage = [ [ 1 ] , [ 1 ] , [ 0 ] , [ 0 ] , [ 2000 ] ];
+let totalPage = [ [] , [] , [] , [] , [] ];
 let nowPerformanceNumber = 0;
 
 function jsSetting(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,nightMainThisPage,nightSubThisPage,led10FadeTime = 2000) {
@@ -14,13 +14,13 @@ function jsSetting(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,ni
     
     performanceSelect.appendChild(performanceOption);
 
-    nowPerformanceNumber++;
-
     totalPage[0][nowPerformanceNumber] = dayMainThisPage;
     totalPage[1][nowPerformanceNumber] = daySubThisPage;
     totalPage[2][nowPerformanceNumber] = nightMainThisPage;
     totalPage[3][nowPerformanceNumber] = nightSubThisPage;
     totalPage[4][nowPerformanceNumber] = led10FadeTime;
+
+    nowPerformanceNumber++;
 
     /*window["performance"+myFolderName+"DayMainTotalPage"] = dayMainThisPage;
     window["performance"+myFolderName+"DaySubTotalPage"] = daySubThisPage;
@@ -228,21 +228,10 @@ window.document.onkeydown = function(event){
     }
 }
 
-let performanceTitleFontSize = parseFloat(window.getComputedStyle(performanceSelect).getPropertyValue('font-size'));
-let performanceTitleWidth = performanceSelect.clientWidth - 33;
-//console.log(performanceTitleFontSize)
-//console.log(performanceTitleWidth)
-function performanceChange(dnNowSelectNumber = 0) {
-    dnNowSelect = dnNowSelectNumber;
-
-    dnScript();
-
-    performanceNowSelect = performanceSelect.value;
-
-    ledNow10FadeTime = totalPage[4][performanceSelect.selectedIndex];
-    //eval("ledNow10FadeTime = performance" + performanceSelect.value + "led10FadeTime;");
-
+function performanceTitleSizeChange() {
     let nowSelectTitle = performanceSelect.options[performanceSelect.selectedIndex].innerText;
+
+    //console.log(performanceSelect.style.fontSize);
 
     let nowLong = 0;
     //console.log(nowSelectTitle.length);
@@ -261,13 +250,24 @@ function performanceChange(dnNowSelectNumber = 0) {
     } else {
         performanceSelect.style.fontSize = performanceTitleFontSize + "px";
     }
-
-    //console.log(performanceSelect.style.fontSize);
 }
-/*let root = document.getElementById('performance_select'); //htmlのルート要素を取得
-let style = window.getComputedStyle(root).getPropertyValue('font-size'); //ルート要素のcssプロパティを全て取得し、その中からフォントサイズを取得
-let stFontSize = parseFloat(window.getComputedStyle(document.getElementById('performance_select')).getPropertyValue('font-size')); //float型の数値に変換
-console.log(stFontSize);*/
+
+//let performanceTitleFontSize = parseFloat(window.getComputedStyle(performanceSelect).getPropertyValue('font-size'));
+//let performanceTitleWidth = performanceSelect.clientWidth - 33;
+//console.log(performanceTitleFontSize)
+//console.log(performanceTitleWidth)
+function performanceChange(dnNowSelectNumber = 0) {
+    dnNowSelect = dnNowSelectNumber;
+
+    dnScript();
+
+    performanceNowSelect = performanceSelect.value;
+
+    ledNow10FadeTime = totalPage[4][performanceSelect.selectedIndex];
+    //eval("ledNow10FadeTime = performance" + performanceSelect.value + "led10FadeTime;");
+
+    performanceTitleSizeChange();
+}
 
 performanceSelect.addEventListener("change", function() {
     performanceChange();

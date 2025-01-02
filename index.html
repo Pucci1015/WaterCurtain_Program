@@ -260,6 +260,7 @@
 
         <div class="LOGOBORD" id="LOGOBORD">
             <input type="checkbox" id="logodisplay" name="logodisplay" class="checkbox_check"/>
+            <img src="logo.png" alt="">
         </div>
 
         <div class="LOGOBORD_LIGHT LOGOBORD_LIGHT_BROKE_1" id="LOGOBORD_LIGHT_1"></div>
@@ -334,16 +335,16 @@
             <p class="setting-title">PERFORMANCE SELECT</p>
             <label for="performance_select"></label>
             <select class="performance_select" id="performance_select">
-                <option value="defult">defult</option>
+                <!--<option value="defult">defult</option>-->
             </select>
-            <div class="pagenumber">
+            <div class="pagenumber" id="pagenumber">
                 <p class="dn">D/N <span id="dn"></span> var.</p>
                 <p class="mainpage">MAIN <span id="mainnowpage"></span>/<span id="maintotalpage"></span> page</p>
                 <p class="subpage">SUB <span id="subnowpage"></span>/<span id="subtotalpage"></span> page</p>
             </div>
 
             <p class="setting-title">MACHINE CONDITION</p>
-            <div class="machine_onoff">
+            <div class="machine_onoff" id="machine_onoff">
                 <p class="smoke_machine">SMOKE MACHINE<span id="smoke_machine_state">OFF</span></p>
                 <p class="snow_machine">SNOW MACHINE<span id="snow_machine_state">OFF</span></p>
             </div>
@@ -385,9 +386,9 @@
         <script src="js\2017Spring.js"></script>-->
 
         <script>
-            performanceSelect.options[17].selected = true;
+            performanceSelect.options[performanceSelect.length-1].selected = true;
 
-            performanceChange(0);
+            performanceChange(1);
 
             /*mainNowPage = 2;
             subNowPage = 1;
