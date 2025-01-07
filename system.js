@@ -297,7 +297,7 @@ document.addEventListener("keydown", (e) => {
     }
 
     if ( performanceNowSelect !== -1 ) {
-        if ( key === '¥' ) { // \
+        if ( key === '\\' || key === '¥' ) { // \
             if ( mainNowPage < mainTotalPage ) {
                 mainNowPage++;
             } else {
