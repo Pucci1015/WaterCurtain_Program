@@ -3898,7 +3898,7 @@ document.addEventListener("keydown", (e) => {
 
                     },movingLightSetTimeoutDelay[15]);
 
-                } else if ( key === '_' ) {
+                } else if ( key === '_' || code === 226 ) {
                     let startTime = Date.now();
                     
                     /***** ウォーターカーテン AR *****/

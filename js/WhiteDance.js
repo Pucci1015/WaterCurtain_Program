@@ -4193,7 +4193,7 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                } else if ( key === '_' ) {
+                } else if ( key === '_' || code === 226 ) {
                     let startTime = Date.now();
                     
                     /***** ウォーターカーテン AZ *****/

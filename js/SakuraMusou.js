@@ -4182,7 +4182,7 @@ document.addEventListener("keydown", (e) => {
                         
                     },ledSetTimeoutDelay[2]);
 
-                } else if ( key === '_' ) {
+                } else if ( key === '_' || code === 226 ) {
                     let startTime = Date.now();
                     
                     /***** ウォーターカーテン BF *****/
@@ -6682,7 +6682,7 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                } else if ( key === '_' ) {
+                } else if ( key === '_' || code === 226 ) {
                     let startTime = Date.now();
                     
                     /***** ウォーターカーテン C *****/
