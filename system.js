@@ -293,11 +293,13 @@ document.addEventListener("keydown", (e) => {
                     break;
                 }
             }
+        } else {
+            subCode = -1;
         }
     }
 
     if ( performanceNowSelect !== -1 ) {
-        if ( code === 220 || key === '¥' ) { // \
+        if ( key === '¥' ) { // \
             if ( mainNowPage < mainTotalPage ) {
                 mainNowPage++;
             } else {
