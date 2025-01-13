@@ -1539,7 +1539,7 @@ document.addEventListener("keydown", (e) => {
                     let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
 
                     for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,50,100);
-                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,16,100,100,2);
+                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,4,100,100,2);
 
                     movingLightSetTimeoutDelay[0] = 0;
                     movingLightSetTimeout[0] = setTimeout( function() {

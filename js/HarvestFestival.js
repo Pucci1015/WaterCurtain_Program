@@ -4820,7 +4820,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetting(0);
                         let movingLightAngleFadeTime = 500;
 
-                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,16,80,100,2);
+                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,4,80,100,2);
 
                         movingLightSetInterval[4] = setInterval(movingLightNumberEMAKI2_4);
 
@@ -4847,7 +4847,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[3],0,movingLightUseNumber,movingLightSetInterval[5],movingLightMyNumber);
 
                             for ( var i = 1 ; i <= 4 ; i++ ) {
-                                movingLightRotateChange(2,i,360/20000*(nowTime[0]%20000));
+                                movingLightRotateChange(2,i,360/30000*(nowTime[0]%30000));
                             }
                             
                         }
@@ -4947,7 +4947,7 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[8] = setTimeout( function() {
                         movingLightSetting(0);
 
-                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,16,100,100,2);
+                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,4,100,100,2);
 
                         let movingLightColorFadeTime = 2200;
 

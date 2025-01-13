@@ -1403,18 +1403,18 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[4],ledFadeTime,ledUseNumber,ledSetInterval[4],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
                             let ledRepeatTime = 3000;
 
-                            let ledBasicColor = [ [ 255 , 255 , 255 ] , [ 50 , 150 , 255 ] ];
-                            let ledRepeatTimeSplit = ledRepeatTime / 2;
+                            let ledBasicColor = [ [ 50 , 150 , 255 ] , [ 255 , 255 , 255 ] , [ 150 , 200 , 255 ] ];
+                            let ledRepeatTimeSplit = ledRepeatTime / 3;
                             let ledLapTimeSplit = ledRepeatTime * 2 / 18;
         
                             for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
                                 let ledColor = [];
                                 let j = ledNumberInside - i;
-                                let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+                                let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j + ledRepeatTimeSplit / 2 ) % ledRepeatTime;
         
-                                for ( var l = 0 ; l < 2 ; l++ ) {
+                                for ( var l = 0 ; l < 3 ; l++ ) {
                                     if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
-                                        for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 2 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                        for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
                                         break;
                                     }
                                 }
@@ -1423,7 +1423,6 @@ document.addEventListener("keydown", (e) => {
                             }
                             
                             ledBasicColor = [ [ 0 , 255 , 150 ] , [ 180 , 0 , 255 ] , [ 255 , 255 , 255 ] ];
-                            ledRepeatTimeSplit = ledRepeatTime / 3;
                             ledLapTimeSplit = ledRepeatTime * 2 / 44;
         
                             for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
@@ -2128,49 +2127,56 @@ document.addEventListener("keydown", (e) => {
                     let ledSetTimeoutDelay = [];
                     let ledSetInterval = [];
 
-                    ledSetTimeoutDelay[7] = 0;
-                    ledSetTimeout[7] = setTimeout( function() {
+                    ledSetTimeoutDelay[4] = 0;
+                    ledSetTimeout[4] = setTimeout( function() {
                         let ledChildrenMyNumber = ledSetting(ledMyNumber);
-                        ledSetInterval[7] = setInterval(ledNumberNLJ2_7);
+                        ledSetInterval[4] = setInterval(ledNumberNLJ4_4);
                         
-                        function ledNumberNLJ2_7() {
-                            let ledFadeTime = 1000;
-                            let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[7],ledFadeTime,ledUseNumber,ledSetInterval[7],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
-                            let ledRepeatTime = 5000;
+                        function ledNumberNLJ4_4() {
+                            let ledFadeTime = 800;
+                            let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[4],ledFadeTime,ledUseNumber,ledSetInterval[4],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
+                            let ledRepeatTime = 3000;
 
+                            let ledBasicColor = [ [ 50 , 150 , 255 ] , [ 255 , 255 , 255 ] , [ 150 , 200 , 255 ] ];
                             let ledRepeatTimeSplit = ledRepeatTime / 3;
-                            let ledBasicColor = [ [ 200 , 255 , 240 ] , [ 200 , 255 , 255 ] , [ 255 , 255 , 255 ] ];
-                            let ledJudgeTime = nowTime[1] % ledRepeatTime;
-                            let ledColor = [];
-                            for ( var l = 0 ; l < 3 ; l++ ) {
-                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
-                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
-                                    break;
-                                }
-                            }
-                            for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
-                            
-                            ledBasicColor = [ [ 200 , 240 , 255 ] , [ 200 , 255 , 240 ] , [ 255 , 255 , 255 ] ];
-                            let ledLapTimeSplit = ledRepeatTime * 2 / 44;
-
-                            for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
+                            let ledLapTimeSplit = ledRepeatTime * 2 / 18;
+        
+                            for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
                                 let ledColor = [];
-                                let j = i - 1;
-                                let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
-
+                                let j = ledNumberInside - i;
+                                let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j + ledRepeatTimeSplit / 2 ) % ledRepeatTime;
+        
                                 for ( var l = 0 ; l < 3 ; l++ ) {
                                     if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
                                         for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
                                         break;
                                     }
                                 }
-
+        
+                                ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
+                            }
+                            
+                            ledBasicColor = [ [ 0 , 255 , 150 ] , [ 180 , 0 , 255 ] , [ 255 , 255 , 255 ] ];
+                            ledLapTimeSplit = ledRepeatTime * 2 / 44;
+        
+                            for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
+                                let ledColor = [];
+                                let j = i - 1;
+                                let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
+        
+                                for ( var l = 0 ; l < 3 ; l++ ) {
+                                    if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                        for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                        break;
+                                    }
+                                }
+        
                                 ledColorChange(2,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
                             }
 
                         }
                         
-                    },ledSetTimeoutDelay[7]);
+                    },ledSetTimeoutDelay[4]);
 
                 }
             }
@@ -2390,10 +2396,10 @@ document.addEventListener("keydown", (e) => {
                             if ( i <= logoboardLightNumber / 2 ) j = i;
                             else j = logoboardLightNumber - i + 1;
 
-                            if ( j <= 3 ) logoboardLightColor = [ 0 , 100 , 255 , 255 ];
+                            if ( j <= 3 ) logoboardLightColor = [ 0 , 150 , 255 , 255 ];
                             else if ( j <= 6 ) logoboardLightColor = [ 255 , 150 , 0 , 200 ];
                             else if ( j <= 9 ) logoboardLightColor = [ 255 , 255 , 0 , 200 ];
-                            else if ( j <= 12 ) logoboardLightColor = [ 0 , 100 , 255 , 255 ];
+                            else if ( j <= 12 ) logoboardLightColor = [ 0 , 150 , 255 , 255 ];
                             else if ( j <= 15 ) logoboardLightColor = [ 150 , 100 , 255 , 0 ];
                             else if ( j <= 18 ) logoboardLightColor = [ 0 , 255 , 200 , 200 ];
                             else if ( j <= 21 ) logoboardLightColor = [ 0 , 255 , 0 , 255 ];

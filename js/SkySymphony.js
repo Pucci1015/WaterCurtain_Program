@@ -2762,14 +2762,15 @@ document.addEventListener("keydown", (e) => {
                         let logoboardRepeatTime = 1200;
                         let logoboardChangeTime = 200;
                         let logoboardRepeatTimeSplit = logoboardRepeatTime / 2;
-                        let logoboardBasicColor = [ [ 0 , 120 , 255 ] , [ 0 , 255 , 0 ] ];
+                        let logoboardRepeatTimeSplit2 = logoboardRepeatTime / 4;
+                        let logoboardBasicColor = [ [ 0 , 150 , 255 ] , [ 0 , 255 , 0 ] ];
         
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                             let logoboardColor = [];
                             let logoboardLapTimeSplit;
 
-                            if ( i <= 24 ) logoboardLapTimeSplit = logoboardRepeatTime * 2 / 24 * ( i - 1 );
-                            else logoboardLapTimeSplit = logoboardRepeatTime * 2 / 24 * ( 48 - i );
+                            if ( i <= 24 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit2 * Math.trunc( ( i - 1 ) / 3 );
+                            else logoboardLapTimeSplit = logoboardRepeatTimeSplit2 * Math.trunc( ( 48 - i ) / 3 );
 
                             let logoboardJudgeTime = ( nowTime[0] + logoboardLapTimeSplit ) % logoboardRepeatTime;
 
