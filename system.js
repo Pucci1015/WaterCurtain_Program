@@ -299,7 +299,7 @@ document.addEventListener("keydown", (e) => {
     }
 
     if ( performanceNowSelect !== -1 ) {
-        if ( code === 220 || !( e.shiftKey ) && key === '¥' ) { // \
+        if ( /*code === 220 || */!( e.shiftKey ) && key === '¥' ) { // \
             if ( mainNowPage < mainTotalPage ) {
                 mainNowPage++;
             } else {
