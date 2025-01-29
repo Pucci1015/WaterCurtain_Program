@@ -64,7 +64,7 @@ document.addEventListener("keydown", (e) => {
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
                     let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
 
-                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,16,100,100,2);
+                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,21,100,100,1);
 
                     movingLightSetTimeoutDelay[0] = 0;
                     movingLightSetTimeout[0] = setTimeout( function() {
@@ -782,7 +782,7 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[17] = setTimeout( function() {
                         movingLightSetting(0);
 
-                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,16,100,100,2);
+                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,21,100,100,1);
 
                         let movingLightColorFadeTime = 1000;
 
@@ -1123,7 +1123,7 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[29] = setTimeout( function() {
                         movingLightSetting(0);
 
-                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,16,100,100,2);
+                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,21,100,100,1);
 
                         movingLightSetInterval[4] = setInterval(movingLightNumberWD2_4);
 
@@ -1857,7 +1857,7 @@ document.addEventListener("keydown", (e) => {
                         let movingLightAngleFadeTime = 1000;
 
                         for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,50,100);
-                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,16,100,100,2);
+                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,21,100,100,1);
 
                         movingLightSetInterval[1] = setInterval(movingLightNumberWD3_1);
 
@@ -2062,7 +2062,7 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[9] = setTimeout( function() {
                         movingLightSetting(0);
 
-                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,16,60,100,2);
+                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,21,60,100,1);
 
                         let movingLightColorFadeTime = 2000;
 
@@ -2106,7 +2106,7 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[11] = setTimeout( function() {
                         movingLightSetting(0);
 
-                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,16,100,100,2);
+                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,21,100,100,1);
 
                         let movingLightColorFadeTime = 1800;                    
 

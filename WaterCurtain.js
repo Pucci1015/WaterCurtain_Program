@@ -2902,7 +2902,7 @@ function waterCurtain(waterCurtainNumber,sustainable = 1) {
             }
 
             let waterCurtainSetInterval = setInterval( function() {
-                let nowTime = nowTimeGet(startTime+520,0,waterCurtainUseNumber,waterCurtainSetInterval,waterCurtainMyNumber);
+                let nowTime = nowTimeGet(startTime+120,0,waterCurtainUseNumber,waterCurtainSetInterval,waterCurtainMyNumber);
                 
                 for ( var i = 0 ; i < waterCurtainBigNumber ; i++ ) {
                     let waterCurtainJudgeTime = ( nowTime[0] + waterCurtainLoopTimeSplit * i ) % waterCurtainLoopTime;
@@ -2920,7 +2920,7 @@ function waterCurtain(waterCurtainNumber,sustainable = 1) {
                 }
     
             });
-        },520);        
+        },120);        
 
     } else if ( waterCurtainNumber === 'BI' ) {
         let startTime = Date.now();
@@ -3039,7 +3039,7 @@ function waterCurtain(waterCurtainNumber,sustainable = 1) {
         let startTime = Date.now();
         let waterCurtainWidth = 1;
         let waterCurtainNumber = 360 / waterCurtainWidth;
-        let waterCurtainLoopTime = 1000;
+        let waterCurtainLoopTime = 1030;
         let waterCurtainSmallLoopTime = 780;
         let waterCurtainSmallLoopTimeSplit = waterCurtainSmallLoopTime / 2
         let waterCurtainLoopTimeSplit = 50;
@@ -3053,6 +3053,8 @@ function waterCurtain(waterCurtainNumber,sustainable = 1) {
 
         waterCurtainSetInterval = setInterval( function() {
             let nowTime = nowTimeGet(startTime,0,waterCurtainUseNumber,waterCurtainSetInterval,waterCurtainMyNumber);
+
+            nowTime[0] %= 16000;
 
             let waterCurtainJudgeTime = nowTime[0] % waterCurtainLoopTime;
 

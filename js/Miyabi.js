@@ -136,6 +136,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** 看板照明 MIYAB2 *****/
+                    logoboardLightSetting(2);
                     let logoboardLightMyNumber = logoboardLightSetting(0);
                     let logoboardLightFadeTime = 7000;
                     let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI2);
@@ -2327,7 +2328,7 @@ document.addEventListener("keydown", (e) => {
                         let ledFadeTime = 2600;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledRepeatTime = 2500;
-                        let ledRepeatTimeSplit = ledRepeatTime / 6;
+                        let ledRepeatTimeSplit = ledRepeatTime / 4;
                         let ledBasicColor1 = [ 255 , 255 , 255 ];
                         let ledBasicColor2 = [ [ 0 , 0 , 255 ] , [ 0 , 220 , 255 ] ];
                         
