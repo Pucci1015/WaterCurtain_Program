@@ -293,13 +293,23 @@ let parLightDiameter, spotLightDiameter, audienceLightDiameter, stageLightDiamet
             movingLightPictureCoordinateOneNumber[i].style.height = movingLightPictureWidth + "px";
         }
 
+        //マシン状態座標決定
+        let machineCoordinateNumber = document.getElementById(`machine_state`);
+        machineCoordinateNumber.style.height = radius * 0.1 + "px";
+        machineCoordinateNumber.style.top = radius * 0.045 + "px";
+        machineCoordinateNumber.style.left = radius * 3.48 + "px";
+
+        for ( var i = 0 ; i < 3 ; i++ ) {
+            machineCoordinateNumber.getElementsByTagName("div")[i].style.borderRadius = radius * 0.02 + "%";
+        }
+
         // 看板照明座標決定
         let logoboardWidth = radius * 0.65;
         let logoboardLightSimple = radius * 0.65 / 23;
         let logoboardNumber1 = logoboardLightSimple * 4 / 12;//15
 
         let logoboardLightCoordinateNumber = document.getElementById(`LOGOBORD`);
-        logoboardLightCoordinateNumber.style.top = centerY - diameter / 4 * 0.9 + "px";
+        logoboardLightCoordinateNumber.style.top = centerY - diameter / 4 * 0.95 + "px";
         logoboardLightCoordinateNumber.style.left = diameter * 0.95 + centerX + "px";
         logoboardLightCoordinateNumber.style.width = logoboardWidth + "px";
         logoboardLightCoordinateNumber.style.height = logoboardWidth * 0.22 + "px";
@@ -312,7 +322,7 @@ let parLightDiameter, spotLightDiameter, audienceLightDiameter, stageLightDiamet
 
         for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
             let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${ i + 1 }`);
-            logoboardCoordinateNumber.style.top = centerY - diameter / 4 * 0.9 + "px";
+            logoboardCoordinateNumber.style.top = centerY - diameter / 4 * 0.95 + "px";
             logoboardCoordinateNumber.style.left = ( diameter * 0.95 + centerX + logoboardLightSimple * 5 * Math.trunc( i / 12 ) + radius * 0.015 + logoboardLightSimple /*- logoboardLightSimple * 2 / 3*/ - logoboardNumber1 / 4 ) + "px";
             logoboardCoordinateNumber.style.width = logoboardLightSimple * 7 + "px";
             logoboardCoordinateNumber.style.height = logoboardWidth * 0.22 + "px";
@@ -323,13 +333,6 @@ let parLightDiameter, spotLightDiameter, audienceLightDiameter, stageLightDiamet
             //logoboardCoordinateNumber.style.clipPath = "polygon(" + ( logoboardNumber1 + logoboardNumber2 * ( i % 12 ) ) + "px 0," + ( logoboardNumber1 + logoboardNumber2 * ( ( i % 12 ) + logoboardNumber3 ) ) + "px 0," +  ( logoboardNumber4 * ( ( i % 12 ) + 1 ) + logoboardNumber3 * 2 ) + "px 100%," + ( logoboardNumber4 * ( i % 12 ) - logoboardNumber3 * 2 ) + "px 100%)";
             logoboardCoordinateNumber.style.clipPath = "polygon(" + logoboardNumber2 + "px 0," + ( logoboardNumber2 + logoboardNumber1 ) + "px 0," +  ( logoboardNumber3 + logoboardNumber1 * 2 ) + "px 100%," + logoboardNumber3 + "px 100%)";
         }
-
-        let settingCoordinateNumber = document.getElementById(`SETTING`);
-        settingCoordinateNumber.style.top = centerY - diameter / 4 * 0.4 + "px";
-        settingCoordinateNumber.style.left = diameter * 0.95 + centerX + "px";
-        settingCoordinateNumber.style.width = logoboardWidth * 1.06 + "px";
-        settingCoordinateNumber.style.height = radius * 1.15 + "px";
-        settingCoordinateNumber.style.borderRadius = radius * 0.026 + "px";
 
         //スモーク座標決定
         let smokeRadius = radius * 0.15;
@@ -369,23 +372,44 @@ let parLightDiameter, spotLightDiameter, audienceLightDiameter, stageLightDiamet
         watercurtainCoordinate.style.width = waterCurtainWidth + "px";
 
         //フォントサイズ
+
+        let settingCoordinateNumber = document.getElementById(`SETTING`);
+        settingCoordinateNumber.style.top = centerY - diameter / 4 * 0.5 + "px";
+        settingCoordinateNumber.style.left = diameter * 0.95 + centerX + "px";
+        settingCoordinateNumber.style.width = logoboardWidth * 1.06 + "px";
+        settingCoordinateNumber.style.height = radius * 1.2 + "px";
+        settingCoordinateNumber.style.borderRadius = radius * 0.026 + "px";
+
+        document.getElementById(`script`).style.height = radius * 0.5 + "px";
+
         let movingLightName = document.getElementsByClassName(`MOVING_LIGHT_PICTURE`);
         for ( var i = 0 ; i < movingLightName.length ; i++ ) movingLightName[i].getElementsByTagName(`p`)[0].style.fontSize = radius * 0.03 + "px";
 
-        let settingTitle = document.getElementsByClassName(`setting-title`);
-        for ( var i = 0 ; i < settingTitle.length ; i++ ) settingTitle[i].style.fontSize = radius * 0.046 + "px";
+        let performanceTitleSubName = document.getElementsByClassName(`performance-subtitle`);
+        for ( var i = 0 ; i < performanceTitleSubName.length ; i++ ) performanceTitleSubName[i].style.fontSize = radius * 0.04 + "px";
 
+        let performanceTitleName = document.getElementById(`performance-title`);
+        performanceTitleName.style.fontSize = radius * 0.05 + "px";
+
+        let musicNumberTitle = document.getElementById(`music_number`);
+        musicNumberTitle.style.fontSize = radius * 0.05 + "px";
+        musicNumberTitle.getElementsByTagName(`span`)[0].style.fontSize = radius * 0.07 + "px";
+
+        document.getElementById(`music_seconds`).style.fontSize = radius * 0.05 + "px";
+        document.getElementById(`music_play_position`).style.fontSize = radius * 0.07 + "px";
+
+        document.getElementById(`music_vol`).style.fontSize = radius * 0.05 + "px";
+        document.getElementById(`music_vol_value`).style.fontSize = radius * 0.07 + "px";
         let pageNumber = document.getElementById(`pagenumber`).getElementsByTagName(`p`);
         for ( var i = 0 ; i < pageNumber.length ; i++ ) {
             pageNumber[i].style.fontSize = radius * 0.05 + "px";
             pageNumber[i].getElementsByTagName(`span`)[0].style.fontSize = radius * 0.09 + "px";
+            if ( i >= 1 ) pageNumber[i].getElementsByTagName(`span`)[1].style.fontSize = radius * 0.06 + "px";
         }
 
-        let machineOnoff = document.getElementById(`machine_onoff`).getElementsByTagName(`p`);
-        for ( var i = 0 ; i < machineOnoff.length ; i++ ) {
-            machineOnoff[i].style.fontSize = radius * 0.045 + "px";
-            machineOnoff[i].getElementsByTagName(`span`)[0].style.fontSize = radius * 0.09 + "px";
-        }
+        document.getElementById(`script_setting`).style.fontSize = radius * 0.04 + "px";
+
+        document.getElementById(`script`).style.fontSize = radius * 0.04 + "px";
 
         performanceTitleFontSize = radius * 0.055;
         performanceSelect.style.fontSize = performanceTitleFontSize + "px";
@@ -396,3 +420,120 @@ let parLightDiameter, spotLightDiameter, audienceLightDiameter, stageLightDiamet
         performanceTitleSizeChange();
     });
 });
+
+function characterLength(character) {
+    let long = 2;
+
+    switch ( character ) {
+        case 'a': long = 0.55; break;
+        case 'b': long = 0.58; break;
+        case 'c': long = 0.52; break;
+        case 'd': long = 0.58; break;
+        case 'e': long = 0.56; break;
+        case 'f': long = 0.34; break;
+        case 'g': long = 0.55; break;
+        case 'H': long = 0.75; break;
+        case 'i': long = 0.27; break;
+        case 'j': long = 0.3; break;
+        case 'k': long = 0.53; break;
+        case 'l': long = 0.27; break;
+        case 'm': long = 0.86; break;
+        case 'n': long = 0.58; break;
+        case 'o': long = 0.56; break;
+        case 'p': long = 0.58; break;
+        case 'q': long = 0.58; break;
+        case 'r': long = 0.37; break;
+        case 's': long = 0.51; break;
+        case 't': long = 0.35; break;
+        case 'u': long = 0.58; break;
+        case 'v': long = 0.49; break;
+        case 'w': long = 0.77; break;
+        case 'x': long = 0.49; break;
+        case 'y': long = 0.49; break;
+        case 'z': long = 0.46; break;
+        case 'A': long = 0.65; break;
+        case 'B': long = 0.68; break;
+        case 'C': long = 0.68; break;
+        case 'D': long = 0.74; break;
+        case 'E': long = 0.62; break;
+        case 'F': long = 0.61; break;
+        case 'G': long = 0.73; break;
+        case 'H': long = 0.75; break;
+        case 'I': long = 0.3; break;
+        case 'J': long = 0.4; break;
+        case 'K': long = 0.69; break;
+        case 'L': long = 0.6; break;
+        case 'M': long = 0.92; break;
+        case 'N': long = 0.75; break;
+        case 'O': long = 0.73; break;
+        case 'P': long = 0.66; break;
+        case 'Q': long = 0.73; break;
+        case 'R': long = 0.67; break;
+        case 'S': long = 0.63; break;
+        case 'T': long = 0.63; break;
+        case 'U': long = 0.74; break;
+        case 'V': long = 0.65; break;
+        case 'W': long = 0.93; break;
+        case 'X': long = 0.65; break;
+        case 'Y': long = 0.65; break;
+        case 'Z': long = 0.61; break;
+        case '0': long = 0.56; break;
+        case '1': long = 0.56; break;
+        case '2': long = 0.56; break;
+        case '3': long = 0.56; break;
+        case '4': long = 0.56; break;
+        case '5': long = 0.56; break;
+        case '6': long = 0.56; break;
+        case '7': long = 0.56; break;
+        case '8': long = 0.56; break;
+        case '9': long = 0.56; break;
+        case '`': long = 0.5; break;
+        case '~': long = 0.7; break;
+        case '!': long = 0.34; break;
+        case '@': long = 0.86; break;
+        case '#': long = 0.58; break;
+        case '$': long = 0.58; break;
+        case '%': long = 0.8; break;
+        case '^': long = 0.5; break;
+        case '&': long = 0.72; break;
+        case '*': long = 0.48; break;
+        case '(': long = 0.38; break;
+        case ')': long = 0.38; break;
+        case '-': long = 0.43; break;
+        case '_': long = 0.5; break;
+        case '=': long = 0.72; break;
+        case '+': long = 0.72; break;
+        case '[': long = 0.38; break;
+        case '{': long = 0.38; break;
+        case ']': long = 0.38; break;
+        case '}': long = 0.38; break;
+        case '\\': long = 0.58; break;
+        case '|': long = 0.38; break;
+        case ';': long = 0.28; break;
+        case ':': long = 0.28; break;
+        case '\'': long = 0.22; break;
+        case '"': long = 0.41; break;
+        case ',': long = 0.26; break;
+        case '<': long = 0.72; break;
+        case '.': long = 0.26; break;
+        case '>': long = 0.72; break;
+        case '/': long = 0.48; break;
+        case '?': long = 0.53; break;
+        case ' ': long = 0.35; break;
+        default: long = 1; break;
+    }
+
+    return long;
+}
+/*
+const text = 'abcdefgHijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}\\|;:\'",<.>/?';
+const span = document.createElement('span');
+for (let i = 0; i < text.length; i++) {
+    span.style.display = 'inline-block';
+    span.style.fontSize = '100px';
+    span.style.fontFamily = 'Yu Gothic Medium';
+    span.textContent = text[i];
+    document.body.appendChild(span);
+    //console.log(text[i]);
+    console.log("case '" + text[i] + "': long = " + span.clientWidth / 100 + "; break;");
+}*/

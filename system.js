@@ -5,6 +5,9 @@
 var performanceNowSelect;
 let ledNow10FadeTime = 2000;
 let totalPage = [ [] , [] , [] , [] , [] ];
+let performanceTitle = [ [] , [] , [] , [] ];
+let performanceMusicDay = [];
+let performanceMusicNight = [];
 let nowPerformanceNumber = 0;
 
 function jsSetting(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,nightMainThisPage,nightSubThisPage,led10FadeTime = 2000) {
@@ -20,6 +23,11 @@ function jsSetting(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,ni
     totalPage[3][nowPerformanceNumber] = nightSubThisPage;
     totalPage[4][nowPerformanceNumber] = led10FadeTime;
 
+    for ( var i = 0 ; i < 4 ; i++ ) performanceTitle[i][nowPerformanceNumber] = "-";
+
+    performanceMusicDay[nowPerformanceNumber] = 0;
+    performanceMusicNight[nowPerformanceNumber] = 0;
+
     nowPerformanceNumber++;
 
     /*window["performance"+myFolderName+"DayMainTotalPage"] = dayMainThisPage;
@@ -27,6 +35,33 @@ function jsSetting(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,ni
     window["performance"+myFolderName+"NightMainTotalPage"] = nightMainThisPage;
     window["performance"+myFolderName+"NightSubTotalPage"] = nightSubThisPage;
     window["performance"+myFolderName+"led10FadeTime"] = led10FadeTime;*/
+}
+
+function jsSetting2(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMainThisPage,daySubThisPage,dayMusicArray,myNightTitle,nightMainThisPage,nightSubThisPage,nightMusicArray,led10FadeTime = 2000) {
+    let performanceOption = document.createElement('option');
+    performanceOption.value = myFolderName;
+    performanceOption.textContent = myOriginalName;
+    
+    performanceSelect.appendChild(performanceOption);
+
+    totalPage[0][nowPerformanceNumber] = dayMainThisPage;
+    totalPage[1][nowPerformanceNumber] = daySubThisPage;
+    totalPage[2][nowPerformanceNumber] = nightMainThisPage;
+    totalPage[3][nowPerformanceNumber] = nightSubThisPage;
+    totalPage[4][nowPerformanceNumber] = led10FadeTime;
+
+    performanceTitle[0][nowPerformanceNumber] = myYear;
+    performanceTitle[1][nowPerformanceNumber] = mySeason;
+    performanceTitle[2][nowPerformanceNumber] = myDayTitle;
+    performanceTitle[3][nowPerformanceNumber] = myNightTitle;
+
+    if ( dayMusicArray === 0 ) performanceMusicDay[nowPerformanceNumber] = 0;
+    else performanceMusicDay[nowPerformanceNumber] = dayMusicArray;//performanceMusicDay.concat(dayMusicArray);
+    
+    if ( nightMusicArray === 0 ) performanceMusicNight[nowPerformanceNumber] = 0;
+    else performanceMusicNight[nowPerformanceNumber] = nightMusicArray;
+
+    nowPerformanceNumber++;
 }
 
 //jsページ設定
@@ -88,122 +123,292 @@ function dnScript() {
     
 }
 
-function characterLength(character) {
-    let long = 2;
+let musicNumber = -1;
+let performanceMusicNumber;
+let performanceMusicSelect;
+let dnMusicSelect;
+let music = document.getElementById('music');
+let musicLength;
+let musicPlayPosition;
+let musicLoop;
+let musicVolume;
+let musicPlay = 0;
+let musicVolumeMicrophone;
+let dnTitle = [ "Day" , "Night" ];
+let musicTime;
+let musicTimeNumber;
+let musicScriptNumber;
+let musicChangePossible;
+let micState = document.getElementById('machine_mic');
+let musicVolumeSetInterval;
+let scriptScrollON = document.getElementById('script_scroll');
+let manual = document.getElementById('manual');
+let manualBackground = document.getElementById('manual_background');
+let manualON = 0;
 
-    switch ( character ) {
-        case 'a': long = 0.55; break;
-        case 'b': long = 0.58; break;
-        case 'c': long = 0.52; break;
-        case 'd': long = 0.58; break;
-        case 'e': long = 0.56; break;
-        case 'f': long = 0.34; break;
-        case 'g': long = 0.55; break;
-        case 'H': long = 0.75; break;
-        case 'i': long = 0.27; break;
-        case 'j': long = 0.3; break;
-        case 'k': long = 0.53; break;
-        case 'l': long = 0.27; break;
-        case 'm': long = 0.86; break;
-        case 'n': long = 0.58; break;
-        case 'o': long = 0.56; break;
-        case 'p': long = 0.58; break;
-        case 'q': long = 0.58; break;
-        case 'r': long = 0.37; break;
-        case 's': long = 0.51; break;
-        case 't': long = 0.35; break;
-        case 'u': long = 0.58; break;
-        case 'v': long = 0.49; break;
-        case 'w': long = 0.77; break;
-        case 'x': long = 0.49; break;
-        case 'y': long = 0.49; break;
-        case 'z': long = 0.46; break;
-        case 'A': long = 0.65; break;
-        case 'B': long = 0.68; break;
-        case 'C': long = 0.68; break;
-        case 'D': long = 0.74; break;
-        case 'E': long = 0.62; break;
-        case 'F': long = 0.61; break;
-        case 'G': long = 0.73; break;
-        case 'H': long = 0.75; break;
-        case 'I': long = 0.3; break;
-        case 'J': long = 0.4; break;
-        case 'K': long = 0.69; break;
-        case 'L': long = 0.6; break;
-        case 'M': long = 0.92; break;
-        case 'N': long = 0.75; break;
-        case 'O': long = 0.73; break;
-        case 'P': long = 0.66; break;
-        case 'Q': long = 0.73; break;
-        case 'R': long = 0.67; break;
-        case 'S': long = 0.63; break;
-        case 'T': long = 0.63; break;
-        case 'U': long = 0.74; break;
-        case 'V': long = 0.65; break;
-        case 'W': long = 0.93; break;
-        case 'X': long = 0.65; break;
-        case 'Y': long = 0.65; break;
-        case 'Z': long = 0.61; break;
-        case '0': long = 0.56; break;
-        case '1': long = 0.56; break;
-        case '2': long = 0.56; break;
-        case '3': long = 0.56; break;
-        case '4': long = 0.56; break;
-        case '5': long = 0.56; break;
-        case '6': long = 0.56; break;
-        case '7': long = 0.56; break;
-        case '8': long = 0.56; break;
-        case '9': long = 0.56; break;
-        case '`': long = 0.5; break;
-        case '~': long = 0.7; break;
-        case '!': long = 0.34; break;
-        case '@': long = 0.86; break;
-        case '#': long = 0.58; break;
-        case '$': long = 0.58; break;
-        case '%': long = 0.8; break;
-        case '^': long = 0.5; break;
-        case '&': long = 0.72; break;
-        case '*': long = 0.48; break;
-        case '(': long = 0.38; break;
-        case ')': long = 0.38; break;
-        case '-': long = 0.43; break;
-        case '_': long = 0.5; break;
-        case '=': long = 0.72; break;
-        case '+': long = 0.72; break;
-        case '[': long = 0.38; break;
-        case '{': long = 0.38; break;
-        case ']': long = 0.38; break;
-        case '}': long = 0.38; break;
-        case '\\': long = 0.58; break;
-        case '|': long = 0.38; break;
-        case ';': long = 0.28; break;
-        case ':': long = 0.28; break;
-        case '\'': long = 0.22; break;
-        case '"': long = 0.41; break;
-        case ',': long = 0.26; break;
-        case '<': long = 0.72; break;
-        case '.': long = 0.26; break;
-        case '>': long = 0.72; break;
-        case '/': long = 0.48; break;
-        case '?': long = 0.53; break;
-        case ' ': long = 0.35; break;
-        default: long = 1; break;
+document.getElementById('manual_button1').addEventListener("click", function() {
+    manual.style.display = "block";
+    manualBackground.style.display = "block";
+    manualSelectDisplay(2);
+    manualON = 1;
+});
+
+document.getElementById('manual_button2').addEventListener("click", function() {
+    manual.style.display = "block";
+    manualBackground.style.display = "block";
+    manualSelectDisplay(1);
+    manualON = 1;
+});
+
+document.getElementById('manual_close').addEventListener("click", function() {
+    manual.style.display = "none";
+    manualBackground.style.display = "none";
+    manualON = 0;
+});
+
+manualBackground.addEventListener("click", function() {
+    manual.style.display = "none";
+    manualBackground.style.display = "none";
+    manualON = 0;
+});
+
+function manualSelectDisplay(i) {
+    document.getElementById(`manual${i}`).style.display = "block";
+    document.getElementById(`manual${ 3 - i }`).style.display = "none";
+
+    document.getElementById(`manual_select_button${i}`).classList.add(`manual_select_now`);
+    document.getElementById(`manual_select_button${ 3 - i }`).classList.remove(`manual_select_now`);
+}
+
+document.getElementById('manual_select_button1').addEventListener("click", function() {
+    manualSelectDisplay(1);
+});
+
+document.getElementById('manual_select_button2').addEventListener("click", function() {
+    manualSelectDisplay(2);
+});
+
+function scriptScroll(i) {
+    if ( scriptScrollON.checked ) {
+        document.getElementById(`scriptListContent${i}`).scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'start'
+        });
+    }
+}
+
+function musicPlayDisplay() {
+    document.getElementById('music_img').src = "music_" + musicPlay + ".png";
+    
+    if ( musicPlay === 1 ) music.play();
+    else music.pause();
+}
+
+function minutesDisplay(time) {
+    time = Math.floor(time);
+
+    let minutes = Math.floor( time / 60 ).toString().padStart( 2 , '0' );
+    let seconds = ( time % 60 ).toString().padStart( 2 , '0' );
+
+    return minutes + ":" + seconds;
+}
+
+function musicPlayPositionDisplay() {
+    musicPlayPosition = music.currentTime;
+    document.getElementById('music_play_position').innerHTML = minutesDisplay(musicPlayPosition);
+}
+
+function musicLoopDisplay() {
+    if ( musicLoop ) {
+        music.loop = true;
+        document.getElementById('music_loop_button').style.background = "#AAAAAA";
+    } else {
+        music.loop = false;
+        document.getElementById('music_loop_button').style.background = "transparent";
+    }
+}
+
+function musicVolDisplay(nextVol = 0) {
+    if ( nextVol === 1 ) musicVolume += 0.1;
+    else if ( nextVol === -1 ) musicVolume -= 0.1;
+
+    if ( musicVolume > 1 ) musicVolume = 1;
+    else if ( musicVolume < 0 ) musicVolume = 0;
+
+    music.volume = musicVolume;
+    let displayVol = Math.floor( 10 * musicVolume );
+
+    if ( displayVol === 10 ) document.getElementById('music_vol_value').innerHTML = displayVol;
+    else document.getElementById('music_vol_value').innerHTML = "0" + displayVol;
+}
+
+function micOnOff() {
+    if ( musicVolumeMicrophone === 0 ) {
+        clearInterval(musicVolumeSetInterval);
+        micState.style.backgroundColor = "transparent";
+    } else {
+        micState.style.backgroundColor = "#999";
+    }
+}
+
+function musicChange(musicPN = 1) {
+    let finish;
+    
+    musicNumber += musicPN;
+
+    do {
+        finish = 0;
+
+        switch ( dnMusicSelect ) {
+            case 0:
+                if ( performanceMusicDay[performanceMusicNumber] === 0 ) {
+                    musicNumber = "-";
+                    musicChangePossible = 0;
+                    finish = 0;
+                } else if ( musicNumber < 0 ) {
+                    musicNumber = performanceMusicDay[performanceMusicNumber].length - 1;
+                    finish = 1;
+                } else if ( performanceMusicDay[performanceMusicNumber].length <= musicNumber ) {
+                    musicNumber = 0;
+                    finish = 1;
+                } else if ( performanceMusicDay[performanceMusicNumber][musicNumber].length === 1 ) {
+                    musicNumber += musicPN;
+                    finish = 1;
+                }
+                break;
+            case 1:
+                if ( performanceMusicNight[performanceMusicNumber] === 0 ) {
+                    musicNumber = "-";
+                    musicChangePossible = 0;
+                    finish = 0;
+                } else if ( musicNumber < 0 ) {
+                    musicNumber = performanceMusicNight[performanceMusicNumber].length - 1;
+                    finish = 1;
+                } else if ( performanceMusicNight[performanceMusicNumber].length <= musicNumber ) {
+                    musicNumber = 0;
+                    finish = 1;
+                } else if ( performanceMusicNight[performanceMusicNumber][musicNumber].length === 1 ) {
+                    musicNumber += musicPN;
+                    finish = 1;
+                }
+                break;
+        }
+    } while(finish);
+
+    if ( musicChangePossible === 0 ) {
+        for ( var i = 1 ; i <= 2 ; i++ ) document.getElementById(`musicParent${i}`).style.opacity = 0.6;
+        document.getElementById('music_length').innerHTML = minutesDisplay(0);
+        music.src = "";
+        musicLoop = 0;
+        musicVolume = 0;
+    } else {
+        switch ( dnMusicSelect ) {
+            case 0:
+                music.src = "Music/" + performanceMusicSelect + "_" + "day" + "_" + musicNumber + ".mp3";
+                musicLoop = performanceMusicDay[performanceMusicNumber][musicNumber][1];
+                musicVolume = performanceMusicDay[performanceMusicNumber][musicNumber][2];
+                break;
+            case 1:
+                music.src = "Music/" + performanceMusicSelect + "_" + "night" + "_" + musicNumber + ".mp3";
+                musicLoop = performanceMusicNight[performanceMusicNumber][musicNumber][1];
+                musicVolume = performanceMusicNight[performanceMusicNumber][musicNumber][2];
+                break;
+        }
     }
 
-    return long;
+    document.getElementById('music_now_number').innerHTML = musicNumber;
+    musicPlay = 0;
+    musicVolumeMicrophone = 0;
+    micOnOff();
+    music.load();
+
+    musicPlayDisplay();
+    musicLoopDisplay();
+    musicVolDisplay();
 }
-/*
-const text = 'abcdefgHijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789`~!@#$%^&*()-_=+[{]}\\|;:\'",<.>/?';
-const span = document.createElement('span');
-for (let i = 0; i < text.length; i++) {
-    span.style.display = 'inline-block';
-    span.style.fontSize = '100px';
-    span.style.fontFamily = 'Yu Gothic Medium';
-    span.textContent = text[i];
-    document.body.appendChild(span);
-    //console.log(text[i]);
-    console.log("case '" + text[i] + "': long = " + span.clientWidth / 100 + "; break;");
-}*/
+
+function performanceMusicChange() {
+    musicChangePossible = 1;
+    for ( var i = 1 ; i <= 2 ; i++ ) document.getElementById(`musicParent${i}`).style.opacity = 1;
+
+    document.getElementById('performance-year').innerHTML = performanceTitle[0][performanceSelect.selectedIndex];
+    document.getElementById('performance-season').innerHTML = performanceTitle[1][performanceSelect.selectedIndex];
+    document.getElementById('performance-title').innerHTML = performanceTitle[ 2 + dnNowSelect ][performanceSelect.selectedIndex];
+
+    document.getElementById('performance-dn').innerHTML = dnTitle[dnNowSelect];
+
+    performanceMusicNumber = performanceSelect.selectedIndex;
+    performanceMusicSelect = performanceNowSelect;
+    dnMusicSelect = dnNowSelect;
+    musicNumber = 0;
+
+    musicChange();
+    performanceDetailDisplay();
+}
+
+music.addEventListener("loadedmetadata", function() {
+    musicLength = music.duration;
+    document.getElementById('music_length').innerHTML = minutesDisplay(musicLength);
+    musicPlayPositionDisplay();
+    musicScriptNumber = 0;
+
+    /*if ( scriptPerformanceNumber !== -1 && musicScriptNumber + 1 < musicTime[musicNumber].length ) {
+        scriptScroll(musicTimeNumber[musicNumber][musicScriptNumber]);
+    }*/
+});
+
+music.addEventListener("timeupdate", function() {
+    musicPlayPositionDisplay();
+
+    if ( scriptPerformanceNumber !== -1 && music.currentTime > musicTime[musicNumber][musicScriptNumber] && musicScriptNumber + 1 < musicTime[musicNumber].length ) {
+        musicScriptNumber++;
+        scriptScroll(musicTimeNumber[musicNumber][musicScriptNumber]);
+    }
+});
+
+music.addEventListener("ended", function() {
+    musicChange();
+});
+
+document.getElementById('music_play_button').addEventListener("click", function() {
+    if ( musicChangePossible === 1 ) {
+        musicPlay = 1 - musicPlay;
+        musicPlayDisplay();
+    }
+});
+
+document.getElementById('music_prev_button').addEventListener("click", function() {
+    if ( musicChangePossible === 1 ) {
+        if ( music.currentTime >= 1 ) musicChange(0);
+        else musicChange(-1);
+    }
+});
+
+document.getElementById('music_next_button').addEventListener("click", function() {
+    if ( musicChangePossible === 1 ) {
+        musicChange();
+    }
+});
+
+document.getElementById('music_loop_button').addEventListener("click", function() {
+    if ( musicChangePossible === 1 ) {
+        musicLoop = 1 - musicLoop;
+        musicLoopDisplay();
+    }
+});
+
+document.getElementById('performance-change').addEventListener("click", function() {
+    performanceMusicChange();
+    scriptPerformanceSelect();
+    scriptDisplay();
+});
+
+scriptScrollON.addEventListener("click", function() {
+    if ( scriptScrollON.checked && scriptPerformanceNumber !== -1 && musicScriptNumber + 1 < musicTime[musicNumber].length ) {
+        scriptScroll(musicTimeNumber[musicNumber][musicScriptNumber]);
+    }
+});
 
 var subSelectStyle = 0;
 var subCode = -1;
@@ -276,24 +481,319 @@ function performanceChange(dnNowSelectNumber = 0) {
     performanceTitleSizeChange();
 }
 
-performanceSelect.addEventListener("change", function() {
-    performanceChange();
+let scriptPerformanceList;
+let scriptPerformanceNumber = -1;
+let scriptContent;
+let scriptMaxNumber = 0;
+let script = document.getElementById('script');
+let scriptError = document.getElementById('script_error');
+let scriptDefult = document.getElementById('scriptDefult');
+let scriptKeyTitleArray = [ "WCurtain" , "LED" , "UnderW" , "Moving", "Par" , "Spot" , "Stage" , "Audience" , "Board" ,"White" , "WCannon" , "Sound" , "SEffects" , "Smoke" , "Snow" ];
+
+function scriptPerformanceSelect() {
+    let scriptPerformanceSelectTitle = performanceMusicSelect + "_" + dnTitle[dnMusicSelect];
+
+    for ( var i = 0 ; i < scriptPerformanceList.length ; i++ ) {
+        if ( scriptPerformanceList[i] === scriptPerformanceSelectTitle ) {
+            scriptPerformanceNumber = i;
+            scriptError.style.display = "none";
+            return 0;
+        }
+    }
+
+    scriptPerformanceNumber = -1;
+    scriptError.innerHTML = "未作成です";
+    scriptError.style.display = "flex";
+}
+
+function scriptTimeDisplay(i) {
+    let scriptTime;
+
+    if ( !isNaN( scriptContent[scriptPerformanceNumber][i][3] ) ) {
+        let nowTime = scriptContent[scriptPerformanceNumber][i][3];
+
+        let minutes = Math.trunc( nowTime / 60 ).toString().padStart( 2 , '0' );
+        let seconds = Math.trunc( nowTime % 60 ).toString().padStart( 2 , '0' );
+        let milliSeconds = ( ( nowTime - Math.trunc(nowTime) ) * 100 ).toString().padStart( 2 , '0' );
+
+        scriptTime = scriptContent[scriptPerformanceNumber][i][2] + " " + minutes + ":" + seconds + "." + milliSeconds;
+    } else {
+        scriptTime = scriptContent[scriptPerformanceNumber][i][3];
+    }
+
+    return scriptTime;
+}
+
+function scriptKeyDisplay(i) {
+    let scriptKeyContent = "";
+    if ( scriptContent[scriptPerformanceNumber][i][5] !== "" ) scriptKeyContent = scriptContent[scriptPerformanceNumber][i][5] + "- ";
+
+    let scriptKey = scriptContent[scriptPerformanceNumber][i][6];
+    if ( isNaN(scriptKey) ) {
+        let scriptAddNumber = 0;
+        let scriptFinish = 0;
+        while ( scriptAddNumber !== -1 ) {
+            let scriptKeySpan = "";
+
+            scriptAddNumber = scriptKey.indexOf('+',scriptFinish);
+            if ( scriptAddNumber === -1 ) break;
+
+            for ( var l = scriptFinish ; l < scriptAddNumber ; l++ ) scriptKeySpan += scriptKey[l];
+
+            scriptKeyContent += "<span>" + scriptKeySpan + "</span>" + " + ";
+
+            scriptFinish = scriptAddNumber + 1;
+        };
+
+        scriptKeyContent += "<span>";
+        for ( var l = scriptFinish ; l < scriptKey.length ; l++ ) scriptKeyContent += scriptKey[l];
+        scriptKeyContent += "</span>";
+    } else {
+        scriptKeyContent = "<span>" + scriptKey + "</span>";
+    }
+
+    let scriptAttention = scriptContent[scriptPerformanceNumber][i][7];
+    if ( scriptAttention !== "" ) {
+        scriptKeyContent += " (" + scriptAttention + ")";
+    }
+
+    return scriptKeyContent;
+}
+
+function scriptKeyTitleDisplay(i) {
+    let scriptKeyTitle = "";
+    let scriptKeyTitleNumber = 0;
+
+    for ( var j = 0 ; j < 15 ; j++ ) {
+        if ( scriptContent[scriptPerformanceNumber][i][j+8] !== "" ) {
+            if ( scriptKeyTitleNumber >= 1 ) scriptKeyTitle += ", ";
+            scriptKeyTitle += scriptKeyTitleArray[j] + ":" + scriptContent[scriptPerformanceNumber][i][j+8];
+            scriptKeyTitleNumber++;
+        }
+    }
+
+    return scriptKeyTitle;
+}
+
+function scriptDisplay() {
+    for ( var i = 0 ; i < scriptMaxNumber ; i++ ) {
+        document.getElementById(`scriptListContent${i}`).remove();
+    }
+
+    if ( scriptPerformanceNumber === -1 ) {
+        scriptMaxNumber = 0;
+        return 0;
+    }
+
+    let scriptNumber = 0;
+    musicTime = [];
+    musicTimeNumber = [];
+    let musicTimeNow = [];
+    let musicTimeNumberNow = [];
+    let musicNumberProcessing = 0
+    let musicTimeNumberProcessing = 0;
+
+    for ( var i = 0 ; i < scriptContent[scriptPerformanceNumber].length ; i++ ) {
+        let scriptClone = scriptDefult.cloneNode(true);
+
+        scriptClone.id = `scriptListContent${scriptNumber}`;
+
+        let scriptStyle = scriptContent[scriptPerformanceNumber][i][0];
+
+        let scriptMusicNumber = scriptContent[scriptPerformanceNumber][i][4];
+        if ( scriptMusicNumber !== "" ) {
+            scriptClone.getElementsByClassName("scriptMusic")[0].innerHTML = scriptMusicNumber;
+            if ( !isNaN(scriptMusicNumber) ) {
+                musicNumberProcessing = scriptMusicNumber;
+                musicTimeNumberProcessing = 0;
+                musicTime.push(musicTimeNow);
+                musicTimeNumber.push(musicTimeNumberNow);
+                musicTimeNow = [];
+                musicTimeNumberNow = [];
+                musicTimeNow[musicTimeNumberProcessing] = scriptContent[scriptPerformanceNumber][i][3];
+                musicTimeNumberNow[musicTimeNumberProcessing] = scriptNumber;
+                musicTimeNumberProcessing++;
+            }
+        } else if ( !isNaN(scriptContent[scriptPerformanceNumber][i][3]) && !( scriptContent[scriptPerformanceNumber][i][2] === "+" || scriptContent[scriptPerformanceNumber][i][2] === "-" ) ) {
+            musicTimeNow[musicTimeNumberProcessing] = scriptContent[scriptPerformanceNumber][i][3];
+            musicTimeNumberNow[musicTimeNumberProcessing] = scriptNumber;
+            musicTimeNumberProcessing++;
+        }
+
+        if ( scriptStyle === 1 || scriptStyle >= 3 && scriptStyle <= 5 ) {
+            let scriptImg = document.createElement('img');
+            scriptImg.src = `script_${scriptStyle}.png`;
+            scriptClone.getElementsByClassName("scriptImg")[0].appendChild(scriptImg);
+        }
+
+        scriptClone.getElementsByClassName("scriptTime")[0].innerHTML = scriptTimeDisplay(i);
+
+        let scriptKeyParent = scriptClone.getElementsByClassName("scriptKey")[0];
+
+        scriptKeyParent.getElementsByTagName("p")[0].innerHTML = scriptKeyDisplay(i);
+        scriptKeyParent.getElementsByTagName("p")[0].title = scriptKeyTitleDisplay(i);
+
+        for ( i += 1 ; i < scriptContent[scriptPerformanceNumber].length ; i++ ) {
+            let scriptAddStyle = scriptContent[scriptPerformanceNumber][i][0];
+
+            switch ( scriptAddStyle ) {
+                case 6:
+                    let scriptAddKey = document.createElement('p');
+                    scriptAddKey.innerHTML = scriptKeyDisplay(i);
+                    scriptAddKey.title = scriptKeyTitleDisplay(i);
+                    scriptKeyParent.appendChild(scriptAddKey);
+                    break;
+                case 7:
+                    let scriptAddImg = document.createElement('img');
+                    scriptAddImg.src = `script_1.png`;
+                    scriptClone.getElementsByClassName("scriptImg")[0].appendChild(scriptAddImg);
+                case 8:
+                    scriptClone.getElementsByClassName("scriptMusic")[0].innerHTML = "<br>" + scriptContent[scriptPerformanceNumber][i][4];
+                    scriptClone.getElementsByClassName("scriptTime")[0].innerHTML = scriptClone.getElementsByClassName("scriptTime")[0].innerHTML + "<br>" + scriptTimeDisplay(i);
+
+                    if ( !isNaN(scriptMusicNumber) ) {
+                        musicNumberProcessing = scriptMusicNumber;
+                        musicTimeNumberProcessing = 0;
+                        musicTime.push(musicTimeNow);
+                        musicTimeNumber.push(musicTimeNumberNow);
+                        musicTimeNow = [];
+                        musicTimeNumberNow = [];
+                        musicTimeNow[musicTimeNumberProcessing] = scriptContent[scriptPerformanceNumber][i][3];
+                        musicTimeNumberNow[musicTimeNumberProcessing] = scriptNumber;
+                        musicTimeNumberProcessing++;
+                    }
+                    break;
+            }
+
+            if ( scriptAddStyle <= 5 ) {
+                i -= 1;
+                break;
+            }
+        }
+
+        scriptClone.classList.add(`scriptListContent${ scriptNumber % 2 }`);
+
+        script.appendChild(scriptClone);
+
+        scriptNumber++;
+    }
+
+    scriptMaxNumber = scriptNumber;
+    musicTime.push(musicTimeNow);
+    musicTimeNumber.push(musicTimeNumberNow);
+}
+
+let performanceDetail;
+
+function performanceDetailDisplay() {
+    let performanceSelectTitle = performanceMusicSelect + "_" + dnTitle[dnMusicSelect];
+    let performanceSelectNumber = -1;
+    let performanceDetailArray = [];
+
+    for ( var i = 0 ; i < performanceDetail.length ; i++ ) {
+        if ( performanceDetail[i][0] === performanceSelectTitle ) {
+            performanceSelectNumber = i;
+            for ( var j = 0 ; j <= 20 ; j++ ) performanceDetailArray[j] = performanceDetail[i][j];
+            break;
+        }
+    }
+
+    if ( performanceSelectNumber === -1 ) {
+        for ( var i = 0 ; i <= 8 ; i++ ) performanceDetailArray[i] = "-";
+        for (  ; i <= 20 ; i++ ) performanceDetailArray[i] = "";
+    }
+
+    document.getElementById("manual_performance_title").innerHTML = performanceDetailArray[1];
+    document.getElementById("manual_performance_dn").innerHTML = performanceDetailArray[2];
+    document.getElementById("manual_performance_season").innerHTML = performanceDetailArray[3];
+
+    if ( performanceDetailArray[4] !== "-" ) {
+        document.getElementById("manual_splash").style.display = "table-row";
+        document.getElementById("manual_performance_splash").innerHTML = performanceDetailArray[4];
+    } else {
+        document.getElementById("manual_splash").style.display = "none";
+    }
+
+    if ( performanceDetailArray[5] !== "-" ) {
+        document.getElementById("manual_mc").style.display = "table-row";
+        document.getElementById("manual_performance_mc").innerHTML = performanceDetailArray[5];
+    } else {
+        document.getElementById("manual_mc").style.display = "none";
+    }
+
+    if ( performanceDetailArray[6] !== "-" ) {
+        document.getElementById("manual_mapping").style.display = "table-row";
+        document.getElementById("manual_performance_mapping").innerHTML = performanceDetailArray[6];
+    } else {
+        document.getElementById("manual_mapping").style.display = "none";
+    }
+    
+    document.getElementById("manual_performance_explanation").innerHTML = performanceDetailArray[7];
+
+    let performancePeriod = performanceDetailArray[8];
+
+    for ( var i = 9 ; i <= 20 ; i++ ) {
+        if ( performanceDetailArray[i] !== "" ) {
+            performancePeriod += ", " + performanceDetailArray[i];
+        } else {
+            break;
+        }
+    }
+
+    document.getElementById("manual_performance_period").innerHTML = performancePeriod;
+}
+
+fetch("https://script.google.com/macros/s/AKfycbzvthKo-6XbTZQGAZeus_LSUY32Zf6MLXDXGdh0CN1U-XN1TDTK7P5yMHys-uwhQTav/exec")
+.then((res) => {
+    return res.json();
+})
+.then((data) => {
+    scriptPerformanceList = data;
+})
+.catch((error) => {
+    scriptError.innerHTML = "情報の取得に失敗しました<br>再読み込みしてください";
+    scriptError.style.display = "flex";
 });
+
+fetch("https://script.google.com/macros/s/AKfycbzkr9ynh2MUOlX00v68WpGo5rJoBvyq3RRHMXoWKTkPNxTftB7JtusXK3KnItTp-L11nw/exec")
+.then((res) => {
+    return res.json();
+})
+.then((data) => {
+    scriptContent = data;
+    scriptPerformanceSelect();
+    scriptDisplay();
+})
+.catch((error) => {
+    scriptError.innerHTML = "情報の取得に失敗しました<br>再読み込みしてください";
+    scriptError.style.display = "flex";
+});
+
+fetch("https://script.google.com/macros/s/AKfycbzDjJsn3iWKc27yvJSHjajhkYTyXgMmgCcMEXYryhQ_nCKNS-A6RL_EgSB_Fv6bPKfIpg/exec")
+.then((res) => {
+    return res.json();
+})
+.then((data) => {
+    performanceDetail = data;
+    performanceDetailDisplay();
+});
+
+let SEffect = document.getElementById("SEffect");
+let keyPic = [ '|' , '!' , '"' , '#' , '$' , '%' , '&' , '\'' , '(' , ')' , '0' , '=' , '~' ];
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
     const code = e.keyCode;
 
-    //console.log(key);
+    //console.log(code);
 
     if ( subSelectStyle === 0 ) {
         if ( code >= 112 && code <= 123 ) subCode = code - 111;
         else if ( code === 27 ) subCode = 0;
         else subCode = -1;
     } else {
-        if ( e.shiftKey ) {
+        if ( e.shiftKey && e.metaKey ) {
             subCode = -1;
-            var keyPic = [ '|' , '!' , '"' , '#' , '$' , '%' , '&' , '\'' , '(' , ')' , '0' , '=' , '~' ];
             for ( var i = 0 ; i <= 12 ; i++ ) {
                 if ( key === keyPic[i] ) {
                     subCode = i;
@@ -305,43 +805,119 @@ document.addEventListener("keydown", (e) => {
         }
     }
 
-    if ( performanceNowSelect !== -1 ) {
-        if ( !( e.shiftKey ) && ( code === 220 || key === '¥' ) ) { // \
-            if ( mainNowPage < mainTotalPage ) {
-                mainNowPage++;
+    if ( key === 'Enter' ) {
+        if ( musicChangePossible === 1 ) {
+            if ( music.currentTime === 0 ) {
+                musicPlay = 1;
             } else {
-                mainNowPage = 1;
+                musicChange();
+                let changeStyle;
+                
+                if ( dnMusicSelect === 0 ) changeStyle = performanceMusicDay[performanceMusicNumber][musicNumber][0];
+                else changeStyle = performanceMusicNight[performanceMusicNumber][musicNumber][0];
+
+                if ( changeStyle === 1 ) musicPlay = 1;
+                else if ( changeStyle === 2 ) musicPlay = 0;
             }
 
-            pageText3.innerHTML = mainNowPage;
+            musicPlayDisplay();
+        }
+    } else if ( key === "Backspace" ) {
+        if ( musicChangePossible === 1 ) {
+            musicPlay = 1 - musicPlay;
+            musicPlayDisplay();
+        }
+    } else if ( code === 32 ) {
+        let pn
+        if ( musicVolumeMicrophone === 1 ) pn = 0.1;
+        else pn = -0.1;
 
-        } else if ( !(e.metaKey) && code === insCode ) { // Ins
-            if ( subNowPage < subTotalPage ) {
-                subNowPage++;
+        musicVolumeMicrophone = 1 - musicVolumeMicrophone;
+        let musicNowVolume = musicVolume;
+        
+        micOnOff();
+
+        musicVolumeSetInterval = setInterval( function() {
+            musicNowVolume += pn;
+
+            if ( musicNowVolume >= 0.3 && musicNowVolume <= 1 ) {
+                musicVolume = musicNowVolume;
+                musicVolDisplay();
             } else {
-                subNowPage = 1;
+                clearInterval(musicVolumeSetInterval);
             }
+        },400);
+    }
 
-            pageText4.innerHTML = subNowPage;
+    if ( e.shiftKey && !(e.metaKey) ) {
+        if ( key === "|" ) {
+            SEffect.pause();
+            SEffect.src = "";
+        } else {
+            for ( var i = 1 ; i <= 12 ; i++ ) {
+                if ( key === keyPic[i] ) {
+                    SEffect.src = "SoundEffect/" + performanceMusicSelect + "_" + dnTitle[dnMusicSelect] + "_se_" + i + ".mp3";
+                    SEffect.load();
+                    SEffect.play();
+                    break;
+                }
+            }
+        }
+    }
 
-        } else if ( subSelectStyle === 0 && code === 46 || subSelectStyle === 1 && e.metaKey && key === 'Backspace' ) { // Del
-            dnNowSelect = 1 - dnNowSelect;
+    if ( performanceNowSelect !== -1 && manualON === 0 ) {
+        if ( !( e.shiftKey ) ) {
+            if ( ( code === 220 || key === '¥' ) ) { // \
+                if ( mainNowPage < mainTotalPage ) {
+                    mainNowPage++;
+                } else {
+                    mainNowPage = 1;
+                }
 
-            dnScript();
-        } else if ( code === 37 || code === 38 ) {
-            let nowSelectedNumber = performanceSelect.selectedIndex - 1;
-            if ( nowSelectedNumber === -1 ) nowSelectedNumber = performanceSelect.options.length - 1;
+                pageText3.innerHTML = mainNowPage;
 
-            performanceSelect.options[nowSelectedNumber].selected = true;
+            } else if ( !(e.metaKey) && code === insCode ) { // Ins
+                if ( subNowPage < subTotalPage ) {
+                    subNowPage++;
+                } else {
+                    subNowPage = 1;
+                }
 
-            performanceChange();
-        } else if ( code === 39 || code === 40 ) {
-            let nowSelectedNumber = performanceSelect.selectedIndex + 1;
-            if ( nowSelectedNumber === performanceSelect.options.length ) nowSelectedNumber = 0;
+                pageText4.innerHTML = subNowPage;
 
-            performanceSelect.options[nowSelectedNumber].selected = true;
+            } else if ( subSelectStyle === 0 && code === 46 || subSelectStyle === 1 && e.metaKey && key === 'Backspace' ) { // Del
+                dnNowSelect = 1 - dnNowSelect;
 
-            performanceChange();
+                dnScript();
+            } else if ( code === 37 ) {
+                musicVolDisplay(-1);
+                musicVolumeMicrophone = 0;
+                micOnOff();
+            } else if ( code === 39 ) {
+                musicVolDisplay(1);
+                musicVolumeMicrophone = 0;
+                micOnOff();
+            } else if ( code === 38 ) {
+                script.scrollTop -= 20;
+            } else if ( code === 40 ) {
+                script.scrollTop += 20;
+            }
+        } else {
+            if ( code === 37 || code === 38 ) {
+                let nowSelectedNumber = performanceSelect.selectedIndex - 1;
+                if ( nowSelectedNumber === -1 ) nowSelectedNumber = performanceSelect.options.length - 1;
+
+                performanceSelect.options[nowSelectedNumber].selected = true;
+
+                performanceChange();
+            } else if ( code === 39 || code === 40 ) {
+                let nowSelectedNumber = performanceSelect.selectedIndex + 1;
+                if ( nowSelectedNumber === performanceSelect.options.length ) nowSelectedNumber = 0;
+
+                performanceSelect.options[nowSelectedNumber].selected = true;
+
+                performanceChange();
+            }
         }
     }
 });
@@ -966,6 +1542,8 @@ var movingLightOutsideColorChangeStartTime = [];
 var movingLightInsideDoublePictureON = [ 0 , 0 , 0 , 0 ];
 var movingLightOutsideDoublePictureON = [ 0 , 0 , 0 , 0 , 0 ];
 var movingLightOFFON = 0;
+var movingLightRotateLock = 0;
+var movingLightLock = [ 0 , 0 ];
 
 for ( var i = 0 ; i < movingLightInsideNumber ; i++ ) {
     for ( var j = 0 ; j < 2 ; j++ ) movingLightInsideAngle[j][i] = 0;
@@ -978,7 +1556,22 @@ for ( var i = 0 ; i < movingLightOutsideNumber ; i++ ) {
     for ( var j = 0 ; j < 4 ; j++ ) movingLightOutsideColor[j][i] = 0;
 }
 
-function movingLightSetting(movingLightNowUseNumber = "nothing",movingLightOFFMode = 1) {
+function movingLightSetting(movingLightNowUseNumber = "nothing",movingLightOFFMode = 0,movingLightStartTime = 0,movingLightLockTime = 0) {
+    if ( movingLightNowUseNumber !== 0 && Date.now() - movingLightLock[0] < movingLightLock[1] ) {
+        let startTime = Date.now();
+        let movingLightClearTimeout = setInterval( function() {
+            if ( Date.now() - startTime < 1000 ) {
+                console.log(movingLightNowUseNumber.length);
+                for ( var i = 0 ; i < movingLightNowUseNumber.length ; i++ ) {
+                    clearTimeout(movingLightNowUseNumber[i]);
+                }
+            } else {
+                clearInterval(movingLightClearTimeout);
+            }
+        });
+        return 0;
+    }
+
     for ( var i = 0 ; i < movingLightInsideNumber ; i++ ) {
         for ( var j = 0 ; j < 2 ; j++ ) {
             movingLightInsideFirstAngle[j][i] = movingLightInsideAngle[j][i];
@@ -996,16 +1589,27 @@ function movingLightSetting(movingLightNowUseNumber = "nothing",movingLightOFFMo
             movingLightOutsideFirstColor[j][i] = movingLightOutsideColor[j][i];
         }
     }
+    
+    if ( movingLightStartTime > 0 || movingLightLockTime > 0 ) {
+        movingLightLock[0] = movingLightStartTime;
+        movingLightLock[1] = movingLightLockTime;
+    }
+
+    if ( movingLightNowUseNumber !== 0 && !( movingLightOFFMode >= 2 && movingLightRotateLock === 1 ) ) movingLightRotateLock = 0;
 
     if ( movingLightNowUseNumber === "nothing" ) {
         movingLightUseNumber++;
-        if ( movingLightOFFMode === 1 ) movingLightRotateUseNumber = movingLightUseNumber;
+        if ( movingLightRotateLock === 0 ) movingLightRotateUseNumber = movingLightUseNumber;
+        if ( movingLightOFFMode === 3 ) movingLightRotateLock = 0;
+        else if ( movingLightOFFMode >= 1 ) movingLightRotateLock = 1;
         return movingLightUseNumber;
     } else if ( movingLightNowUseNumber === 0 ) {
-        if ( movingLightOFFMode === 1 ) movingLightRotateUseNumber = movingLightUseNumber;
+        
     } else {
         movingLightUseNumber++;
-        if ( movingLightOFFMode === 1 ) movingLightRotateUseNumber = movingLightUseNumber;
+        if ( movingLightRotateLock === 0 ) movingLightRotateUseNumber = movingLightUseNumber;
+        if ( movingLightOFFMode === 3 ) movingLightRotateLock = 0;
+        else if ( movingLightOFFMode >= 1 ) movingLightRotateLock = 1;
         let movingLightKeyNumber = movingLightUseNumber;
         let movingLightClearTimeout = setInterval( function() {
             if ( movingLightKeyNumber !== movingLightUseNumber ) {
@@ -1021,6 +1625,7 @@ function movingLightSetting(movingLightNowUseNumber = "nothing",movingLightOFFMo
 
 function movingLightOFF() {
     let startTime = Date.now();
+    movingLightLock = [ 0 , 0 ];
     let movingLightMyNumber = movingLightSetting();
     let movingLightFadeTime = 1500;
     let movingLightSetTimeoutDelay = 0;
@@ -2132,22 +2737,25 @@ function logoboardLightAnimateChange(logoboardLightNowNumber,colorRed,colorGreen
 //スモーク, スノウマシン
 
 var smokeON = 0;
-var smokeFadeRatio = 4;
+var smokeFadeRatio = 2;
 var smokePushONTime;
 var smokePushOFFTime;
 var smokeSetInterval;
 let smokeCoordinate = document.getElementById(`SMOKE_PARENT`);
 let smokeImgCoordinate = smokeCoordinate.getElementsByTagName(`img`);
-let smokeWriteCoordinate = document.getElementById(`smoke_machine_state`);
+let smokeSEffect = document.getElementById(`smoke_SEffect`);
+let smokeState = document.getElementById(`machine_smoke`);
 var snowON = 0;
-var snowFadeRatio = 6;
-var snowPushONTime;
-var snowPushOFFTime;
+let snowFadeTime = 30000;
 var snowSetInterval1;
 var snowSetInterval2;
 let snowCoordinate = document.getElementById(`SNOW_PARENT`);
 let snowImgCoordinate = snowCoordinate.getElementsByTagName(`img`);
-let snowWriteCoordinate = document.getElementById(`snow_machine_state`);
+let snowSEffect = document.getElementById(`snow_SEffect`);
+let snowState = document.getElementById(`machine_snow`);
+
+smokeSEffect.volume = 0.3;
+snowSEffect.volume = 0.15;
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -2162,11 +2770,13 @@ document.addEventListener("keydown", (e) => {
                     smokeImgCoordinate[i].style.width = smokeWidth + "px";
                 }
                 smokeCoordinate.style.opacity = 1;
-                smokeWriteCoordinate.innerHTML = "ON";
+                smokeState.style.backgroundColor = "#999";
+                smokeSEffect.play();
             } else {
                 smokePushOFFTime = Date.now();
-                smokeWriteCoordinate.innerHTML = "OFF";
-                let smokeFadeTime = 10000 + smokeFadeRatio * ( smokePushOFFTime - smokePushONTime );
+                let smokeFadeTime = smokeFadeRatio * ( smokePushOFFTime - smokePushONTime );
+                smokeState.style.backgroundColor = "transparent";
+                smokeSEffect.load();
                 smokeSetInterval = setInterval( function () {
                     nowTime = Date.now() - smokePushOFFTime;
                     if ( nowTime <= smokeFadeTime ) {
@@ -2183,12 +2793,13 @@ document.addEventListener("keydown", (e) => {
             snowON = 1 - snowON;
             if ( snowON === 1 ) {
                 clearInterval(snowSetInterval2);
-                snowPushONTime = Date.now();
+                let snowPushONTime = Date.now();
                 for ( var i = 0 ; i < snowNumber ; i++ ) {
                     snowImgCoordinate[i].style.width = snowWidth + "px";
                 }
                 snowCoordinate.style.opacity = 1;
-                snowWriteCoordinate.innerHTML = "ON";
+                snowState.style.backgroundColor = "#999";
+                snowSEffect.play();
                 snowSetInterval1 = setInterval( function () {
                     let nowTime = Date.now();
                     for ( var i = 0 ; i < snowNumber ; i++ ) {
@@ -2196,10 +2807,10 @@ document.addEventListener("keydown", (e) => {
                     }
                 });
             } else {
-                snowPushOFFTime = Date.now();
+                let snowPushOFFTime = Date.now();
                 clearInterval(snowSetInterval1);
-                snowWriteCoordinate.innerHTML = "OFF";
-                let snowFadeTime = snowFadeRatio * ( snowPushOFFTime - snowPushONTime );
+                snowState.style.backgroundColor = "transparent";
+                snowSEffect.load();
                 snowSetInterval2 = setInterval( function () {
                     nowTime = Date.now() - snowPushOFFTime;
                     if ( nowTime <= snowFadeTime ) {

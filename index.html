@@ -258,8 +258,19 @@
             </div>
         </div>
 
+        <div id="machine_state">
+            <div id="machine_smoke">
+                <img src="machine_1.png">
+            </div>
+            <div id="machine_snow">
+                <img src="machine_2.png">
+            </div>
+            <div id="machine_mic">
+                <img src="machine_3.png">
+            </div>
+        </div>
+
         <div class="LOGOBORD" id="LOGOBORD">
-            <input type="checkbox" id="logodisplay" name="logodisplay" class="checkbox_check"/>
             <img src="logo.png">
         </div>
 
@@ -323,6 +334,7 @@
             <img src="smoke.png" class="SMOKE" id="SMOKE_5">
             <img src="smoke.png" class="SMOKE" id="SMOKE_6">
         </div>
+        <audio id="smoke_SEffect" src="smoke_SoundEffect.mp3" loop preload="auto"></audio>
 
         <div id="SNOW_PARENT">
             <img src="snow.png" class="SNOW" id="SNOW_1">
@@ -330,42 +342,326 @@
             <img src="snow.png" class="SNOW" id="SNOW_3">
             <img src="snow.png" class="SNOW" id="SNOW_4">
         </div>
+        <audio id="snow_SEffect" src="snow_SoundEffect.mp3" loop preload="auto"></audio>
+
+        <div id="manual">
+            <button id="manual_close"><img src="manual_close.png"></button>
+
+            <div id="manual_select">
+                <div id="manual_select_button1" class="manual_select_now">基本操作</div>
+                <div id="manual_select_button2">パフォーマンス情報</div>
+            </div>
+            <div id="manual1">
+                <p class="manual-title">各演出設備</p>
+                <div class="manual-content">
+                    <div>
+                        <p class="manual-key">WCurtain</p>
+                        <p class="manual-detail">ウォーターカーテン(Main)</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">LED</p>
+                        <p class="manual-detail">LED照明(Main)</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">UnderW</p>
+                        <p class="manual-detail">水中照明(Main)</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Moving</p>
+                        <p class="manual-detail">ムービングライト(Main)</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Par</p>
+                        <p class="manual-detail">パーライト(Sub)</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Par</p>
+                        <p class="manual-detail">パーライト(Sub)</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Spot</p>
+                        <p class="manual-detail">スポットライト(Sub)</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Stage</p>
+                        <p class="manual-detail">ステージ照明(Sub)</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Audience</p>
+                        <p class="manual-detail">客席照明(Sub)</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Board</p>
+                        <p class="manual-detail">看板照明(Main,Sub)</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">WHite</p>
+                        <p class="manual-detail">白色照明</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">WCannon</p>
+                        <p class="manual-detail">噴水</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Sound</p>
+                        <p class="manual-detail">スピーカー</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">SEffect</p>
+                        <p class="manual-detail">効果音</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Smoke</p>
+                        <p class="manual-detail">スモークマシーン</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Snow</p>
+                        <p class="manual-detail">スノウマシン</p>
+                    </div>
+                </div>
+                <p class="manual-title">基本キー操作</p>
+                <div class="manual-content">
+                    <div>
+                        <p class="manual-key"><span>A</span></p>
+                        <p class="manual-detail">WCurtain:A, LED:0, UnderW:0, Moving:0</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>B</span></p>
+                        <p class="manual-detail">WCurtain:A, LED:0</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>C</span></p>
+                        <p class="manual-detail">UnderW:0</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>D</span></p>
+                        <p class="manual-detail">Moving:0</p>
+                    </div>
+                    <div></div>
+                    <div>
+                        <p class="manual-key"><span>Esc</span></p>
+                        <p class="manual-detail">Par:0, Spot:0, Stage:0, Board:0</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>F1</span></p>
+                        <p class="manual-detail">Audience:0/1</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>F2</span></p>
+                        <p class="manual-detail">Stage:1/0</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>F3</span></p>
+                        <p class="manual-detail">Spot:1/0</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>F4</span></p>
+                        <p class="manual-detail">Par:0, Spot:0</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>F5</span></p>
+                        <p class="manual-detail">Board:0</p>
+                    </div>
+                    <div></div>
+                    <div>
+                        <p class="manual-key"><span>Alt</span> + <span>1</span></p>
+                        <p class="manual-detail">White:OFF</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>Alt</span> + <span>2</span></p>
+                        <p class="manual-detail">White:HalfON</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>Alt</span> + <span>3</span></p>
+                        <p class="manual-detail">White:ON</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>0</span></p>
+                        <p class="manual-detail">WCannon:0</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>-</span></p>
+                        <p class="manual-detail">Smoke:ON/OFF</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>^</span></p>
+                        <p class="manual-detail">Snow:ON/OFF</p>
+                    </div>
+                    <div></div>
+                    <div>
+                        <p class="manual-key"><span>¥</span></p>
+                        <p class="manual-detail">MainPage切り替え</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>Insert</span></p>
+                        <p class="manual-detail">SubPage切り替え</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>Delete</span></p>
+                        <p class="manual-detail">Day/Night切り替え</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>Shift</span> + <span>←</span> / <span>→</span></p>
+                        <p class="manual-detail">パフォーマンス切り替え</p>
+                    </div>
+                    <div></div>
+                    <div>
+                        <p class="manual-key"><span>Enter</span></p>
+                        <p class="manual-detail">曲の切り替え</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>Backspace</span></p>
+                        <p class="manual-detail">曲の再生/停止</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>Space</span></p>
+                        <p class="manual-detail">MicモードON/OFF</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>←</span> / <span>→</span></p>
+                        <p class="manual-detail">音量小/大</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><span>↑</span> / <span>↓</span></p>
+                        <p class="manual-detail">台本の上下</p>
+                    </div>
+                </div>
+                <p class="manual-title">台本の見方</p>
+                <p class="manual-sub-title">マーク</p>
+                <div class="manual-content">
+                    <div>
+                        <p class="manual-key"><img src="script_1.png"></p>
+                        <p class="manual-detail">タイミングが重要</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><img src="script_3.png"></p>
+                        <p class="manual-detail">目安の時間</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><img src="script_4.png"></p>
+                        <p class="manual-detail">MCの合図。時間は目安</p>
+                    </div>
+                    <div>
+                        <p class="manual-key"><img src="script_5.png"></p>
+                        <p class="manual-detail">MCの話すタイミング。時間は目安</p>
+                    </div>
+                </div>
+                <p class="manual-sub-title">時間</p>
+                <div class="manual-content">
+                    <div>
+                        <p class="manual-key">*, +, - (時間の前の表記)</p>
+                        <p class="manual-detail">+, -は*を基準とした、時間を表す</p>
+                    </div>
+                    <div>
+                        <p class="manual-key">- (時間の表記はなし)</p>
+                        <p class="manual-detail">任意の時間であり、具体的な時間は定められていない</p>
+                    </div>
+                </div>
+            </div>
+            <div id="manual2">
+                <div class="manual-content">
+                    <div>
+                        <p class="manual-key">Title</p>
+                        <p class="manual-detail" id="manual_performance_title"></p>
+                    </div>
+                    <div>
+                        <p class="manual-key">D/N</p>
+                        <p class="manual-detail" id="manual_performance_dn"></p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Season</p>
+                        <p class="manual-detail" id="manual_performance_season"></p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Period</p>
+                        <p class="manual-detail" id="manual_performance_period"></p>
+                    </div>
+                    <div>
+                        <p class="manual-key">Explanation(公式)</p>
+                        <p class="manual-detail" id="manual_performance_explanation"></p>
+                    </div>
+                    <div id="manual_splash">
+                        <p class="manual-key">Splash</p>
+                        <p class="manual-detail" id="manual_performance_splash"></p>
+                    </div>
+                    <div id="manual_mc">
+                        <p class="manual-key">MC</p>
+                        <p class="manual-detail" id="manual_performance_mc"></p>
+                    </div>
+                    <div id="manual_mapping">
+                        <p class="manual-key">Mapping</p>
+                        <p class="manual-detail" id="manual_performance_mapping"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="manual_background"></div>
         
         <div class="setting" id ="SETTING">
-            <p class="setting-title">PERFORMANCE SELECT</p>
-            <label for="performance_select"></label>
-            <select class="performance_select" id="performance_select">
-                <!--<option value="defult">defult</option>-->
-            </select>
-            <div class="pagenumber" id="pagenumber">
-                <p class="dn">D/N <span id="dn"></span> var.</p>
-                <p class="mainpage">MAIN <span id="mainnowpage"></span>/<span id="maintotalpage"></span> page</p>
-                <p class="subpage">SUB <span id="subnowpage"></span>/<span id="subtotalpage"></span> page</p>
+            <div class="performance">
+                <p id="performance-year" class="performance-subtitle"></p>
+                <p id="performance-season" class="performance-subtitle"></p>
+                <p id="performance-dn" class="performance-subtitle"></p>
+
+                <button id="manual_button1" title="パフォーマンス情報を更新"><img src="change_1.png"></button>
+                <button id="performance-change" title="曲情報を更新"><img src="change_2.png"></button>
+            </div>
+                
+            <p id="performance-title" class="performance-title"></p>
+
+            <div class="music" id="musicParent1">
+                <audio id="music"></audio>
+                <p id="music_number">No.<span id="music_now_number"></span></p>
+                <button id="music_play_button" type="button" title="再生/一時停止[Backspace]"><img id="music_img" src="music_0.png"></button>
+                <button id="music_prev_button" type="button" title="戻る"><img src="music_2.png"></button>
+                <button id="music_next_button" type="button" title="次へ"><img src="music_3.png"></button>
+                <button id="music_loop_button" type="button" title="ループ"><img src="music_4.png"></button>
             </div>
 
-            <p class="setting-title">MACHINE CONDITION</p>
-            <div class="machine_onoff" id="machine_onoff">
-                <p class="smoke_machine">SMOKE MACHINE<span id="smoke_machine_state">OFF</span></p>
-                <p class="snow_machine">SNOW MACHINE<span id="snow_machine_state">OFF</span></p>
+            <div class="music2" id="musicParent2">
+                <p id="music_seconds"><span id="music_play_position"></span>/<span id="music_length"></span></p>
+                <p id="music_vol">vol:<span id="music_vol_value"></span>/<span class="music_vol_max">10</span></p>
             </div>
-<!--
-            <p class="setting-title">SETTING</p>
-            <input type="checkbox" id="setting1">
-            <label for="setting1" id="setting1-label" class="setting-sub-title">LOGO DISPLAY</label>
-            <div class="logodisplay">
-                <p id="logo_onoff"></p>
-                <label for="logodisplay">LOGO DISPLAY</label>
-            </div>-->
+            
+            <div class="pagenumber" id="pagenumber">
+                <p class="dn" title="Day/Night[Delete]"><span id="dn"></span></p>
+                <p class="mainpage" title="Main Page[¥]">M<span id="mainnowpage"></span>/<span id="maintotalpage"></span></p>
+                <p class="subpage" title="Sub Page[Insert]">S<span id="subnowpage"></span>/<span id="subtotalpage"></span></p>
+            </div>
+
+            <div id="script_setting">
+                <label title="自動スクロール"><input type="checkbox" id="script_scroll" checked>AUTO SCROLL</label>
+                <button id="manual_button2" title="操作説明">MANUAL</button>
+            </div>
+
+            <div id="script">
+                <p id="script_error">読み込み中...</p>
+                <div class="scriptListContent" id="scriptDefult">
+                    <div class="scriptImg"></div>
+                    <p class="scriptMusic"></p>
+                    <p class="scriptTime">+00:00.50</p>
+                    <div class="scriptKey">
+                        <p>M2- <span>F</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <label for="performance_select"></label>
+            <select class="performance_select" id="performance_select" title="Performance Select[Shift+←/→]">
+                <!--<option value="defult">defult</option>-->
+            </select>
         </div>
+
+        <audio id="SEffect"></audio>
 
         <script src="style.js"></script>
         <script src="system.js"></script>
         <script src="WaterCurtain.js"></script>
         <script src="defult.js"></script>
-        <!--<script src="js\demo.js"></script>-->
         <script src="js\Oooooh!.js"></script>
         <script src="js\SkySymphony.js"></script>
         <script src="js\FunnyParty.js"></script>
+        <script src="js\WhitePrism.js"></script>
         <script src="js\HaruIbuki.js"></script>
         <script src="js\2023Special1.js"></script>
         <script src="js\Splashhh!!!!!.js"></script>
@@ -389,12 +685,15 @@
             performanceSelect.options[performanceSelect.length-1].selected = true;
 
             performanceChange();
+            performanceMusicChange();
+
+            //console.log(performanceMusicDay);
 
             /*mainNowPage = 2;
-            subNowPage = 1;
+            subNowPage = 2;
 
             pageText3.innerHTML = mainNowPage;
-            pageText4.innerHTML = subNowPage;*/
+            pageText4.innerHTML = subNowPage;/**/
         </script>
         
     </body>
