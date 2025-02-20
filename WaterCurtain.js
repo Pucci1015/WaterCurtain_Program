@@ -504,7 +504,7 @@ function waterCurtain(waterCurtainNumber,sustainable = 1) {
 
         waterCurtainSetTimeout[0] = setTimeout( function(){
 
-            for ( var i = 28 ; i < 388 ; i++ ) waterCurtainChangeAngle(waterCurtainMyNumber,i,1 * ( i - 28 ),1);
+            for ( var i = 28 ; i < 208 ; i++ ) waterCurtainChangeAngle(waterCurtainMyNumber,i,2 * ( i - 28 ),2);
 
             let waterCurtainSetInterval = setInterval( function() {
                 let nowTime = nowTimeGet(startTime+400,0,waterCurtainUseNumber,waterCurtainSetInterval,waterCurtainMyNumber);
