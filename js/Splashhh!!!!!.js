@@ -28,7 +28,7 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト Splash1 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,1);
 
                     movingLightSetTimeoutDelay[0] = 0;
                     movingLightSetTimeout[0] = setTimeout( function() {
@@ -259,11 +259,11 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト Splash2 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,3);
 
                     movingLightSetTimeoutDelay[0] = 0;
                     movingLightSetTimeout[0] = setTimeout( function() {
-                        movingLightSetting(0,0);
+                        movingLightSetting(0);
                         
                         let movingLightAngleFadeTime = 1000;
                         let movingLightColorFadeTime = 3000;
@@ -1177,8 +1177,8 @@ document.addEventListener("keydown", (e) => {
                         let ledRepeatTime = 1600;
 
                         let ledRepeatTimeSplit = ledRepeatTime / 4;
-                        let ledBasicColor = [ [ 255 , 255 , 255 ] , [ 220 , 180 , 255 ] , [ 255 , 120 , 200 ] , [ 255 , 0 , 150 ] ];
-                        let ledLapTimeSplit = ledRepeatTime / 9;
+                        let ledBasicColor = [ [ 255 , 255 , 255 ] , [ 255 , 0 , 150 ] , [ 255 , 255 , 255 ] , [ 180 , 80 , 255 ] ];
+                        let ledLapTimeSplit = ledRepeatTime / 10;
 
                         for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
                             let ledColor = [];
@@ -1199,9 +1199,10 @@ document.addEventListener("keydown", (e) => {
                             ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
                         }
 
+                        ledRepeatTime /= 2;
                         ledRepeatTimeSplit = ledRepeatTime / 2;
                         ledBasicColor = [ [ 255 , 180 , 240 ] , [ 255 , 255 , 255 ] ];
-                        ledLapTimeSplit = ledRepeatTime / 12;
+                        ledLapTimeSplit = ledRepeatTime / 16;
 
                         for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
                             let ledColor = [];
@@ -1750,7 +1751,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetInterval[4] = setInterval(movingLightNumberSplash6_4);
 
                         function movingLightNumberSplash6_4() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[2],0,movingLightRotateUseNumber,movingLightSetInterval[4],movingLightMyNumber);
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[2],0,movingLightUseNumber,movingLightSetInterval[4],movingLightMyNumber);
                             let movingLightRotateDeg = 360 / 5000 * ( nowTime[0] % 5000 );
                             let movingLightTripleRotateDeg = -360 / 12000 * ( nowTime[0] % 12000 );
 
@@ -1886,7 +1887,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetInterval[4] = setInterval(movingLightNumberSplash6_4);
 
                         function movingLightNumberSplash6_4() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[4],0,movingLightRotateUseNumber,movingLightSetInterval[4],movingLightMyNumber);
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[4],0,movingLightUseNumber,movingLightSetInterval[4],movingLightMyNumber);
                             let movingLightRotateDeg = 360 / 5000 * ( nowTime[0] % 5000 );
                             let movingLightTripleRotateDeg = -360 / 12000 * ( nowTime[0] % 12000 );
 
@@ -2978,7 +2979,7 @@ document.addEventListener("keydown", (e) => {
 
                             if ( nowTime[0] <= movingLightColorFadeTime ) {
                                 for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
-                                    movingLightAngleChange(1,i,0,70,movingLightAngleFadeTime,nowTime[0]);
+                                    movingLightAngleChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
                                     movingLightColorChange(1,i,0,0,0,0);
                                 }
 
@@ -3304,6 +3305,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetting(0);
 
                         let movingLightColorFadeTime = 1000;
+                        let movingLightAngleFadeTime = 1000;
 
                         movingLightSetInterval[8] = setInterval(movingLightNumberSplash9_8);
 

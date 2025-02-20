@@ -4064,11 +4064,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BK *****/
                     waterCurtain("BK");
 
-                    /***** LED WP5 *****/
+                    /***** LED EMAKI1 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberWP5);
+                    let ledSetInterval = setInterval(ledNumberEMAKI1);
 
-                    function ledNumberWP5() {
+                    function ledNumberEMAKI1() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 3000;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -4119,7 +4119,7 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン D *****/
                     waterCurtain("D");
 
-                    /***** LED EMAKI1 *****/ 
+                    /***** LED EMAKI2 *****/ 
                     let ledMyNumber = ledSetting();
                     let ledSetTimeoutDelay = [];
                     let ledSetInterval = [];
@@ -4127,9 +4127,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[1] = 0;
                     ledSetTimeout[1] = setTimeout( function() {
                         let ledMyNumber1 = ledSetting(ledMyNumber);
-                        ledSetInterval[1] = setInterval(ledNumberEMAKI1_1);
+                        ledSetInterval[1] = setInterval(ledNumberEMAKI2_1);
                         
-                        function ledNumberEMAKI1_1() {
+                        function ledNumberEMAKI2_1() {
                             let ledFadeTime = 500;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[1],ledFadeTime,ledUseNumber,ledSetInterval[1],ledMyNumber,ledUseChildrenNumber,ledMyNumber1);
                             let ledRepeatTime = 700;
@@ -4177,9 +4177,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[2] = 16000;
                     ledSetTimeout[2] = setTimeout( function() {
                         let ledMyNumber2 = ledSetting(ledMyNumber);
-                        ledSetInterval[2] = setInterval(ledNumberEMAKI1_2);
+                        ledSetInterval[2] = setInterval(ledNumberEMAKI2_2);
                         
-                        function ledNumberEMAKI1_2() {
+                        function ledNumberEMAKI2_2() {
                             let ledFadeTime = 500;
                             let ledRepeatTime = 3000;
                             let ledRepeatTimeSplit = ledRepeatTime / 4;
@@ -4235,11 +4235,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AF *****/
                     waterCurtain("AF");
 
-                    /***** LED HF2 *****/
+                    /***** LED EMAKI3 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberEMAKI2);
+                    let ledSetInterval = setInterval(ledNumberEMAKI3);
 
-                    function ledNumberEMAKI2() {
+                    function ledNumberEMAKI3() {
                         let ledFadeTime = 1800;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         /*let ledRepeatTime = 3000;
@@ -4417,7 +4417,7 @@ document.addEventListener("keydown", (e) => {
                     },4800);
                     
 
-                    /***** LED EMAKI3 *****/
+                    /***** LED EMAKI4 *****/
                     let ledMyNumber = ledSetting();
                     let ledSetTimeoutDelay = [];
                     let ledSetInterval = [];
@@ -4475,9 +4475,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[2] = 4400;
                     ledSetTimeout[2] = setTimeout( function() {
                         let ledMyNumber2 = ledSetting(ledMyNumber);
-                        ledSetInterval[2] = setInterval(ledNumberEMAKI3_1);
+                        ledSetInterval[2] = setInterval(ledNumberEMAKI4_1);
                         
-                        function ledNumberEMAKI3_1() {
+                        function ledNumberEMAKI4_1() {
                             let ledFadeTime = 2000;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[2],ledFadeTime,ledUseNumber,ledSetInterval[2],ledMyNumber,ledUseChildrenNumber,ledMyNumber2);
                             let ledRepeatTime = 2000;
@@ -4525,9 +4525,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[3] = 14500;
                     ledSetTimeout[3] = setTimeout( function() {
                         let ledMyNumber3 = ledSetting(ledMyNumber);
-                        ledSetInterval[3] = setInterval(ledNumberEMAKI3_2);
+                        ledSetInterval[3] = setInterval(ledNumberEMAKI4_2);
                         
-                        function ledNumberEMAKI3_2() {
+                        function ledNumberEMAKI4_2() {
                             let ledFadeTime = 1800;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[3],ledFadeTime,ledUseNumber,ledSetInterval[3],ledMyNumber,ledUseChildrenNumber,ledMyNumber3);
                             let ledRepeatTime = 5000;
@@ -4820,7 +4820,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetting(0);
                         let movingLightAngleFadeTime = 500;
 
-                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,21,80,100,1);
+                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,16,80,100,1);
 
                         movingLightSetInterval[4] = setInterval(movingLightNumberEMAKI2_4);
 
@@ -4947,7 +4947,7 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[8] = setTimeout( function() {
                         movingLightSetting(0);
 
-                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,21,100,100,1);
+                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,16,100,100,1);
 
                         let movingLightColorFadeTime = 2200;
 
@@ -5034,11 +5034,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AC *****/
                     waterCurtain("AC");
 
-                    /***** LED EMAKI4 *****/
+                    /***** LED EMAKI5 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberEMAKI4);
+                    let ledSetInterval = setInterval(ledNumberEMAKI5);
 
-                    function ledNumberEMAKI4() {
+                    function ledNumberEMAKI5() {
                         let ledFadeTime = 1650;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);  
                         let ledRepeatTime = 5600;
@@ -5245,11 +5245,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BB *****/
                     waterCurtain("BB");
 
-                    /***** LED EMAKI4 *****/
+                    /***** LED EMAKI5 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberEMAKI4);
+                    let ledSetInterval = setInterval(ledNumberEMAKI5);
 
-                    function ledNumberEMAKI4() {
+                    function ledNumberEMAKI5() {
                         let ledFadeTime = 1650;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledRepeatTime = 5600;
@@ -5286,11 +5286,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BH *****/
                     waterCurtain("BH");
 
-                    /***** LED EMAKI5 *****/
+                    /***** LED EMAKI6 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberEMAKI5);
+                    let ledSetInterval = setInterval(ledNumberEMAKI6);
         
-                    function ledNumberEMAKI5() {
+                    function ledNumberEMAKI6() {
                         let ledFadeTime = 1500;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledRepeatTime = 2800;
@@ -5341,11 +5341,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン F *****/
                     waterCurtain("F");
 
-                    /***** LED EMAKI5 *****/
+                    /***** LED EMAKI6 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberEMAKI5);
+                    let ledSetInterval = setInterval(ledNumberEMAKI6);
         
-                    function ledNumberEMAKI5() {
+                    function ledNumberEMAKI6() {
                         let ledFadeTime = 1500;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledRepeatTime = 2800;
@@ -5485,11 +5485,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AU *****/
                     waterCurtain("AU");
 
-                    /***** LED EMAKI5 *****/
+                    /***** LED EMAKI7 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberEMAKI5);
-
-                    function ledNumberEMAKI5() {
+                    let ledSetInterval = setInterval(ledNumberEMAKI7);
+        
+                    function ledNumberEMAKI7() {
                         let ledFadeTime = 1000;
                         let ledRepeatTime = 5300;
                         let ledRepeatTimeSplit = ledRepeatTime / 6;
@@ -5547,12 +5547,12 @@ document.addEventListener("keydown", (e) => {
                         waterCurtain("BP",0);
                     },2500);
 
-                    /***** LED EMAKI6 *****/
+                    /***** LED EMAKI8 *****/
                     ledActualSetTimeout = setTimeout( function() { 
                         let ledMyNumber = ledSetting();
-                        let ledSetInterval = setInterval(ledNumberEMAKI6);
+                        let ledSetInterval = setInterval(ledNumberEMAKI8);
         
-                        function ledNumberEMAKI6() {
+                        function ledNumberEMAKI8() {
                             let ledFadeTime = 2500;
                             let ledRepeatTime = 6000;
                             let nowTime = nowTimeGet(startTime+500,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
@@ -5608,11 +5608,11 @@ document.addEventListener("keydown", (e) => {
                 } else if ( key === '_' || code === 226 ) {
                     let startTime = Date.now();
 
-                    /***** LED EMAKI7 *****/
+                    /***** LED EMAKI9 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberEMAKI7);
+                    let ledSetInterval = setInterval(ledNumberEMAKI9);
 
-                    function ledNumberEMAKI7() {
+                    function ledNumberEMAKI9() {
                         let ledFadeTime = 1800;
                         let ledRepeatTime = 2800;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
@@ -5805,11 +5805,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED EMAKI8 *****/
+                    /***** LED EMAKI10 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberEMAKI8);
+                    let ledSetInterval = setInterval(ledNumberEMAKI10);
 
-                    function ledNumberEMAKI8() {
+                    function ledNumberEMAKI10() {
                         let ledFadeTime = 200;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledBasicColor = [ [ 255 , 229 , 0 ] , [ 255 , 150 , 0 ] , [ 255 , 80 , 0 ] ];
@@ -5892,11 +5892,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン AF *****/
                     waterCurtain("AF");
 
-                    /***** LED EMAKI7 *****/
+                    /***** LED EMAKI9 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberEMAKI7);
+                    let ledSetInterval = setInterval(ledNumberEMAKI9);
 
-                    function ledNumberEMAKI7() {
+                    function ledNumberEMAKI9() {
                         let ledFadeTime = 1800;
                         let ledRepeatTime = 2800;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
@@ -6095,7 +6095,7 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED EMAKI9 *****/ 
+                    /***** LED EMAKI11 *****/ 
                     let ledMyNumber = ledSetting();
                     let ledSetTimeoutDelay = [];
                     let ledSetInterval = [];
@@ -6103,9 +6103,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[1] = 0;
                     ledSetTimeout[1] = setTimeout( function() {
                         let ledMyNumber1 = ledSetting(ledMyNumber);
-                        ledSetInterval[1] = setInterval(ledNumberEMAKI9_1);
+                        ledSetInterval[1] = setInterval(ledNumberEMAKI11_1);
                         
-                        function ledNumberEMAKI9_1() {
+                        function ledNumberEMAKI11_1() {
                             let ledFadeTime = 1600;
                             let ledRepeatTime = 5000;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[1],ledFadeTime,ledUseNumber,ledSetInterval[1],ledMyNumber,ledUseChildrenNumber,ledMyNumber1);
@@ -6141,9 +6141,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[2] = 6800;
                     ledSetTimeout[2] = setTimeout( function() {
                         let ledMyNumber2 = ledSetting(ledMyNumber);
-                        ledSetInterval[2] = setInterval(ledNumberEMAKI1_1);
+                        ledSetInterval[2] = setInterval(ledNumberEMAKI11_2);
                         
-                        function ledNumberEMAKI1_1() {
+                        function ledNumberEMAKI11_2() {
                             let ledFadeTime = 500;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[2],ledFadeTime,ledUseNumber,ledSetInterval[2],ledMyNumber,ledUseChildrenNumber,ledMyNumber2);
                             let ledRepeatTime = 5000;
@@ -6489,7 +6489,7 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
-                    /***** LED EMAKI9 *****/ 
+                    /***** LED EMAKI11 *****/ 
                     let ledMyNumber = ledSetting();
                     let ledSetTimeoutDelay = [];
                     let ledSetInterval = [];
@@ -6497,9 +6497,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[1] = 0;
                     ledSetTimeout[1] = setTimeout( function() {
                         let ledMyNumber1 = ledSetting(ledMyNumber);
-                        ledSetInterval[1] = setInterval(ledNumberEMAKI9_1);
+                        ledSetInterval[1] = setInterval(ledNumberEMAKI11_1);
                         
-                        function ledNumberEMAKI9_1() {
+                        function ledNumberEMAKI11_1() {
                             let ledFadeTime = 1600;
                             let ledRepeatTime = 5000;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[1],ledFadeTime,ledUseNumber,ledSetInterval[1],ledMyNumber,ledUseChildrenNumber,ledMyNumber1);
@@ -6536,9 +6536,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[2] = 6800;
                     ledSetTimeout[2] = setTimeout( function() {
                         let ledMyNumber2 = ledSetting(ledMyNumber);
-                        ledSetInterval[2] = setInterval(ledNumberEMAKI9_2);
+                        ledSetInterval[2] = setInterval(ledNumberEMAKI11_2);
                         
-                        function ledNumberEMAKI9_2() {
+                        function ledNumberEMAKI11_2() {
                             let ledFadeTime = 1000;
                             let ledRepeatTime = 5000;
                             let ledRepeatTimeSplit = ledRepeatTime / 3;

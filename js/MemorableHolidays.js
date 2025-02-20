@@ -1539,7 +1539,7 @@ document.addEventListener("keydown", (e) => {
                     let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
 
                     for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,50,100);
-                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,21,100,100,1);
+                    for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,16,100,100,1);
 
                     movingLightSetTimeoutDelay[0] = 0;
                     movingLightSetTimeout[0] = setTimeout( function() {
@@ -4499,7 +4499,7 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト BCP3 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,1);
 
                     for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
                         movingLightPictureChange(1,i,0,50,100);
@@ -4593,11 +4593,11 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト Night6 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,3);
 
                     movingLightSetTimeoutDelay[0] = 0;
                     movingLightSetTimeout[0] = setTimeout( function() {
-                        movingLightSetting(0,0);
+                        movingLightSetting(0);
                         let movingLightColorFadeTime = 1800;
 
                         movingLightSetInterval[1] = setInterval(movingLightNumberNight2_1);
@@ -5064,7 +5064,7 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト BCP3 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,3);
 
                     for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
                         movingLightPictureChange(1,i,0,50,100);
@@ -5141,11 +5141,11 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト Night6 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,2);
 
                     movingLightSetTimeoutDelay[0] = 0;
                     movingLightSetTimeout[0] = setTimeout( function() {
-                        movingLightSetting(0,0);
+                        movingLightSetting(0);
                         let movingLightColorFadeTime = 1800;
 
                         movingLightSetInterval[1] = setInterval(movingLightNumberNight2_1);

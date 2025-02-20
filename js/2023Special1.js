@@ -2455,7 +2455,7 @@ document.addEventListener("keydown", (e) => {
 
                         function movingLightNumberSK1_13() {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[18],4000,movingLightUseNumber,movingLightSetInterval[13],movingLightMyNumber);
-                            let movingLightAngleRepeatTime = 7500;
+                            let movingLightAngleRepeatTime = 1000;
                             let movingLightAngleRepeatTimeSplit = movingLightAngleRepeatTime / 2;
                             let angleXY = [ 90 , 45 , 45 , 25 ];
                             let angleZRadius = 10;
