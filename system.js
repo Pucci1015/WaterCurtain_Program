@@ -785,7 +785,7 @@ document.addEventListener("keydown", (e) => {
     const key = e.key;
     const code = e.keyCode;
 
-    //console.log(code);
+    //console.log(key);
 
     if ( subSelectStyle === 0 ) {
         if ( code >= 112 && code <= 123 ) subCode = code - 111;
@@ -903,7 +903,11 @@ document.addEventListener("keydown", (e) => {
                 script.scrollTop += 20;
             }
         } else {
-            if ( code === 37 || code === 38 ) {
+            if ( key === 'Pause' ) {
+                performanceMusicChange();
+                scriptPerformanceSelect();
+                scriptDisplay();
+            } else if ( code === 37 || code === 38 ) {
                 let nowSelectedNumber = performanceSelect.selectedIndex - 1;
                 if ( nowSelectedNumber === -1 ) nowSelectedNumber = performanceSelect.options.length - 1;
 
