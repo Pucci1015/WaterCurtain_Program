@@ -1,6 +1,4 @@
 //プルダウンメニュー
-//let performanceSelect = document.getElementById('performance_select');
-//performanceSelect.options[0].selected = true;
 
 var performanceNowSelect;
 let ledNow10FadeTime = 2000;
@@ -8,6 +6,7 @@ let totalPage = [ [] , [] , [] , [] , [] ];
 let performanceTitle = [ [] , [] , [] , [] ];
 let performanceMusicDay = [];
 let performanceMusicNight = [];
+let performanceScriptURL = [ [] , [] ];
 let nowPerformanceNumber = 0;
 
 function jsSetting(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,nightMainThisPage,nightSubThisPage,led10FadeTime = 2000) {
@@ -25,19 +24,16 @@ function jsSetting(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,ni
 
     for ( var i = 0 ; i < 4 ; i++ ) performanceTitle[i][nowPerformanceNumber] = "-";
 
+    performanceScriptURL[0][nowPerformanceNumber] = 0;
+    performanceScriptURL[1][nowPerformanceNumber] = 0;
+
     performanceMusicDay[nowPerformanceNumber] = 0;
     performanceMusicNight[nowPerformanceNumber] = 0;
 
     nowPerformanceNumber++;
-
-    /*window["performance"+myFolderName+"DayMainTotalPage"] = dayMainThisPage;
-    window["performance"+myFolderName+"DaySubTotalPage"] = daySubThisPage;
-    window["performance"+myFolderName+"NightMainTotalPage"] = nightMainThisPage;
-    window["performance"+myFolderName+"NightSubTotalPage"] = nightSubThisPage;
-    window["performance"+myFolderName+"led10FadeTime"] = led10FadeTime;*/
 }
 
-function jsSetting2(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMainThisPage,daySubThisPage,dayMusicArray,myNightTitle,nightMainThisPage,nightSubThisPage,nightMusicArray,led10FadeTime = 2000) {
+function jsSetting2(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMainThisPage,daySubThisPage,dayMusicArray,dayURL,myNightTitle,nightMainThisPage,nightSubThisPage,nightMusicArray,nightURL,led10FadeTime = 2000) {
     let performanceOption = document.createElement('option');
     performanceOption.value = myFolderName;
     performanceOption.textContent = myOriginalName;
@@ -55,8 +51,11 @@ function jsSetting2(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMa
     performanceTitle[2][nowPerformanceNumber] = myDayTitle;
     performanceTitle[3][nowPerformanceNumber] = myNightTitle;
 
+    performanceScriptURL[0][nowPerformanceNumber] = dayURL;
+    performanceScriptURL[1][nowPerformanceNumber] = nightURL;
+
     if ( dayMusicArray === 0 ) performanceMusicDay[nowPerformanceNumber] = 0;
-    else performanceMusicDay[nowPerformanceNumber] = dayMusicArray;//performanceMusicDay.concat(dayMusicArray);
+    else performanceMusicDay[nowPerformanceNumber] = dayMusicArray;
     
     if ( nightMusicArray === 0 ) performanceMusicNight[nowPerformanceNumber] = 0;
     else performanceMusicNight[nowPerformanceNumber] = nightMusicArray;
@@ -102,16 +101,11 @@ function dnScript() {
 
             mainTotalPage = totalPage[0][performanceSelect.selectedIndex];
             subTotalPage = totalPage[1][performanceSelect.selectedIndex];
-            //eval("mainTotalPage = performance" + performanceSelect.value + "DayMainTotalPage;");
-            //eval("subTotalPage = performance" + performanceSelect.value + "DaySubTotalPage;");
         } else {
             pageText5.innerHTML = "Night";
 
             mainTotalPage = totalPage[2][performanceSelect.selectedIndex];
             subTotalPage = totalPage[3][performanceSelect.selectedIndex];
-
-            //eval("mainTotalPage = performance" + performanceSelect.value + "NightMainTotalPage;");
-            //eval("subTotalPage = performance" + performanceSelect.value + "NightSubTotalPage;");
         }
 
     } while( mainTotalPage === 0 )
@@ -343,6 +337,7 @@ function performanceMusicChange() {
     dnMusicSelect = dnNowSelect;
     musicNumber = 0;
 
+    scriptFetch();
     musicChange();
     performanceDetailDisplay();
 }
@@ -443,31 +438,19 @@ document.addEventListener('wheel', noscroll, {passive: false});
 function performanceTitleSizeChange() {
     let nowSelectTitle = performanceSelect.options[performanceSelect.selectedIndex].innerText;
 
-    //console.log(performanceSelect.style.fontSize);
-
     let nowLong = 0;
-    //console.log(nowSelectTitle.length);
     for ( var i = 0 ; i < nowSelectTitle.length ; i++ ) {
         nowLong += characterLength(nowSelectTitle[i]);
-        /*console.log(nowSelectTitle[i]);
-        console.log(nowLong);*/
-    }    
-
-    //console.log(nowLong);
+    }
 
     let performanceTitleNowFontSize = nowLong * performanceTitleFontSize;
-    //console.log(performanceTitleNowFontSize)
-    if ( performanceTitleNowFontSize > performanceTitleWidth ) {//9.7
+    if ( performanceTitleNowFontSize > performanceTitleWidth ) {
         performanceSelect.style.fontSize = performanceTitleFontSize / performanceTitleNowFontSize * performanceTitleWidth + "px";
     } else {
         performanceSelect.style.fontSize = performanceTitleFontSize + "px";
     }
 }
 
-//let performanceTitleFontSize = parseFloat(window.getComputedStyle(performanceSelect).getPropertyValue('font-size'));
-//let performanceTitleWidth = performanceSelect.clientWidth - 33;
-//console.log(performanceTitleFontSize)
-//console.log(performanceTitleWidth)
 function performanceChange(dnNowSelectNumber = 0) {
     dnNowSelect = dnNowSelectNumber;
 
@@ -476,59 +459,41 @@ function performanceChange(dnNowSelectNumber = 0) {
     performanceNowSelect = performanceSelect.value;
 
     ledNow10FadeTime = totalPage[4][performanceSelect.selectedIndex];
-    //eval("ledNow10FadeTime = performance" + performanceSelect.value + "led10FadeTime;");
 
     performanceTitleSizeChange();
 }
 
 let scriptPerformanceList;
 let scriptPerformanceNumber = -1;
-let scriptContent;
 let scriptMaxNumber = 0;
 let script = document.getElementById('script');
 let scriptError = document.getElementById('script_error');
 let scriptDefult = document.getElementById('scriptDefult');
 let scriptKeyTitleArray = [ "WCurtain" , "LED" , "UnderW" , "Moving", "Par" , "Spot" , "Stage" , "Audience" , "Board" ,"White" , "WCannon" , "Sound" , "SEffects" , "Smoke" , "Snow" ];
 
-function scriptPerformanceSelect() {
-    let scriptPerformanceSelectTitle = performanceMusicSelect + "_" + dnTitle[dnMusicSelect];
-
-    for ( var i = 0 ; i < scriptPerformanceList.length ; i++ ) {
-        if ( scriptPerformanceList[i] === scriptPerformanceSelectTitle ) {
-            scriptPerformanceNumber = i;
-            scriptError.style.display = "none";
-            return 0;
-        }
-    }
-
-    scriptPerformanceNumber = -1;
-    scriptError.innerHTML = "未作成です";
-    scriptError.style.display = "flex";
-}
-
-function scriptTimeDisplay(i) {
+function scriptTimeDisplay(scriptData,i) {
     let scriptTime;
 
-    if ( !isNaN( scriptContent[scriptPerformanceNumber][i][3] ) ) {
-        let nowTime = scriptContent[scriptPerformanceNumber][i][3];
+    if ( !isNaN( scriptData[i][3] ) ) {
+        let nowTime = scriptData[i][3];
 
         let minutes = Math.trunc( nowTime / 60 ).toString().padStart( 2 , '0' );
         let seconds = Math.trunc( nowTime % 60 ).toString().padStart( 2 , '0' );
         let milliSeconds = ( ( nowTime - Math.trunc(nowTime) ) * 100 ).toString().padStart( 2 , '0' );
 
-        scriptTime = scriptContent[scriptPerformanceNumber][i][2] + " " + minutes + ":" + seconds + "." + milliSeconds;
+        scriptTime = scriptData[i][2] + " " + minutes + ":" + seconds + "." + milliSeconds;
     } else {
-        scriptTime = scriptContent[scriptPerformanceNumber][i][3];
+        scriptTime = scriptData[i][3];
     }
 
     return scriptTime;
 }
 
-function scriptKeyDisplay(i) {
+function scriptKeyDisplay(scriptData,i) {
     let scriptKeyContent = "";
-    if ( scriptContent[scriptPerformanceNumber][i][5] !== "" ) scriptKeyContent = scriptContent[scriptPerformanceNumber][i][5] + "- ";
+    if ( scriptData[i][5] !== "" ) scriptKeyContent = scriptData[i][5] + "- ";
 
-    let scriptKey = scriptContent[scriptPerformanceNumber][i][6];
+    let scriptKey = scriptData[i][6];
     if ( isNaN(scriptKey) ) {
         let scriptAddNumber = 0;
         let scriptFinish = 0;
@@ -552,7 +517,7 @@ function scriptKeyDisplay(i) {
         scriptKeyContent = "<span>" + scriptKey + "</span>";
     }
 
-    let scriptAttention = scriptContent[scriptPerformanceNumber][i][7];
+    let scriptAttention = scriptData[i][7];
     if ( scriptAttention !== "" ) {
         scriptKeyContent += " (" + scriptAttention + ")";
     }
@@ -560,14 +525,14 @@ function scriptKeyDisplay(i) {
     return scriptKeyContent;
 }
 
-function scriptKeyTitleDisplay(i) {
+function scriptKeyTitleDisplay(scriptData,i) {
     let scriptKeyTitle = "";
     let scriptKeyTitleNumber = 0;
 
     for ( var j = 0 ; j < 15 ; j++ ) {
-        if ( scriptContent[scriptPerformanceNumber][i][j+8] !== "" ) {
+        if ( scriptData[i][j+8] !== "" ) {
             if ( scriptKeyTitleNumber >= 1 ) scriptKeyTitle += ", ";
-            scriptKeyTitle += scriptKeyTitleArray[j] + ":" + scriptContent[scriptPerformanceNumber][i][j+8];
+            scriptKeyTitle += scriptKeyTitleArray[j] + ":" + scriptData[i][j+8];
             scriptKeyTitleNumber++;
         }
     }
@@ -575,14 +540,20 @@ function scriptKeyTitleDisplay(i) {
     return scriptKeyTitle;
 }
 
-function scriptDisplay() {
-    for ( var i = 0 ; i < scriptMaxNumber ; i++ ) {
-        document.getElementById(`scriptListContent${i}`).remove();
-    }
-
-    if ( scriptPerformanceNumber === -1 ) {
+function scriptDisplay(scriptData) {
+    if ( scriptData === -1 ) {
+        scriptPerformanceNumber = -1;
         scriptMaxNumber = 0;
+        scriptError.innerHTML = "情報の取得に失敗しました<br>再読み込みしてください";
         return 0;
+    } else if ( scriptData === -2 ) {
+        scriptPerformanceNumber = -1;
+        scriptMaxNumber = 0;
+        scriptError.innerHTML = "未作成です";
+        return 0;
+    } else {
+        scriptPerformanceNumber = performanceMusicNumber;
+        scriptError.style.display = "none";
     }
 
     let scriptNumber = 0;
@@ -593,14 +564,14 @@ function scriptDisplay() {
     let musicNumberProcessing = 0
     let musicTimeNumberProcessing = 0;
 
-    for ( var i = 0 ; i < scriptContent[scriptPerformanceNumber].length ; i++ ) {
+    for ( var i = 0 ; i < scriptData.length ; i++ ) {
         let scriptClone = scriptDefult.cloneNode(true);
 
         scriptClone.id = `scriptListContent${scriptNumber}`;
 
-        let scriptStyle = scriptContent[scriptPerformanceNumber][i][0];
+        let scriptStyle = scriptData[i][0];
 
-        let scriptMusicNumber = scriptContent[scriptPerformanceNumber][i][4];
+        let scriptMusicNumber = scriptData[i][4];
         if ( scriptMusicNumber !== "" ) {
             scriptClone.getElementsByClassName("scriptMusic")[0].innerHTML = scriptMusicNumber;
             if ( !isNaN(scriptMusicNumber) ) {
@@ -610,12 +581,12 @@ function scriptDisplay() {
                 musicTimeNumber.push(musicTimeNumberNow);
                 musicTimeNow = [];
                 musicTimeNumberNow = [];
-                musicTimeNow[musicTimeNumberProcessing] = scriptContent[scriptPerformanceNumber][i][3];
+                musicTimeNow[musicTimeNumberProcessing] = scriptData[i][3];
                 musicTimeNumberNow[musicTimeNumberProcessing] = scriptNumber;
                 musicTimeNumberProcessing++;
             }
-        } else if ( !isNaN(scriptContent[scriptPerformanceNumber][i][3]) && !( scriptContent[scriptPerformanceNumber][i][2] === "+" || scriptContent[scriptPerformanceNumber][i][2] === "-" ) ) {
-            musicTimeNow[musicTimeNumberProcessing] = scriptContent[scriptPerformanceNumber][i][3];
+        } else if ( !isNaN(scriptData[i][3]) && !( scriptData[i][2] === "+" || scriptData[i][2] === "-" ) ) {
+            musicTimeNow[musicTimeNumberProcessing] = scriptData[i][3];
             musicTimeNumberNow[musicTimeNumberProcessing] = scriptNumber;
             musicTimeNumberProcessing++;
         }
@@ -626,21 +597,21 @@ function scriptDisplay() {
             scriptClone.getElementsByClassName("scriptImg")[0].appendChild(scriptImg);
         }
 
-        scriptClone.getElementsByClassName("scriptTime")[0].innerHTML = scriptTimeDisplay(i);
+        scriptClone.getElementsByClassName("scriptTime")[0].innerHTML = scriptTimeDisplay(scriptData,i);
 
         let scriptKeyParent = scriptClone.getElementsByClassName("scriptKey")[0];
 
-        scriptKeyParent.getElementsByTagName("p")[0].innerHTML = scriptKeyDisplay(i);
-        scriptKeyParent.getElementsByTagName("p")[0].title = scriptKeyTitleDisplay(i);
+        scriptKeyParent.getElementsByTagName("p")[0].innerHTML = scriptKeyDisplay(scriptData,i);
+        scriptKeyParent.getElementsByTagName("p")[0].title = scriptKeyTitleDisplay(scriptData,i);
 
-        for ( i += 1 ; i < scriptContent[scriptPerformanceNumber].length ; i++ ) {
-            let scriptAddStyle = scriptContent[scriptPerformanceNumber][i][0];
+        for ( i += 1 ; i < scriptData.length ; i++ ) {
+            let scriptAddStyle = scriptData[i][0];
 
             switch ( scriptAddStyle ) {
                 case 6:
                     let scriptAddKey = document.createElement('p');
-                    scriptAddKey.innerHTML = scriptKeyDisplay(i);
-                    scriptAddKey.title = scriptKeyTitleDisplay(i);
+                    scriptAddKey.innerHTML = scriptKeyDisplay(scriptData,i);
+                    scriptAddKey.title = scriptKeyTitleDisplay(scriptData,i);
                     scriptKeyParent.appendChild(scriptAddKey);
                     break;
                 case 7:
@@ -648,8 +619,8 @@ function scriptDisplay() {
                     scriptAddImg.src = `script_1.png`;
                     scriptClone.getElementsByClassName("scriptImg")[0].appendChild(scriptAddImg);
                 case 8:
-                    scriptClone.getElementsByClassName("scriptMusic")[0].innerHTML = "<br>" + scriptContent[scriptPerformanceNumber][i][4];
-                    scriptClone.getElementsByClassName("scriptTime")[0].innerHTML = scriptClone.getElementsByClassName("scriptTime")[0].innerHTML + "<br>" + scriptTimeDisplay(i);
+                    scriptClone.getElementsByClassName("scriptMusic")[0].innerHTML = "<br>" + scriptData[i][4];
+                    scriptClone.getElementsByClassName("scriptTime")[0].innerHTML = scriptClone.getElementsByClassName("scriptTime")[0].innerHTML + "<br>" + scriptTimeDisplay(scriptData,i);
 
                     if ( !isNaN(scriptMusicNumber) ) {
                         musicNumberProcessing = scriptMusicNumber;
@@ -658,7 +629,7 @@ function scriptDisplay() {
                         musicTimeNumber.push(musicTimeNumberNow);
                         musicTimeNow = [];
                         musicTimeNumberNow = [];
-                        musicTimeNow[musicTimeNumberProcessing] = scriptContent[scriptPerformanceNumber][i][3];
+                        musicTimeNow[musicTimeNumberProcessing] = scriptData[i][3];
                         musicTimeNumberNow[musicTimeNumberProcessing] = scriptNumber;
                         musicTimeNumberProcessing++;
                     }
@@ -683,7 +654,34 @@ function scriptDisplay() {
     musicTimeNumber.push(musicTimeNumberNow);
 }
 
-let performanceDetail;
+function scriptFetch() {
+    scriptError.innerHTML = "読み込み中...";
+    scriptError.style.display = "flex";
+    for ( var i = 0 ; i < scriptMaxNumber ; i++ ) {
+        document.getElementById(`scriptListContent${i}`).remove();
+    }
+    let url = performanceScriptURL[dnMusicSelect][performanceMusicNumber];
+
+    if ( url === 0 ) {
+        scriptDisplay(-2);
+        return 0;
+    }
+
+    fetch(url)
+    .then((res) => {
+        return res.json();
+    })
+    .then((data) => {
+        scriptDisplay(data);
+    })
+    .catch((error) => {
+        /*scriptError.innerHTML = "情報の取得に失敗しました<br>再読み込みしてください";
+        scriptError.style.display = "flex";*/
+        scriptDisplay(-1);
+    });
+}
+
+let performanceDetail = [];
 
 function performanceDetailDisplay() {
     let performanceSelectTitle = performanceMusicSelect + "_" + dnTitle[dnMusicSelect];
@@ -743,7 +741,7 @@ function performanceDetailDisplay() {
     document.getElementById("manual_performance_period").innerHTML = performancePeriod;
 }
 
-fetch("https://script.google.com/macros/s/AKfycbzvthKo-6XbTZQGAZeus_LSUY32Zf6MLXDXGdh0CN1U-XN1TDTK7P5yMHys-uwhQTav/exec")
+/*fetch("https://script.google.com/macros/s/AKfycbzvthKo-6XbTZQGAZeus_LSUY32Zf6MLXDXGdh0CN1U-XN1TDTK7P5yMHys-uwhQTav/exec")
 .then((res) => {
     return res.json();
 })
@@ -767,7 +765,7 @@ fetch("https://script.google.com/macros/s/AKfycbzkr9ynh2MUOlX00v68WpGo5rJoBvyq3R
 .catch((error) => {
     scriptError.innerHTML = "情報の取得に失敗しました<br>再読み込みしてください";
     scriptError.style.display = "flex";
-});
+});*/
 
 fetch("https://script.google.com/macros/s/AKfycbzDjJsn3iWKc27yvJSHjajhkYTyXgMmgCcMEXYryhQ_nCKNS-A6RL_EgSB_Fv6bPKfIpg/exec")
 .then((res) => {
@@ -925,23 +923,6 @@ document.addEventListener("keydown", (e) => {
         }
     }
 });
-
-
-//localStorage
-/*
-performanceSelect.addEventListener("click", function() {
-    let selectNowNumber;
-    for ( var i = 0 ; i < performanceSelect.length ; i++ ) {
-        if ( performanceSelect.selectedOptions[i].value === performanceSelect.value ) selectNowNumber = i;
-    }
-    localStorage.saveKey = selectNowNumber;
-});
-
-performanceSelect.addEventListener("load", function() {
-    let selectNowNumber = localStorage.saveKey;
-    performanceSelect.options[selectNowNumber].selected = true;
-});
-*/
 
 //時間取得
 function nowTimeGet( startTime , fadeTime , useNumber = -1 , somethingSetInterval = 0 , somethingMyNumber = -1 , useChildrenNumber = -1 , somethingChildrenMyNumber = -1 ) {
@@ -1871,17 +1852,6 @@ function movingLightPictureChange(movingLightIO,movingLightNowNumber,movingLight
     movingLightCoordinateNumber.style.width = movingLightPictureSize + "%";
     movingLightCoordinateNumber.style.filter = "brightness(" + movingLightBrightness + "%) blur( " + movingLightBlur + "px)";
 
-    /*if ( movingLightIO === 1 ) {
-        movingLightCoordinateNumber.style.opacity = movingLightInsideColor[3][movingLightNowNumber-1];
-        for ( var i = 0 ; i < 4 ; i++ ) {
-            movingLightInsideFirstColor[i][movingLightNowNumber-1] = movingLightInsideColor[i][movingLightNowNumber-1];
-        }
-    } else {
-        movingLightCoordinateNumber.style.opacity = movingLightOutsideColor[3][movingLightNowNumber-1];
-        for ( var i = 0 ; i < 4 ; i++ ) {
-            movingLightOutsideFirstColor[i][movingLightNowNumber-1] = movingLightOutsideColor[i][movingLightNowNumber-1];
-        }
-    }*/
 }
 
 function movingLightSizeChange(movingLightNowNumber,changeSize,changeTime,nowTime) {
@@ -1994,13 +1964,6 @@ function movingLightColorChange(movingLightIO,movingLightNowNumber,colorRed,colo
                     }
                 }
 
-                /*if ( gradientON === 1 ) {
-                    movingLightOutsideColorChangeStartTime[movingLightNowNumber-1] = nowTime;
-                    for ( var i = 0 ; i < 3 ; i++ ) {
-                        movingLightOutsideOldColor[i][movingLightNowNumber-1] = movingLightOutsideColor[i][movingLightNowNumber-1];
-                        movingLightOutsideColor[i][movingLightNowNumber-1] = changeColor[i];
-                    }
-                }*/
                 gradientNowTime = nowTime - movingLightOutsideColorChangeStartTime[movingLightNowNumber-1];
             }
 
@@ -2245,10 +2208,6 @@ function movingLightTriplePictureChange(movingLightIO,movingLightNowNumber,movin
         if ( movingLightPictureNumber === 0 ) movingLightPictureRadius = 71;
 
         if ( movingLightIO === 1 ) {
-            /*for ( var i = 0 ; i < 3 ; i++ ) {
-                movingLightInsideColor[i][movingLightNowNumber-1] = 0;
-            }*/
-            //movingLightInsideColor[3][movingLightNowNumber-1] = 0;
             if ( movingLightInsideColor[0][movingLightNowNumber-1] >= 0 ) {
                 for ( var i = 0 ; i < 3 ; i++ ) movingLightCoordinateTripleNumber[i].style.background = "radial-gradient( rgb(" + movingLightInsideColor[0][movingLightNowNumber-1] + "," + movingLightInsideColor[1][movingLightNowNumber-1] + "," + movingLightInsideColor[2][movingLightNowNumber-1] + ") " + movingLightPictureRadius + "%, #000000 69%)";
             } else {
@@ -2256,10 +2215,6 @@ function movingLightTriplePictureChange(movingLightIO,movingLightNowNumber,movin
             }
             movingLightInsideImgType[movingLightNowNumber-1] = -1 * movingLightPictureNumber - 1;
         } else {
-            /*for ( var i = 0 ; i < 3 ; i++ ) {
-                movingLightOutsideColor[i][movingLightNowNumber-1] = 0;
-            }*/
-            //movingLightOutsideColor[3][movingLightNowNumber-1] = 0;
             if ( movingLightOutsideColor[0][movingLightNowNumber-1] >= 0 ) {
                 for ( var i = 0 ; i < 3 ; i++ ) movingLightCoordinateTripleNumber[i].style.background = "radial-gradient( rgb(" + movingLightOutsideColor[0][movingLightNowNumber-1] + "," + movingLightOutsideColor[1][movingLightNowNumber-1] + "," + movingLightOutsideColor[2][movingLightNowNumber-1] + ") " + movingLightPictureRadius + "%, #000000 69%)";
             } else {
@@ -2270,21 +2225,10 @@ function movingLightTriplePictureChange(movingLightIO,movingLightNowNumber,movin
     }
 
     movingLightCoordinateNumber.style.width = movingLightParentSize + "%";
-    //movingLightCoordinateNumber.style.filter = "brightness(" + movingLightBrightness + "%)";
 
     movingLightTriplePositionDecision(movingLightIO,movingLightNowNumber,movingLightPictureLength,movingLightPictureSize);
 
     movingLightCoordinateNumber.style.opacity = "1.0";
-
-    /*if ( movingLightIO === 1 ) {
-        for ( var i = 0 ; i < 4 ; i++ ) {
-            movingLightInsideFirstColor[i][movingLightNowNumber-1] = movingLightInsideColor[i][movingLightNowNumber-1];
-        }
-    } else {
-        for ( var i = 0 ; i < 4 ; i++ ) {
-            movingLightOutsideFirstColor[i][movingLightNowNumber-1] = movingLightOutsideColor[i][movingLightNowNumber-1];
-        }
-    }*/
 }
 
 function movingLightTripleRotateChange(movingLightIO,movingLightNowNumber,movingLightRotate) {
@@ -2321,13 +2265,11 @@ function movingLightDoublePicture(movingLightIO,movingLightNowNumber,movingLight
         for ( var i = 0 ; i < 3 ; i++ ) {
             movingLightInsideColor[i][movingLightNowNumber-1] = 0;
         }
-        //movingLightInsideColor[3][movingLightNowNumber-1] = 1;
         movingLightInsideImgType[movingLightNowNumber-1] = 'n';
     } else {
         for ( var i = 0 ; i < 3 ; i++ ) {
             movingLightOutsideColor[i][movingLightNowNumber-1] = 0;
         }
-        //movingLightOutsideColor[3][movingLightNowNumber-1] = 1;
         movingLightOutsideImgType[movingLightNowNumber-1] = 'n';
     }
 
@@ -2503,7 +2445,6 @@ function logoboardLightColorDecision(logoboardLightNowNumber,colorRed,colorGreen
 
     logoboardCoordinateNumber.style.background = "linear-gradient(rgb(" + logoboardLightChangeColor[0] + "," + logoboardLightChangeColor[1] + "," + logoboardLightChangeColor[2] + "),transparent)";
     logoboardCoordinateNumber.style.filter = "brightness(" + ( 200 - 100 / 255 * maxColor ) + "%)";
-    //logoboardCoordinateNumber.style.filter = "brightness(" + ( 150 - 60 / 255 * colorWhite ) + "%)";
 }
 
 function logoboardLightOFF(changeTime,settingNumber = 0) {
@@ -2534,7 +2475,6 @@ function logoboardLightOFF(changeTime,settingNumber = 0) {
             if ( nowTime[0] <= changeTime ) {
                 for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                     let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${i}`);
-                    //logoboardCoordinateNumber.style.background = "linear-gradient(rgb(" + ( logoboardLightFirstColor[0] + logoboardLightFirstColor[3] ) / 2 + "," + ( logoboardLightFirstColor[1] + logoboardLightFirstColor[3] ) / 2 + "," + ( logoboardLightFirstColor[2] + logoboardLightFirstColor[3] ) / 2 + "),transparent)";
                     logoboardLightColorDecision(i,logoboardLightFirstColor[0][i-1],logoboardLightFirstColor[1][i-1],logoboardLightFirstColor[2][i-1],logoboardLightFirstColor[3][i-1]);
                     let logoboardLightOpacityProportion = logoboardLightFirstOpacity[i-1] + ( - logoboardLightFirstOpacity[i-1] ) / changeTime * nowTime[0];
                     logoboardCoordinateNumber.style.opacity = logoboardLightOpacityProportion;
@@ -2605,8 +2545,6 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
                 opacity = logoboardLightFirstOpacity[logoboardLightNowNumber-1] + ( opacity - logoboardLightFirstOpacity[logoboardLightNowNumber-1] ) * timeProportion;
             }
 
-            //logoboardCoordinateNumber.style.background = "linear-gradient(rgb(" + ( logoboardLightChangeColor[0] + logoboardLightChangeColor[3] ) / 2 + "," + ( logoboardLightChangeColor[1] + logoboardLightChangeColor[3] ) / 2 + "," + ( logoboardLightChangeColor[2] + logoboardLightChangeColor[3] ) / 2 + "),transparent)";
-            //logoboardCoordinateNumber.style.filter = "brightness(" + ( 150 - 60 / 255 * logoboardLightChangeColor[3] ) + "%)";
             logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3]);
             for ( var i = 0 ; i < 4 ; i++ ) {
                 logoboraLightZIndex += logoboardLightChangeColor[i];
@@ -2621,8 +2559,6 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
             }
             
         } else if ( logoboardLightFirstON === 0 ) {
-            //logoboardCoordinateNumber.style.background = "linear-gradient(rgb(" + ( logoboardLightChangeColor[0] + logoboardLightChangeColor[3] ) / 2 + "," + ( logoboardLightChangeColor[1] + logoboardLightChangeColor[3] ) / 2 + "," + ( logoboardLightChangeColor[2] + logoboardLightChangeColor[3] ) / 2 + "),transparent)";
-            //logoboardCoordinateNumber.style.filter = "brightness(" + ( 150 - 60 / 255 * logoboardLightChangeColor[3] ) + "%)";
             for ( var j = 0 ; j < 4 ; j++ ) {
                 logoboardLightColor[j][logoboardLightNowNumber-1] = logoboardLightChangeColor[j];
             }
@@ -2643,9 +2579,7 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
             let logoboardLightOpacityProportion = logoboardLightFirstOpacity[logoboardLightNowNumber-1] + ( opacity - logoboardLightFirstOpacity[logoboardLightNowNumber-1] ) * timeProportion;
             logoboardLightOpacity[logoboardLightNowNumber-1] = logoboardLightOpacityProportion;
             for ( var i = 0 ; i < 4 ; i++ ) {
-                /*if ( logoboardLightChangeColor[i] === -1 ) {
-                    logoboardLightColorProportion[i] = logoboardLightColor[i][logoboardLightNowNumber-1];
-                } else */if ( logoboardLightKeepColor[i] === 1 ) {
+                if ( logoboardLightKeepColor[i] === 1 ) {
                     if ( nowTime < changeTime / 2 ) logoboardLightColorProportion[i] = logoboardLightFirstColor[i][logoboardLightNowNumber-1];
                     else logoboardLightColorProportion[i] = logoboardLightFirstColor[i][logoboardLightNowNumber-1] + ( logoboardLightChangeColor[i] - logoboardLightFirstColor[i][logoboardLightNowNumber-1] ) / changeTime * 2 * ( nowTime - changeTime / 2 );
                 } else {
@@ -2657,8 +2591,6 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
             for ( var i = 0 ; i < 4 ; i++ ) logoboardLightColor[i][logoboardLightNowNumber-1] = logoboardLightColorProportion[i];
 
             if ( logoboardLightUseAnimateNumber === 0 || animateStop === 1 ) {
-                //logoboardCoordinateNumber.style.background = "linear-gradient(rgb(" + ( logoboardLightColorProportion[0] + logoboardLightColorProportion[3] ) / 2 + "," + ( logoboardLightColorProportion[1] + logoboardLightColorProportion[3] ) / 2 + "," + ( logoboardLightColorProportion[2] + logoboardLightColorProportion[3] ) / 2 + "),transparent)";
-                //logoboardCoordinateNumber.style.filter = "brightness(" + ( 150 - 60 / 255 * logoboardLightColorProportion[3] ) + "%)";
                 logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightColorProportion[0],logoboardLightColorProportion[1],logoboardLightColorProportion[2],logoboardLightColorProportion[3]);
                 for ( var i = 0 ; i < 4 ; i++ ) {
                     logoboraLightZIndex += logoboardLightColorProportion[i];
@@ -2669,8 +2601,6 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
             }
         }
     } else {
-        //logoboardCoordinateNumber.style.background = "linear-gradient(rgb(" + ( logoboardLightChangeColor[0] + logoboardLightChangeColor[3] ) / 2 + "," + ( logoboardLightChangeColor[1] + logoboardLightChangeColor[3] ) / 2 + "," + ( logoboardLightChangeColor[2] + logoboardLightChangeColor[3] ) / 2 + "),transparent)";
-        //logoboardCoordinateNumber.style.filter = "brightness(" + ( 150 - 60 / 255 * logoboardLightChangeColor[3] ) + "%)";
         logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3]);
         for ( var i = 0 ; i < 4 ; i++ ) {
             logoboraLightZIndex += logoboardLightChangeColor[i];
@@ -2705,7 +2635,6 @@ function logoboardLightAnimateChange(logoboardLightNowNumber,colorRed,colorGreen
     for ( var i = 0 ; i < 4 ; i++ ) {
         if ( logoboardLightChangeColor[i] === -1 ) {
             logoboardLightChangeColor[i] = logoboardLightColor[i][logoboardLightNowNumber-1];
-            //fadePermission = 1;
         } else {
             logoboardLightUseAnimateColorNumber[i] = logoboardLightUseNumber[1];
         }
@@ -2725,8 +2654,6 @@ function logoboardLightAnimateChange(logoboardLightNowNumber,colorRed,colorGreen
         }
     }
 
-    //logoboardCoordinateNumber.style.background = "linear-gradient(rgb(" + ( logoboardLightChangeColor[0] + logoboardLightChangeColor[3] ) / 2 + "," + ( logoboardLightChangeColor[1] + logoboardLightChangeColor[3] ) / 2 + "," + ( logoboardLightChangeColor[2] + logoboardLightChangeColor[3] ) / 2 + "),transparent)";
-    //logoboardCoordinateNumber.style.filter = "brightness(" + ( 150 - 60 / 255 * logoboardLightChangeColor[3] ) + "%)";
     logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3]);
     for ( var i = 0 ; i < 4 ; i++ ) {
         logoboardLightAnimateColor[i][logoboardLightNowNumber-1] = logoboardLightChangeColor[i];
@@ -2739,7 +2666,6 @@ function logoboardLightAnimateChange(logoboardLightNowNumber,colorRed,colorGreen
 }
 
 //スモーク, スノウマシン
-
 var smokeON = 0;
 var smokeFadeRatio = 2;
 var smokePushONTime;
