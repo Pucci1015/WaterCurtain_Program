@@ -1703,7 +1703,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetInterval[7] = setInterval(movingLightNumberMH2_7);
 
                         function movingLightNumberMH2_7() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[6],movingLightColorFadeTime,movingLightUseNumber,movingLightSetInterval[7],movingLightMyNumber);
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[6],0,movingLightUseNumber,movingLightSetInterval[7],movingLightMyNumber);
                             
                             if ( nowTime[0] <= movingLightAngleFadeTime ) {
                                 for ( var i = 2 ; i <= movingLightInsideNumber ; i += 2 ) movingLightAngleChange(1,i,0,50,movingLightAngleFadeTime,nowTime[0]);
