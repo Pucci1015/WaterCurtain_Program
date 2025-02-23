@@ -21,7 +21,6 @@ let parLightDiameter, spotLightDiameter, audienceLightDiameter, stageLightDiamet
 
 ["load", "resize"].forEach((eventType) => {
     window.addEventListener(eventType, () => {
-
         let width = document.documentElement.clientWidth;
         let height = document.documentElement.clientHeight;
 
@@ -296,8 +295,8 @@ let parLightDiameter, spotLightDiameter, audienceLightDiameter, stageLightDiamet
         //マシン状態座標決定
         let machineCoordinateNumber = document.getElementById(`machine_state`);
         machineCoordinateNumber.style.height = radius * 0.1 + "px";
-        machineCoordinateNumber.style.top = radius * 0.045 + "px";
-        machineCoordinateNumber.style.left = radius * 3.48 + "px";
+        machineCoordinateNumber.style.top = centerY - radius * 0.96 + "px";
+        machineCoordinateNumber.style.left = diameter * 1.24 + centerX + "px";
 
         for ( var i = 0 ; i < 3 ; i++ ) {
             machineCoordinateNumber.getElementsByTagName("div")[i].style.borderRadius = radius * 0.02 + "%";

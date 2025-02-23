@@ -186,8 +186,7 @@ function scriptScroll(i) {
     if ( scriptScrollON.checked ) {
         document.getElementById(`scriptListContent${i}`).scrollIntoView({
             behavior: 'smooth',
-            block: 'center',
-            inline: 'start'
+            block: 'center'
         });
     }
 }
@@ -395,8 +394,6 @@ document.getElementById('music_loop_button').addEventListener("click", function(
 
 document.getElementById('performance-change').addEventListener("click", function() {
     performanceMusicChange();
-    scriptPerformanceSelect();
-    scriptDisplay();
 });
 
 scriptScrollON.addEventListener("click", function() {
@@ -427,13 +424,13 @@ window.document.onkeydown = function(event){
         event.returnValue = false;
     }
 }
-
+/*
 function noscroll(e){
     e.preventDefault();
 }
 
 document.addEventListener('touchmove', noscroll, {passive: false});
-document.addEventListener('wheel', noscroll, {passive: false});
+document.addEventListener('wheel', noscroll, {passive: false});*/
 
 function performanceTitleSizeChange() {
     let nowSelectTitle = performanceSelect.options[performanceSelect.selectedIndex].innerText;
@@ -675,8 +672,6 @@ function scriptFetch() {
         scriptDisplay(data);
     })
     .catch((error) => {
-        /*scriptError.innerHTML = "情報の取得に失敗しました<br>再読み込みしてください";
-        scriptError.style.display = "flex";*/
         scriptDisplay(-1);
     });
 }
@@ -740,32 +735,6 @@ function performanceDetailDisplay() {
 
     document.getElementById("manual_performance_period").innerHTML = performancePeriod;
 }
-
-/*fetch("https://script.google.com/macros/s/AKfycbzvthKo-6XbTZQGAZeus_LSUY32Zf6MLXDXGdh0CN1U-XN1TDTK7P5yMHys-uwhQTav/exec")
-.then((res) => {
-    return res.json();
-})
-.then((data) => {
-    scriptPerformanceList = data;
-})
-.catch((error) => {
-    scriptError.innerHTML = "情報の取得に失敗しました<br>再読み込みしてください";
-    scriptError.style.display = "flex";
-});
-
-fetch("https://script.google.com/macros/s/AKfycbzkr9ynh2MUOlX00v68WpGo5rJoBvyq3RRHMXoWKTkPNxTftB7JtusXK3KnItTp-L11nw/exec")
-.then((res) => {
-    return res.json();
-})
-.then((data) => {
-    scriptContent = data;
-    scriptPerformanceSelect();
-    scriptDisplay();
-})
-.catch((error) => {
-    scriptError.innerHTML = "情報の取得に失敗しました<br>再読み込みしてください";
-    scriptError.style.display = "flex";
-});*/
 
 fetch("https://script.google.com/macros/s/AKfycbzDjJsn3iWKc27yvJSHjajhkYTyXgMmgCcMEXYryhQ_nCKNS-A6RL_EgSB_Fv6bPKfIpg/exec")
 .then((res) => {
@@ -903,16 +872,23 @@ document.addEventListener("keydown", (e) => {
         } else {
             if ( key === 'Pause' ) {
                 performanceMusicChange();
-                scriptPerformanceSelect();
-                scriptDisplay();
-            } else if ( code === 37 || code === 38 ) {
+            } else if ( code === 37 ) {
+                if ( musicChangePossible === 1 ) {
+                    if ( music.currentTime >= 1 ) musicChange(0);
+                    else musicChange(-1);
+                }
+            } else if ( code === 38 ) {
                 let nowSelectedNumber = performanceSelect.selectedIndex - 1;
                 if ( nowSelectedNumber === -1 ) nowSelectedNumber = performanceSelect.options.length - 1;
 
                 performanceSelect.options[nowSelectedNumber].selected = true;
 
                 performanceChange();
-            } else if ( code === 39 || code === 40 ) {
+            } else if ( code === 39 ) {
+                if ( musicChangePossible === 1 ) {
+                    musicChange();
+                }                
+            } else if ( code === 40 ) {
                 let nowSelectedNumber = performanceSelect.selectedIndex + 1;
                 if ( nowSelectedNumber === performanceSelect.options.length ) nowSelectedNumber = 0;
 
@@ -1174,7 +1150,7 @@ document.addEventListener("keydown", (e) => {
                 }
             },440);
         } else {
-            var whiteLightNowNumber;
+            var whiteLightNowNumber = 0;
 
             switch ( key ) {
                 case '4': whiteLightNowNumber = 1; break;
@@ -1195,11 +1171,13 @@ document.addEventListener("keydown", (e) => {
                 case 'p': whiteLightNowNumber = 16; break;
             }
 
-            let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${whiteLightNowNumber}`);
-            if ( whiteLightArray[whiteLightNowNumber-1] === 0 ) whiteLightCoordinateNumber.style.opacity = 1;
-            else whiteLightCoordinateNumber.style.opacity = 0;
+            if ( whiteLightNowNumber >= 1 ) {
+                let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${whiteLightNowNumber}`);
+                if ( whiteLightArray[whiteLightNowNumber-1] === 0 ) whiteLightCoordinateNumber.style.opacity = 1;
+                else whiteLightCoordinateNumber.style.opacity = 0;
 
-            whiteLightArray[whiteLightNowNumber-1] = 1 - whiteLightArray[whiteLightNowNumber-1];
+                whiteLightArray[whiteLightNowNumber-1] = 1 - whiteLightArray[whiteLightNowNumber-1];
+            }
         }
     } else if ( e.ctrlKey ) {
         performanceNowSelect = -1;

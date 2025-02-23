@@ -2,19 +2,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+html, body {
+    overflow: hidden;    
+}
+
 html {
-    overflow-x: hidden;
     font-family: Arial,'ヒラギノ明朝 ProN', sans-serif;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
     user-select: none;
 }
 
-html::-webkit-scrollbar{
-    display: none;
-}
-
 body {
+    width: 100vw;
+    height: 100vh;
     background-color: #000000;
     position: relative;
 }
