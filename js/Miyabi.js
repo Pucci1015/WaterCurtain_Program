@@ -4506,17 +4506,17 @@ document.addEventListener("keydown", (e) => {
                     let waterLightSetInterval = setInterval(waterLightNumberSS4);
 
                     function waterLightNumberSS4() {
-                        let waterLightFadeTime = 500;
+                        let waterLightFadeTime = 3000;
                         let waterLightRepeatTime = 5000;
                         let waterLightRepeatTimeSplit = waterLightRepeatTime / 4;
                         let nowTime = nowTimeGet(startTime,waterLightFadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        let waterLightBasicColor = [ [ 220 , 0 , 255 ] , [ 0 , 0 , 255 ] , [ 0 , 255 , 255 ] , [ 255 , 255 , 0 ] ];
+                        let waterLightBasicColor = [ [ 0 , 100 , 255 ] , [ 0 , 255 , 255 ] , [ 255 , 255 , 0 ] , [ 150 , 0 , 255 ] ];
                         let waterLightLapTime = waterLightRepeatTime / waterLightNumber;
 
                         for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
                             let waterLightColor = [];
-                            let j = i - 1;
+                            let j = waterLightNumber - i;
                             let waterLightJudgeTime = ( nowTime[1] + waterLightLapTime * j ) % waterLightRepeatTime;
 
                             for ( var l = 0 ; l < 4 ; l++ ) {
