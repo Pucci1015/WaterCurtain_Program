@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 html, body {
-    overflow: hidden;    
+    overflow: hidden;
 }
 
 html {
@@ -175,6 +175,7 @@ a {
     opacity: 0;/*
     mask-image: radial-gradient(rgb(0 0 0 / 100%) 40%, rgb(0 0 0 / 0%) 65%);
     mask-composite: intersect;*/
+    overflow: hidden;
 }
 
 .MOVING_LIGHT_PICTURE_SINGLEtype {
@@ -183,6 +184,7 @@ a {
     translate: -50% -50%;
     top: 50%;
     left: 50%;
+    border-radius: 50%;
 }
 
 .MOVING_LIGHT_PICTURE_CONTENT_TRIPLE {
@@ -198,6 +200,7 @@ a {
     translate: -50% -50%;
     top: 50%;
     left: 50%;
+    border-radius: 50%;
 }
 
 #machine_state {
@@ -380,7 +383,7 @@ a {
 }
 
 .manual-key {
-    width: 15vw;
+    width: 20vw;
     text-indent: 1vw;
 }
 
@@ -684,12 +687,36 @@ a {
     padding: 5% 0;
 }
 
-.scriptKey span {
+.scriptKeySpan {
     padding: 1% 4%;
     color: #999;
     border: 2px solid #999;
     border-radius: 5px;
     font-weight: bold;
+}
+
+.scriptPattern1 {
+    color: blue;
+    font-family: "MSゴシック";
+    margin-right: 5%;
+}
+
+.scriptPattern2 {
+    color: red;
+    font-family: "MSゴシック";
+    margin-right: 5%;
+}
+
+.scriptPattern3 {
+    color: green;
+    font-family: "MSゴシック";
+    margin-right: 5%;
+}
+
+.scriptPattern4 {
+    color: orange;
+    font-family: "MSゴシック";
+    margin-right: 5%;
 }
 
 #scriptDefult {

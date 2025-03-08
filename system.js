@@ -115,7 +115,21 @@ function dnScript() {
     pageText3.innerHTML = mainNowPage;
     pageText4.innerHTML = subNowPage;
     
+}//ファンクションキー無効化
+window.document.onkeydown = function(event){
+    if ( event.keyCode >= 112 && event.keyCode <= 123 ) {
+        event.keyCode = null;
+        event.returnValue = false;
+    }
 }
+
+/*function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+}*/
 
 let musicNumber = -1;
 let performanceMusicNumber;
@@ -139,6 +153,7 @@ let scriptScrollON = document.getElementById('script_scroll');
 let manual = document.getElementById('manual');
 let manualBackground = document.getElementById('manual_background');
 let manualON = 0;
+let musicDefultVolume;
 
 document.getElementById('manual_button1').addEventListener("click", function() {
     manual.style.display = "block";
@@ -313,8 +328,9 @@ function musicChange(musicPN = 1) {
     document.getElementById('music_now_number').innerHTML = musicNumber;
     musicPlay = 0;
     musicVolumeMicrophone = 0;
+    musicDefultVolume = musicVolume;
     micOnOff();
-    music.load();
+    //music.load();
 
     musicPlayDisplay();
     musicLoopDisplay();
@@ -334,7 +350,7 @@ function performanceMusicChange() {
     performanceMusicNumber = performanceSelect.selectedIndex;
     performanceMusicSelect = performanceNowSelect;
     dnMusicSelect = dnNowSelect;
-    musicNumber = 0;
+    musicNumber = -1;
 
     scriptFetch();
     musicChange();
@@ -355,7 +371,7 @@ music.addEventListener("loadedmetadata", function() {
 music.addEventListener("timeupdate", function() {
     musicPlayPositionDisplay();
 
-    if ( scriptPerformanceNumber !== -1 && music.currentTime > musicTime[musicNumber][musicScriptNumber] && musicScriptNumber + 1 < musicTime[musicNumber].length ) {
+    if ( scriptPerformanceNumber !== -1 && musicNumber >= 1 && music.currentTime > musicTime[musicNumber][musicScriptNumber] && musicScriptNumber + 1 < musicTime[musicNumber].length ) {
         musicScriptNumber++;
         scriptScroll(musicTimeNumber[musicNumber][musicScriptNumber]);
     }
@@ -417,21 +433,6 @@ if ( ub.indexOf("ipad") > -1 || ( ub.indexOf("macintosh") > -1 && "ontouchend" i
     insCode = 8;
 }
 
-//ファンクションキー無効化
-window.document.onkeydown = function(event){
-    if(event.keyCode >= 112 && event.keyCode <= 123) {
-        event.keyCode = null;
-        event.returnValue = false;
-    }
-}
-/*
-function noscroll(e){
-    e.preventDefault();
-}
-
-document.addEventListener('touchmove', noscroll, {passive: false});
-document.addEventListener('wheel', noscroll, {passive: false});*/
-
 function performanceTitleSizeChange() {
     let nowSelectTitle = performanceSelect.options[performanceSelect.selectedIndex].innerText;
 
@@ -467,6 +468,8 @@ let script = document.getElementById('script');
 let scriptError = document.getElementById('script_error');
 let scriptDefult = document.getElementById('scriptDefult');
 let scriptKeyTitleArray = [ "WCurtain" , "LED" , "UnderW" , "Moving", "Par" , "Spot" , "Stage" , "Audience" , "Board" ,"White" , "WCannon" , "Sound" , "SEffects" , "Smoke" , "Snow" ];
+let scriptPatternLogo = [ "●" , "▲" , "■" , "◆" ];
+let scriptPatternColor = [ "blue" , "green" , "red" , "orange" ];
 
 function scriptTimeDisplay(scriptData,i) {
     let scriptTime;
@@ -480,7 +483,7 @@ function scriptTimeDisplay(scriptData,i) {
 
         scriptTime = scriptData[i][2] + " " + minutes + ":" + seconds + "." + milliSeconds;
     } else {
-        scriptTime = scriptData[i][3];
+        scriptTime = scriptData[i][2] + " " + scriptData[i][3];
     }
 
     return scriptTime;
@@ -488,7 +491,14 @@ function scriptTimeDisplay(scriptData,i) {
 
 function scriptKeyDisplay(scriptData,i) {
     let scriptKeyContent = "";
-    if ( scriptData[i][5] !== "" ) scriptKeyContent = scriptData[i][5] + "- ";
+
+    if ( scriptData[i][1] !== "" ) {
+        scriptKeyContent = `<span class=\"scriptPattern${scriptData[i][1][0]}\">`;
+        for ( var j = 2 ; j < scriptData[i][1].length ; j += 2 ) scriptKeyContent += scriptPatternLogo[scriptData[i][1][j]-1];
+        scriptKeyContent += "</span>";
+    }
+
+    if ( scriptData[i][5] !== "" ) scriptKeyContent += scriptData[i][5] + "- ";
 
     let scriptKey = scriptData[i][6];
     if ( isNaN(scriptKey) ) {
@@ -502,16 +512,16 @@ function scriptKeyDisplay(scriptData,i) {
 
             for ( var l = scriptFinish ; l < scriptAddNumber ; l++ ) scriptKeySpan += scriptKey[l];
 
-            scriptKeyContent += "<span>" + scriptKeySpan + "</span>" + " + ";
+            scriptKeyContent += "<span class=\"scriptKeySpan\">" + scriptKeySpan + "</span>" + " + ";
 
             scriptFinish = scriptAddNumber + 1;
         };
 
-        scriptKeyContent += "<span>";
+        scriptKeyContent += "<span class=\"scriptKeySpan\">";
         for ( var l = scriptFinish ; l < scriptKey.length ; l++ ) scriptKeyContent += scriptKey[l];
         scriptKeyContent += "</span>";
     } else {
-        scriptKeyContent = "<span>" + scriptKey + "</span>";
+        scriptKeyContent = "<span class=\"scriptKeySpan\">" + scriptKey + "</span>";
     }
 
     let scriptAttention = scriptData[i][7];
@@ -558,7 +568,7 @@ function scriptDisplay(scriptData) {
     musicTimeNumber = [];
     let musicTimeNow = [];
     let musicTimeNumberNow = [];
-    let musicNumberProcessing = 0
+    let musicNumberProcessing = 0;
     let musicTimeNumberProcessing = 0;
 
     for ( var i = 0 ; i < scriptData.length ; i++ ) {
@@ -571,24 +581,26 @@ function scriptDisplay(scriptData) {
         let scriptMusicNumber = scriptData[i][4];
         if ( scriptMusicNumber !== "" ) {
             scriptClone.getElementsByClassName("scriptMusic")[0].innerHTML = scriptMusicNumber;
-            if ( !isNaN(scriptMusicNumber) ) {
+            if ( !isNaN(scriptMusicNumber) && scriptMusicNumber >= 1 ) {
                 musicNumberProcessing = scriptMusicNumber;
                 musicTimeNumberProcessing = 0;
                 musicTime.push(musicTimeNow);
                 musicTimeNumber.push(musicTimeNumberNow);
                 musicTimeNow = [];
                 musicTimeNumberNow = [];
-                musicTimeNow[musicTimeNumberProcessing] = scriptData[i][3];
+                /*musicTimeNow[musicTimeNumberProcessing] = scriptData[i][3];
                 musicTimeNumberNow[musicTimeNumberProcessing] = scriptNumber;
-                musicTimeNumberProcessing++;
+                musicTimeNumberProcessing++;*/
             }
-        } else if ( !isNaN(scriptData[i][3]) && !( scriptData[i][2] === "+" || scriptData[i][2] === "-" ) ) {
+        }
+        
+        if ( !isNaN(scriptData[i][3]) && !( scriptData[i][2] === "+" || scriptData[i][2] === "-" ) ) {
             musicTimeNow[musicTimeNumberProcessing] = scriptData[i][3];
             musicTimeNumberNow[musicTimeNumberProcessing] = scriptNumber;
             musicTimeNumberProcessing++;
         }
 
-        if ( scriptStyle === 1 || scriptStyle >= 3 && scriptStyle <= 5 ) {
+        if ( scriptStyle === 1 || scriptStyle >= 3 && scriptStyle <= 5 || scriptStyle === 9 ) {
             let scriptImg = document.createElement('img');
             scriptImg.src = `script_${scriptStyle}.png`;
             scriptClone.getElementsByClassName("scriptImg")[0].appendChild(scriptImg);
@@ -633,7 +645,7 @@ function scriptDisplay(scriptData) {
                     break;
             }
 
-            if ( scriptAddStyle <= 5 ) {
+            if ( scriptAddStyle <= 5 || scriptAddStyle >= 9 ) {
                 i -= 1;
                 break;
             }
@@ -745,6 +757,33 @@ fetch("https://script.google.com/macros/s/AKfycbzDjJsn3iWKc27yvJSHjajhkYTyXgMmgC
     performanceDetailDisplay();
 });
 
+const checkFileExistence = async function(url) {
+    const response = await fetch(url);
+
+    if ( response.status === 200 ) {
+        return 0;
+    } else {
+        return 1;
+    }
+};
+
+const SEffectUrlCheck = async function(url) {
+    try {
+        const ret = await checkFileExistence(url);
+
+        if ( ret === 0 ) {
+            SEffect.src = url;
+            SEffect.play();
+            return 1;
+        } else {
+            return 0;
+        }
+
+    } catch (error) {
+        return 0;
+    }
+};
+
 let SEffect = document.getElementById("SEffect");
 let keyPic = [ '|' , '!' , '"' , '#' , '$' , '%' , '&' , '\'' , '(' , ')' , '0' , '=' , '~' ];
 
@@ -795,8 +834,8 @@ document.addEventListener("keydown", (e) => {
             musicPlayDisplay();
         }
     } else if ( code === 32 ) {
-        let pn
-        if ( musicVolumeMicrophone === 1 ) pn = 0.1;
+        let pn;
+        if ( musicVolumeMicrophone === 1 && musicVolume <= musicDefultVolume || musicVolumeMicrophone === 0 && musicVolume <= 0.5 ) pn = 0.1;
         else pn = -0.1;
 
         musicVolumeMicrophone = 1 - musicVolumeMicrophone;
@@ -807,9 +846,11 @@ document.addEventListener("keydown", (e) => {
         musicVolumeSetInterval = setInterval( function() {
             musicNowVolume += pn;
 
-            if ( musicNowVolume >= 0.3 && musicNowVolume <= 1 ) {
+            if ( musicNowVolume <= musicDefultVolume ) {
                 musicVolume = musicNowVolume;
                 musicVolDisplay();
+
+                if ( Math.floor( 10 * musicVolume ) === 5 ) clearInterval(musicVolumeSetInterval);
             } else {
                 clearInterval(musicVolumeSetInterval);
             }
@@ -823,10 +864,7 @@ document.addEventListener("keydown", (e) => {
         } else {
             for ( var i = 1 ; i <= 12 ; i++ ) {
                 if ( key === keyPic[i] ) {
-                    SEffect.src = "SoundEffect/" + performanceMusicSelect + "_" + dnTitle[dnMusicSelect] + "_se_" + i + ".mp3";
-                    SEffect.load();
-                    SEffect.play();
-                    break;
+                    SEffectUrlCheck("SoundEffect/" + performanceMusicSelect + "_" + dnTitle[dnMusicSelect] + "_se_" + i + ".mp3");
                 }
             }
         }
@@ -868,7 +906,9 @@ document.addEventListener("keydown", (e) => {
                 script.scrollTop -= 20;
             } else if ( code === 40 ) {
                 script.scrollTop += 20;
-            }
+            }/* else if ( key === 'Pause' ) {
+                toggleFullScreen();
+            }*/
         } else {
             if ( key === 'Pause' ) {
                 performanceMusicChange();
@@ -1567,7 +1607,10 @@ function movingLightSetting(movingLightNowUseNumber = "nothing",movingLightOFFMo
         else if ( movingLightOFFMode >= 1 ) movingLightRotateLock = 1;
         return movingLightUseNumber;
     } else if ( movingLightNowUseNumber === 0 ) {
-        
+        if ( movingLightOFFMode === 1 ) {
+            movingLightRotateLock = 0;
+            movingLightRotateUseNumber = movingLightUseNumber;
+        }
     } else {
         movingLightUseNumber++;
         if ( movingLightRotateLock === 0 ) movingLightRotateUseNumber = movingLightUseNumber;
@@ -1999,7 +2042,7 @@ function movingLightColorChange(movingLightIO,movingLightNowNumber,colorRed,colo
 
 }
 
-function movingLightGradientColorChange(movingLightIO,movingLightNowNumber,color1Red,color1Green,color1Blue,color1Proportion,color2Red,color2Green,color2Blue,color2Proportion,degree,opacity,changeTime = 0,nowTime = 0) {    
+function movingLightGradientColorChange(movingLightIO,movingLightNowNumber,color1Red,color1Green,color1Blue,color1Proportion,color2Red,color2Green,color2Blue,color2Proportion,degree,opacity,changeTime = 0,nowTime = 0,movingLightTripleNumber = -1) {    
     let movingLightCoordinateNumber, movingLightCoordinateTripleNumber, changeway = 1, movingLightPictureRadius = 69;
 
     if ( movingLightIO === 1 ) {
@@ -2039,11 +2082,15 @@ function movingLightGradientColorChange(movingLightIO,movingLightNowNumber,color
 
     if ( changeway === 1 ) {
         movingLightCoordinateNumber.style.background = "radial-gradient( transparent 69%, #000000 69%), linear-gradient(" + degree + "deg, rgb(" + color1Red + "," + color1Green + "," + color1Blue + ") " + color1Proportion + "% , rgb(" + color2Red + "," + color2Green + "," + color2Blue + ") " + color2Proportion + "% )";
+    } else if ( movingLightTripleNumber !== -1 ) {
+        movingLightCoordinateTripleNumber[movingLightTripleNumber-1].style.background = "radial-gradient( transparent " + movingLightPictureRadius + "%, #000000 " + movingLightPictureRadius + "%), linear-gradient(" + degree + "deg, rgb(" + color1Red + "," + color1Green + "," + color1Blue + ") " + color1Proportion + "% , rgb(" + color2Red + "," + color2Green + "," + color2Blue + ") " + color2Proportion + "% )";
     } else {
         for ( var i = 0 ; i < movingLightCoordinateTripleNumber.length ; i++ ) {
             movingLightCoordinateTripleNumber[i].style.background = "radial-gradient( transparent " + movingLightPictureRadius + "%, #000000 " + movingLightPictureRadius + "%), linear-gradient(" + degree + "deg, rgb(" + color1Red + "," + color1Green + "," + color1Blue + ") " + color1Proportion + "% , rgb(" + color2Red + "," + color2Green + "," + color2Blue + ") " + color2Proportion + "% )";
         }
-    }    
+    }
+
+    if ( opacity === -1 ) return 0;
 
     if ( changeTime > 0 && nowTime <= changeTime ) {
         if ( movingLightIO === 1 ) opacity = movingLightInsideFirstColor[3][movingLightNowNumber-1] + ( opacity - movingLightInsideFirstColor[3][movingLightNowNumber-1] ) / changeTime * nowTime;
@@ -2052,6 +2099,8 @@ function movingLightGradientColorChange(movingLightIO,movingLightNowNumber,color
 
     if ( changeway === 1 ) {
         movingLightCoordinateNumber.style.opacity = opacity;
+    } else if ( movingLightTripleNumber !== -1 ) {
+        movingLightCoordinateTripleNumber[movingLightTripleNumber-1].style.opacity = opacity;
     } else {
         for ( var i = 0 ; i < movingLightCoordinateTripleNumber.length ; i++ ) {
             movingLightCoordinateTripleNumber[i].style.opacity = opacity;
@@ -2413,7 +2462,7 @@ function logoboardLightColorDecision(logoboardLightNowNumber,colorRed,colorGreen
     let logoboardLightChangeColor = [];
 
     logoboardLightChangeColor[0] = ( colorRed + colorWhite ) / 2;
-    logoboardLightChangeColor[1] = ( colorGreen + colorWhite ) / 2;
+    logoboardLightChangeColor[1] = ( colorGreen * 3 + colorWhite * 2 ) / 5;
     logoboardLightChangeColor[2] = ( colorBlue * 3 + colorWhite ) / 4;
     
     let maxColor = 0;
@@ -2422,7 +2471,7 @@ function logoboardLightColorDecision(logoboardLightNowNumber,colorRed,colorGreen
     }
 
     logoboardCoordinateNumber.style.background = "linear-gradient(rgb(" + logoboardLightChangeColor[0] + "," + logoboardLightChangeColor[1] + "," + logoboardLightChangeColor[2] + "),transparent)";
-    logoboardCoordinateNumber.style.filter = "brightness(" + ( 200 - 100 / 255 * maxColor ) + "%)";
+    logoboardCoordinateNumber.style.filter = "brightness(" + ( 300 - 200 / 255 * maxColor ) + "%)";
 }
 
 function logoboardLightOFF(changeTime,settingNumber = 0) {
