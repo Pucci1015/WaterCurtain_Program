@@ -9,7 +9,7 @@ let performanceMusicNight = [];
 let performanceScriptURL = [ [] , [] ];
 let nowPerformanceNumber = 0;
 
-function jsSetting(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,nightMainThisPage,nightSubThisPage,led10FadeTime = 2000) {
+function jsSetting_Old(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,nightMainThisPage,nightSubThisPage,led10FadeTime = 2000) {
     let performanceOption = document.createElement('option');
     performanceOption.value = myFolderName;
     performanceOption.textContent = myOriginalName;
@@ -33,7 +33,7 @@ function jsSetting(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,ni
     nowPerformanceNumber++;
 }
 
-function jsSetting2(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMainThisPage,daySubThisPage,dayMusicArray,dayURL,myNightTitle,nightMainThisPage,nightSubThisPage,nightMusicArray,nightURL,led10FadeTime = 2000) {
+function jsSetting(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMainThisPage,daySubThisPage,dayMusicArray,dayURL,myNightTitle,nightMainThisPage,nightSubThisPage,nightMusicArray,nightURL,led10FadeTime = 2000) {
     let performanceOption = document.createElement('option');
     performanceOption.value = myFolderName;
     performanceOption.textContent = myOriginalName;
@@ -154,6 +154,7 @@ let manual = document.getElementById('manual');
 let manualBackground = document.getElementById('manual_background');
 let manualON = 0;
 let musicDefultVolume;
+music.preload = "auto";
 
 document.getElementById('manual_button1').addEventListener("click", function() {
     manual.style.display = "block";
@@ -207,9 +208,7 @@ function scriptScroll(i) {
 }
 
 function musicPlayDisplay() {
-    document.getElementById('music_img').src = "music_" + musicPlay + ".png";
-    
-    if ( musicPlay === 1 ) music.play();
+    if ( music.paused === true ) music.play();
     else music.pause();
 }
 
@@ -326,13 +325,12 @@ function musicChange(musicPN = 1) {
     }
 
     document.getElementById('music_now_number').innerHTML = musicNumber;
+    document.getElementById('music_img').src = "music_0.png";
     musicPlay = 0;
     musicVolumeMicrophone = 0;
     musicDefultVolume = musicVolume;
     micOnOff();
-    //music.load();
 
-    musicPlayDisplay();
     musicLoopDisplay();
     musicVolDisplay();
 }
@@ -377,13 +375,23 @@ music.addEventListener("timeupdate", function() {
     }
 });
 
+music.addEventListener("play", function() {
+    document.getElementById('music_img').src = "music_1.png";
+    musicPlay = 1;
+});
+
+music.addEventListener("pause", function() {
+    document.getElementById('music_img').src = "music_0.png";
+    musicPlay = 0;
+});
+
 music.addEventListener("ended", function() {
     musicChange();
+    music.load();
 });
 
 document.getElementById('music_play_button').addEventListener("click", function() {
     if ( musicChangePossible === 1 ) {
-        musicPlay = 1 - musicPlay;
         musicPlayDisplay();
     }
 });
@@ -603,6 +611,7 @@ function scriptDisplay(scriptData) {
         if ( scriptStyle === 1 || scriptStyle >= 3 && scriptStyle <= 5 || scriptStyle === 9 ) {
             let scriptImg = document.createElement('img');
             scriptImg.src = `script_${scriptStyle}.png`;
+            scriptImg.alt = "";
             scriptClone.getElementsByClassName("scriptImg")[0].appendChild(scriptImg);
         }
 
@@ -626,6 +635,7 @@ function scriptDisplay(scriptData) {
                 case 7:
                     let scriptAddImg = document.createElement('img');
                     scriptAddImg.src = `script_1.png`;
+                    scriptAddImg.alt = "";
                     scriptClone.getElementsByClassName("scriptImg")[0].appendChild(scriptAddImg);
                 case 8:
                     scriptClone.getElementsByClassName("scriptMusic")[0].innerHTML = "<br>" + scriptData[i][4];
@@ -814,7 +824,8 @@ document.addEventListener("keydown", (e) => {
     if ( key === 'Enter' ) {
         if ( musicChangePossible === 1 ) {
             if ( music.currentTime === 0 ) {
-                musicPlay = 1;
+                //musicPlay = 1;
+                musicPlayDisplay();
             } else {
                 musicChange();
                 let changeStyle;
@@ -822,18 +833,17 @@ document.addEventListener("keydown", (e) => {
                 if ( dnMusicSelect === 0 ) changeStyle = performanceMusicDay[performanceMusicNumber][musicNumber][0];
                 else changeStyle = performanceMusicNight[performanceMusicNumber][musicNumber][0];
 
-                if ( changeStyle === 1 ) musicPlay = 1;
-                else if ( changeStyle === 2 ) musicPlay = 0;
+                if ( changeStyle === 1 ) musicPlayDisplay();
+                else if ( changeStyle === 2 ) music.load();
             }
 
-            musicPlayDisplay();
         }
     } else if ( key === "Backspace" ) {
         if ( musicChangePossible === 1 ) {
-            musicPlay = 1 - musicPlay;
             musicPlayDisplay();
         }
     } else if ( code === 32 ) {
+        clearInterval(musicVolumeSetInterval);
         let pn;
         if ( musicVolumeMicrophone === 1 && musicVolume <= musicDefultVolume || musicVolumeMicrophone === 0 && musicVolume <= 0.5 ) pn = 0.1;
         else pn = -0.1;
@@ -1564,7 +1574,6 @@ function movingLightSetting(movingLightNowUseNumber = "nothing",movingLightOFFMo
         let startTime = Date.now();
         let movingLightClearTimeout = setInterval( function() {
             if ( Date.now() - startTime < 1000 ) {
-                console.log(movingLightNowUseNumber.length);
                 for ( var i = 0 ; i < movingLightNowUseNumber.length ; i++ ) {
                     clearTimeout(movingLightNowUseNumber[i]);
                 }
@@ -1635,7 +1644,6 @@ function movingLightOFF() {
     let movingLightMyNumber = movingLightSetting();
     let movingLightFadeTime = 1500;
     let movingLightSetTimeoutDelay = 0;
-    movingLightOFFON = 1;
 
     let movingLightInsideOFFColor = [ [] , [] , [] , [] ];
     let movingLightOutsideOFFColor = [ [] , [] , [] , [] ];
@@ -2167,6 +2175,7 @@ function movingLightBlurChange(movingLightIO,movingLightNowNumber,movingLightBlu
 }
 
 function movingLightTriplePositionDecision(movingLightIO,movingLightNowNumber,movingLightPictureLength,movingLightPictureSize,movingLightTripleRotate = 0) {
+    if ( movingLightIO === 1 && movingLightInsideImgType[movingLightNowNumber-1] >= 0 || movingLightIO === 2 && movingLightOutsideImgType[movingLightNowNumber-1] >= 0 ) return 0;
     let movingLightCenter = 50;
     movingLightPictureLength /= 2;
     for ( var i = 0 ; i < 3 ; i++ ) {
