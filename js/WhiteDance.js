@@ -1,4 +1,4 @@
-jsSetting("WhiteDance","White Dance",2,1,/*1,1*/0,0,2200);
+jsSetting_Old("WhiteDance","White Dance",2,1,/*1,1*/0,0,2200);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;

@@ -1,4 +1,4 @@
-jsSetting("SakuraMusou","桜夢想",2,1,2,1,2200);
+jsSetting_Old("SakuraMusou","桜夢想",2,1,2,1,2200);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;

@@ -1,4 +1,4 @@
-jsSetting("DolphinsCircleDance","イルカたちの輪舞",2,1,2,1,2000);
+jsSetting_Old("DolphinsCircleDance","イルカたちの輪舞",2,1,2,1,2000);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;

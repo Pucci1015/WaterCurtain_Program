@@ -1,4 +1,4 @@
-jsSetting("DolphinSummerCarnival","Dolphin Summer Carnival",2,2,0,0,3200);
+jsSetting_Old("DolphinSummerCarnival","Dolphin Summer Carnival",2,2,0,0,3200);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;

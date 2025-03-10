@@ -1,7 +1,7 @@
 let NorthernLightsJourney_Music = [ [ 0 ] , [ 2 , 0 , 1 ] , [ 1 , 1 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
 let BrightCrystal_Music = [ [ 0 ] , [ 2 , 0 , 1 ] ];
 
-jsSetting2("NorthernLightsJourney",2024,"冬","Northern Lights Journey","Northern Lights Journey",1,1,NorthernLightsJourney_Music,"https://script.google.com/macros/s/AKfycbzkr9ynh2MUOlX00v68WpGo5rJoBvyq3RRHMXoWKTkPNxTftB7JtusXK3KnItTp-L11nw/exec","BRIGHT CRYSTAL",1,1,BrightCrystal_Music,"https://script.google.com/macros/s/AKfycby2wRKlmfiZfpKt5rVHSCMSA6ZkGeNMfX_GXPwTW91mbR_T21fNX0Dct7YsIh6atUs4/exec",2200);
+jsSetting("NorthernLightsJourney",2024,"冬","Northern Lights Journey","Northern Lights Journey",1,1,NorthernLightsJourney_Music,"https://script.google.com/macros/s/AKfycbzkr9ynh2MUOlX00v68WpGo5rJoBvyq3RRHMXoWKTkPNxTftB7JtusXK3KnItTp-L11nw/exec","BRIGHT CRYSTAL",1,1,BrightCrystal_Music,"https://script.google.com/macros/s/AKfycby2wRKlmfiZfpKt5rVHSCMSA6ZkGeNMfX_GXPwTW91mbR_T21fNX0Dct7YsIh6atUs4/exec",2200);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -3493,10 +3493,12 @@ document.addEventListener("keydown", (e) => {
                                     movingLightColorChange(1,i,255,255,255,0);
                                     movingLightAngleChange(1,i,0,50,movingLightAngleFadeTime,nowTime[0]);
                                 }
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
-                                    movingLightColorChange(2,i,0,0,0,0);
-                                    movingLightAngleChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);
-                                }
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,0,0,0,0);
+
+                                movingLightAngleChange(2,1,-40,60,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,2,5,65,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,3,0,0,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,4,0,0,movingLightColorFadeTime,nowTime[0]);
                             } else {
                                 clearInterval(movingLightSetInterval[1]);
                             }
@@ -3565,10 +3567,12 @@ document.addEventListener("keydown", (e) => {
                                     movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
                                     movingLightAngleChange(1,i,0,50,movingLightColorFadeTime,nowTime[0]);
                                 }
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
-                                    movingLightColorChange(2,i,0,0,0,0);
-                                    movingLightAngleChange(2,i,0,70,movingLightColorFadeTime,nowTime[0]);
-                                }
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,0,0,0,0);
+
+                                movingLightAngleChange(2,1,-40,60,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,2,5,65,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,3,0,0,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,4,0,0,movingLightColorFadeTime,nowTime[0]);
                             } else {
                                 clearInterval(movingLightSetInterval[1]);
                             }

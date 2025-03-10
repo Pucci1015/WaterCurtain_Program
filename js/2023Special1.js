@@ -1,4 +1,4 @@
-jsSetting("2023Special1","2023 Special 1",0,0,2,2,3200);
+jsSetting_Old("2023Special1","2023 Special 1",0,0,2,2,3200);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;

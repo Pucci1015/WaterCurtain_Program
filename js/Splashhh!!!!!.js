@@ -1,4 +1,4 @@
-jsSetting("Splashhh!!!!!","Splashhh!!!!!",2,2,0,0,3200);
+jsSetting_Old("Splashhh!!!!!","Splashhh!!!!!",2,2,0,0,3200);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;

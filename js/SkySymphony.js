@@ -1,4 +1,4 @@
-jsSetting("SkySymphony","Sky Symphony",1,2,0,0,3200);
+jsSetting_Old("SkySymphony","Sky Symphony",1,2,0,0,3200);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;

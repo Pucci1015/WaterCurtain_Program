@@ -1,6 +1,6 @@
 let MemorableHolidays_Music = [ [ 0 ] , [ 2 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
 
-jsSetting2("MemorableHolidays",2024,"クリスマス","Memorable Holidays","Memorable Holidays",1,1,MemorableHolidays_Music,"https://script.google.com/macros/s/AKfycbz77_e_qvzGuejnwkZm3QliPPvbD9jtU8KrapDVfYMEq1jmAvrLbjrcqX7aQ0AEUtjg/exec","Bright Christmas Party",2,1,0,0,2200);
+jsSetting("MemorableHolidays",2024,"クリスマス","Memorable Holidays","Memorable Holidays",1,1,MemorableHolidays_Music,"https://script.google.com/macros/s/AKfycbz77_e_qvzGuejnwkZm3QliPPvbD9jtU8KrapDVfYMEq1jmAvrLbjrcqX7aQ0AEUtjg/exec","Bright Christmas Party",2,1,0,0,2200);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -5774,11 +5774,12 @@ document.addEventListener("keydown", (e) => {
                                     movingLightColorChange(1,i,255,255,255,0);
                                     movingLightAngleChange(1,i,0,50,movingLightAngleFadeTime,nowTime[0]);
                                 }
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
-                                    movingLightColorChange(2,i,0,0,0,0);
-                                    if ( i === 5 ) movingLightAngleChange(2,i,0,0,movingLightAngleFadeTime,nowTime[0]);
-                                    else movingLightAngleChange(2,i,0,70,movingLightAngleFadeTime,nowTime[0]);
-                                }
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,0,0,0,0);
+
+                                movingLightAngleChange(2,1,-40,60,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,2,5,65,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,3,0,0,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,4,0,0,movingLightColorFadeTime,nowTime[0]);
                             } else {
                                 clearInterval(movingLightSetInterval[1]);
                             }
@@ -5914,11 +5915,12 @@ document.addEventListener("keydown", (e) => {
                                     movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
                                     movingLightAngleChange(1,i,0,50,movingLightColorFadeTime,nowTime[0]);
                                 }
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
-                                    movingLightColorChange(2,i,0,0,0,0);
-                                    if ( i === 5 ) movingLightAngleChange(2,i,0,0,movingLightColorFadeTime,nowTime[0]);
-                                    else movingLightAngleChange(2,i,0,70,movingLightColorFadeTime,nowTime[0]);
-                                }
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,0,0,0,0);
+
+                                movingLightAngleChange(2,1,-40,60,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,2,5,65,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,3,0,0,movingLightColorFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,4,0,0,movingLightColorFadeTime,nowTime[0]);
                             } else {
                                 clearInterval(movingLightSetInterval[1]);
                             }

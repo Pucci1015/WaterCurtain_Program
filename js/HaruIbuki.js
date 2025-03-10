@@ -1,4 +1,4 @@
-jsSetting("HaruIbuki","春息吹-HARU IBUKI-",2,2,0,0,3200);
+jsSetting_Old("HaruIbuki","春息吹-HARU IBUKI-",2,2,0,0,3200);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -3769,7 +3769,7 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** ムービングライト HI10 *****///3:53
+                    /***** ムービングライト HI10 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
                     let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
 

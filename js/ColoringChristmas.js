@@ -1,4 +1,4 @@
-jsSetting("ColoringChristmas","Coloring Christmas",2,1,/*2,1,*/0,0,2200);
+jsSetting_Old("ColoringChristmas","Coloring Christmas",2,1,/*2,1,*/0,0,2200);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
