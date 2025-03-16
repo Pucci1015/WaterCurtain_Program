@@ -8113,6 +8113,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト SK1 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberSK1);
 
                     function parLightNumberSK1() {
@@ -8131,7 +8132,7 @@ document.addEventListener("keydown", (e) => {
                                     break;
                             }
 
-                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightSetInterval);
+                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
                         }                  
                     }
 
@@ -8139,13 +8140,14 @@ document.addEventListener("keydown", (e) => {
                     let startTime = Date.now();
 
                     /***** パーライト SK2 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberSK2);
 
                     function parLightNumberSK2() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,150,220,nowTime[0],parLightFadeTime,parLightSetInterval);                 
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,150,220,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                 
                     }
 
                 } else if ( subCode === 8 ) { //f8
@@ -8187,13 +8189,14 @@ document.addEventListener("keydown", (e) => {
                     let startTime = Date.now();
 
                     /***** パーライト SK3 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberSK3);
 
                     function parLightNumberSK3() {
                         let parLightFadeTime = 1500;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,0,0,nowTime[0],parLightFadeTime,parLightSetInterval);                 
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,0,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                 
                     }
 
                 } else if ( subCode === 10 ) { //f10
@@ -8252,13 +8255,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト defult *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberDefult);
 
                     function parLightNumberDefult() {
                         let parLightFadeTime = 600;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,0,0,nowTime[0],parLightFadeTime,parLightSetInterval);                 
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,0,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                 
                     }
 
                 } else if ( subCode === 12 ) { //f12
@@ -8287,13 +8291,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト SK4 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberSK4);
 
                     function parLightNumberSK4() {
                         let parLightFadeTime = 3500;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,80,150,255,nowTime[0],parLightFadeTime,parLightSetInterval);                 
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,80,150,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                 
                     }
 
                     setTimeout( function () {
@@ -8331,13 +8336,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト SK4 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberSK5);
 
                     function parLightNumberSK5() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,100,200,nowTime[0],parLightFadeTime,parLightSetInterval);                 
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,100,200,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                 
                     }
     
                 } else if ( subCode === 7 ) { //f7
@@ -8378,13 +8384,14 @@ document.addEventListener("keydown", (e) => {
                     let startTime = Date.now();
 
                     /***** パーライト defult *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberDefult);
 
                     function parLightNumberDefult() {
                         let parLightFadeTime = 2500;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,255,255,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,255,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {

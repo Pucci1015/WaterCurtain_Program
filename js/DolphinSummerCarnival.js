@@ -2790,16 +2790,16 @@ document.addEventListener("keydown", (e) => {
 
                     function waterLightNumberSS2() {
                         let waterLightFadeTime = 500;
-                        let waterLightRepeatTime = 3000;
                         let nowTime = nowTimeGet(startTime,waterLightFadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+                        let waterLightRepeatTime = 3000;
 
-                        let waterLightBasicColor = [ [ 150 , 255 , 0 ] , [ 0 , 150 , 255 ] ];
+                        let waterLightBasicColor = [ [ 150 , 255 , 0 ] , [ 0 , 80 , 255 ] ];
                         let waterLightLapTime = waterLightRepeatTime / waterLightNumber;
 
                         for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
                             let waterLightColor = [];
                             let j = waterLightNumber - i;
-                            let waterLightJudgeTime = ( nowTime[1] + waterLightLapTime * j ) % waterLightRepeatTime;
+                            let waterLightJudgeTime = ( nowTime[1] + waterLightLapTime * ( j + 2 ) ) % waterLightRepeatTime;
 
                             for ( var l = 0 ; l < 2 ; l++ ) {
                                 if ( waterLightJudgeTime < waterLightRepeatTime / 2 * ( l + 1 ) ) {
@@ -3959,16 +3959,16 @@ document.addEventListener("keydown", (e) => {
 
                     function waterLightNumberSS2() {
                         let waterLightFadeTime = 500;
-                        let waterLightRepeatTime = 3000;
                         let nowTime = nowTimeGet(startTime,waterLightFadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+                        let waterLightRepeatTime = 3000;
 
-                        let waterLightBasicColor = [ [ 150 , 255 , 0 ] , [ 0 , 150 , 255 ] ];
+                        let waterLightBasicColor = [ [ 150 , 255 , 0 ] , [ 0 , 80 , 255 ] ];
                         let waterLightLapTime = waterLightRepeatTime / waterLightNumber;
 
                         for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
                             let waterLightColor = [];
                             let j = waterLightNumber - i;
-                            let waterLightJudgeTime = ( nowTime[1] + waterLightLapTime * j ) % waterLightRepeatTime;
+                            let waterLightJudgeTime = ( nowTime[1] + waterLightLapTime * ( j + 2 ) ) % waterLightRepeatTime;
 
                             for ( var l = 0 ; l < 2 ; l++ ) {
                                 if ( waterLightJudgeTime < waterLightRepeatTime / 2 * ( l + 1 ) ) {
@@ -4886,13 +4886,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト DSC1 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberDSC1);
 
                     function parLightNumberDSC1() {
                         let parLightFadeTime = 1800;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,200,255,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,200,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {
@@ -4947,13 +4948,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト DSC2 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberDSC2);
 
                     function parLightNumberDSC2() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,220,180,255,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,220,180,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {
@@ -4977,13 +4979,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト DSC3 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberDSC3);
 
                     function parLightNumberDSC3() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,80,0,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,80,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {
@@ -5019,13 +5022,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト DSC4 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberDSC4);
 
                     function parLightNumberDSC4() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,255,0,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,255,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {
@@ -5048,13 +5052,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト DSC5 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberDSC5);
 
                     function parLightNumberDSC5() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,255,0,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,255,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {
@@ -5090,6 +5095,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト DSC6 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberDSC6);
 
                     function parLightNumberDSC6() {
@@ -5108,7 +5114,7 @@ document.addEventListener("keydown", (e) => {
                                     break;
                             }
 
-                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightSetInterval);
+                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
                         }
                     }
 
@@ -5172,6 +5178,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト DSC7 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberDSC7);
 
                     function parLightNumberDSC7() {
@@ -5185,7 +5192,7 @@ document.addEventListener("keydown", (e) => {
                             else if ( i <= 5 ) parLightColor = [ 255 , 150 , 0 ];
                             else parLightColor = [ 220 , 180 , 255 ];
 
-                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightSetInterval);
+                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
                         }
                     }
 
@@ -5221,20 +5228,21 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト DSC8 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberDSC8);
 
                     function parLightNumberDSC8() {
                         let parLightFadeTime = 4800;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        parLightColorFadeChange(1,255,0,0,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(2,255,130,0,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(3,255,255,0,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(4,130,255,0,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(5,0,255,0,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(6,0,255,255,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(7,0,0,255,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(8,255,0,255,nowTime[0],parLightFadeTime,parLightSetInterval);
+                        parLightColorFadeChange(1,255,0,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(2,255,130,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(3,255,255,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(4,130,255,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(5,0,255,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(6,0,255,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(7,0,0,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(8,255,0,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
 
                     }
 

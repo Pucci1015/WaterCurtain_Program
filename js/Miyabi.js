@@ -2726,16 +2726,16 @@ document.addEventListener("keydown", (e) => {
 
                     function waterLightNumberSS2() {
                         let waterLightFadeTime = 500;
-                        let waterLightRepeatTime = 3000;
                         let nowTime = nowTimeGet(startTime,waterLightFadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+                        let waterLightRepeatTime = 3000;
 
-                        let waterLightBasicColor = [ [ 150 , 255 , 0 ] , [ 0 , 150 , 255 ] ];
+                        let waterLightBasicColor = [ [ 150 , 255 , 0 ] , [ 0 , 80 , 255 ] ];
                         let waterLightLapTime = waterLightRepeatTime / waterLightNumber;
 
                         for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
                             let waterLightColor = [];
                             let j = waterLightNumber - i;
-                            let waterLightJudgeTime = ( nowTime[1] + waterLightLapTime * j ) % waterLightRepeatTime;
+                            let waterLightJudgeTime = ( nowTime[1] + waterLightLapTime * ( j + 2 ) ) % waterLightRepeatTime;
 
                             for ( var l = 0 ; l < 2 ; l++ ) {
                                 if ( waterLightJudgeTime < waterLightRepeatTime / 2 * ( l + 1 ) ) {
@@ -4761,13 +4761,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト MIYABI1 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberMIYABI1);
 
                     function parLightNumberMIYABI1() {
                         let parLightFadeTime = 1500;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,0,0,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,0,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {
@@ -4784,13 +4785,14 @@ document.addEventListener("keydown", (e) => {
                     let startTime = Date.now();
 
                     /***** パーライト MIYABI2 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberMIYABI2);
 
                     function parLightNumberMIYABI2() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,150,150,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,150,150,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {
@@ -4826,13 +4828,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト MIYABI3 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberMIYABI3);
 
                     function parLightNumberMIYABI3() {
                         let parLightFadeTime = 1500;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,255,255,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,255,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {
@@ -4849,13 +4852,14 @@ document.addEventListener("keydown", (e) => {
                     let startTime = Date.now();
 
                     /***** パーライト MIYABI4 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberMIYABI4);
 
                     function parLightNumberMIYABI4() {
                         let parLightFadeTime = 3000;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,150,255,nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,150,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {
@@ -4879,6 +4883,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト MIYABI5 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberMIYABI5);
 
                     function parLightNumberMIYABI5() {
@@ -4891,7 +4896,7 @@ document.addEventListener("keydown", (e) => {
                             if ( i % 4 <= 1 ) parLightColor = [ 0 , 150 , 255 ];
                             else parLightColor = [ 220 , 180 , 255 ];
 
-                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightSetInterval);
+                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
                         }                   
                     }
 
@@ -4933,6 +4938,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト MIYABI6 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberMIYABI6);
 
                     function parLightNumberMIYABI6() {
@@ -4947,7 +4953,7 @@ document.addEventListener("keydown", (e) => {
                             else if ( i % 4 === 3 ) parLightColor = [ 255 , 255 , 0 ];
                             else parLightColor = [ 0 , 255 , 0 ];
 
-                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightSetInterval);
+                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
                         }                   
                     }
 
@@ -4983,6 +4989,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト MIYABI7 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberMIYABI7);
 
                     function parLightNumberMIYABI7() {
@@ -4997,7 +5004,7 @@ document.addEventListener("keydown", (e) => {
                             else if ( i % 4 === 3 ) parLightColor = [ 220 , 180 , 255 ];
                             else parLightColor = [ 255 , 180 , 0 ];
 
-                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightSetInterval);
+                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
                         }                   
                     }
 
@@ -5035,6 +5042,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト MIYABI7 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberMIYABI7);
 
                     function parLightNumberMIYABI7() {
@@ -5047,7 +5055,7 @@ document.addEventListener("keydown", (e) => {
                             if ( i % 2 ) parLightColor = [ 0 , 150 , 255 ];
                             else parLightColor = [ 255 , 100 , 0 ];
 
-                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightSetInterval);
+                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
                         }                   
                     }
 

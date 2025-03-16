@@ -4534,6 +4534,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト WD1 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberWD1);
 
                     function parLightNumberWD1() {
@@ -4545,7 +4546,7 @@ document.addEventListener("keydown", (e) => {
                             if ( i % 2 === 1 ) parLightColor = [ 255 , 150 , 255 ];
                             else parLightColor = [ 255 , 255 , 255 ];
         
-                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightSetInterval);                   
+                            parLightColorFadeChange(i,parLightColor[0],parLightColor[1],parLightColor[2],nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                         }               
                     }
 
@@ -4581,13 +4582,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト WD2 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberWD2);
 
                     function parLightNumberWD2() {
                         let parLightFadeTime = 1800;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,50,80,255,nowTime[0],parLightFadeTime,parLightSetInterval);                                 
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,50,80,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                                 
                     }
 
                     setTimeout( function () {
@@ -4639,13 +4641,14 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト WD3 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberWD3);
 
                     function parLightNumberWD3() {
                         let parLightFadeTime = 3500;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,255,0,nowTime[0],parLightFadeTime,parLightSetInterval);                                 
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,255,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                                 
                     }
 
                     setTimeout( function () {
@@ -4679,20 +4682,21 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** パーライト WD4 *****/
+                    let parLightMyNumber = parLightSetting();
                     let parLightSetInterval = setInterval(parLightNumberWD4);
 
                     function parLightNumberWD4() {
                         let parLightFadeTime = 3800;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        parLightColorFadeChange(1,255,0,0,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(2,255,130,0,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(3,255,255,0,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(4,130,255,0,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(5,0,255,0,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(6,0,255,255,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(7,0,0,255,nowTime[0],parLightFadeTime,parLightSetInterval);
-                        parLightColorFadeChange(8,255,0,255,nowTime[0],parLightFadeTime,parLightSetInterval);
+                        parLightColorFadeChange(1,255,0,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(2,255,130,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(3,255,255,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(4,130,255,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(5,0,255,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(6,0,255,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(7,0,0,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
+                        parLightColorFadeChange(8,255,0,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
 
                     }
 
