@@ -86,32 +86,36 @@ document.addEventListener("keydown", (e) => {
             let ledSetInterval = setInterval(ledNumber5);
 
             function ledNumber5() {
-                let fadeTime = ledNow10FadeTime;//1600;
+                let fadeTime = ledNow10FadeTime;
                 let nowTime = nowTimeGet( startTime , fadeTime , ledUseNumber ,  ledSetInterval , ledMyNumber );
-
                 let repeatTime = 900;
+                let repeatTimeSplit = repeatTime / 2;
+
+                let lapTimeSplit = repeatTime * 8 / ledNumberInside;
 
                 for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
                     let j = ledNumberInside - i;
-                    let ledColorRed1 = ( nowTime[1] + repeatTime * 8 / ledNumberInside * j ) % repeatTime;
+                    let ledColorRed1 = ( nowTime[1] + lapTimeSplit * j ) % repeatTime;
                     let ledColorRed2;
                     if ( ledColorRed1 < repeatTime / 2 ) {
-                        ledColorRed2 = 255 / repeatTime * 2 * ledColorRed1;
+                        ledColorRed2 = 255 / repeatTimeSplit * ledColorRed1;
                     } else {
-                        ledColorRed2 = 255 - 255 / repeatTime * 2 * ( ledColorRed1 - repeatTime / 2 );
+                        ledColorRed2 = 255 - 255 / repeatTimeSplit * ( ledColorRed1 - repeatTimeSplit );
                     }
 
                     ledColorChange(1,i,ledColorRed2,255,255,nowTime[0],fadeTime);
                 }
 
+                lapTimeSplit = repeatTime * 8 / ledNumberOutside;
+
                 for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
                     let j = ledNumberOutside - i;
-                    let ledColorRed1 = ( nowTime[1] + repeatTime * 8 / ledNumberOutside * j ) % repeatTime;
+                    let ledColorRed1 = ( nowTime[1] + lapTimeSplit * j ) % repeatTime;
                     let ledColorRed2;
-                    if ( ledColorRed1 < repeatTime / 2 ) {
-                        ledColorRed2 = 255 / repeatTime * 2 * ledColorRed1;
+                    if ( ledColorRed1 < repeatTimeSplit ) {
+                        ledColorRed2 = 255 / repeatTimeSplit * ledColorRed1;
                     } else {
-                        ledColorRed2 = 255 - 255 / repeatTime * 2 * ( ledColorRed1 - repeatTime / 2 );
+                        ledColorRed2 = 255 - 255 / repeatTimeSplit * ( ledColorRed1 - repeatTimeSplit );
                     }
                     
                     ledColorChange(2,i,ledColorRed2,255,255,nowTime[0],fadeTime);
@@ -121,6 +125,12 @@ document.addEventListener("keydown", (e) => {
         } else if ( key === '0' ) {
             let startTime = Date.now();
             let waterCannonMyNumber = waterCannonSetting();
+            let waterCannonAngleArray = [];
+
+            for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
+                waterCannonAngleArray[i-1] = waterCannonAngle[i-1] * 100;
+            }
+
             let waterCannonSetInterval = setInterval(waterCannonNumber0);
             
             function waterCannonNumber0() {
@@ -129,7 +139,7 @@ document.addEventListener("keydown", (e) => {
                 for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
                     waterCannonJet(i,0,waterCannonMyNumber);
                     waterCannonColorChange(i,0,0,0);
-                    waterCannonAngleChange(i,0,1000,nowTime[0]);
+                    waterCannonAngleChange(i,0,waterCannonAngleArray[i-1],nowTime[0]);
                 }
 
                 if ( nowTime[0] >= 10000 ) {
@@ -174,20 +184,23 @@ document.addEventListener("keydown", (e) => {
             function waterCannonNumber2() {
                 let waterCannonColorFadeTime = 500;
                 let nowTime = nowTimeGet(startTime,waterCannonColorFadeTime,waterCannonUseNumber,waterCannonSetInterval,waterCannonMyNumber);
+                let waterCannonBasicColor = [ [ 230 , 255 , 0 ] , [ 0 , 255 , 0 ] , [ 0 , 255 , 130 ] ];
+                let waterCannonColorRepeatTime = 3000;
+                let waterCannonColorRepeatTimeSplit = waterCannonColorRepeatTime / 3;
+                let waterCannonColorLapTimeSplit = waterCannonColorRepeatTime / 6;
+
+                let waterCannonAngleFadeTime = 3000;
+                let waterCannonAngleRepeatTime = 3300;
+                let waterCannonAngleRepeatTimeSplit = waterCannonAngleRepeatTime / 2;
+                let waterCannonAngleFadeOutTime = 3500;
                 
                 for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ){
-                    if ( nowTime[0] >= 18800 ) {
-                        break;
-                    } else if ( nowTime[0] >= 17300 ) {
-                        nowTime[1] = 17300;
-                    }
+                    if ( nowTime[0] >= 18800 ) break;
+                    else if ( nowTime[0] >= 17300 ) nowTime[1] = 17300;
 
                     let j = waterCannonLightNumber - i;
                     let waterCannonColor = [];
-                    let waterCannonBasicColor = [ [ 230 , 255 , 0 ] , [ 0 , 255 , 0 ] , [ 0 , 255 , 130 ] ];
-                    let waterCannonColorRepeatTime = 3000;
-                    let waterCannonColorRepeatTimeSplit = waterCannonColorRepeatTime / 3;
-                    let waterCannonColorJudgeTime = ( nowTime[1] + waterCannonColorRepeatTime / 6 * j ) % waterCannonColorRepeatTime;
+                    let waterCannonColorJudgeTime = ( nowTime[1] + waterCannonColorLapTimeSplit * j ) % waterCannonColorRepeatTime;
 
                     for ( var l = 0 ; l < 3 ; l++ ) {
                         if ( waterCannonColorJudgeTime < waterCannonColorRepeatTimeSplit * ( l + 1 ) ) {
@@ -205,16 +218,9 @@ document.addEventListener("keydown", (e) => {
                     waterCannonColorChange(i,waterCannonColor[0],waterCannonColor[1],waterCannonColor[2]);
                 }
 
-                let waterCannonAngleFadeTime = 3000;
-                let waterCannonAngleRepeatTime = 3300;
-                let waterCannonAngleFadeOutTime = 3500;
-
                 if ( nowTime[0] < waterCannonAngleFadeTime ) {
-                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
-                        waterCannonAngleChange(i,60,waterCannonAngleFadeTime,nowTime[0]);
-                    }
+                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,60,waterCannonAngleFadeTime,nowTime[0]);
                 } else if ( nowTime[0] < waterCannonAngleFadeTime + waterCannonAngleRepeatTime * 3 ) {
-                    let waterCannonAngleRepeatTimeSplit = waterCannonAngleRepeatTime / 2;
                     let waterCannonNowAngle;
                     nowTime[2] = nowTime[0] - waterCannonAngleFadeTime;
 
@@ -224,44 +230,36 @@ document.addEventListener("keydown", (e) => {
                         waterCannonNowAngle = 30 + 30 / waterCannonAngleRepeatTimeSplit * ( nowTime[2] % waterCannonAngleRepeatTime - waterCannonAngleRepeatTimeSplit );
                     }
 
-                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
-                        waterCannonAngleChange(i,waterCannonNowAngle);
-                    }
+                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,waterCannonNowAngle);
                 } else if ( nowTime[0] < waterCannonAngleFadeTime + waterCannonAngleRepeatTime * 3 + waterCannonAngleFadeOutTime ) {
                     nowTime[3] = nowTime[0] - waterCannonAngleFadeTime - waterCannonAngleRepeatTime * 3;
 
                     let waterCannonNowAngle = 60 - 30 / waterCannonAngleFadeOutTime * nowTime[3];
 
-                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
-                        waterCannonAngleChange(i,waterCannonNowAngle);
-                    }
+                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,waterCannonNowAngle);
                 } else if ( nowTime[0] >= 19000 && nowTime[0] < 19300 ) {
                     nowTime[4] = nowTime[0] - 19000;
 
                     let waterCannonNowAngle = 30 - 30 / 300 * nowTime[4];
 
-                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
-                        waterCannonAngleChange(i,waterCannonNowAngle);
-                    }
+                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,waterCannonNowAngle);
                 } else if ( nowTime[0] >= 19300 ) {
                     clearInterval(waterCannonSetInterval);
                 }
             }
 
             waterCannonSetTimeout[0] = setTimeout( function() {
-                for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ){
-                    waterCannonJet(i,1,waterCannonMyNumber);
-                }
+                for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonJet(i,1,waterCannonMyNumber);
             },2600);
 
             waterCannonSetTimeout[1] = setTimeout( function() {
                 let cannonStartTime = Date.now();
                 let jetSetInterval = setInterval( function() {
                     let nowTime = nowTimeGet(cannonStartTime,0);
+
                     if ( nowTime[0] < 1000 ) {
-                        for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ){
-                            waterCannonJet(i,1 - nowTime[0] / 1000,waterCannonMyNumber);
-                        }
+                        let waterCannonJetStrength = 1 - nowTime[0] / 1000;
+                        for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonJet(i,waterCannonJetStrength,waterCannonMyNumber);
                     } else {                        
                         waterCannonOFF();
                         clearInterval(jetSetInterval);
@@ -281,16 +279,20 @@ document.addEventListener("keydown", (e) => {
 
                 let waterCannonColorStrength = 255 / waterCannonColorFadeTime * nowTime[0];
 
-                for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
-
-                    if ( nowTime[0] < waterCannonColorFadeTime ) {
-                        if ( ( i <= 12 && i % 2 === 1 ) || ( i >= 13 && i % 2 === 0 ) ) waterCannonColorChange(i,waterCannonColorStrength,0,waterCannonColorStrength);
-                        else waterCannonColorChange(i,waterCannonColorStrength,waterCannonColorStrength,0);
+                if ( nowTime[0] <= waterCannonColorFadeTime ) {
+                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ )  {
+                        if ( ( i <= 12 && i % 2 === 1 ) || ( i >= 13 && i % 2 === 0 ) ) {
+                            waterCannonColorChange(i,waterCannonColorStrength,0,waterCannonColorStrength);
+                        } else {
+                            waterCannonColorChange(i,waterCannonColorStrength,waterCannonColorStrength,0);
+                        }
                     }
+                }
 
-                    if ( nowTime[0] < waterCannonAngleFadeTime ) waterCannonAngleChange(i,80,waterCannonAngleFadeTime,nowTime[0]);
-                    else clearInterval(waterCannonSetInterval);
-
+                if ( nowTime[0] <= waterCannonAngleFadeTime ) {
+                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,80,waterCannonAngleFadeTime,nowTime[0]);
+                } else {
+                    clearInterval(waterCannonSetInterval);
                 }
             }
 
@@ -310,10 +312,9 @@ document.addEventListener("keydown", (e) => {
 
                     if ( nowTime[0] >= waterCannonAngleFadeOutTime ) clearInterval(jetSetInterval1);
 
-                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {                        
-                        if ( nowTime[0] < waterCannonJetFadeOutTime ) waterCannonJet(i,waterCannonJetStrength,waterCannonMyNumber);
-                        waterCannonAngleChange(i,waterCannonAngleStrength);
-                    }
+                    if ( nowTime[0] <= waterCannonJetFadeOutTime ) for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonJet(i,waterCannonJetStrength,waterCannonMyNumber);
+
+                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,waterCannonAngleStrength);
                 });
             },20500);
 
@@ -372,11 +373,11 @@ document.addEventListener("keydown", (e) => {
                 let cannonStartTime = Date.now();
                 let jetSetInterval = setInterval( function() {
                     let nowTime = nowTimeGet(cannonStartTime,0);
-                    if ( nowTime[0] < jetFadeOutTime ) {
+                    if ( nowTime[0] <= jetFadeOutTime ) {
+                        let waterCannonJetStrength = 0.8 - 0.8 / jetFadeOutTime * nowTime[0];
+                        let waterCannonColorNow = 255 - nowTime[0] / jetFadeOutTime * 255;
                         for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
-                            waterCannonJet(i,0.8 - 0.8 / jetFadeOutTime * nowTime[0],waterCannonMyNumber);
-
-                            let waterCannonColorNow = 255 - nowTime[0] / jetFadeOutTime * 255;
+                            waterCannonJet(i,waterCannonJetStrength,waterCannonMyNumber);                            
                             waterCannonColorChange(i,waterCannonColorNow,waterCannonColorNow,waterCannonColorNow);
                         }
                     } else {
@@ -395,10 +396,10 @@ document.addEventListener("keydown", (e) => {
                 let jetSetInterval = setInterval( function() {
                     let nowTime = nowTimeGet(cannonStartTime,0);
                     if ( nowTime[0] < jetFadeOutTime ) {
+                        let waterCannonJetStrength = 0.8 - 0.8 / jetFadeOutTime * nowTime[0];
+                        let waterCannonColorNow = 255 - nowTime[0] / jetFadeOutTime * 255;
                         for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
-                            waterCannonJet(i,0.8 - 0.8 / jetFadeOutTime * nowTime[0],waterCannonMyNumber);
-
-                            let waterCannonColorNow = 255 - nowTime[0] / jetFadeOutTime * 255;
+                            waterCannonJet(i,waterCannonJetStrength,waterCannonMyNumber);                            
                             waterCannonColorChange(i,waterCannonColorNow,waterCannonColorNow,waterCannonColorNow);
                         }
                     } else {
@@ -412,7 +413,8 @@ document.addEventListener("keydown", (e) => {
                 let jetSetInterval = setInterval( function() {
                     let nowTime = nowTimeGet(cannonStartTime,0);
                     if ( nowTime[0] < 13000 ) {
-                        for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,90 - 90 / 13000 * nowTime[0]);
+                        let waterCannonAngleStrength = 90 - 90 / 13000 * nowTime[0];
+                        for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,waterCannonAngleStrength);
                     } else {
                         waterCannonOFF();
                         clearInterval(jetSetInterval);
@@ -422,7 +424,7 @@ document.addEventListener("keydown", (e) => {
 
         } else if ( key === '5' ) {
             let startTime = Date.now();
-            let waterCannonAngleFadeTime = 2500;//22500,800
+            let waterCannonAngleFadeTime = 2500;
             let waterCannonJetOutTime = 800;
             let waterCannonAngleFadeOutTime = 2500;
             let waterCannonMyNumber = waterCannonSetting();
@@ -457,11 +459,14 @@ document.addEventListener("keydown", (e) => {
                     let nowTime = nowTimeGet(cannonStartTime,0);
 
                     let waterCannonColorNow = 1 - 1 / waterCannonJetOutTime * nowTime[0];
+                    let waterCannonColorNow1 = 150 * waterCannonColorNow;
+                    let waterCannonColorNow2 = 255 * waterCannonColorNow;
+                    let waterCannonJetStrength = 0.8 - 0.8 / waterCannonJetOutTime * nowTime[0];
                     if ( nowTime[0] <= waterCannonJetOutTime ) {
                         for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
                             if ( i % 6 <= 1 && i <= 19 && i >= 6 ) {
-                                waterCannonJet(i,0.8 - 0.8 / waterCannonJetOutTime * nowTime[0],waterCannonMyNumber);
-                                waterCannonColorChange(i,0,150*waterCannonColorNow,255*waterCannonColorNow);
+                                waterCannonJet(i,waterCannonJetStrength,waterCannonMyNumber);
+                                waterCannonColorChange(i,0,waterCannonColorNow1,waterCannonColorNow2);
                             }
                         }
                     } else {
@@ -476,9 +481,10 @@ document.addEventListener("keydown", (e) => {
                     let nowTime = nowTimeGet(cannonStartTime,0);
 
                     if ( nowTime[0] <= waterCannonAngleFadeOutTime ) {
+                        let waterCannonAngleStrength = 30 - 30 / waterCannonAngleFadeOutTime * nowTime[0];
                         for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
                             if ( i % 6 <= 1 && i <= 19 && i >= 6 ) {
-                                waterCannonAngleChange(i,30 - 30 / waterCannonAngleFadeOutTime * nowTime[0]);
+                                waterCannonAngleChange(i,waterCannonAngleStrength);
                             }
                         }
                     } else {
@@ -502,7 +508,7 @@ document.addEventListener("keydown", (e) => {
 
                 if ( nowTime[0] < 1000 ) for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonColorChange(i,0,0,0);
 
-                if ( nowTime[0] < waterCannonAngleFadeTime ) {
+                if ( nowTime[0] <= waterCannonAngleFadeTime ) {
                     for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,75,waterCannonAngleFadeTime,nowTime[0]);
                 } else {
                     clearInterval(waterCannonSetInterval);
@@ -512,16 +518,13 @@ document.addEventListener("keydown", (e) => {
             waterCannonSetTimeout[0] = setTimeout( function() {
                 let waterCannonSetInterval2 = setInterval(waterCannonNumber6_2);
                 let jetMany = [];
-                for ( var i = 0 ; i < waterCannonLightNumber ; i++ ) {
-                    jetMany[i] = 0;
-                }
+                for ( var i = 0 ; i < waterCannonLightNumber ; i++ ) jetMany[i] = 0;
 
                 function waterCannonNumber6_2() {
-                    let nowTime = nowTimeGet(startTime+1500,waterCannonAngleFadeTime,waterCannonUseNumber,waterCannonSetInterval2,waterCannonMyNumber);
-                    nowTime[2] = nowTime[0];
+                    let nowTime = nowTimeGet(startTime+1500,0,waterCannonUseNumber,waterCannonSetInterval2,waterCannonMyNumber);
                     let waterCannonJudgeTime = nowTime[0] % waterCannonRepeatTime;
 
-                    if ( nowTime[2] >= 18000 ) clearInterval(waterCannonSetInterval2);
+                    if ( nowTime[0] >= 18000 ) clearInterval(waterCannonSetInterval2);
                     
                     for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
                         let passing = 0;
@@ -531,7 +534,7 @@ document.addEventListener("keydown", (e) => {
                         if ( jetMany[i] <= 2 && ( ( waterCannonJudgeTime >= waterCannonRepeatTimeSplit * i && waterCannonJudgeTime < finishTime ) || ( passing === 1 && ( waterCannonJudgeTime >= waterCannonRepeatTimeSplit * i || waterCannonJudgeTime < finishTime ) ) ) ) {
                             let finishTime2 = ( waterCannonRepeatTimeSplit * i + waterCannonJetTime ) % waterCannonRepeatTime;
                             if ( !( waterCannonJudgeTime >= finishTime2 && waterCannonJudgeTime < finishTime || ( finishTime < finishTime2 && ( waterCannonJudgeTime >= finishTime2 || waterCannonJudgeTime < finishTime ) ) ) ) {
-                                if ( !( i >= 21 && nowTime[2] >= 16480 ) ) waterCannonColorChange(i,0,150,255);
+                                if ( !( i >= 21 && nowTime[0] >= 16480 ) ) waterCannonColorChange(i,0,150,255);
                                 if ( !( passing === 1 && nowTime[0] < waterCannonRepeatTimeSplit * i ) ) waterCannonJet(i,1,waterCannonMyNumber);
                             } else {
                                 if ( !( i >= 21 && jetMany[i] === 2 ) ) {
@@ -544,13 +547,13 @@ document.addEventListener("keydown", (e) => {
                                 waterCannonJet(i,0,waterCannonMyNumber);
                             }
                         } else {
-                            jetMany[i] = Math.trunc( nowTime[2] / waterCannonRepeatTime ) + 1;
+                            jetMany[i] = Math.trunc( nowTime[0] / waterCannonRepeatTime ) + 1;
                             waterCannonColorChange(i,0,0,0);
                             waterCannonJet(i,0,waterCannonMyNumber);
                         }
 
-                        if ( i >= 21 && nowTime[2] >= 16480 && nowTime[2] < 17480 ) {
-                            let waterCannonColorFadeTime = 1 - 1 / 1000 * ( nowTime[2] - 16480 );
+                        if ( i >= 21 && nowTime[0] >= 16480 && nowTime[0] < 17480 ) {
+                            let waterCannonColorFadeTime = 1 - 1 / 1000 * ( nowTime[0] - 16480 );
                             waterCannonColorChange(i,0,150*waterCannonColorFadeTime,255*waterCannonColorFadeTime);
                         }
                     }
@@ -564,7 +567,8 @@ document.addEventListener("keydown", (e) => {
                     let nowTime = nowTimeGet(startTime+19500,0,waterCannonUseNumber,waterCannonSetInterval3,waterCannonMyNumber);
 
                     if ( nowTime[0] < 8800 ) {
-                        for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,75 - 75 / 8800 * nowTime[0]);
+                        let waterCannonAngleStrength = 75 - 75 / 8800 * nowTime[0];
+                        for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,waterCannonAngleStrength);
                     } else {
                         waterCannonOFF();
                         clearInterval(waterCannonSetInterval3);
@@ -576,7 +580,6 @@ document.addEventListener("keydown", (e) => {
             let startTime = Date.now();
             let waterCannonAngleFadeTime = 1300;
             let waterCannonAngleFadeOutTime = 9000;
-            let jetFadeOutTime = 800;
             let waterCannonMyNumber = waterCannonSetting();
             let waterCannonSetInterval = setInterval(waterCannonNumber7);
 
@@ -612,9 +615,8 @@ document.addEventListener("keydown", (e) => {
                     let nowTime = nowTimeGet(cannonStartTime,0);
 
                     if ( nowTime[0] < waterCannonAngleFadeOutTime ) {
-                        for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
-                            waterCannonAngleChange(i,90 - 90 / waterCannonAngleFadeOutTime * nowTime[0]);
-                        }
+                        let waterCannonAngleStrength = 90 - 90 / waterCannonAngleFadeOutTime * nowTime[0];
+                        for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,waterCannonAngleStrength);
                     } else {
                         waterCannonOFF();
                         clearInterval(jetSetInterval);
@@ -642,7 +644,6 @@ document.addEventListener("keydown", (e) => {
 
                     if ( nowTime[0] <= waterCannonAngleFadeTime ) waterCannonAngleChange(i,70,waterCannonAngleFadeTime,nowTime[0]);
                     else clearInterval(waterCannonSetInterval);
-
                 }
             }
 
@@ -682,9 +683,7 @@ document.addEventListener("keydown", (e) => {
                         clearInterval(jetSetInterval1);
                     }
 
-                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {      
-                        waterCannonAngleChange(i,waterCannonAngleStrength);
-                    }
+                    for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) waterCannonAngleChange(i,waterCannonAngleStrength);
                 });
             },21500);
 
@@ -702,9 +701,7 @@ document.addEventListener("keydown", (e) => {
 
                 for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {
 
-                    if ( nowTime[0] < waterCannonColorFadeTime ) {
-                        waterCannonColorChange(i,waterCannonColorStrength,waterCannonColorStrength,waterCannonColorStrength);
-                    }
+                    if ( nowTime[0] < waterCannonColorFadeTime ) waterCannonColorChange(i,waterCannonColorStrength,waterCannonColorStrength,waterCannonColorStrength);
 
                     if ( nowTime[0] < waterCannonAngleFadeTime ) waterCannonAngleChange(i,80,waterCannonAngleFadeTime,nowTime[0]);
                     else clearInterval(waterCannonSetInterval);
@@ -729,7 +726,7 @@ document.addEventListener("keydown", (e) => {
                     if ( nowTime[0] >= waterCannonAngleFadeOutTime ) clearInterval(jetSetInterval1);
 
                     for ( var i = 1 ; i <= waterCannonLightNumber ; i++ ) {                        
-                        if ( nowTime[0] < waterCannonJetFadeOutTime ) waterCannonJet(i,waterCannonJetStrength,waterCannonMyNumber);
+                        if ( nowTime[0] <= waterCannonJetFadeOutTime ) waterCannonJet(i,waterCannonJetStrength,waterCannonMyNumber);
                         waterCannonAngleChange(i,waterCannonAngleStrength);
                     }
                 });
@@ -761,23 +758,24 @@ document.addEventListener("keydown", (e) => {
 
             spotLightChange(0,1300,startTime);
 
+            let parLightMyNumber = parLightSetting();
             var parLightSetInterval = setInterval(parLightNumber0);
 
             function parLightNumber0() {
-                let fadeTime = 2000;
+                let fadeTime = 2500;
                 var nowTime = nowTimeGet(startTime,fadeTime);
                 for ( var i = 1 ; i <= 10 ; i++ ) {
-                    parLightColorFadeChange(i,0,0,0,nowTime[0],fadeTime,parLightSetInterval);
+                    parLightColorFadeChange(i,0,0,0,nowTime[0],fadeTime,parLightMyNumber,parLightSetInterval);
                 }
             }
 
-            stageLightChange(0,1800,startTime);
+            stageLightChange(0,2500,startTime);
             
-            logoboardLightOFF(2300);
+            logoboardLightOFF(2500);
 
         } else if ( subCode === 1 ) { //f1
             let startTime = Date.now();
-            let fadeTime = 4200;
+            let fadeTime = 4000;
             
             if ( audienceLightStrength > 0 ) audienceON = 0;
             else audienceON = 1;
@@ -786,7 +784,7 @@ document.addEventListener("keydown", (e) => {
 
         } else if ( subCode === 2 ) { //f2
             let startTime = Date.now();
-            let fadeTime = 1800;
+            let fadeTime = 2000;
 
             if ( stageLightStrength > 0 ) stageON = 0;
             else stageON = 1;
@@ -795,7 +793,7 @@ document.addEventListener("keydown", (e) => {
 
         } else if ( subCode === 3 ) { //f3
             let startTime = Date.now();
-            let fadeTime = 1300;
+            let fadeTime = 2200;
             
             if ( spotLightShadowStrength > 0 ) spotON = 0;
             else spotON = 1;
@@ -805,21 +803,22 @@ document.addEventListener("keydown", (e) => {
         } else if ( subCode === 4 ) { //f4
             let startTime = Date.now();
 
-            let spotLightFadeTime = 1300;
+            let spotLightFadeTime = 2500;
             spotLightChange(0,spotLightFadeTime,startTime);
 
+            let parLightMyNumber = parLightSetting();
             var parLightSetInterval = setInterval(parLightNumber0);
 
             function parLightNumber0() {
-                let fadeTime = 2000;
+                let fadeTime = 2500;
                 var nowTime = nowTimeGet(startTime,fadeTime);
                 for ( var i = 1 ; i <= 10 ; i++ ) {
-                    parLightColorFadeChange(i,0,0,0,nowTime[0],fadeTime,parLightSetInterval);
+                    parLightColorFadeChange(i,0,0,0,nowTime[0],fadeTime,parLightMyNumber,parLightSetInterval);
                 }
             }
 
         } else if ( subCode === 5 ) { //f5
-            logoboardLightOFF(2300);
+            logoboardLightOFF(2500);
 
         }   
         

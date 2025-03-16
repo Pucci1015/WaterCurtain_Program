@@ -2,12 +2,13 @@
 
 var performanceNowSelect;
 let ledNow10FadeTime = 2000;
-let totalPage = [ [] , [] , [] , [] , [] ];
+let totalPage = [ [] , [] , [] , [] , [] , [] ];
 let performanceTitle = [ [] , [] , [] , [] ];
 let performanceMusicDay = [];
 let performanceMusicNight = [];
 let performanceScriptURL = [ [] , [] ];
 let nowPerformanceNumber = 0;
+let smokeFadeRatio = 2;
 
 function jsSetting_Old(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,nightMainThisPage,nightSubThisPage,led10FadeTime = 2000) {
     let performanceOption = document.createElement('option');
@@ -21,6 +22,7 @@ function jsSetting_Old(myFolderName,myOriginalName,dayMainThisPage,daySubThisPag
     totalPage[2][nowPerformanceNumber] = nightMainThisPage;
     totalPage[3][nowPerformanceNumber] = nightSubThisPage;
     totalPage[4][nowPerformanceNumber] = led10FadeTime;
+    totalPage[5][nowPerformanceNumber] = 2;
 
     for ( var i = 0 ; i < 4 ; i++ ) performanceTitle[i][nowPerformanceNumber] = "-";
 
@@ -33,7 +35,7 @@ function jsSetting_Old(myFolderName,myOriginalName,dayMainThisPage,daySubThisPag
     nowPerformanceNumber++;
 }
 
-function jsSetting(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMainThisPage,daySubThisPage,dayMusicArray,dayURL,myNightTitle,nightMainThisPage,nightSubThisPage,nightMusicArray,nightURL,led10FadeTime = 2000) {
+function jsSetting(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMainThisPage,daySubThisPage,dayMusicArray,dayURL,myNightTitle,nightMainThisPage,nightSubThisPage,nightMusicArray,nightURL,led10FadeTime = 2000,smokeFadeNowRatio = 2) {
     let performanceOption = document.createElement('option');
     performanceOption.value = myFolderName;
     performanceOption.textContent = myOriginalName;
@@ -45,6 +47,7 @@ function jsSetting(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMai
     totalPage[2][nowPerformanceNumber] = nightMainThisPage;
     totalPage[3][nowPerformanceNumber] = nightSubThisPage;
     totalPage[4][nowPerformanceNumber] = led10FadeTime;
+    totalPage[5][nowPerformanceNumber] = smokeFadeNowRatio;
 
     performanceTitle[0][nowPerformanceNumber] = myYear;
     performanceTitle[1][nowPerformanceNumber] = mySeason;
@@ -113,9 +116,10 @@ function dnScript() {
     pageText1.innerHTML = mainTotalPage;
     pageText2.innerHTML = subTotalPage;
     pageText3.innerHTML = mainNowPage;
-    pageText4.innerHTML = subNowPage;
-    
-}//ファンクションキー無効化
+    pageText4.innerHTML = subNowPage;    
+}
+
+//ファンクションキー無効化
 window.document.onkeydown = function(event){
     if ( event.keyCode >= 112 && event.keyCode <= 123 ) {
         event.keyCode = null;
@@ -431,9 +435,7 @@ var subCode = -1;
 var insCode = 45;
 var delCode = 0;
 var ua = window.navigator.userAgent.toLowerCase();
-if(ua.indexOf("mac os x") !== -1) {
-    insCode = 124;
-}
+if ( ua.indexOf("mac os x") !== -1 ) insCode = 124;
 
 var ub = window.navigator.userAgent.toLowerCase();
 if ( ub.indexOf("ipad") > -1 || ( ub.indexOf("macintosh") > -1 && "ontouchend" in document ) ) {
@@ -465,9 +467,14 @@ function performanceChange(dnNowSelectNumber = 0) {
     performanceNowSelect = performanceSelect.value;
 
     ledNow10FadeTime = totalPage[4][performanceSelect.selectedIndex];
+    smokeFadeRatio = totalPage[5][performanceSelect.selectedIndex];
 
     performanceTitleSizeChange();
 }
+
+performanceSelect.addEventListener("change", function() {
+    performanceChange();
+});
 
 let scriptPerformanceList;
 let scriptPerformanceNumber = -1;
@@ -596,9 +603,6 @@ function scriptDisplay(scriptData) {
                 musicTimeNumber.push(musicTimeNumberNow);
                 musicTimeNow = [];
                 musicTimeNumberNow = [];
-                /*musicTimeNow[musicTimeNumberProcessing] = scriptData[i][3];
-                musicTimeNumberNow[musicTimeNumberProcessing] = scriptNumber;
-                musicTimeNumberProcessing++;*/
             }
         }
         
@@ -932,8 +936,6 @@ document.addEventListener("keydown", (e) => {
                 if ( nowSelectedNumber === -1 ) nowSelectedNumber = performanceSelect.options.length - 1;
 
                 performanceSelect.options[nowSelectedNumber].selected = true;
-
-                performanceChange();
             } else if ( code === 39 ) {
                 if ( musicChangePossible === 1 ) {
                     musicChange();
@@ -943,8 +945,6 @@ document.addEventListener("keydown", (e) => {
                 if ( nowSelectedNumber === performanceSelect.options.length ) nowSelectedNumber = 0;
 
                 performanceSelect.options[nowSelectedNumber].selected = true;
-
-                performanceChange();
             }
         }
     }
@@ -1245,7 +1245,7 @@ for ( var i = 0 ; i < 3 ; i++ ) {
 }
 
 var parLightUseNumber = 0;
-let parLightAnimateOFF = 0;
+let parLightAnimateON = 0;
 
 function parLightColorArrayUpdate(parLightNowNumber,colorRed,colorGreen,colorBlue) {
     parLightColor[0][parLightNowNumber-1] = colorRed;
@@ -1253,22 +1253,18 @@ function parLightColorArrayUpdate(parLightNowNumber,colorRed,colorGreen,colorBlu
     parLightColor[2][parLightNowNumber-1] = colorBlue;
 }
 
-function parLightColorFadeChange(parLightNowNumber,colorRed,colorGreen,colorBlue,nowTime,fadeTime,parLightSetInterval) {
-
-    if ( parLightUseNumber > 0 ) {
-        parLightUseNumber = 0;
-        parLightAnimateOFF = 1;
-    }
+function parLightColorFadeChange(parLightNowNumber,colorRed,colorGreen,colorBlue,nowTime,fadeTime,parLightMyNumber,parLightSetInterval) {
+    if ( parLightUseNumber !== parLightMyNumber ) clearInterval(parLightSetInterval);
 
     if ( nowTime > fadeTime ) {
-        parLightColorArrayUpdate(parLightNowNumber,colorRed,colorGreen,colorBlue);        
-        parLightAnimateOFF = 0;
+        parLightColorArrayUpdate(parLightNowNumber,colorRed,colorGreen,colorBlue);
+        parLightAnimateON = 0;
         clearInterval(parLightSetInterval);
-    } else if ( parLightAnimateOFF === 1 )  {
+    } else if ( parLightAnimateON === 1 )  {
         
     } else {
         let changeTime = Math.sin( nowTime / fadeTime / 2 * Math.PI );
-        colorRed = parLightColor[0][parLightNowNumber-1] + ( colorRed - parLightColor[0][parLightNowNumber-1] ) * changeTime;/// fadeTime * nowTime;
+        colorRed = parLightColor[0][parLightNowNumber-1] + ( colorRed - parLightColor[0][parLightNowNumber-1] ) * changeTime;
         colorGreen = parLightColor[1][parLightNowNumber-1] + ( colorGreen - parLightColor[1][parLightNowNumber-1] ) * changeTime;
         colorBlue = parLightColor[2][parLightNowNumber-1] + ( colorBlue - parLightColor[2][parLightNowNumber-1] ) * changeTime;
     }
@@ -1280,8 +1276,9 @@ function parLightColorFadeChange(parLightNowNumber,colorRed,colorGreen,colorBlue
 
 }
 
-function parLightSetting() {
+function parLightSetting(animate = 0) {
     parLightUseNumber++;
+    if ( animate === 1 ) parLightAnimateON = 1;
     return parLightUseNumber;
 }
 
@@ -1289,9 +1286,7 @@ function parLightColorChange(parLightNowNumber,colorRed,colorGreen,colorBlue,par
     let parLightShadowCoordinateNumber = document.getElementById(`PAR_LIGHT_PARENT_${parLightNowNumber}`);
     let parLightCoordinateNumber = document.getElementById(`PAR_LIGHT_${parLightNowNumber}`);
 
-    if ( parLightUseNumber !== parLightMyNumber ) {
-        clearInterval(parLightSetInterval);
-    }
+    if ( parLightUseNumber !== parLightMyNumber ) clearInterval(parLightSetInterval);
 
     parLightCoordinateNumber.style.backgroundColor = "rgb(" + colorRed + "," + colorGreen + "," + colorBlue + ")";
     parLightShadowCoordinateNumber.style.filter = "drop-shadow( 0 0 8px rgb(" + colorRed + "," + colorGreen + "," + colorBlue + ") )";
@@ -1644,6 +1639,7 @@ function movingLightOFF() {
     let movingLightMyNumber = movingLightSetting();
     let movingLightFadeTime = 1500;
     let movingLightSetTimeoutDelay = 0;
+    movingLightOFFON = 1;
 
     let movingLightInsideOFFColor = [ [] , [] , [] , [] ];
     let movingLightOutsideOFFColor = [ [] , [] , [] , [] ];
@@ -1657,7 +1653,7 @@ function movingLightOFF() {
             if ( movingLightInsideImgType[i] >= 0 ) {
                 movingLightPictureChange(1,i+1,0,movingLightInsidePictureSize[i]);
             } else {
-                movingLightPictureChange(1,i+1,0,( 50 - movingLightInsideTripleType[0][i] / 2 ) / 100 * movingLightInsideTripleType[1][i] * 2 );/// movingLightInsidePictureSize[i] * 100);
+                movingLightPictureChange(1,i+1,0,( 50 - movingLightInsideTripleType[0][i] / 2 ) / 100 * movingLightInsideTripleType[1][i] * 2 );
             }
         } else {
             movingLightSetTimeoutDelay = 500;
@@ -1676,7 +1672,7 @@ function movingLightOFF() {
             if ( movingLightOutsideImgType[i] >= 0 ) {
                 movingLightPictureChange(2,i+1,0,movingLightOutsidePictureSize[i]);
             } else {
-                movingLightPictureChange(2,i+1,0,( 50 - movingLightOutsideTripleType[0][i] / 2 ) / 100 * movingLightOutsideTripleType[1][i] * 2 );// / movingLightOutsidePictureSize[i] * 100);
+                movingLightPictureChange(2,i+1,0,( 50 - movingLightOutsideTripleType[0][i] / 2 ) / 100 * movingLightOutsideTripleType[1][i] * 2 );
             }
         } else {
             movingLightSetTimeoutDelay = 500;
@@ -2295,7 +2291,6 @@ function movingLightDoublePicture(movingLightIO,movingLightNowNumber,movingLight
     }
 
     movingLightCoordinateNumber.style.background = "radial-gradient( #000000 69%, #000000 69%)";
-    //movingLightCoordinateNumber.style.opacity = "1.0";
 
     if ( movingLightIO === 1 ) {
         for ( var i = 0 ; i < 3 ; i++ ) {
@@ -2703,7 +2698,6 @@ function logoboardLightAnimateChange(logoboardLightNowNumber,colorRed,colorGreen
 
 //スモーク, スノウマシン
 var smokeON = 0;
-var smokeFadeRatio = 2;
 var smokePushONTime;
 var smokePushOFFTime;
 var smokeSetInterval;
