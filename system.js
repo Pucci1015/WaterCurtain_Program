@@ -1238,6 +1238,7 @@ document.addEventListener("keydown", (e) => {
 
 //パーライト
 var parLightColor = [ [], [], [] ];
+var parLightFirstColor = [ [], [], [] ];
 for ( var i = 0 ; i < 3 ; i++ ) {
     for ( var j = 0 ; j < parLightNumber ; j++ ) {
         parLightColor[i][j] = 0;
@@ -1257,28 +1258,35 @@ function parLightColorFadeChange(parLightNowNumber,colorRed,colorGreen,colorBlue
     if ( parLightUseNumber !== parLightMyNumber ) clearInterval(parLightSetInterval);
 
     if ( nowTime > fadeTime ) {
-        parLightColorArrayUpdate(parLightNowNumber,colorRed,colorGreen,colorBlue);
         parLightAnimateON = 0;
         clearInterval(parLightSetInterval);
     } else if ( parLightAnimateON === 1 )  {
         
     } else {
         let changeTime = Math.sin( nowTime / fadeTime / 2 * Math.PI );
-        colorRed = parLightColor[0][parLightNowNumber-1] + ( colorRed - parLightColor[0][parLightNowNumber-1] ) * changeTime;
-        colorGreen = parLightColor[1][parLightNowNumber-1] + ( colorGreen - parLightColor[1][parLightNowNumber-1] ) * changeTime;
-        colorBlue = parLightColor[2][parLightNowNumber-1] + ( colorBlue - parLightColor[2][parLightNowNumber-1] ) * changeTime;
+        colorRed = parLightFirstColor[0][parLightNowNumber-1] + ( colorRed - parLightFirstColor[0][parLightNowNumber-1] ) * changeTime;
+        colorGreen = parLightFirstColor[1][parLightNowNumber-1] + ( colorGreen - parLightFirstColor[1][parLightNowNumber-1] ) * changeTime;
+        colorBlue = parLightFirstColor[2][parLightNowNumber-1] + ( colorBlue - parLightFirstColor[2][parLightNowNumber-1] ) * changeTime;
     }
 
     let parLightShadowCoordinateNumber = document.getElementById(`PAR_LIGHT_PARENT_${parLightNowNumber}`);
     let parLightCoordinateNumber = document.getElementById(`PAR_LIGHT_${parLightNowNumber}`);
     parLightCoordinateNumber.style.backgroundColor = "rgb(" + colorRed + "," + colorGreen + "," + colorBlue + ")";
-    parLightShadowCoordinateNumber.style.filter = "drop-shadow( 0 0 " + parLightDiameter * 0.4 +"px rgb(" + colorRed + "," + colorGreen + "," + colorBlue + ") )";
-
+    parLightShadowCoordinateNumber.style.filter = "drop-shadow( 0 0 " + parLightDiameter * 0.4 + "px rgb(" + colorRed + "," + colorGreen + "," + colorBlue + ") )";
+    parLightColorArrayUpdate(parLightNowNumber,colorRed,colorGreen,colorBlue);
 }
 
 function parLightSetting(animate = 0) {
     parLightUseNumber++;
+
+    for ( var i = 0 ; i < 3 ; i++ ) {
+        for ( var j = 0 ; j < parLightNumber ; j++ ) {
+            parLightFirstColor[i][j] = parLightColor[i][j];
+        }
+    }
+    
     if ( animate === 1 ) parLightAnimateON = 1;
+
     return parLightUseNumber;
 }
 
