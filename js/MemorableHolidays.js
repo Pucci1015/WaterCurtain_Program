@@ -1538,7 +1538,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                    /***** ムービングライト MH1 *****/
+                    /***** ムービングライト MH2 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
                     let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0,startTime,335000);
 
@@ -3278,7 +3278,7 @@ document.addEventListener("keydown", (e) => {
                             
                         }
 
-                    });
+                    },movingLightSetTimeoutDelay[0]);
 
                     movingLightSetTimeoutDelay[1] = 6000;
                     movingLightSetTimeout[1] = setTimeout( function() {
@@ -3650,11 +3650,11 @@ document.addEventListener("keydown", (e) => {
                 } else if ( subCode === 8 ) { //f8
                     let startTime = Date.now();
 
-                    /***** パーライト DO1 *****/
+                    /***** パーライト MB2 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberDO1);
+                    let parLightSetInterval = setInterval(parLightNumberMB2);
 
-                    function parLightNumberDO1() {
+                    function parLightNumberMB2() {
                         let parLightFadeTime = 500;
                         let nowTime = nowTimeGet(startTime,0);
 

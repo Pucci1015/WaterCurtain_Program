@@ -5460,11 +5460,11 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                    /***** パーライト DO1 *****/
+                    /***** パーライト MB2 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberDO1);
+                    let parLightSetInterval = setInterval(parLightNumberMB2);
 
-                    function parLightNumberDO1() {
+                    function parLightNumberMB2() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
@@ -5495,9 +5495,9 @@ document.addEventListener("keydown", (e) => {
                             let logoboardColor = [ 0 , 0 , 0 ];
                             let logoboardLapTimeSplit = 0;
 
-                            if ( i <= 12 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * ( 3 + 3 / 12 * ( 12 - i ) );
-                            else if ( i <= 27 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * ( 2 / 12 * ( i - 13 ) );
-                            else if ( i <= 48 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * ( 1 + 3.5 / 21 * ( 88 - i ) );
+                            if ( i <= 12 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * ( 3 + Math.trunc( ( 12 - i ) / 3 ) );
+                            else if ( i <= 27 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * ( 0.5 * Math.trunc( ( i - 13 ) / 3 ) );
+                            else if ( i <= 48 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * ( 3 + 0.25 * Math.trunc( ( 87 - i ) / 3 ) );
 
                             let logoboardJudgeTime = ( nowTime[0] + logoboardLapTimeSplit ) % logoboardRepeatTime;
 
