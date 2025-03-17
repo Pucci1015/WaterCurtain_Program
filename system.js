@@ -247,11 +247,11 @@ function musicVolDisplay(nextVol = 0) {
     if ( musicVolume > 1 ) musicVolume = 1;
     else if ( musicVolume < 0 ) musicVolume = 0;
 
+    musicVolume = Math.round( musicVolume * 10 ) / 10;
     music.volume = musicVolume;
     let displayVol = Math.floor( 10 * musicVolume );
 
-    if ( displayVol === 10 ) document.getElementById('music_vol_value').innerHTML = displayVol;
-    else document.getElementById('music_vol_value').innerHTML = "0" + displayVol;
+    document.getElementById('music_vol_value').innerHTML = displayVol.toString().padStart( 2 , '0' );
 }
 
 function micOnOff() {
@@ -583,7 +583,6 @@ function scriptDisplay(scriptData) {
     musicTimeNumber = [];
     let musicTimeNow = [];
     let musicTimeNumberNow = [];
-    let musicNumberProcessing = 0;
     let musicTimeNumberProcessing = 0;
 
     for ( var i = 0 ; i < scriptData.length ; i++ ) {
@@ -597,7 +596,6 @@ function scriptDisplay(scriptData) {
         if ( scriptMusicNumber !== "" ) {
             scriptClone.getElementsByClassName("scriptMusic")[0].innerHTML = scriptMusicNumber;
             if ( !isNaN(scriptMusicNumber) && scriptMusicNumber >= 1 ) {
-                musicNumberProcessing = scriptMusicNumber;
                 musicTimeNumberProcessing = 0;
                 musicTime.push(musicTimeNow);
                 musicTimeNumber.push(musicTimeNumberNow);
@@ -646,7 +644,6 @@ function scriptDisplay(scriptData) {
                     scriptClone.getElementsByClassName("scriptTime")[0].innerHTML = scriptClone.getElementsByClassName("scriptTime")[0].innerHTML + "<br>" + scriptTimeDisplay(scriptData,i);
 
                     if ( !isNaN(scriptMusicNumber) ) {
-                        musicNumberProcessing = scriptMusicNumber;
                         musicTimeNumberProcessing = 0;
                         musicTime.push(musicTimeNow);
                         musicTimeNumber.push(musicTimeNumberNow);
@@ -860,7 +857,7 @@ document.addEventListener("keydown", (e) => {
         musicVolumeSetInterval = setInterval( function() {
             musicNowVolume += pn;
 
-            if ( musicNowVolume <= musicDefultVolume ) {
+            if ( musicVolumeMicrophone === 1 || musicNowVolume <= musicDefultVolume ) {
                 musicVolume = musicNowVolume;
                 musicVolDisplay();
 
@@ -936,6 +933,8 @@ document.addEventListener("keydown", (e) => {
                 if ( nowSelectedNumber === -1 ) nowSelectedNumber = performanceSelect.options.length - 1;
 
                 performanceSelect.options[nowSelectedNumber].selected = true;
+
+                performanceChange();
             } else if ( code === 39 ) {
                 if ( musicChangePossible === 1 ) {
                     musicChange();
@@ -945,6 +944,8 @@ document.addEventListener("keydown", (e) => {
                 if ( nowSelectedNumber === performanceSelect.options.length ) nowSelectedNumber = 0;
 
                 performanceSelect.options[nowSelectedNumber].selected = true;
+
+                performanceChange();
             }
         }
     }
