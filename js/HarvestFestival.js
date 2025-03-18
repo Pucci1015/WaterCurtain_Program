@@ -1,7 +1,7 @@
 let Harvestfestival_Music = [ [ 0 ] , [ 2 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 1 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
 let SHUSAIEMAKI_Music = [ [ 2 , 0 , 0.7 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
 
-jsSetting("Harvestfestival",2024,"秋","Harvest festival","Harvest festival",1,1,Harvestfestival_Music,"https://script.google.com/macros/s/AKfycbzDXouOIL-ouFmYor7BhmHbVUbexjk8_ayHAnWfp7OQOysERNfv68LX7STa1LicQba_tg/exec","秋彩絵巻",2,2,SHUSAIEMAKI_Music,"https://script.google.com/macros/s/AKfycbw6UtTOJ805QHvAqkqn3ifqpg0JxQzR-I1WGS0PXcgogGBh35inj3zV2Roprp83mYzPSw/exec",2200,8);
+jsSetting("Harvestfestival",2024,"秋","Harvest festival","Harvest festival",1,1,Harvestfestival_Music,"https://script.google.com/macros/s/AKfycbzDXouOIL-ouFmYor7BhmHbVUbexjk8_ayHAnWfp7OQOysERNfv68LX7STa1LicQba_tg/exec","秋彩絵巻",2,2,SHUSAIEMAKI_Music,"https://script.google.com/macros/s/AKfycbw6UtTOJ805QHvAqkqn3ifqpg0JxQzR-I1WGS0PXcgogGBh35inj3zV2Roprp83mYzPSw/exec",2200,8,1);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -21,9 +21,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,180,0,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,180,0,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
                     
                 } else if ( key === 'g' ) {
@@ -1554,9 +1552,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 1500;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,255,0,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,255,0,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト Hf3 *****/
@@ -3739,9 +3735,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,180,0,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,180,0,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** 看板照明 Hf6 *****/
@@ -3865,7 +3859,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 Hf1 *****/
@@ -3891,7 +3885,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 Hf2 *****/
@@ -3944,7 +3938,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 500);
                     },500);
 
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 Hf3 *****/
@@ -3988,7 +3982,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 300);
                     },300);
 
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 Hf4 *****/
@@ -4029,7 +4023,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 300);
                     },300);
 
-                } else if ( subCode === 10 ) { //f10
+                } else if ( subCode === 10 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 Hf7 *****/
@@ -4103,9 +4097,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2600;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,255,0,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,255,0,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
                     
                 } else if ( key === 'h' ) {
@@ -5629,9 +5621,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,180,0,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,180,0,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
                     
                 } else if ( key === ',' ) {
@@ -6750,7 +6740,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 EMAKI1 *****/
@@ -6777,7 +6767,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト FP1 *****/
@@ -6797,7 +6787,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.5,spotFadeTime,startTime + 800);
                     },800);
 
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト EMAKI1 *****/
@@ -6817,7 +6807,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.5,spotFadeTime,startTime + 1800);
                     },1800);
 
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト EMAKI2 *****/
@@ -6844,7 +6834,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 500);
                     },500);
 
-                } else if ( subCode === 10 ) { //f10
+                } else if ( subCode === 10 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト EMAKI1 *****/
@@ -6864,7 +6854,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 1000);
                     },1000);
 
-                } else if ( subCode === 11 ) { //f11
+                } else if ( subCode === 11 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト EMAKI3 *****/
@@ -6888,7 +6878,7 @@ document.addEventListener("keydown", (e) => {
                         audienceLightChange(1,audienceLightFadeTime,startTime + 800);
                     },800);
 
-                } else if ( subCode === 12 ) { //f12
+                } else if ( subCode === 12 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト OFF *****/
@@ -6911,7 +6901,7 @@ document.addEventListener("keydown", (e) => {
 
                 }
             } else if ( subNowPage === 2 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 EMAKI2 *****/

@@ -1,7 +1,7 @@
 let DolphinsCircleDance_Music = [ [ 0 ] , [ 2 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 1 , 0.5 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
 let BARA_Music = [ [ 0 ] , [ 2 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
 
-jsSetting("DolphinsCircleDance",2024,"初夏","イルカたちの輪舞","イルカたちの輪舞",2,1,DolphinsCircleDance_Music,"https://script.google.com/macros/s/AKfycbz-Mh7IktiQEYvqP-uQE4jQ8v2NOrddAUcNY4zcwjPFdcKj3LtMRYwv2SWIioI399ab/exec","美しき薔薇物語",2,1,BARA_Music,"https://script.google.com/macros/s/AKfycbzMXDadXF7ukMqvcQuFFqqc4LWObrw925Qv2tYP37pzC6CWA4uFdgN33C68FDoReQR6/exec",2200,8);
+jsSetting("DolphinsCircleDance",2024,"初夏","イルカたちの輪舞","イルカたちの輪舞",2,1,DolphinsCircleDance_Music,"https://script.google.com/macros/s/AKfycbz-Mh7IktiQEYvqP-uQE4jQ8v2NOrddAUcNY4zcwjPFdcKj3LtMRYwv2SWIioI399ab/exec","美しき薔薇物語",2,1,BARA_Music,"https://script.google.com/macros/s/AKfycbzMXDadXF7ukMqvcQuFFqqc4LWObrw925Qv2tYP37pzC6CWA4uFdgN33C68FDoReQR6/exec",2200,8,1);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -235,9 +235,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,255,0,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,255,0,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト DCD2 *****/
@@ -1826,9 +1824,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,150,150,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,150,150,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト DD4 *****/
@@ -4576,9 +4572,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,255,0,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,255,0,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト DCD7 *****/
@@ -4682,7 +4676,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DCD1 *****/
@@ -4703,7 +4697,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DCD2 *****/
@@ -4747,7 +4741,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 300);
                     },300);
                     
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DCD3 *****/
@@ -4791,7 +4785,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 300);
                     },300);
                     
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DCD4 *****/
@@ -4875,7 +4869,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 300);
                     },300);
                     
-                } else if ( subCode === 10 ) { //f10
+                } else if ( subCode === 10 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DCD5 *****/
@@ -4936,7 +4930,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 300);
                     },300);
                     
-                } else if ( subCode === 11 ) { //f11
+                } else if ( subCode === 11 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DCD5 *****/
@@ -8597,7 +8591,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 BARA1 *****/
@@ -8622,7 +8616,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト FP1 *****/
@@ -8644,7 +8638,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.5,spotFadeTime,startTime + 300);
                     },300);
                     
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 BARA2*****/
@@ -8688,7 +8682,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.5,spotFadeTime,startTime + 1000);
                     },1000);
                     
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト BARA2 *****/
@@ -8714,7 +8708,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.5,spotFadeTime,startTime + 800);
                     },800);
                     
-                } else if ( subCode === 10 ) { //f10
+                } else if ( subCode === 10 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 BARA3 *****/
@@ -8739,7 +8733,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
                     
-                } else if ( subCode === 11 ) { //f11
+                } else if ( subCode === 11 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト BARA3 *****/
@@ -8761,7 +8755,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.5,spotFadeTime,startTime + 600);
                     },600);
                     
-                } else if ( subCode === 12 ) { //f12
+                } else if ( subCode === 12 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 BARA4 *****/

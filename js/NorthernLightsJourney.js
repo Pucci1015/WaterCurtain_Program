@@ -1,7 +1,7 @@
 let NorthernLightsJourney_Music = [ [ 0 ] , [ 2 , 0 , 1 ] , [ 1 , 1 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
 let BrightCrystal_Music = [ [ 0 ] , [ 2 , 0 , 1 ] ];
 
-jsSetting("NorthernLightsJourney",2024,"冬","Northern Lights Journey","Northern Lights Journey",1,1,NorthernLightsJourney_Music,"https://script.google.com/macros/s/AKfycbzkr9ynh2MUOlX00v68WpGo5rJoBvyq3RRHMXoWKTkPNxTftB7JtusXK3KnItTp-L11nw/exec","BRIGHT CRYSTAL",1,1,BrightCrystal_Music,"https://script.google.com/macros/s/AKfycby2wRKlmfiZfpKt5rVHSCMSA6ZkGeNMfX_GXPwTW91mbR_T21fNX0Dct7YsIh6atUs4/exec",2200,2);
+jsSetting("NorthernLightsJourney",2024,"冬","Northern Lights Journey","Northern Lights Journey",1,1,NorthernLightsJourney_Music,"https://script.google.com/macros/s/AKfycbzkr9ynh2MUOlX00v68WpGo5rJoBvyq3RRHMXoWKTkPNxTftB7JtusXK3KnItTp-L11nw/exec","BRIGHT CRYSTAL",1,1,BrightCrystal_Music,"https://script.google.com/macros/s/AKfycby2wRKlmfiZfpKt5rVHSCMSA6ZkGeNMfX_GXPwTW91mbR_T21fNX0Dct7YsIh6atUs4/exec",2200,2,1);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -21,9 +21,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 3200;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,180,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,180,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
                     
                 } else if ( key === 'g' ) {
@@ -674,10 +672,9 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 3200;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,180,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,180,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
+
                     /***** ムービングライト NLJ2 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
                     let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0,startTime,210800);
@@ -2867,9 +2864,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 3200;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,180,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,180,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト NLJ5 *****/
@@ -3409,9 +3404,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,50,150,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,50,150,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
                     
                 } else if ( key === 'g' ) {
@@ -3958,9 +3951,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,0,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト Night5 *****/
@@ -4060,9 +4051,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,0,100,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,100,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                 } else if ( key === 's' ) {
@@ -4266,9 +4255,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,0,220,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,220,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
                     
                 } else if ( key === 'w' ) {
@@ -4403,9 +4390,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,50,120,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,50,120,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
                     
                 } else if ( key === 'y' ) {
@@ -4844,7 +4829,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 BC1 *****/
@@ -4872,7 +4857,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト BC1 *****/
@@ -4892,7 +4877,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.5,spotFadeTime,startTime + 2000);
                     },2000);
 
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 BC1 *****/

@@ -1,7 +1,7 @@
 let DolphinSplashFes_Music = [ [ 0 ] , [ 2 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
 let RURIHANABI_Music = [ [ 0 ] , [ 2 , 0 , 1 ] ];
 
-jsSetting("DolphinSplashFes",2024,"夏","Dolphin Splash Fes","Dolphin Splash Fes",2,1,DolphinSplashFes_Music,"https://script.google.com/macros/s/AKfycbz06YS0Twq8MKdzQIKIUrQa5hte78ZQt38s2dqUjAI8J5U5TfbijyFR4vMLg_6_XYwHkA/exec","瑠璃花火-Digital Fireworks-",1,1,0,0,2200,10);
+jsSetting("DolphinSplashFes",2024,"夏","Dolphin Splash Fes","Dolphin Splash Fes",2,1,DolphinSplashFes_Music,"https://script.google.com/macros/s/AKfycbz06YS0Twq8MKdzQIKIUrQa5hte78ZQt38s2dqUjAI8J5U5TfbijyFR4vMLg_6_XYwHkA/exec","瑠璃花火-Digital Fireworks-",1,1,0,0,2200,10,1);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -21,9 +21,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,0,150,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,120,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
                     
                 } else if ( key === 'g' ) {
@@ -2305,9 +2303,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 1000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,150,0,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,150,0,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト DSF3 *****/
@@ -5165,9 +5161,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,0,150,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,120,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト DSF6 *****/
@@ -5292,7 +5286,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DSF1 *****/
@@ -5320,7 +5314,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DSF2 *****/
@@ -5373,7 +5367,7 @@ document.addEventListener("keydown", (e) => {
                         stageLightChange(1,stageFadeTime,startTime + 400);
                     },400);
                     
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DSF3 *****/
@@ -5387,7 +5381,7 @@ document.addEventListener("keydown", (e) => {
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) logoboardLightFadeChage(i,-1,-1,-1,0,1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                     }
 
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DSF4 *****/
@@ -5436,7 +5430,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 400);
                     },400);    
 
-                } else if ( subCode === 10 ) { //f10
+                } else if ( subCode === 10 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DSF5 *****/
@@ -5479,7 +5473,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.5,spotFadeTime,startTime + 400);
                     },400);    
 
-                } else if ( subCode === 11 ) { //f11
+                } else if ( subCode === 11 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DCD4 *****/
@@ -5536,7 +5530,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 400);
                     },400);    
 
-                } else if ( subCode === 12 ) { //F12
+                } else if ( subCode === 12 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DSF6 *****/
@@ -7670,7 +7664,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 RURI1 *****/
@@ -7695,14 +7689,14 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
 
                     /***** スポットライト *****/
                     let spotFadeTime = 300;
                     spotLightChange(1,spotFadeTime,startTime);
                     
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
                     /***** パーライト RURI1 *****/
@@ -7722,7 +7716,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.5,spotFadeTime,startTime + 2000);
                     },2000);
 
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 RURI1 *****/

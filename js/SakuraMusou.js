@@ -1,6 +1,6 @@
 let SakuraMusou_Music = [ [ 2 , 0 , 0.7 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 0.7 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 1 , 1 ] ];
 
-jsSetting("SakuraMusou",2024,"春","桜夢想","桜夢想",2,1,SakuraMusou_Music,"https://script.google.com/macros/s/AKfycbw7QVVogIzsPW7zoV-aiXOSCUBYOqs6CoWh_Jrci84aukMFeucHsYMjgUEIVnpMc4LyKg/exec",0,0,0,0,0,2200,6);
+jsSetting("SakuraMusou",2024,"春","桜夢想","桜夢想",2,1,SakuraMusou_Music,"https://script.google.com/macros/s/AKfycbw7QVVogIzsPW7zoV-aiXOSCUBYOqs6CoWh_Jrci84aukMFeucHsYMjgUEIVnpMc4LyKg/exec",0,0,0,0,0,2200,6,1);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -20,9 +20,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 3200;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,0,180,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,180,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** 看板照明 SM1 *****/
@@ -111,57 +109,56 @@ document.addEventListener("keydown", (e) => {
                     let startTime = Date.now();
 
                     /***** 水中照明 SM2 *****/
-                    let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetTimeoutDelay = [];
-                    let waterLightSetInterval = [];
+                    let waterLightActualSetTimeoutDelay = 1500;
 
-                    waterLightSetTimeoutDelay[0] = 1500;
-                    waterLightSetTimeout[0] = setTimeout( function() {
-                        let waterLightChildrenMyNumber = waterLightSetting(waterLightMyNumber);
-                        waterLightSetInterval[1] = setInterval(waterLightNumberSM2_1);
-
-                        function waterLightNumberSM2_1() {
-                            let waterLightFadeTime = 4200;
-                            let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[0],0,waterLightUseNumber,waterLightSetInterval[1],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
-
-                            for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                                waterLightColorChange(i,0,0,0,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[1]);
+                    waterLightActualSetTimeout = setTimeout( function() {
+                        let waterLightMyNumber = waterLightSetting();
+                        let waterLightSetTimeoutDelay = [];
+                        let waterLightSetInterval = [];
+    
+                        waterLightSetTimeoutDelay[0] = 0;
+                        waterLightSetTimeout[0] = setTimeout( function() {
+                            let waterLightChildrenMyNumber = waterLightSetting(waterLightMyNumber);
+                            waterLightSetInterval[1] = setInterval(waterLightNumberSM2_1);
+    
+                            function waterLightNumberSM2_1() {
+                                let waterLightFadeTime = 4200;
+                                let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[0]+waterLightActualSetTimeoutDelay,0,waterLightUseNumber,waterLightSetInterval[1],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
+    
+                                for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,0,0,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[1]);
                             }
-                        }
-                        
-                    },waterLightSetTimeoutDelay[0]);
-
-                    waterLightSetTimeoutDelay[1] = 6500;
-                    waterLightSetTimeout[1] = setTimeout( function() {
-                        let waterLightChildrenMyNumber = waterLightSetting(waterLightMyNumber);
-                        waterLightSetInterval[2] = setInterval(waterLightNumberSM2_2);
-
-                        function waterLightNumberSM2_2() {
-                            let waterLightFadeTime = 2300;
-                            let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[1],0,waterLightUseNumber,waterLightSetInterval[2],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
-
-                            for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                                waterLightColorChange(i,0,255,0,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[2]);
+                            
+                        },waterLightSetTimeoutDelay[0]);
+    
+                        waterLightSetTimeoutDelay[1] = 4000;
+                        waterLightSetTimeout[1] = setTimeout( function() {
+                            let waterLightChildrenMyNumber = waterLightSetting(waterLightMyNumber);
+                            waterLightSetInterval[2] = setInterval(waterLightNumberSM2_2);
+    
+                            function waterLightNumberSM2_2() {
+                                let waterLightFadeTime = 2300;
+                                let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[1]+waterLightActualSetTimeoutDelay,0,waterLightUseNumber,waterLightSetInterval[2],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
+    
+                                for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,255,0,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[2]);
                             }
-                        }
-                        
-                    },waterLightSetTimeoutDelay[1]);
-
-                    waterLightSetTimeoutDelay[2] = 44700;
-                    waterLightSetTimeout[2] = setTimeout( function() {
-                        let waterLightChildrenMyNumber = waterLightSetting(waterLightMyNumber);
-                        waterLightSetInterval[3] = setInterval(waterLightNumberSM2_3);
-
-                        function waterLightNumberSM2_3() {
-                            let waterLightFadeTime = 500;
-                            let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[2],0,waterLightUseNumber,waterLightSetInterval[3],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
-
-                            for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                                waterLightColorChange(i,180,0,255,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[3]);
+                            
+                        },waterLightSetTimeoutDelay[1]);
+    
+                        waterLightSetTimeoutDelay[2] = 43200;
+                        waterLightSetTimeout[2] = setTimeout( function() {
+                            let waterLightChildrenMyNumber = waterLightSetting(waterLightMyNumber);
+                            waterLightSetInterval[3] = setInterval(waterLightNumberSM2_3);
+    
+                            function waterLightNumberSM2_3() {
+                                let waterLightFadeTime = 500;
+                                let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[2]+waterLightActualSetTimeoutDelay,0,waterLightUseNumber,waterLightSetInterval[3],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
+    
+                                for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,180,0,255,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[3]);
                             }
-                        }
-                        
-                    },waterLightSetTimeoutDelay[2]);
+                            
+                        },waterLightSetTimeoutDelay[2]);
+
+                    },waterLightActualSetTimeoutDelay);
 
                     /***** 看板照明 SM2 *****/
                     logoboardLightSetting(2);
@@ -982,7 +979,7 @@ document.addEventListener("keydown", (e) => {
                         
                     },ledSetTimeoutDelay[2]);
 
-                } else if ( key === 'o' ) {                    
+                } else if ( key === 'o' ) {
                     /***** ウォーターカーテン G *****/
                     waterCurtain("G");
 
@@ -1544,7 +1541,7 @@ document.addEventListener("keydown", (e) => {
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledRepeatTime = 1500;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
-                        let ledBasicColor = [ [ 255 , 0 , 240 ] , [ 240 , 200 , 255 ] ];
+                        let ledBasicColor = [ [ 255 , 0 , 240 ] , [ 240 , 220 , 255 ] ];
                         
                         let ledLapTimeSplit = 140;
 
@@ -1777,7 +1774,7 @@ document.addEventListener("keydown", (e) => {
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledRepeatTime = 1500;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
-                        let ledBasicColor = [ [ 255 , 0 , 240 ] , [ 240 , 200 , 255 ] ];
+                        let ledBasicColor = [ [ 255 , 0 , 240 ] , [ 240 , 220 , 255 ] ];
                         
                         let ledLapTimeSplit = 140;
 
@@ -2055,9 +2052,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,180,50,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,180,50,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
                     
                     /***** ムービングライト SM3 *****/
@@ -2170,9 +2165,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,200,0,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,200,0,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト SM4 *****/
@@ -4620,7 +4613,7 @@ document.addEventListener("keydown", (e) => {
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledRepeatTime = 1500;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
-                        let ledBasicColor = [ [ 255 , 0 , 240 ] , [ 240 , 200 , 255 ] ];
+                        let ledBasicColor = [ [ 255 , 0 , 240 ] , [ 240 , 220 , 255 ] ];
                         
                         let ledLapTimeSplit = 140;
 
@@ -4819,9 +4812,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 3500;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,150,150,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,150,150,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト SM6 *****/
@@ -5141,9 +5132,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 3500;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,150,150,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,150,150,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** 看板照明 SM8 *****/
@@ -5153,6 +5142,7 @@ document.addEventListener("keydown", (e) => {
         
                     function logoboardLightNumberSM8() {
                         let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
+
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) logoboardLightFadeChage(i,-1,-1,-1,-1,1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                     }
 
@@ -5160,7 +5150,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) {
                     let startTime = Date.now();
 
                     /***** パーライト SM1 *****/
@@ -5180,7 +5170,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 500);
                     },500);
 
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) {
                     let startTime = Date.now();
 
                     /***** 看板照明 SM3 *****/
@@ -5231,7 +5221,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 1500,spotLightNowAct);
                     },1500);
 
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) {
                     let startTime = Date.now();
 
                     /***** 看板照明 SM4 *****/
@@ -5270,7 +5260,7 @@ document.addEventListener("keydown", (e) => {
                     /***** スポットライト *****/
                     spotLightChange(1,500,startTime);
 
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) {
                     let startTime = Date.now();
 
                     /***** 看板照明 WD4 *****/
@@ -5336,7 +5326,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 400);
                     },400);
 
-                } else if ( subCode === 10 ) { //f10
+                } else if ( subCode === 10 ) {
                     let startTime = Date.now();
 
                     /***** パーライト SM4 *****/
@@ -5366,7 +5356,7 @@ document.addEventListener("keydown", (e) => {
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) logoboardLightFadeChage(i,-1,-1,-1,255,1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval,0);
                     }
 
-                } else if ( subCode === 11 ) { //f11
+                } else if ( subCode === 11 ) {
                     let startTime = Date.now();
 
                     /***** 看板照明 SM6 *****/
