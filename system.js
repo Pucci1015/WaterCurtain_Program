@@ -1,14 +1,15 @@
 //プルダウンメニュー
 
 var performanceNowSelect;
-let ledNow10FadeTime = 2000;
-let totalPage = [ [] , [] , [] , [] , [] , [] ];
+let totalPage = [ [] , [] , [] , [] , [] , [] , [] ];
 let performanceTitle = [ [] , [] , [] , [] ];
 let performanceMusicDay = [];
 let performanceMusicNight = [];
 let performanceScriptURL = [ [] , [] ];
 let nowPerformanceNumber = 0;
+let led10FadeTime = 2000;
 let smokeFadeRatio = 2;
+let waterCannon4FadeTime = 1;
 
 function jsSetting_Old(myFolderName,myOriginalName,dayMainThisPage,daySubThisPage,nightMainThisPage,nightSubThisPage,led10FadeTime = 2000) {
     let performanceOption = document.createElement('option');
@@ -23,6 +24,7 @@ function jsSetting_Old(myFolderName,myOriginalName,dayMainThisPage,daySubThisPag
     totalPage[3][nowPerformanceNumber] = nightSubThisPage;
     totalPage[4][nowPerformanceNumber] = led10FadeTime;
     totalPage[5][nowPerformanceNumber] = 2;
+    totalPage[6][nowPerformanceNumber] = 0;
 
     for ( var i = 0 ; i < 4 ; i++ ) performanceTitle[i][nowPerformanceNumber] = "-";
 
@@ -35,7 +37,7 @@ function jsSetting_Old(myFolderName,myOriginalName,dayMainThisPage,daySubThisPag
     nowPerformanceNumber++;
 }
 
-function jsSetting(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMainThisPage,daySubThisPage,dayMusicArray,dayURL,myNightTitle,nightMainThisPage,nightSubThisPage,nightMusicArray,nightURL,led10FadeTime = 2000,smokeFadeNowRatio = 2) {
+function jsSetting(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMainThisPage,daySubThisPage,dayMusicArray,dayURL,myNightTitle,nightMainThisPage,nightSubThisPage,nightMusicArray,nightURL,ledNow10FadeTime = 2000,smokeFadeNowRatio = 2,waterCannonNow4FadeTime = 1) {
     let performanceOption = document.createElement('option');
     performanceOption.value = myFolderName;
     performanceOption.textContent = myOriginalName;
@@ -46,8 +48,9 @@ function jsSetting(myFolderName,myYear,mySeason,myOriginalName,myDayTitle,dayMai
     totalPage[1][nowPerformanceNumber] = daySubThisPage;
     totalPage[2][nowPerformanceNumber] = nightMainThisPage;
     totalPage[3][nowPerformanceNumber] = nightSubThisPage;
-    totalPage[4][nowPerformanceNumber] = led10FadeTime;
+    totalPage[4][nowPerformanceNumber] = ledNow10FadeTime;
     totalPage[5][nowPerformanceNumber] = smokeFadeNowRatio;
+    totalPage[6][nowPerformanceNumber] = waterCannonNow4FadeTime;
 
     performanceTitle[0][nowPerformanceNumber] = myYear;
     performanceTitle[1][nowPerformanceNumber] = mySeason;
@@ -466,8 +469,9 @@ function performanceChange(dnNowSelectNumber = 0) {
 
     performanceNowSelect = performanceSelect.value;
 
-    ledNow10FadeTime = totalPage[4][performanceSelect.selectedIndex];
+    led10FadeTime = totalPage[4][performanceSelect.selectedIndex];
     smokeFadeRatio = totalPage[5][performanceSelect.selectedIndex];
+    waterCannon4FadeTime = totalPage[6][performanceSelect.selectedIndex];
 
     performanceTitleSizeChange();
 }
@@ -2182,13 +2186,13 @@ function movingLightBlurChange(movingLightIO,movingLightNowNumber,movingLightBlu
 function movingLightTriplePositionDecision(movingLightIO,movingLightNowNumber,movingLightPictureLength,movingLightPictureSize,movingLightTripleRotate = 0) {
     if ( movingLightIO === 1 && movingLightInsideImgType[movingLightNowNumber-1] >= 0 || movingLightIO === 2 && movingLightOutsideImgType[movingLightNowNumber-1] >= 0 ) return 0;
     let movingLightCenter = 50;
-    movingLightPictureLength /= 2;
+    movingLightPictureLength /= 2.15;
     for ( var i = 0 ; i < 3 ; i++ ) {
         let movingLightCoordinateNumber = document.getElementById(`MOVING_LIGHT_PICTURE_CONTENT_TRIPLE_${movingLightIO}-${movingLightNowNumber}-${i+1}`);
         let movingLightTripleRad = ( 60 + 120 * i - movingLightTripleRotate ) / 180 * Math.PI;
         movingLightCoordinateNumber.style.top = ( Math.cos(movingLightTripleRad) * movingLightPictureLength + movingLightCenter ) + "%";
         movingLightCoordinateNumber.style.left = ( Math.sin(movingLightTripleRad) * movingLightPictureLength + movingLightCenter ) + "%";
-        movingLightCoordinateNumber.style.width = ( ( 50 - movingLightPictureLength ) / 100 * movingLightPictureSize * 2 ) + "%";
+        movingLightCoordinateNumber.style.width = ( ( 50 - movingLightPictureLength ) / 100 * movingLightPictureSize * 1.8 ) + "%";
     }
 }
 
@@ -2240,7 +2244,6 @@ function movingLightTriplePictureChange(movingLightIO,movingLightNowNumber,movin
             }
             if ( movingLightIO === 1 ) movingLightCoordinateTripleNumber.style.opacity = movingLightInsideColor[3][movingLightNowNumber-1];
             else movingLightCoordinateTripleNumber.style.opacity = movingLightOutsideColor[3][movingLightNowNumber-1];
-            movingLightCoordinateTripleNumber.style.filter = "brightness(" + movingLightBrightness + "%) blur( " + movingLightBlur + "px)";
         }
 
         movingLightCoordinateTripleNumber = movingLightCoordinateNumber.getElementsByClassName(`MOVING_LIGHT_PICTURE_CONTENT_TRIPLE`);
@@ -2264,6 +2267,9 @@ function movingLightTriplePictureChange(movingLightIO,movingLightNowNumber,movin
             movingLightOutsideImgType[movingLightNowNumber-1] = -1 * movingLightPictureNumber - 1;
         }
     }
+
+    movingLightCoordinateTripleNumber = movingLightCoordinateNumber.getElementsByClassName(`MOVING_LIGHT_PICTURE_CONTENT_TRIPLE`);
+    for ( var i = 0 ; i < 3 ; i++ ) movingLightCoordinateTripleNumber[i].style.filter = "brightness(" + movingLightBrightness + "%) blur( " + movingLightBlur + "px)";
 
     movingLightCoordinateNumber.style.width = movingLightParentSize + "%";
 
