@@ -4983,7 +4983,7 @@ document.addEventListener("keydown", (e) => {
                         let movingLightAngleFadeTime = 500;
 
                         for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,50,100);
-                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,16,80,100,1);
+                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,16,80,100,2);
 
                         movingLightSetInterval[4] = setInterval(movingLightNumberEMAKI1_4);
 
@@ -5113,7 +5113,7 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[8] = setTimeout( function() {
                         movingLightSetting(0);
 
-                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,16,100,100,1);
+                        for ( var i = 1 ; i <= 4 ; i++ ) movingLightPictureChange(2,i,16,100,100,2);
 
                         let movingLightColorFadeTime = 2200;
 

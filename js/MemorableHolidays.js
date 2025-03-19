@@ -1535,7 +1535,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetting(0);
 
                         for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,100,100);
-                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,16,100,100,1);
+                        for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,16,100,100,2);
 
                         let movingLightAngleFadeTime = 500;
 
@@ -1587,9 +1587,9 @@ document.addEventListener("keydown", (e) => {
 
                         function movingLightNumberMH2_0() {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],movingLightColorFadeTime,movingLightUseNumber,movingLightSetInterval[0],movingLightMyNumber);
-                            let movingLightRotateDeg = 360/30000*(nowTime[0]%30000);
+                            let movingLightRotateDeg = 360 / 30000 * ( nowTime[0] % 30000 );
 
-                            for ( var i = 1 ; i <= 4 ; i++ ) movingLightRotateChange(2,i,movingLightRotateDeg);
+                            for ( var i = 1 ; i <= 4 ; i++ ) movingLightRotateChange(2,i,movingLightRotateDeg + 90 * ( i - 1 ));
                             
                         }
 
