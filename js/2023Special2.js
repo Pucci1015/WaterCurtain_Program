@@ -1,4 +1,6 @@
-jsSetting_Old("2023Special2","2023 Special 2",0,0,1,1,2200);
+let Y2023Special2_Music = [ [ 0 ] , [ 2 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
+
+jsSetting("2023Special2",2023,"特別","2023 Special 2",0,0,0,0,0,"SEVENTEEN FOLLOW THE CITY NIGHT AQUARIUM",1,1,Y2023Special2_Music,"https://script.google.com/macros/s/AKfycbzRUsF9ZK8Y7xDmeIj5pQH5kLDsiqIF_7GzrC73smTNierpgMDOP029pfC1SnQvzX3F/exec",2200,5,0);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -58,11 +60,11 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** 水中照明 CC1 *****/
+                    /***** 水中照明 SEVEN1 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberCC1);
+                    let waterLightSetInterval = setInterval(waterLightNumberSEVEN1);
 
-                    function waterLightNumberCC1() {
+                    function waterLightNumberSEVEN1() {
                         let waterLightFadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,waterLightFadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
                         let waterLightRepeatTime = 16000;
@@ -88,7 +90,7 @@ document.addEventListener("keydown", (e) => {
                 } else if ( key === 'g' ) {
                     let startTime = Date.now();
 
-                    /***** ウォーターカーテン BT *****/
+                    /***** ウォーターカーテン SEVEN1 *****/
                     waterCurtain("A");
                     waterCurtainActualSetTimeout[1] = setTimeout( function() {
                         waterCurtain("AN",0);
@@ -1426,9 +1428,9 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト SEVEN1 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0,startTime,210500);
 
-                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeoutDelay[0] = 10;
                     movingLightSetTimeout[0] = setTimeout( function() {
                         movingLightSetting(0);
                         
@@ -1458,7 +1460,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetInterval[2] = setInterval(movingLightNumberSEVEN1_2);
 
                         function movingLightNumberSEVEN1_2() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],13000,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],12990,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
                             
                             for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
                                 
@@ -1835,9 +1837,9 @@ document.addEventListener("keydown", (e) => {
 
                         let movingLightColorFadeTime = 200;
 
-                        movingLightSetInterval[14] = setInterval(movingLightNumberSEVEN2_14);
+                        movingLightSetInterval[14] = setInterval(movingLightNumberSEVEN1_14);
 
-                        function movingLightNumberSEVEN2_14() {
+                        function movingLightNumberSEVEN1_14() {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[14],0,movingLightUseNumber,movingLightSetInterval[14],movingLightMyNumber);
 
                             if ( nowTime[0] <= movingLightColorFadeTime ) {
@@ -1931,9 +1933,9 @@ document.addEventListener("keydown", (e) => {
 
                         let movingLightAngleFadeTime = 1000;
                         
-                        movingLightSetInterval[15] = setInterval(movingLightNumberSEVEN2_15);
+                        movingLightSetInterval[15] = setInterval(movingLightNumberSEVEN1_15);
 
-                        function movingLightNumberSEVEN2_15() {
+                        function movingLightNumberSEVEN1_15() {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[18],0,movingLightUseNumber,movingLightSetInterval[15],movingLightMyNumber);
 
                             if ( nowTime[0] <= movingLightAngleFadeTime ) {
@@ -2123,7 +2125,7 @@ document.addEventListener("keydown", (e) => {
                 } else if ( key === 'h' ) {
                     let startTime = Date.now();
 
-                    /***** ウォーターカーテン BU *****/
+                    /***** ウォーターカーテン SEVEN2 *****/
                     waterCurtain("A");
                     waterCurtainActualSetTimeout[1] = setTimeout( function() {
                         waterCurtain("K",0);
@@ -3200,6 +3202,22 @@ document.addEventListener("keydown", (e) => {
                     let waterLightSetTimeoutDelay = [];
                     let waterLightSetInterval = [];
 
+                    waterLightSetTimeoutDelay[0] = 0;
+                    waterLightSetTimeout[0] = setTimeout( function() {
+                        let waterLightChildrenMyNumber = waterLightSetting(waterLightMyNumber);
+                        waterLightSetInterval[0] = setInterval(waterLightNumberSEVEN3_0);
+
+                        function waterLightNumberSEVEN3_0() {
+                            let waterLightFadeTime = 400;
+                            let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[0],waterLightFadeTime,waterLightUseNumber,waterLightSetInterval[0],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
+                            
+                            for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
+                                waterLightColorChange(i,0,0,255,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[0]);
+                            }
+                        }
+                        
+                    },waterLightSetTimeoutDelay[0]);
+
                     waterLightSetTimeoutDelay[1] = 1000;
                     waterLightSetTimeout[1] = setTimeout( function() {
                         let waterLightChildrenMyNumber = waterLightSetting(waterLightMyNumber);
@@ -3799,9 +3817,9 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト SEVEN2 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0,startTime,192800);
 
-                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeoutDelay[0] = 10;
                     movingLightSetTimeout[0] = setTimeout( function() {
                         movingLightSetting(0);
                         
@@ -3813,7 +3831,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetInterval[1] = setInterval(movingLightNumberSEVEN2_1);
 
                         function movingLightNumberSEVEN2_1() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],7000,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],6990,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
                             let movingLightAngleRepeatTime = 13500;
                             let angleXYCenter = 0;
                             let angleZCenter = -70;
@@ -4254,9 +4272,9 @@ document.addEventListener("keydown", (e) => {
 
                         let movingLightColorFadeTime = 1000;
 
-                        movingLightSetInterval[14] = setInterval(movingLightNumberSEVEN3_14);
+                        movingLightSetInterval[14] = setInterval(movingLightNumberSEVEN2_14);
 
-                        function movingLightNumberSEVEN3_14() {
+                        function movingLightNumberSEVEN2_14() {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[12],0,movingLightUseNumber,movingLightSetInterval[14],movingLightMyNumber);
 
                             if ( nowTime[0] <= movingLightColorFadeTime ) {
@@ -4531,7 +4549,7 @@ document.addEventListener("keydown", (e) => {
                                 for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,255,255,0,1,movingLightColorFadeTime,nowTime[0],1);
                             }
 
-                            let movingLightRotateDeg = -360/45000*nowTime[0]+60;
+                            let movingLightRotateDeg = -360/45000*(nowTime[0]%45000)+60;
 
                             for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightTripleRotateChange(1,i,movingLightRotateDeg);
 
@@ -4920,7 +4938,7 @@ document.addEventListener("keydown", (e) => {
                 } else if ( key === 'i' ) {
                     let startTime = Date.now();
 
-                    /***** ウォーターカーテン BV *****/
+                    /***** ウォーターカーテン SEVEN3 *****/
                     waterCurtain("A");
                     waterCurtainActualSetTimeout[1] = setTimeout( function() {
                         waterCurtain("AT",0);
@@ -5455,9 +5473,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[17] = 64000;
                     ledSetTimeout[17] = setTimeout( function() {
                         let ledChildrenMyNumber = ledSetting(ledMyNumber);
-                        ledSetInterval[14] = setInterval(ledNumberSEVEN3_14);
+                        ledSetInterval[14] = setInterval(ledNumberSEVEN4_14);
                         
-                        function ledNumberSEVEN3_14() {
+                        function ledNumberSEVEN4_14() {
                             let ledFadeTime = 600;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[17],ledFadeTime,ledUseNumber,ledSetInterval[14],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
                             
@@ -5696,9 +5714,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[24] = 110000;
                     ledSetTimeout[24] = setTimeout( function() {
                         let ledChildrenMyNumber = ledSetting(ledMyNumber);
-                        ledSetInterval[20] = setInterval(ledNumberSEVEN3_20);
+                        ledSetInterval[20] = setInterval(ledNumberSEVEN4_20);
                         
-                        function ledNumberSEVEN3_20() {
+                        function ledNumberSEVEN4_20() {
                             let ledFadeTime = 700;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[24],ledFadeTime,ledUseNumber,ledSetInterval[20],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
                             
@@ -5828,9 +5846,9 @@ document.addEventListener("keydown", (e) => {
                     ledSetTimeoutDelay[30] = 128000;
                     ledSetTimeout[30] = setTimeout( function() {
                         let ledChildrenMyNumber = ledSetting(ledMyNumber);
-                        ledSetInterval[14] = setInterval(ledNumberSEVEN3_14);
+                        ledSetInterval[14] = setInterval(ledNumberSEVEN4_14);
                         
-                        function ledNumberSEVEN3_14() {
+                        function ledNumberSEVEN4_14() {
                             let ledFadeTime = 600;
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[30],ledFadeTime,ledUseNumber,ledSetInterval[14],ledMyNumber,ledUseChildrenNumber,ledChildrenMyNumber);
                             
@@ -6565,9 +6583,9 @@ document.addEventListener("keydown", (e) => {
                     waterLightSetTimeoutDelay[12] = 32000;
                     waterLightSetTimeout[12] = setTimeout( function() {
                         let waterLightChildrenMyNumber = waterLightSetting(waterLightMyNumber);
-                        waterLightSetInterval[9] = setInterval(waterLightNumberSEVEN3_9);
+                        waterLightSetInterval[9] = setInterval(waterLightNumberSEVEN4_9);
 
-                        function waterLightNumberSEVEN3_9() {
+                        function waterLightNumberSEVEN4_9() {
                             let waterLightFadeTime = 300;
                             let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[12],waterLightFadeTime,waterLightUseNumber,waterLightSetInterval[9],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
 
@@ -6581,9 +6599,9 @@ document.addEventListener("keydown", (e) => {
                     waterLightSetTimeoutDelay[13] = 32500;
                     waterLightSetTimeout[13] = setTimeout( function() {
                         let waterLightChildrenMyNumber = waterLightSetting(waterLightMyNumber);
-                        waterLightSetInterval[10] = setInterval(waterLightNumberSEVEN3_10);
+                        waterLightSetInterval[10] = setInterval(waterLightNumberSEVEN4_10);
 
-                        function waterLightNumberSEVEN3_10() {
+                        function waterLightNumberSEVEN4_10() {
                             let waterLightFadeTime = 300;
                             let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[12],waterLightFadeTime,waterLightUseNumber,waterLightSetInterval[10],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
                             
@@ -7185,9 +7203,9 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト SEVEN3 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0,startTime,209300);
 
-                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeoutDelay[0] = 10;
                     movingLightSetTimeout[0] = setTimeout( function() {
                         movingLightSetting(0);
                         
@@ -7199,7 +7217,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetInterval[1] = setInterval(movingLightNumberSEVEN3_1);
 
                         function movingLightNumberSEVEN3_1() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],34000,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],33990,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
                             let movingLightAngleRepeatTime = 9500;
                             let angleXYCenter = -150;
                             let angleZCenter = -70;
@@ -7531,14 +7549,14 @@ document.addEventListener("keydown", (e) => {
                                 movingLightColorChange(1,3,255,255,0,0);
                                 movingLightColorChange(1,4,255,0,220,0);
 
-                                movingLightAngleFadeChange(2,1,-40,80,movingLightAngleFadeTime,nowTime[0]);
-                                movingLightAngleFadeChange(2,2,-110,85,movingLightAngleFadeTime,nowTime[0]);
-                                movingLightAngleFadeChange(2,3,-110,85,movingLightAngleFadeTime,nowTime[0]);
-                                movingLightAngleFadeChange(2,4,40,80,movingLightAngleFadeTime,nowTime[0]);
-                                movingLightAngleFadeChange(2,5,70,70,movingLightAngleFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,1,-40,80,movingLightAngleFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,2,-110,85,movingLightAngleFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,3,-110,85,movingLightAngleFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,4,40,80,movingLightAngleFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,5,70,70,movingLightAngleFadeTime,nowTime[0]);
                             }
 
-                            let movingLightRotateDeg = -360/35000*nowTime[0];
+                            let movingLightRotateDeg = -360/35000*(nowTime[0]%35000);
 
                             for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightTripleRotateChange(2,i,movingLightRotateDeg);
                             
@@ -7945,14 +7963,14 @@ document.addEventListener("keydown", (e) => {
                                 movingLightColorChange(1,3,255,255,0,0);
                                 movingLightColorChange(1,4,255,0,220,0);
 
-                                movingLightAngleFadeChange(2,1,-40,80,movingLightAngleFadeTime,nowTime[0]);
-                                movingLightAngleFadeChange(2,2,-110,85,movingLightAngleFadeTime,nowTime[0]);
-                                movingLightAngleFadeChange(2,3,-110,85,movingLightAngleFadeTime,nowTime[0]);
-                                movingLightAngleFadeChange(2,4,40,80,movingLightAngleFadeTime,nowTime[0]);
-                                movingLightAngleFadeChange(2,5,70,70,movingLightAngleFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,1,-40,80,movingLightAngleFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,2,-110,85,movingLightAngleFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,3,-110,85,movingLightAngleFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,4,40,80,movingLightAngleFadeTime,nowTime[0]);
+                                movingLightAngleChange(2,5,70,70,movingLightAngleFadeTime,nowTime[0]);
                             }
 
-                            let movingLightRotateDeg = -360/35000*nowTime[0];
+                            let movingLightRotateDeg = -360/35000*(nowTime[0]%35000);
 
                             for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightTripleRotateChange(2,i,movingLightRotateDeg);
                             
@@ -8422,7 +8440,9 @@ document.addEventListener("keydown", (e) => {
                             
                             if ( nowTime[0] <= movingLightAngleFadeTime ) {
                                 for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleChange(1,i,0,75,movingLightAngleFadeTime,nowTime[0]);
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(1,i,0,90,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(2,i,0,90,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[21]);
                             }
                             
                         }
@@ -8488,7 +8508,9 @@ document.addEventListener("keydown", (e) => {
                             
                             if ( nowTime[0] <= movingLightAngleFadeTime ) {
                                 for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(2,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[23]);
                             }
                             
                         }
@@ -8621,7 +8643,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 SEVEN1 *****/
@@ -8641,13 +8663,13 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                }  else if ( subCode === 7 ) { //f7
+                }  else if ( subCode === 7 ) { 
                     let startTime = Date.now();
 
                     /***** 客席照明 *****/
                     audienceLightChange(1,100,startTime);
 
-                }  else if ( subCode === 8 ) { //f8
+                }  else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
                     /***** 客席照明 *****/
