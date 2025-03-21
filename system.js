@@ -614,7 +614,7 @@ function scriptDisplay(scriptData) {
             musicTimeNumberProcessing++;
         }
 
-        if ( scriptStyle === 1 || scriptStyle >= 3 && scriptStyle <= 5 || scriptStyle === 9 ) {
+        if ( scriptStyle === 1 || scriptStyle >= 3 && scriptStyle <= 5 || scriptStyle >= 9 ) {
             let scriptImg = document.createElement('img');
             scriptImg.src = `script_${scriptStyle}.png`;
             scriptImg.alt = "";
@@ -2186,13 +2186,13 @@ function movingLightBlurChange(movingLightIO,movingLightNowNumber,movingLightBlu
 function movingLightTriplePositionDecision(movingLightIO,movingLightNowNumber,movingLightPictureLength,movingLightPictureSize,movingLightTripleRotate = 0) {
     if ( movingLightIO === 1 && movingLightInsideImgType[movingLightNowNumber-1] >= 0 || movingLightIO === 2 && movingLightOutsideImgType[movingLightNowNumber-1] >= 0 ) return 0;
     let movingLightCenter = 50;
-    movingLightPictureLength /= 2.15;
+    movingLightPictureLength /= 2;
     for ( var i = 0 ; i < 3 ; i++ ) {
         let movingLightCoordinateNumber = document.getElementById(`MOVING_LIGHT_PICTURE_CONTENT_TRIPLE_${movingLightIO}-${movingLightNowNumber}-${i+1}`);
         let movingLightTripleRad = ( 60 + 120 * i - movingLightTripleRotate ) / 180 * Math.PI;
         movingLightCoordinateNumber.style.top = ( Math.cos(movingLightTripleRad) * movingLightPictureLength + movingLightCenter ) + "%";
         movingLightCoordinateNumber.style.left = ( Math.sin(movingLightTripleRad) * movingLightPictureLength + movingLightCenter ) + "%";
-        movingLightCoordinateNumber.style.width = ( ( 50 - movingLightPictureLength ) / 100 * movingLightPictureSize * 1.8 ) + "%";
+        movingLightCoordinateNumber.style.width = ( ( 50 - movingLightPictureLength ) / 100 * movingLightPictureSize * 2 ) + "%";
     }
 }
 
@@ -2778,7 +2778,7 @@ document.addEventListener("keydown", (e) => {
                 snowSetInterval1 = setInterval( function () {
                     let nowTime = Date.now();
                     for ( var i = 0 ; i < snowNumber ; i++ ) {
-                        snowImgCoordinate[i].style.rotate = ( nowTime - snowPushONTime ) / 50 + "deg";
+                        snowImgCoordinate[i].style.rotate = ( nowTime - snowPushONTime ) / 50 % 360 + "deg";
                     }
                 });
             } else {
