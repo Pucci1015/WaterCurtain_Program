@@ -498,7 +498,7 @@ function scriptTimeDisplay(scriptData,i) {
 
         let minutes = Math.trunc( nowTime / 60 ).toString().padStart( 2 , '0' );
         let seconds = Math.trunc( nowTime % 60 ).toString().padStart( 2 , '0' );
-        let milliSeconds = ( ( nowTime - Math.trunc(nowTime) ) * 100 ).toString().padStart( 2 , '0' );
+        let milliSeconds = Math.trunc( ( nowTime - Math.trunc(nowTime) ) * 100 ).toString().padStart( 2 , '0' );
 
         scriptTime = scriptData[i][2] + " " + minutes + ":" + seconds + "." + milliSeconds;
     } else {
