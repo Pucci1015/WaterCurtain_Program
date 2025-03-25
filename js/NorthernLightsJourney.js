@@ -3372,11 +3372,11 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                    /***** パーライト WP2 *****/
+                    /***** パーライト CM5 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberWP2);
+                    let parLightSetInterval = setInterval(parLightNumberCM5);
 
-                    function parLightNumberWP2() {
+                    function parLightNumberCM5() {
                         let parLightFadeTime = 2000;
                         var nowTime = nowTimeGet(startTime,0);
 

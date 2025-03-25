@@ -1,4 +1,6 @@
-jsSetting_Old("Miyabi","MIYABI",2,2,0,0,3200);
+let MIYABI_Music = [ [ 2 , 0 , 0.5 ] , [ 1 , 0 , 1 ] , [ 1 , 1 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
+
+jsSetting("Miyabi",2023,"夏","MIYABI","MIYABI",2,2,MIYABI_Music,"https://script.google.com/macros/s/AKfycbwm9-vUCCQJrdrXCUxIIEtQJivKPEzAnYDtAWF47_7I3xVpBgfdAnnXPcQglLQw-pRNWQ/exec",0,0,0,0,0,3200,10,0);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -24,9 +26,7 @@ document.addEventListener("keydown", (e) => {
                             let waterLightFadeTime = 3200;
                             let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[0],0,waterLightUseNumber,waterLightSetInterval[1],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
 
-                            for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                                waterLightColorChange(i,0,120,255,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[1]);
-                            }
+                            for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,120,255,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[1]);
                         }
                         
                     },waterLightSetTimeoutDelay[0]);
@@ -40,9 +40,7 @@ document.addEventListener("keydown", (e) => {
                             let waterLightFadeTime = 270000;
                             let nowTime = nowTimeGet(startTime+waterLightSetTimeoutDelay[1],0,waterLightUseNumber,waterLightSetInterval[2],waterLightMyNumber,waterLightUseChildrenNumber,waterLightChildrenMyNumber);
 
-                            for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                                waterLightColorChange(i,0,0,255,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[2]);
-                            }
+                            for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,0,255,nowTime[0],waterLightFadeTime,0,waterLightSetInterval[2]);
                         }
                         
                     },waterLightSetTimeoutDelay[1]);
@@ -122,17 +120,15 @@ document.addEventListener("keydown", (e) => {
                 } else if ( key === 'g' ) {
                     let startTime = Date.now();
 
-                    /***** 水中照明 MIYABI2 *****/
+                    /***** 水中照明 WP1 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberMIYABI2);
+                    let waterLightSetInterval = setInterval(waterLightNumberWP1);
 
-                    function waterLightNumberMIYABI2() {
+                    function waterLightNumberWP1() {
                         let waterLightFadeTime = 11000;
                         let nowTime = nowTimeGet(startTime,0,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,200,0,nowTime[0],waterLightFadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,180,0,nowTime[0],waterLightFadeTime,0,waterLightSetInterval);
                     }
 
                     /***** 看板照明 MIYAB2 *****/
@@ -159,14 +155,15 @@ document.addEventListener("keydown", (e) => {
                             logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval,2);
                         }
                     }
+
                 } else if ( key === 'h' ) {
                     let startTime = Date.now();
 
-                    /***** 水中照明 MIYABI3 *****/
+                    /***** 水中照明 MIYABI2 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberMIYABI3);
+                    let waterLightSetInterval = setInterval(waterLightNumberMIYABI2);
 
-                    function waterLightNumberMIYABI3() {
+                    function waterLightNumberMIYABI2() {
                         let fadeTime = 3500;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
@@ -189,13 +186,13 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト MIYABI1 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0,startTime,27500);
 
-                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeoutDelay[0] = 10;
                     movingLightSetTimeout[0] = setTimeout( function() {
                         movingLightSetting(0);
                         
-                        let movingLightAngleFadeTime = 1000;
+                        let movingLightAngleFadeTime = 990;
 
                         for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightTriplePictureChange(1,i,0,100,52,100);
                         for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,0,100,100);
@@ -285,16 +282,24 @@ document.addEventListener("keydown", (e) => {
 
                         let movingLightAngleFadeTime = 500;
 
+                        movingLightSetInterval[0] = setInterval(movingLightNumberMIYABI1_0);
+
+                        function movingLightNumberMIYABI1_0() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[3],0,movingLightUseNumber,movingLightSetInterval[0],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,1);
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(2,i,0,110,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[0]);
+                            }
+                            
+                        }
+
                         movingLightSetInterval[4] = setInterval(movingLightNumberMIYABI1_4);
 
                         function movingLightNumberMIYABI1_4() {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[3],0,movingLightUseNumber,movingLightSetInterval[4],movingLightMyNumber);
-                            
-                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
-                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,-1,-1,-1,1);
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(2,i,0,110,movingLightAngleFadeTime,nowTime[0]);
-                            }
-
                             let movingLightColorRepeatTime = 1800;
                             let movingLightColorRepeatTimeSplit = movingLightColorRepeatTime / 2;
                             let movingLightBasicColor = [ [ 255 , 255 , 255 ] , [ 255 , 0 , 0 ] ];
@@ -621,17 +626,17 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト MIYABI2 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0,startTime,40000);
 
-                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeoutDelay[0] = 10;
                     movingLightSetTimeout[0] = setTimeout( function() {
                         movingLightSetting(0);
-                        
-                        let movingLightAngleFadeTime = 1000;
-                        let movingLightColorFadeTime = 800;
 
                         for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightTriplePictureChange(1,i,0,100,52,100);
                         for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,0,100,100);
+                        
+                        let movingLightAngleFadeTime = 1000;
+                        let movingLightColorFadeTime = 800;
 
                         movingLightSetInterval[1] = setInterval(movingLightNumberMIYABI2_1);
 
@@ -871,17 +876,17 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト MIYABI3 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0,startTime,92000);
 
-                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeoutDelay[0] = 10;
                     movingLightSetTimeout[0] = setTimeout( function() {
                         movingLightSetting(0);
-                        
-                        let movingLightAngleFadeTime = 1000;
-                        let movingLightColorFadeTime = 1800;
 
                         for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightTriplePictureChange(1,i,0,100,52,100);
                         for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,0,100,100);
+                        
+                        let movingLightAngleFadeTime = 1000;
+                        let movingLightColorFadeTime = 1800;
 
                         movingLightSetInterval[1] = setInterval(movingLightNumberMIYABI3_1);
 
@@ -1184,16 +1189,24 @@ document.addEventListener("keydown", (e) => {
                         let movingLightAngleFadeTime = 500;
                         let movingLightColorFadeTime = 400;
 
-                        movingLightSetInterval[7] = setInterval(movingLightNumberMIYABI3_7);
+                        movingLightSetInterval[0] = setInterval(movingLightNumberMIYABI3_0);
 
-                        function movingLightNumberMIYABI3_7() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[8],0,movingLightUseNumber,movingLightSetInterval[7],movingLightMyNumber);
+                        function movingLightNumberMIYABI3_0() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[8],0,movingLightUseNumber,movingLightSetInterval[0],movingLightMyNumber);
                             
                             if ( nowTime[0] <= movingLightAngleFadeTime ) {
                                 for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,240,180,1,movingLightColorFadeTime,nowTime[0]);
                                 for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(2,i,0,110,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[0]);
                             }
+                            
+                        }
 
+                        movingLightSetInterval[7] = setInterval(movingLightNumberMIYABI3_7);
+
+                        function movingLightNumberMIYABI3_7() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[8],0,movingLightUseNumber,movingLightSetInterval[7],movingLightMyNumber);
                             let movingLightColorRepeatTime = 1800;
                             let movingLightColorRepeatTimeSplit = movingLightColorRepeatTime / 2;
                             let movingLightBasicColor = [ [ 255 , 255 , 255 ] , [ 255 , 0 , 0 ] ];
@@ -1523,30 +1536,34 @@ document.addEventListener("keydown", (e) => {
                     function ledNumber5() {
                         let fadeTime = 3000;
                         let nowTime = nowTimeGet( startTime , fadeTime , ledUseNumber ,  ledSetInterval , ledMyNumber );
-
                         let repeatTime = 900;
-
+                        let repeatTimeSplit = repeatTime / 2;
+        
+                        let lapTimeSplit = repeatTime * 8 / ledNumberInside;
+        
                         for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
                             let j = ledNumberInside - i;
-                            let ledColorRed1 = ( nowTime[1] + repeatTime * 8 / ledNumberInside * j ) % repeatTime;
+                            let ledColorRed1 = ( nowTime[1] + lapTimeSplit * j ) % repeatTime;
                             let ledColorRed2;
                             if ( ledColorRed1 < repeatTime / 2 ) {
-                                ledColorRed2 = 255 / repeatTime * 2 * ledColorRed1;
+                                ledColorRed2 = 255 / repeatTimeSplit * ledColorRed1;
                             } else {
-                                ledColorRed2 = 255 - 255 / repeatTime * 2 * ( ledColorRed1 - repeatTime / 2 );
+                                ledColorRed2 = 255 - 255 / repeatTimeSplit * ( ledColorRed1 - repeatTimeSplit );
                             }
-
+        
                             ledColorChange(1,i,ledColorRed2,255,255,nowTime[0],fadeTime);
                         }
-
+        
+                        lapTimeSplit = repeatTime * 8 / ledNumberOutside;
+        
                         for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
                             let j = ledNumberOutside - i;
-                            let ledColorRed1 = ( nowTime[1] + repeatTime * 8 / ledNumberOutside * j ) % repeatTime;
+                            let ledColorRed1 = ( nowTime[1] + lapTimeSplit * j ) % repeatTime;
                             let ledColorRed2;
-                            if ( ledColorRed1 < repeatTime / 2 ) {
-                                ledColorRed2 = 255 / repeatTime * 2 * ledColorRed1;
+                            if ( ledColorRed1 < repeatTimeSplit ) {
+                                ledColorRed2 = 255 / repeatTimeSplit * ledColorRed1;
                             } else {
-                                ledColorRed2 = 255 - 255 / repeatTime * 2 * ( ledColorRed1 - repeatTime / 2 );
+                                ledColorRed2 = 255 - 255 / repeatTimeSplit * ( ledColorRed1 - repeatTimeSplit );
                             }
                             
                             ledColorChange(2,i,ledColorRed2,255,255,nowTime[0],fadeTime);
@@ -1561,9 +1578,7 @@ document.addEventListener("keydown", (e) => {
                         let fadeTime = 3200;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,0,100,255,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,0,120,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** 看板照明 MIYABI4 *****/
@@ -1596,7 +1611,7 @@ document.addEventListener("keydown", (e) => {
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
                     let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
 
-                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeoutDelay[0] = 10;
                     movingLightSetTimeout[0] = setTimeout( function() {
                         movingLightSetting(0);
                         
@@ -1649,11 +1664,11 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** 水中照明 RURI3 *****/
+                    /***** 水中照明 TL3 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberRURI1);
+                    let waterLightSetInterval = setInterval(waterLightNumberTL3);
 
-                    function waterLightNumberRURI1() {
+                    function waterLightNumberTL3() {
                         let fadeTime = 3200;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
@@ -1970,11 +1985,11 @@ document.addEventListener("keydown", (e) => {
                         
                     },ledSetTimeoutDelay[7]);
 
-                    /***** 水中照明 BCP2 *****/
+                    /***** 水中照明 BCP1 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberBCP2);
+                    let waterLightSetInterval = setInterval(waterLightNumberBCP1);
 
-                    function waterLightNumberBCP2() {
+                    function waterLightNumberBCP1() {
                         let waterLightFadeTime = 200;
                         let waterLightRepeatTime = 3500;
                         let waterLightRepeatTimeSplit = waterLightRepeatTime / 2;
@@ -2030,9 +2045,9 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト MIYABI5 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0,startTime,255200);
 
-                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeoutDelay[0] = 10;
                     movingLightSetTimeout[0] = setTimeout( function() {
                         movingLightSetting(0);
                         
@@ -2048,9 +2063,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
 
                             if ( nowTime[0] <= movingLightColorFadeTime ) {
-                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
-                                    movingLightColorChange(1,i,0,0,255,0);
-                                }
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,0,0,255,0);
 
                                 for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) {
                                     movingLightColorChange(2,i,0,0,255,1,movingLightColorFadeTime,nowTime[0]);
@@ -2065,7 +2078,7 @@ document.addEventListener("keydown", (e) => {
                         movingLightSetInterval[2] = setInterval(movingLightNumberMIYABI5_2);
 
                         function movingLightNumberMIYABI5_2() {
-                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],104000,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],103990,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
                             let movingLightAngleRepeatTime = 75000;
                             let movingLightLapTimeSplit = [ 140 , 320 , 20 , 60 ];
                             let angleXYRadius = 100;
@@ -2654,17 +2667,15 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** 水中照明 MIYABI2 *****/
+                    /***** 水中照明 TL4 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberMIYABI2);
+                    let waterLightSetInterval = setInterval(waterLightNumberTL4);
 
-                    function waterLightNumberMIYABI2() {
-                        let waterLightFadeTime = 3200;
-                        let nowTime = nowTimeGet(startTime,0,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
+                    function waterLightNumberTL4() {
+                        let fadeTime = 3200;
+                        let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,200,0,nowTime[0],waterLightFadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,255,0,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                 } else if ( key === ':' ) {
@@ -2750,17 +2761,17 @@ document.addEventListener("keydown", (e) => {
 
                     /***** ムービングライト MIYABI6 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
-                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout,0,startTime,244300);
 
-                    movingLightSetTimeoutDelay[0] = 0;
+                    movingLightSetTimeoutDelay[0] = 10;
                     movingLightSetTimeout[0] = setTimeout( function() {
                         movingLightSetting(0);
-                        
-                        let movingLightAngleFadeTime = 500;
-                        let movingLightColorFadeTime = 1400;
 
                         for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightTriplePictureChange(1,i,0,100,50,100);
                         for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,0,100,100);
+                        
+                        let movingLightAngleFadeTime = 500;
+                        let movingLightColorFadeTime = 1400;
 
                         movingLightSetInterval[1] = setInterval(movingLightNumberMIYABI6_1);
 
@@ -2816,7 +2827,7 @@ document.addEventListener("keydown", (e) => {
                         function movingLightNumberMIYABI6_3() {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[3],movingLightMyNumber);
 
-                            if ( nowTime[0] < movingLightAngleFadeTime ) {
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
                                 movingLightAngleChange(1,1,0,-90,movingLightAngleFadeTime,nowTime[0]);
                                 movingLightAngleChange(1,2,0,-90,movingLightAngleFadeTime,nowTime[0]);
                                 movingLightAngleChange(1,3,60,-90,movingLightAngleFadeTime,nowTime[0]);
@@ -2843,6 +2854,19 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[2] = setTimeout( function() {
                         clearInterval(movingLightSetInterval[2]);
                         movingLightSetting(0);
+
+                        movingLightSetInterval[0] = setInterval(movingLightNumberMIYABI6_0);
+
+                        function movingLightNumberMIYABI6_0() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[2],0,movingLightUseNumber,movingLightSetInterval[0],movingLightMyNumber);
+
+                            if ( nowTime[0] < 50 ) {
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,255,200,0,0);
+                            } else {
+                                clearInterval(movingLightSetInterval[0]);
+                            }
+
+                        }
 
                         movingLightSetInterval[5] = setInterval(movingLightNumberMIYABI6_5);
 
@@ -3127,6 +3151,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[10],movingLightAngleFadeTime,movingLightUseNumber,movingLightSetInterval[15],movingLightMyNumber);
                             let movingLightAngleRepeatTime = 4500;
                             let movingLightAngleRepeatTimeSplit = movingLightAngleRepeatTime / 2;
+                            let movingLightAngleLapTimeSplit = movingLightAngleRepeatTime * 4 / movingLightOutsideNumber;
                             let movingLightBasicDeg = 70;
                             let movingLightAngleWidth = -140;
                             
@@ -3137,7 +3162,7 @@ document.addEventListener("keydown", (e) => {
                                 else if ( i <= 4 ) j = i;
                                 else j = 2;
 
-                                let movingLightAngleJudgeTime = ( nowTime[1] + movingLightAngleRepeatTime * 4 / movingLightOutsideNumber * j ) % movingLightAngleRepeatTime;
+                                let movingLightAngleJudgeTime = ( nowTime[1] + movingLightAngleLapTimeSplit * j ) % movingLightAngleRepeatTime;
                                 let angleXY;
 
                                 for ( var l = 0 ; l < 2 ; l++ ) {
@@ -3157,6 +3182,19 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeoutDelay[11] = 67500;
                     movingLightSetTimeout[11] = setTimeout( function() {
                         movingLightSetting(0);
+
+                        movingLightSetInterval[0] = setInterval(movingLightNumberMIYABI6_0);
+
+                        function movingLightNumberMIYABI6_0() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[11],0,movingLightUseNumber,movingLightSetInterval[0],movingLightMyNumber);
+
+                            if ( nowTime[0] <= 100 ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,60,0,1);
+                            } else {
+                                clearInterval(movingLightSetInterval[0]);
+                            }
+                            
+                        }
 
                         movingLightSetInterval[16] = setInterval(movingLightNumberMIYABI6_16);
 
@@ -3188,10 +3226,6 @@ document.addEventListener("keydown", (e) => {
                                 }
 
                                 movingLightColorChange(2,i,movingLightColor[0],movingLightColor[1],movingLightColor[2],1);
-                            }
-
-                            if ( nowTime[0] <= 100 ) {
-                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,60,0,1);
                             }
                             
                         }
@@ -3370,6 +3404,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[17],0,movingLightUseNumber,movingLightSetInterval[20],movingLightMyNumber);
                             let movingLightColorRepeatTime = 1500;
                             let movingLightColorRepeatTimeSplit = movingLightColorRepeatTime / 2;
+                            let movingLightColorLapTimeSplit = movingLightColorRepeatTime / movingLightOutsideNumber;
                             let movingLightColorChangeTime = 300;
                             let movingLightBasicColor = [ [ 220 , 0 , 255 ] , [ 0 , 150 , 255 ] ];
 
@@ -3381,7 +3416,7 @@ document.addEventListener("keydown", (e) => {
                                 else if ( i <= 4 ) j = i;
                                 else j = 2;
 
-                                let movingLightJudgeTime = ( nowTime[0] + movingLightColorRepeatTime / movingLightOutsideNumber * j ) % movingLightColorRepeatTime;
+                                let movingLightJudgeTime = ( nowTime[0] + movingLightColorLapTimeSplit * j ) % movingLightColorRepeatTime;
 
                                 for ( var l = 0 ; l < 2 ; l++ ) {
                                     if ( movingLightJudgeTime < movingLightColorRepeatTimeSplit * ( l + 1 ) - movingLightColorChangeTime ) {
@@ -3500,6 +3535,19 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[21] = setTimeout( function() {
                         movingLightSetting(0);
 
+                        movingLightSetInterval[0] = setInterval(movingLightNumberMIYABI6_0);
+
+                        function movingLightNumberMIYABI6_0() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[21],0,movingLightUseNumber,movingLightSetInterval[0],movingLightMyNumber);
+
+                            if ( nowTime[0] < 50 ) {
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,0,0,0,0);
+                            } else {
+                                clearInterval(movingLightSetInterval[0]);
+                            }
+                            
+                        }
+
                         movingLightSetInterval[24] = setInterval(movingLightNumberMIYABI6_24);
 
                         function movingLightNumberMIYABI6_24() {
@@ -3511,13 +3559,12 @@ document.addEventListener("keydown", (e) => {
                             let movingLightLapTimeSplit = [ 1 , 2 , 4 , 3 ];
                             let movingLightColorOpacity = 0;
                             let j = movingLightLapTimeSplit[ Math.trunc( movingLightColorJudgeTime / movingLightColorRepeatTimeSplit ) ];
-                            movingLightColorJudgeTime = movingLightColorJudgeTime% movingLightColorRepeatTimeSplit2;
+                            movingLightColorJudgeTime = movingLightColorJudgeTime % movingLightColorRepeatTimeSplit2;
 
                             if ( movingLightColorJudgeTime < 40 ) movingLightColorOpacity = 1;
 
                             movingLightColorChange(1,j,255,255,255,movingLightColorOpacity);
-
-                            if ( nowTime[0] < 50 ) for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,0,0,0,0);
+                            
                         }
 
                     },movingLightSetTimeoutDelay[21]);
@@ -3565,6 +3612,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[23],movingLightAngleFadeTime,movingLightUseNumber,movingLightSetInterval[15],movingLightMyNumber);
                             let movingLightAngleRepeatTime = 4500;
                             let movingLightAngleRepeatTimeSplit = movingLightAngleRepeatTime / 2;
+                            let movingLightAngleLapTimeSplit = movingLightAngleRepeatTime * 4 / movingLightOutsideNumber;
                             let movingLightBasicDeg = 70;
                             let movingLightAngleWidth = -140;
                             
@@ -3575,7 +3623,7 @@ document.addEventListener("keydown", (e) => {
                                 else if ( i <= 4 ) j = i;
                                 else j = 2;
 
-                                let movingLightAngleJudgeTime = ( nowTime[1] + movingLightAngleRepeatTime * 4 / movingLightOutsideNumber * j ) % movingLightAngleRepeatTime;
+                                let movingLightAngleJudgeTime = ( nowTime[1] + movingLightAngleLapTimeSplit * j ) % movingLightAngleRepeatTime;
                                 let angleXY;
 
                                 for ( var l = 0 ; l < 2 ; l++ ) {
@@ -3596,12 +3644,26 @@ document.addEventListener("keydown", (e) => {
                     movingLightSetTimeout[24] = setTimeout( function() {
                         movingLightSetting(0);
 
+                        movingLightSetInterval[0] = setInterval(movingLightNumberMIYABI6_0);
+
+                        function movingLightNumberMIYABI6_0() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[24],0,movingLightUseNumber,movingLightSetInterval[0],movingLightMyNumber);
+
+                            if ( nowTime[0] <= 100 ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,60,0,1);
+                            } else {
+                                clearInterval(movingLightSetInterval[0]);
+                            }
+                            
+                        }
+
                         movingLightSetInterval[16] = setInterval(movingLightNumberMIYABI6_16);
 
                         function movingLightNumberMIYABI6_16() {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[24],0,movingLightUseNumber,movingLightSetInterval[16],movingLightMyNumber);
                             let movingLightColorRepeatTime = 4500;
                             let movingLightColorRepeatTimeSplit = movingLightColorRepeatTime / 4;
+                            let movingLightColorLapTimeSplit = movingLightColorRepeatTime / movingLightOutsideNumber;
                             let movingLightColorChangeTime = 400;
                             let movingLightBasicColor = [ [ 255 , 0 , 0 ] , [ 100 , 60 , 255 ] , [ 255 , 200 , 0 ] , [ 50 , 255 , 200 ] ];
 
@@ -3613,7 +3675,7 @@ document.addEventListener("keydown", (e) => {
                                 else if ( i <= 4 ) j = i;
                                 else j = 2;
 
-                                let movingLightJudgeTime = ( nowTime[0] + movingLightColorRepeatTime / movingLightOutsideNumber * j ) % movingLightColorRepeatTime;
+                                let movingLightJudgeTime = ( nowTime[0] + movingLightColorLapTimeSplit * j ) % movingLightColorRepeatTime;
 
                                 for ( var l = 0 ; l < 4 ; l++ ) {
                                     if ( movingLightJudgeTime < movingLightColorRepeatTimeSplit * ( l + 1 ) - movingLightColorChangeTime ) {
@@ -3626,10 +3688,6 @@ document.addEventListener("keydown", (e) => {
                                 }
 
                                 movingLightColorChange(2,i,movingLightColor[0],movingLightColor[1],movingLightColor[2],1);
-                            }
-
-                            if ( nowTime[0] <= 100 ) {
-                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,60,0,1);
                             }
                             
                         }
@@ -4530,11 +4588,11 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                    /***** 看板照明 MIYABI10 *****/
+                    /***** 看板照明 MIYABI9 *****/
                     let logoboardLightMyNumber = logoboardLightSetting(1);
-                    let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI10);
+                    let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI9);
         
-                    function logoboardLightNumberMIYABI10() {
+                    function logoboardLightNumberMIYABI9() {
                         let nowTime = nowTimeGet(startTime,500,logoboardLightUseNumber[1],logoboardLightSetInterval,logoboardLightMyNumber);
                         let logoboardRepeatTime = 5200;
                         let logoboardRepeatTimeSplit = logoboardRepeatTime / 5;
@@ -4717,24 +4775,33 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** 水中照明 CC6 *****/
+                    /***** 水中照明 DD1 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberCC6);
+                    let waterLightSetInterval = setInterval(waterLightNumberDD1);
 
-                    function waterLightNumberCC6() {
+                    function waterLightNumberDD1() {
                         let fadeTime = 3500;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
-                            waterLightColorChange(i,255,150,150,nowTime[0],fadeTime,0,waterLightSetInterval);
-                        }
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,255,150,150,nowTime[0],fadeTime,0,waterLightSetInterval);
+                    }
+
+                    /***** 看板照明 MIYABI10 *****/
+                    let logoboardLightMyNumber = logoboardLightSetting(0);
+                    let logoboardLightFadeTime = 2000;
+                    let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI10);
+        
+                    function logoboardLightNumberMIYABI10() {
+                        let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
+
+                        for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) logoboardLightFadeChage(i,-1,-1,-1,-1,1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                     }
 
                 }
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 MIYABI3 *****/
@@ -4760,11 +4827,11 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                    /***** パーライト MIYABI1 *****/
+                    /***** パーライト MB3 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberMIYABI1);
+                    let parLightSetInterval = setInterval(parLightNumberMB3);
 
-                    function parLightNumberMIYABI1() {
+                    function parLightNumberMB3() {
                         let parLightFadeTime = 1500;
                         var nowTime = nowTimeGet(startTime,0);
 
@@ -4781,14 +4848,14 @@ document.addEventListener("keydown", (e) => {
                         stageLightChange(1,stageFadeTime,startTime + 500);
                     },500);
 
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
 
-                    /***** パーライト MIYABI2 *****/
+                    /***** パーライト MIYABI1 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberMIYABI2);
+                    let parLightSetInterval = setInterval(parLightNumberMIYABI1);
 
-                    function parLightNumberMIYABI2() {
+                    function parLightNumberMIYABI1() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
@@ -4801,7 +4868,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 300);
                     },300);
 
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 MIYABI5 *****/
@@ -4827,11 +4894,11 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                    /***** パーライト MIYABI3 *****/
+                    /***** パーライト defult *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberMIYABI3);
+                    let parLightSetInterval = setInterval(parLightNumberDefult);
 
-                    function parLightNumberMIYABI3() {
+                    function parLightNumberDefult() {
                         let parLightFadeTime = 1500;
                         var nowTime = nowTimeGet(startTime,0);
 
@@ -4848,18 +4915,18 @@ document.addEventListener("keydown", (e) => {
                         stageLightChange(0,stageFadeTime,startTime + 500);
                     },500);
 
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
 
-                    /***** パーライト MIYABI4 *****/
+                    /***** パーライト CM5 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberMIYABI4);
+                    let parLightSetInterval = setInterval(parLightNumberCM5);
 
-                    function parLightNumberMIYABI4() {
+                    function parLightNumberCM5() {
                         let parLightFadeTime = 3000;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,150,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,180,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {
@@ -4868,25 +4935,25 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(0.5,spotFadeTime,startTime + 1000);
                     },1000);
 
-                } else if ( subCode === 10 ) { //f10
+                } else if ( subCode === 10 ) { 
                     let startTime = Date.now();
 
-                    /***** 看板照明 MIYABI8 *****/
+                    /***** 看板照明 WP6 *****/
                     let logoboardLightMyNumber = logoboardLightSetting(0);
                     let logoboardLightFadeTime = 2000;
-                    let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI8);
+                    let logoboardLightSetInterval = setInterval(logoboardLightNumberWP6);
         
-                    function logoboardLightNumberMIYABI8() {
+                    function logoboardLightNumberWP6() {
                         let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
 
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) logoboardLightFadeChage(i,255,255,255,255,1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                     }
 
-                    /***** パーライト MIYABI5 *****/
+                    /***** パーライト MIYABI2 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberMIYABI5);
+                    let parLightSetInterval = setInterval(parLightNumberMIYABI2);
 
-                    function parLightNumberMIYABI5() {
+                    function parLightNumberMIYABI2() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
@@ -4910,15 +4977,15 @@ document.addEventListener("keydown", (e) => {
                         audienceLightChange(1,audienceLightFadeTime,startTime + 300);
                     },300);
 
-                } else if ( subCode === 11 ) { //f11
+                } else if ( subCode === 11 ) { 
                     let startTime = Date.now();
 
-                    /***** 看板照明 MIYABI9 *****/
+                    /***** 看板照明 MIYABI8 *****/
                     let logoboardLightMyNumber = logoboardLightSetting(0);
                     let logoboardLightFadeTime = 1000;
-                    let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI9);
+                    let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI8);
         
-                    function logoboardLightNumberMIYABI9() {
+                    function logoboardLightNumberMIYABI8() {
                         let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
 
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
@@ -4937,11 +5004,11 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                    /***** パーライト MIYABI6 *****/
+                    /***** パーライト MIYABI3 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberMIYABI6);
+                    let parLightSetInterval = setInterval(parLightNumberMIYABI3);
 
-                    function parLightNumberMIYABI6() {
+                    function parLightNumberMIYABI3() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
@@ -4963,12 +5030,12 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 300);
                     },300);
 
-                } else if ( subCode === 12 ) { //f12
+                } else if ( subCode === 12 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 MIYABI11 *****/
                     let logoboardLightMyNumber = logoboardLightSetting(0);
-                    let logoboardLightFadeTime = 1000;
+                    let logoboardLightFadeTime = 3000;
                     let logoboardLightSetInterval = setInterval(logoboardLightNumberMIYABI11);
         
                     function logoboardLightNumberMIYABI11() {
@@ -4984,15 +5051,15 @@ document.addEventListener("keydown", (e) => {
                             if ( j < 6 ) logoboardLightColor = [ 255 , 150 , 0 , 0 ];
                             else logoboardLightColor = [ 200 , 180 , 255 , 255 ];
 
-                            logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval,2);
+                            logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                         }
                     }
 
-                    /***** パーライト MIYABI7 *****/
+                    /***** パーライト MIYABI4 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberMIYABI7);
+                    let parLightSetInterval = setInterval(parLightNumberMIYABI4);
 
-                    function parLightNumberMIYABI7() {
+                    function parLightNumberMIYABI4() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
@@ -5016,7 +5083,7 @@ document.addEventListener("keydown", (e) => {
 
                 }
             } else if ( subNowPage === 2 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 MIYABI12 *****/
@@ -5031,7 +5098,7 @@ document.addEventListener("keydown", (e) => {
                             let j;
                             let logoboardLightColor = [];
 
-                            if ( i <= logoboardLightNumber / 4 || ( i > logoboardLightNumber / 4 * 2 && i <= logoboardLightNumber / 4 * 3) ) j = ( i - 1 ) % 12;
+                            if ( i <= logoboardLightNumber / 4 || ( i > logoboardLightNumber / 4 * 2 && i <= logoboardLightNumber / 4 * 3 ) ) j = ( i - 1 ) % 12;
                             else j = 11 - ( i - 1 ) % 12;
     
                             if ( j < 6 ) logoboardLightColor = [ 255 , 150 , 0 , 0 ];
@@ -5041,11 +5108,11 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                    /***** パーライト MIYABI7 *****/
+                    /***** パーライト MIYABI5 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberMIYABI7);
+                    let parLightSetInterval = setInterval(parLightNumberMIYABI5);
 
-                    function parLightNumberMIYABI7() {
+                    function parLightNumberMIYABI5() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 

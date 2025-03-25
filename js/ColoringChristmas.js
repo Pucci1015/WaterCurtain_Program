@@ -2,7 +2,6 @@ let ColoringChristmas_Music = [ [ 0 ] , [ 2 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 
 
 jsSetting("ColoringChristmas",2023,"クリスマス","Coloring Christmas","Coloring Christmas",2,1,ColoringChristmas_Music,"https://script.google.com/macros/s/AKfycbyMXboUGXCZU1jkYZl-jUjAaLxqwop4bHrxcMTdTrtVboLuuWlS3dfnFasQIDUwBdBd/exec",0,0,0,0,0,2200,10,0);
 
-
 document.addEventListener("keydown", (e) => {
     const key = e.key;
     const code = e.keyCode;
@@ -1466,7 +1465,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[0],movingLightMyNumber);
 
                             if ( nowTime[0] <= movingLightColorFadeTime ) {
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleFadeChange(2,i,0,70,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(2,i,0,70,movingLightColorFadeTime,nowTime[0]);
                             } else {
                                 clearInterval(movingLightSetInterval[0]);
                             }
