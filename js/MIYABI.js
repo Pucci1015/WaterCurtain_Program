@@ -1,12 +1,12 @@
 let MIYABI_Music = [ [ 2 , 0 , 0.5 ] , [ 1 , 0 , 1 ] , [ 1 , 1 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] , [ 1 , 0 , 1 ] ];
 
-jsSetting("Miyabi",2023,"夏","MIYABI","MIYABI",2,2,MIYABI_Music,"https://script.google.com/macros/s/AKfycbwm9-vUCCQJrdrXCUxIIEtQJivKPEzAnYDtAWF47_7I3xVpBgfdAnnXPcQglLQw-pRNWQ/exec",0,0,0,0,0,3200,10,0);
+jsSetting("MIYABI",2023,"夏","MIYABI","MIYABI",2,2,MIYABI_Music,"https://script.google.com/macros/s/AKfycbwm9-vUCCQJrdrXCUxIIEtQJivKPEzAnYDtAWF47_7I3xVpBgfdAnnXPcQglLQw-pRNWQ/exec",0,0,0,0,0,3200,10,0);
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
     const code = e.keyCode;
 
-    if ( performanceNowSelect === "Miyabi" ) {
+    if ( performanceNowSelect === "MIYABI" ) {
         if ( dnNowSelect === 0 ) {
             if ( mainNowPage === 1 ) {
                 if ( key === 'f' ) {
