@@ -5040,7 +5040,7 @@ document.addEventListener("keydown", (e) => {
 
                     /***** 看板照明 DSC5 *****/
                     let logoboardLightMyNumber = logoboardLightSetting(0);
-                    let logoboardLightFadeTime = 10;
+                    let logoboardLightFadeTime = 0;
                     let logoboardLightSetInterval = setInterval(logoboardLightNumberDSC5);
         
                     function logoboardLightNumberDSC5() {
