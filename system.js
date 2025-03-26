@@ -139,14 +139,19 @@ window.document.onkeydown = function(event){
 }*/
 
 let musicNumber = -1;
+let musicNextNumber = -1;
+let mN = 1;
 let performanceMusicNumber;
 let performanceMusicSelect;
 let dnMusicSelect;
-let music = document.getElementById('music');
+let music = document.getElementById('music1');
+let musicNext = document.getElementById('music0');
 let musicLength;
 let musicPlayPosition;
 let musicLoop;
 let musicVolume;
+let musicNextLoop;
+let musicNextVolume;
 let musicPlay = 0;
 let musicVolumeMicrophone;
 let dnTitle = [ "Day" , "Night" ];
@@ -162,6 +167,7 @@ let manualBackground = document.getElementById('manual_background');
 let manualON = 0;
 let musicDefultVolume;
 music.preload = "auto";
+musicNext.preload = "auto";
 
 document.getElementById('manual_button1').addEventListener("click", function() {
     manual.style.display = "block";
@@ -269,7 +275,33 @@ function micOnOff() {
 function musicChange(musicPN = 1) {
     let finish;
     
-    musicNumber += musicPN;
+    if ( musicNextNumber !== -1 && musicPN === 1 ) {
+        mN = 1 - mN;
+        musicNumber = musicNextNumber;
+        music = document.getElementById(`music${ mN }`);
+        musicNext = document.getElementById(`music${ 1 - mN }`);
+
+        document.getElementById('music_now_number').innerHTML = musicNumber;
+        document.getElementById('music_img').src = "music_0.png";
+        musicLoop = musicNextLoop;
+        musicVolume = musicNextVolume;
+        musicPlay = 0;
+        musicVolumeMicrophone = 0;
+        musicDefultVolume = musicVolume;
+        
+        micOnOff();
+        musicLoopDisplay();
+        musicVolDisplay();
+    } else if ( musicPN === 0 ) {
+        music.pause();
+        music.currentTime = 0;
+        return 0;
+    } else if ( musicPN === -1 ) {
+        music.pause();
+        musicNextNumber = musicNumber;
+    }
+
+    musicNextNumber += musicPN;
 
     do {
         finish = 0;
@@ -277,33 +309,33 @@ function musicChange(musicPN = 1) {
         switch ( dnMusicSelect ) {
             case 0:
                 if ( performanceMusicDay[performanceMusicNumber] === 0 ) {
-                    musicNumber = "-";
+                    musicNextNumber = "-";
                     musicChangePossible = 0;
                     finish = 0;
-                } else if ( musicNumber < 0 ) {
-                    musicNumber = performanceMusicDay[performanceMusicNumber].length - 1;
+                } else if ( musicNextNumber < 0 ) {
+                    musicNextNumber = performanceMusicDay[performanceMusicNumber].length - 1;
                     finish = 1;
-                } else if ( performanceMusicDay[performanceMusicNumber].length <= musicNumber ) {
-                    musicNumber = 0;
+                } else if ( performanceMusicDay[performanceMusicNumber].length <= musicNextNumber ) {
+                    musicNextNumber = 0;
                     finish = 1;
-                } else if ( performanceMusicDay[performanceMusicNumber][musicNumber].length === 1 ) {
-                    musicNumber += musicPN;
+                } else if ( performanceMusicDay[performanceMusicNumber][musicNextNumber].length === 1 ) {
+                    musicNextNumber += musicPN;
                     finish = 1;
                 }
                 break;
             case 1:
                 if ( performanceMusicNight[performanceMusicNumber] === 0 ) {
-                    musicNumber = "-";
+                    musicNextNumber = "-";
                     musicChangePossible = 0;
                     finish = 0;
-                } else if ( musicNumber < 0 ) {
-                    musicNumber = performanceMusicNight[performanceMusicNumber].length - 1;
+                } else if ( musicNextNumber < 0 ) {
+                    musicNextNumber = performanceMusicNight[performanceMusicNumber].length - 1;
                     finish = 1;
-                } else if ( performanceMusicNight[performanceMusicNumber].length <= musicNumber ) {
-                    musicNumber = 0;
+                } else if ( performanceMusicNight[performanceMusicNumber].length <= musicNextNumber ) {
+                    musicNextNumber = 0;
                     finish = 1;
-                } else if ( performanceMusicNight[performanceMusicNumber][musicNumber].length === 1 ) {
-                    musicNumber += musicPN;
+                } else if ( performanceMusicNight[performanceMusicNumber][musicNextNumber].length === 1 ) {
+                    musicNextNumber += musicPN;
                     finish = 1;
                 }
                 break;
@@ -316,30 +348,45 @@ function musicChange(musicPN = 1) {
         music.src = "";
         musicLoop = 0;
         musicVolume = 0;
+        musicNext.src = "";
+        musicNextLoop = 0;
+        musicNextVolume = 0;
     } else {
         switch ( dnMusicSelect ) {
             case 0:
-                music.src = "Music/" + performanceMusicSelect + "_" + "day" + "_" + musicNumber + ".mp3";
-                musicLoop = performanceMusicDay[performanceMusicNumber][musicNumber][1];
-                musicVolume = performanceMusicDay[performanceMusicNumber][musicNumber][2];
+                musicNext.src = "Music/" + performanceMusicSelect + "_" + "day" + "_" + musicNextNumber + ".mp3";
+                musicNextLoop = performanceMusicDay[performanceMusicNumber][musicNextNumber][1];
+                musicNextVolume = performanceMusicDay[performanceMusicNumber][musicNextNumber][2];
                 break;
             case 1:
-                music.src = "Music/" + performanceMusicSelect + "_" + "night" + "_" + musicNumber + ".mp3";
-                musicLoop = performanceMusicNight[performanceMusicNumber][musicNumber][1];
-                musicVolume = performanceMusicNight[performanceMusicNumber][musicNumber][2];
+                musicNext.src = "Music/" + performanceMusicSelect + "_" + "night" + "_" + musicNextNumber + ".mp3";
+                musicNextLoop = performanceMusicNight[performanceMusicNumber][musicNextNumber][1];
+                musicNextVolume = performanceMusicNight[performanceMusicNumber][musicNextNumber][2];
                 break;
         }
     }
 
-    document.getElementById('music_now_number').innerHTML = musicNumber;
-    document.getElementById('music_img').src = "music_0.png";
-    musicPlay = 0;
-    musicVolumeMicrophone = 0;
-    musicDefultVolume = musicVolume;
-    micOnOff();
+    if ( musicPN === -1 ) {
+        mN = 1 - mN;
+        let musicPNumber = musicNumber;
+        musicNumber = musicNextNumber;
+        musicNextNumber = musicPNumber;
+        music = document.getElementById(`music${ mN }`);
+        musicNext = document.getElementById(`music${ 1 - mN }`);
 
-    musicLoopDisplay();
-    musicVolDisplay();
+        document.getElementById('music_now_number').innerHTML = musicNumber;
+        document.getElementById('music_img').src = "music_0.png";
+        musicLoop = musicNextLoop;
+        musicVolume = musicNextVolume;
+        musicPlay = 0;
+        musicVolumeMicrophone = 0;
+        musicDefultVolume = musicVolume;
+        
+        micOnOff();
+        musicLoopDisplay();
+        musicVolDisplay();
+    }
+
 }
 
 function performanceMusicChange() {
@@ -356,8 +403,10 @@ function performanceMusicChange() {
     performanceMusicSelect = performanceNowSelect;
     dnMusicSelect = dnNowSelect;
     musicNumber = -1;
+    musicNextNumber = -1;
 
     scriptFetch();
+    musicChange();
     musicChange();
     performanceDetailDisplay();
 }
@@ -367,10 +416,6 @@ music.addEventListener("loadedmetadata", function() {
     document.getElementById('music_length').innerHTML = minutesDisplay(musicLength);
     musicPlayPositionDisplay();
     musicScriptNumber = 0;
-
-    /*if ( scriptPerformanceNumber !== -1 && musicScriptNumber + 1 < musicTime[musicNumber].length ) {
-        scriptScroll(musicTimeNumber[musicNumber][musicScriptNumber]);
-    }*/
 });
 
 music.addEventListener("timeupdate", function() {
@@ -393,6 +438,37 @@ music.addEventListener("pause", function() {
 });
 
 music.addEventListener("ended", function() {
+    musicChange();
+    music.load();
+});
+
+musicNext.addEventListener("loadedmetadata", function() {
+    musicLength = music.duration;
+    document.getElementById('music_length').innerHTML = minutesDisplay(musicLength);
+    musicPlayPositionDisplay();
+    musicScriptNumber = 0;
+});
+
+musicNext.addEventListener("timeupdate", function() {
+    musicPlayPositionDisplay();
+
+    if ( scriptPerformanceNumber !== -1 && musicNumber >= 1 && music.currentTime > musicTime[musicNumber][musicScriptNumber] && musicScriptNumber + 1 < musicTime[musicNumber].length ) {
+        musicScriptNumber++;
+        scriptScroll(musicTimeNumber[musicNumber][musicScriptNumber]);
+    }
+});
+
+musicNext.addEventListener("play", function() {
+    document.getElementById('music_img').src = "music_1.png";
+    musicPlay = 1;
+});
+
+musicNext.addEventListener("pause", function() {
+    document.getElementById('music_img').src = "music_0.png";
+    musicPlay = 0;
+});
+
+musicNext.addEventListener("ended", function() {
     musicChange();
     music.load();
 });
@@ -839,7 +915,7 @@ document.addEventListener("keydown", (e) => {
                 else changeStyle = performanceMusicNight[performanceMusicNumber][musicNumber][0];
 
                 if ( changeStyle === 1 ) musicPlayDisplay();
-                else if ( changeStyle === 2 ) music.load();
+                //else if ( changeStyle === 2 ) music.load();
             }
 
         }
