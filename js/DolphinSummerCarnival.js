@@ -3982,7 +3982,7 @@ document.addEventListener("keydown", (e) => {
 
                     /***** 看板照明 DSC5 *****/
                     let logoboardLightMyNumber = logoboardLightSetting(0);
-                    let logoboardLightFadeTime = 10;
+                    let logoboardLightFadeTime = 0;
                     let logoboardLightSetInterval = setInterval(logoboardLightNumberDSC5);
         
                     function logoboardLightNumberDSC5() {
@@ -4975,15 +4975,15 @@ document.addEventListener("keydown", (e) => {
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) logoboardLightFadeChage(i,-1,-1,0,0,1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval,0);
                     }
 
-                    /***** パーライト MB2 *****/
+                    /***** パーライト MB3 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberMB2);
+                    let parLightSetInterval = setInterval(parLightNumberMB3);
 
-                    function parLightNumberMB2() {
+                    function parLightNumberMB3() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 
-                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,80,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
+                        for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,255,100,0,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);                   
                     }
 
                     setTimeout( function () {

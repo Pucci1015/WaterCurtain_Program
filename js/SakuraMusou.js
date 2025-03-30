@@ -176,7 +176,7 @@ document.addEventListener("keydown", (e) => {
                     },1500);
 
                     logoboardLightSetTimeout[1] = setTimeout(function() {
-                        logoboardLightOFF(1000,1);
+                        logoboardLightOFF(1000);
                     },4000);
 
                     logoboardLightSetTimeout[2] = setTimeout(function() {

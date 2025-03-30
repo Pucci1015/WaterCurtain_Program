@@ -13,11 +13,11 @@ document.addEventListener("keydown", (e) => {
                 if ( key === 'f' ) {
                     let startTime = Date.now();
 
-                    /***** 水中照明 CC3 *****/
+                    /***** 水中照明 WP1 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberCC3);
+                    let waterLightSetInterval = setInterval(waterLightNumberWP1);
 
-                    function waterLightNumberCC3() {
+                    function waterLightNumberWP1() {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
@@ -3727,11 +3727,11 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** 水中照明 CC3 *****/
+                    /***** 水中照明 WP1 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberCC3);
+                    let waterLightSetInterval = setInterval(waterLightNumberWP1);
 
-                    function waterLightNumberCC3() {
+                    function waterLightNumberWP1() {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
@@ -5613,11 +5613,11 @@ document.addEventListener("keydown", (e) => {
                 } else if ( key === ']' ) {
                     let startTime = Date.now();
 
-                    /***** 水中照明 CC3 *****/
+                    /***** 水中照明 WP1 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberCC3);
+                    let waterLightSetInterval = setInterval(waterLightNumberWP1);
 
-                    function waterLightNumberCC3() {
+                    function waterLightNumberWP1() {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
@@ -6790,11 +6790,11 @@ document.addEventListener("keydown", (e) => {
                 } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
-                    /***** パーライト EMAKI1 *****/
+                    /***** パーライト MB3 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberEMAKI1);
+                    let parLightSetInterval = setInterval(parLightNumberMB3);
 
-                    function parLightNumberEMAKI1() {
+                    function parLightNumberMB3() {
                         let parLightFadeTime = 5000;
                         var nowTime = nowTimeGet(startTime,0);
 
@@ -6810,11 +6810,11 @@ document.addEventListener("keydown", (e) => {
                 } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
 
-                    /***** パーライト EMAKI2 *****/
+                    /***** パーライト EMAKI1 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberEMAKI2);
+                    let parLightSetInterval = setInterval(parLightNumberEMAKI1);
 
-                    function parLightNumberEMAKI2() {
+                    function parLightNumberEMAKI1() {
                         let parLightFadeTime = 1500;
                         var nowTime = nowTimeGet(startTime,0);
 
@@ -6837,11 +6837,11 @@ document.addEventListener("keydown", (e) => {
                 } else if ( subCode === 10 ) { 
                     let startTime = Date.now();
 
-                    /***** パーライト EMAKI1 *****/
+                    /***** パーライト MB3 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberEMAKI1);
+                    let parLightSetInterval = setInterval(parLightNumberMB3);
 
-                    function parLightNumberEMAKI1() {
+                    function parLightNumberMB3() {
                         let parLightFadeTime = 3500;
                         var nowTime = nowTimeGet(startTime,0);
 
@@ -6857,11 +6857,11 @@ document.addEventListener("keydown", (e) => {
                 } else if ( subCode === 11 ) { 
                     let startTime = Date.now();
 
-                    /***** パーライト EMAKI3 *****/
+                    /***** パーライト EMAKI2 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberEMAKI3);
+                    let parLightSetInterval = setInterval(parLightNumberEMAKI2);
 
-                    function parLightNumberEMAKI3() {
+                    function parLightNumberEMAKI2() {
                         let parLightFadeTime = 1500;
                         var nowTime = nowTimeGet(startTime,0);
 
