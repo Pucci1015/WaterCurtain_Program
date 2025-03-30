@@ -295,6 +295,15 @@ function musicChange(musicPN = 1) {
     } else if ( musicPN === 0 ) {
         music.pause();
         music.currentTime = 0;
+        musicVolume = musicDefultVolume;
+        musicPlay = 0;
+        musicVolumeMicrophone = 0;
+        musicScriptNumber = 0;
+        if ( scriptPerformanceNumber !== -1 ) scriptScroll(musicTimeNumber[musicNumber][musicScriptNumber]);
+        
+        micOnOff();
+        musicLoopDisplay();
+        musicVolDisplay();
         return 0;
     } else if ( musicPN === -1 ) {
         music.pause();
@@ -368,16 +377,18 @@ function musicChange(musicPN = 1) {
 
     if ( musicPN === -1 ) {
         mN = 1 - mN;
-        let musicPNumber = musicNumber;
-        musicNumber = musicNextNumber;
-        musicNextNumber = musicPNumber;
+
+        [ musicNumber , musicNextNumber ] = [ musicNextNumber , musicNumber ];
+
         music = document.getElementById(`music${ mN }`);
         musicNext = document.getElementById(`music${ 1 - mN }`);
 
         document.getElementById('music_now_number').innerHTML = musicNumber;
         document.getElementById('music_img').src = "music_0.png";
-        musicLoop = musicNextLoop;
-        musicVolume = musicNextVolume;
+
+        [ musicLoop , musicNextLoop ] = [ musicNextLoop , musicLoop ];
+        [ musicVolume , musicNextVolume ] = [ musicNextVolume , musicVolume ];
+
         musicPlay = 0;
         musicVolumeMicrophone = 0;
         musicDefultVolume = musicVolume;
@@ -386,7 +397,9 @@ function musicChange(musicPN = 1) {
         musicLoopDisplay();
         musicVolDisplay();
     }
-
+    
+    musicScriptNumber = 0;
+    if ( scriptPerformanceNumber !== -1 ) scriptScroll(musicTimeNumber[musicNumber][musicScriptNumber]);
 }
 
 function performanceMusicChange() {
@@ -415,7 +428,6 @@ music.addEventListener("loadedmetadata", function() {
     musicLength = music.duration;
     document.getElementById('music_length').innerHTML = minutesDisplay(musicLength);
     musicPlayPositionDisplay();
-    musicScriptNumber = 0;
 });
 
 music.addEventListener("timeupdate", function() {
@@ -905,7 +917,6 @@ document.addEventListener("keydown", (e) => {
     if ( key === 'Enter' ) {
         if ( musicChangePossible === 1 ) {
             if ( music.currentTime === 0 ) {
-                //musicPlay = 1;
                 musicPlayDisplay();
             } else {
                 musicChange();
@@ -915,7 +926,6 @@ document.addEventListener("keydown", (e) => {
                 else changeStyle = performanceMusicNight[performanceMusicNumber][musicNumber][0];
 
                 if ( changeStyle === 1 ) musicPlayDisplay();
-                //else if ( changeStyle === 2 ) music.load();
             }
 
         }
@@ -925,12 +935,16 @@ document.addEventListener("keydown", (e) => {
         }
     } else if ( code === 32 ) {
         clearInterval(musicVolumeSetInterval);
-        let pn;
-        if ( musicVolumeMicrophone === 1 && musicVolume <= musicDefultVolume || musicVolumeMicrophone === 0 && musicVolume <= 0.5 ) pn = 0.1;
-        else pn = -0.1;
+        let pn = 0, finishVolume;
 
         musicVolumeMicrophone = 1 - musicVolumeMicrophone;
         let musicNowVolume = musicVolume;
+
+        if ( musicVolumeMicrophone === 1 ) finishVolume = 0.5;
+        else finishVolume = musicDefultVolume;
+
+        let volumeDiff = finishVolume - musicNowVolume;
+        if ( volumeDiff !== 0 ) pn = volumeDiff / Math.abs(volumeDiff) * 0.1;
         
         micOnOff();
 
@@ -2570,8 +2584,12 @@ function logoboardLightColorDecision(logoboardLightNowNumber,colorRed,colorGreen
     logoboardCoordinateNumber.style.filter = "brightness(" + ( 300 - 200 / 255 * maxColor ) + "%)";
 }
 
-function logoboardLightOFF(changeTime,settingNumber = 0) {
-    logoboardLightSetting(0,settingNumber);
+function logoboardLightOFF(changeTime) {
+    logoboardLightSetting(0);
+    for ( var i = 0 ; i < logoboardLightSetTimeout.length ; i++ ) {
+        clearTimeout(logoboardLightSetTimeout[i]);
+    }
+    logoboardLightSetTimeout = [];
 
     logoboardLightUseNumber = [ 0 , 0 ];
     logoboardLightUseColorNumber = [ 0 , 0 , 0 , 0 ];
@@ -2619,7 +2637,7 @@ function logoboardLightOFF(changeTime,settingNumber = 0) {
 }
 
 function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,colorBlue,colorWhite,opacity = 1,changeTime = 0,nowTime = 0,logoboardSetInterval = 0,animateStop = 1) {
-    let logoboardLightChangeColor = [], finish = 0, timeProportion, logoboraLightZIndex = 0, fadePermission = 0, maxColor = 0;
+    let logoboardLightChangeColor = [], finish = 0, timeProportion, logoboraLightZIndex = 0, fadePermission = 0, maxColor = 0, notFade = 0;
     logoboardLightChangeColor[0] = colorRed;
     logoboardLightChangeColor[1] = colorGreen;
     logoboardLightChangeColor[2] = colorBlue;
@@ -2641,15 +2659,13 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
 
     if ( animateStop === 2 ) fadePermission = 1;
 
+    if ( fadePermission === 0 && finish === 1 && logoboardLightUseNumber[0] === 0 && logoboardSetInterval !== 0 ) notFade = 1;
+
     opacity *= maxColor / 255;
 
-    if ( nowTime <= changeTime ) {
+    if ( nowTime <= changeTime && notFade === 0 ) {
 
         logoboardLightON = 1;
-
-        if ( fadePermission === 0 && finish === 1 && logoboardSetInterval !== 0 ) {
-            clearInterval(logoboardSetInterval);
-        }
 
         if ( changeTime === 0 ) {
             timeProportion = 1;
@@ -2697,7 +2713,7 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
                 
                 logoboardLightOpacity[logoboardLightNowNumber-1] = logoboardLightOpacityProportion;
             }
-        } else {    
+        } else {
             let logoboardLightColorProportion = [];
             let logoboardLightOpacityProportion = logoboardLightFirstOpacity[logoboardLightNowNumber-1] + ( opacity - logoboardLightFirstOpacity[logoboardLightNowNumber-1] ) * timeProportion;
             logoboardLightOpacity[logoboardLightNowNumber-1] = logoboardLightOpacityProportion;
@@ -2731,20 +2747,22 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
             logoboardLightAnimateOffRoad = 1;
         }
 
-        logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3]);
-        for ( var i = 0 ; i < 4 ; i++ ) {
-            logoboraLightZIndex += logoboardLightChangeColor[i];
-        }
-        logoboardCoordinateNumber.style.zIndex = logoboraLightZIndex;
+        if ( logoboardLightUseAnimateNumber === 0 || animateStop === 1 ) {
+            logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3]);
+            for ( var i = 0 ; i < 4 ; i++ ) {
+                logoboraLightZIndex += logoboardLightChangeColor[i];
+            }
+            logoboardCoordinateNumber.style.zIndex = logoboraLightZIndex;
 
-        logoboardCoordinateNumber.style.opacity = opacity;
+            logoboardCoordinateNumber.style.opacity = opacity;
+        }
 
         for ( var j = 0 ; j < 4 ; j++ ) {
             logoboardLightColor[j][logoboardLightNowNumber-1] = logoboardLightChangeColor[j];
         }
         logoboardLightOpacity[logoboardLightNowNumber-1] = opacity;
 
-        if ( nowTime > changeTime + 100 ) clearInterval(logoboardSetInterval);
+        if ( nowTime > changeTime + 100 || notFade === 1 && nowTime > 100 ) clearInterval(logoboardSetInterval);
     }
 }
 
