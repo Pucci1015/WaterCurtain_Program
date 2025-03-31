@@ -2528,8 +2528,6 @@ var logoboardLightFirstColor = [ [] , [] , [] , [] ];
 var logoboardLightFirstOpacity = [];
 var logoboardLightUseNumber = [ 0 , 0 ];
 var logoboardLightUseAnimateNumber = 0;
-var logoboardLightUseColorNumber = [ 0 , 0 , 0 , 0 ];
-var logoboardLightUseAnimateColorNumber = [ 0 , 0 , 0 , 0 ];
 var logoboardLightAnimateOffRoad = 0;
 var logoboardLightSetTimeout = [];
 var logoboardLightAnimateColor = [ [] , [] , [], [] ];
@@ -2541,7 +2539,7 @@ for ( var i = 0 ; i < logoboardLightNumber ; i++ ) {
     logoboardLightOpacity[i] = 0;
 }
 
-function logoboardLightSetting(logoboardLightMode/*,sustainable = 0*/) {
+function logoboardLightSetting(logoboardLightMode) {
     if ( logoboardLightMode >= 2 ) {
         for ( var i = 0 ; i < logoboardLightSetTimeout.length ; i++ ) {
             clearTimeout(logoboardLightSetTimeout[i]);
@@ -2567,9 +2565,10 @@ function logoboardLightSetting(logoboardLightMode/*,sustainable = 0*/) {
     }
 }
 
-function logoboardLightColorDecision(logoboardLightNowNumber,colorRed,colorGreen,colorBlue,colorWhite) {
+function logoboardLightColorDecision(logoboardLightNowNumber,colorRed,colorGreen,colorBlue,colorWhite,opacity) {
     let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${logoboardLightNowNumber}`);
     let logoboardLightChangeColor = [];
+    let logoboraLightZIndex = 0;
 
     logoboardLightChangeColor[0] = ( colorRed + colorWhite ) / 2;
     logoboardLightChangeColor[1] = ( colorGreen * 3 + colorWhite * 2 ) / 5;
@@ -2577,23 +2576,35 @@ function logoboardLightColorDecision(logoboardLightNowNumber,colorRed,colorGreen
     
     let maxColor = 0;
     for ( var i = 0 ; i < 3 ; i++ ) {
+        logoboraLightZIndex += logoboardLightChangeColor[i];
         if ( logoboardLightChangeColor[i] > maxColor ) maxColor = logoboardLightChangeColor[i];
     }
 
+    //opacity *= maxColor / 255;
+    if ( maxColor < 255 ) {
+        let correct = 255 / maxColor;
+        for ( var i = 0 ; i < 3 ; i++ ) {
+            logoboardLightChangeColor[i] = logoboardLightChangeColor[i] * correct;
+        }
+    }
+
     logoboardCoordinateNumber.style.background = "linear-gradient(rgb(" + logoboardLightChangeColor[0] + "," + logoboardLightChangeColor[1] + "," + logoboardLightChangeColor[2] + "),transparent)";
-    logoboardCoordinateNumber.style.filter = "brightness(" + ( 300 - 200 / 255 * maxColor ) + "%)";
+    //logoboardCoordinateNumber.style.filter = "brightness(" + ( 300 - 200 / 255 * maxColor ) + "%)";
+    logoboardLightOpacity[logoboardLightNowNumber-1] = opacity;
+    logoboardCoordinateNumber.style.zIndex = logoboraLightZIndex;
+    logoboardCoordinateNumber.style.opacity = opacity;
 }
 
-function logoboardLightOFF(changeTime) {
+function logoboardLightOFF(changeTime,sustainable = 0) {
     logoboardLightSetting(0);
-    for ( var i = 0 ; i < logoboardLightSetTimeout.length ; i++ ) {
-        clearTimeout(logoboardLightSetTimeout[i]);
+    if ( sustainable === 0 ) {
+        for ( var i = 0 ; i < logoboardLightSetTimeout.length ; i++ ) {
+            clearTimeout(logoboardLightSetTimeout[i]);
+        }
+        logoboardLightSetTimeout = [];
     }
-    logoboardLightSetTimeout = [];
 
     logoboardLightUseNumber = [ 0 , 0 ];
-    logoboardLightUseColorNumber = [ 0 , 0 , 0 , 0 ];
-    logoboardLightUseAnimateColorNumber = [ 0 , 0 , 0 , 0 ];
     if ( changeTime === 0 || logoboardLightUseAnimateNumber === 1 ) {
         setTimeout( function(){
             for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
@@ -2615,11 +2626,8 @@ function logoboardLightOFF(changeTime) {
             let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardOFFSetInterval,logoboardLightMyNumber);
             if ( nowTime[0] <= changeTime ) {
                 for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
-                    let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${i}`);
-                    logoboardLightColorDecision(i,logoboardLightFirstColor[0][i-1],logoboardLightFirstColor[1][i-1],logoboardLightFirstColor[2][i-1],logoboardLightFirstColor[3][i-1]);
                     let logoboardLightOpacityProportion = logoboardLightFirstOpacity[i-1] + ( - logoboardLightFirstOpacity[i-1] ) / changeTime * nowTime[0];
-                    logoboardCoordinateNumber.style.opacity = logoboardLightOpacityProportion;
-                    logoboardLightOpacity[i-1] = logoboardLightOpacityProportion;
+                    logoboardLightColorDecision(i,logoboardLightFirstColor[0][i-1],logoboardLightFirstColor[1][i-1],logoboardLightFirstColor[2][i-1],logoboardLightFirstColor[3][i-1],logoboardLightOpacityProportion);
                 }
             } else {
                 for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
@@ -2637,19 +2645,14 @@ function logoboardLightOFF(changeTime) {
 }
 
 function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,colorBlue,colorWhite,opacity = 1,changeTime = 0,nowTime = 0,logoboardSetInterval = 0,animateStop = 1) {
-    let logoboardLightChangeColor = [], finish = 0, timeProportion, logoboraLightZIndex = 0, fadePermission = 0, maxColor = 0, notFade = 0;
+    let logoboardLightChangeColor = [], timeProportion, fadePermission = 0, maxColor = 0;
     logoboardLightChangeColor[0] = colorRed;
     logoboardLightChangeColor[1] = colorGreen;
     logoboardLightChangeColor[2] = colorBlue;
     logoboardLightChangeColor[3] = colorWhite;
 
-    let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${logoboardLightNowNumber}`);
-
     for ( var i = 0 ; i < 4 ; i++ ) {
-        if ( logoboardLightChangeColor[i] >= 0 ) {
-            if ( logoboardLightUseColorNumber[i] > logoboardLightUseNumber[0] ) finish = 1;
-            else if ( logoboardLightUseColorNumber[i] < logoboardLightUseNumber[0] ) logoboardLightUseColorNumber[i] = logoboardLightUseNumber[0];
-        } else {
+        if ( logoboardLightChangeColor[i] < 0 ) {
             logoboardLightChangeColor[i] = logoboardLightFirstColor[i][logoboardLightNowNumber-1];
             fadePermission = 1;
         }
@@ -2659,11 +2662,9 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
 
     if ( animateStop === 2 ) fadePermission = 1;
 
-    if ( fadePermission === 0 && finish === 1 && logoboardLightUseNumber[0] === 0 && logoboardSetInterval !== 0 ) notFade = 1;
+    //opacity *= maxColor / 255;
 
-    opacity *= maxColor / 255;
-
-    if ( nowTime <= changeTime && notFade === 0 ) {
+    if ( nowTime <= changeTime ) {
 
         logoboardLightON = 1;
 
@@ -2676,22 +2677,16 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
         if ( ( logoboardLightUseAnimateNumber === 1 || logoboardLightAnimateOffRoad === 1 ) && animateStop >= 1 ) {
             logoboardLightUseNumber[1] = 0;
             logoboardLightUseAnimateNumber = 0;
-            logoboardLightUseAnimateColorNumber = [ 0 , 0 , 0 , 0 ];
             logoboardLightAnimateOffRoad = 1;
 
             if ( fadePermission === 1 ) {
                 for ( var i = 0 ; i < 4 ; i++ ) logoboardLightChangeColor[i] = logoboardLightAnimateColor[i][logoboardLightNowNumber-1] + ( logoboardLightChangeColor[i] - logoboardLightAnimateColor[i][logoboardLightNowNumber-1] ) * timeProportion;
                 opacity = logoboardLightFirstOpacity[logoboardLightNowNumber-1] + ( opacity - logoboardLightFirstOpacity[logoboardLightNowNumber-1] ) * timeProportion;
+            } else if ( nowTime > 100 ) {
+                clearInterval(logoboardSetInterval);
             }
 
-            logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3]);
-            for ( var i = 0 ; i < 4 ; i++ ) {
-                logoboraLightZIndex += logoboardLightChangeColor[i];
-            }
-            logoboardLightOpacity[logoboardLightNowNumber-1] = opacity;
-            logoboardCoordinateNumber.style.zIndex = logoboraLightZIndex;
-
-            logoboardCoordinateNumber.style.opacity = opacity;
+            logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3],opacity);
 
             for ( var j = 0 ; j < 4 ; j++ ) {
                 logoboardLightColor[j][logoboardLightNowNumber-1] = logoboardLightChangeColor[j];
@@ -2702,16 +2697,8 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
                 logoboardLightColor[j][logoboardLightNowNumber-1] = logoboardLightChangeColor[j];
             }
             if (  logoboardLightUseAnimateNumber === 0 ) {
-                logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3]);
-                for ( var i = 0 ; i < 4 ; i++ ) {
-                    logoboraLightZIndex += logoboardLightChangeColor[i];
-                }
-                logoboardCoordinateNumber.style.zIndex = logoboraLightZIndex;
-
                 let logoboardLightOpacityProportion = logoboardLightFirstOpacity[logoboardLightNowNumber-1] + ( opacity - logoboardLightFirstOpacity[logoboardLightNowNumber-1] ) * timeProportion;
-                logoboardCoordinateNumber.style.opacity = logoboardLightOpacityProportion;
-                
-                logoboardLightOpacity[logoboardLightNowNumber-1] = logoboardLightOpacityProportion;
+                logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3],logoboardLightOpacityProportion);
             }
         } else {
             let logoboardLightColorProportion = [];
@@ -2730,67 +2717,50 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
             for ( var i = 0 ; i < 4 ; i++ ) logoboardLightColor[i][logoboardLightNowNumber-1] = logoboardLightColorProportion[i];
 
             if ( logoboardLightUseAnimateNumber === 0 || animateStop === 1 ) {
-                logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightColorProportion[0],logoboardLightColorProportion[1],logoboardLightColorProportion[2],logoboardLightColorProportion[3]);
-                for ( var i = 0 ; i < 4 ; i++ ) {
-                    logoboraLightZIndex += logoboardLightColorProportion[i];
-                }
-                logoboardCoordinateNumber.style.zIndex = logoboraLightZIndex;
-
-                logoboardCoordinateNumber.style.opacity = logoboardLightOpacityProportion;
+                logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightColorProportion[0],logoboardLightColorProportion[1],logoboardLightColorProportion[2],logoboardLightColorProportion[3],logoboardLightOpacityProportion);
             }
         }
     } else {
         if ( ( logoboardLightUseAnimateNumber === 1 || logoboardLightAnimateOffRoad === 1 ) && animateStop >= 1 ) {
             logoboardLightUseNumber[1] = 0;
             logoboardLightUseAnimateNumber = 0;
-            logoboardLightUseAnimateColorNumber = [ 0 , 0 , 0 , 0 ];
             logoboardLightAnimateOffRoad = 1;
         }
 
         if ( logoboardLightUseAnimateNumber === 0 || animateStop === 1 ) {
-            logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3]);
-            for ( var i = 0 ; i < 4 ; i++ ) {
-                logoboraLightZIndex += logoboardLightChangeColor[i];
-            }
-            logoboardCoordinateNumber.style.zIndex = logoboraLightZIndex;
-
-            logoboardCoordinateNumber.style.opacity = opacity;
+            logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3],opacity);
         }
 
         for ( var j = 0 ; j < 4 ; j++ ) {
             logoboardLightColor[j][logoboardLightNowNumber-1] = logoboardLightChangeColor[j];
         }
-        logoboardLightOpacity[logoboardLightNowNumber-1] = opacity;
 
-        if ( nowTime > changeTime + 100 || notFade === 1 && nowTime > 100 ) clearInterval(logoboardSetInterval);
+        if ( nowTime > changeTime + 100 ) clearInterval(logoboardSetInterval);
     }
 }
 
-function logoboardLightAnimateChange(logoboardLightNowNumber,colorRed,colorGreen,colorBlue,colorWhite,opacity = 1,changeTime = 0,nowTime = -1) {
+function logoboardLightAnimateChange(logoboardLightNowNumber,colorRed,colorGreen,colorBlue,colorWhite,opacity = 1,changeTime = 0,nowTime = -1,option = 0) {
     let fadePermission = 1;
     logoboardLightON = 1;
     logoboardLightUseAnimateNumber = 1;
     let logoboardLightChangeColor = [];
-    let logoboraLightZIndex = 0;
     let maxColor = 0;
     logoboardLightChangeColor[0] = colorRed;
     logoboardLightChangeColor[1] = colorGreen;
     logoboardLightChangeColor[2] = colorBlue;
     logoboardLightChangeColor[3] = colorWhite;
 
-    let logoboardCoordinateNumber = document.getElementById(`LOGOBORD_LIGHT_${logoboardLightNowNumber}`);
-
     for ( var i = 0 ; i < 4 ; i++ ) {
-        if ( logoboardLightChangeColor[i] === -1 ) {
+        if ( logoboardLightChangeColor[i] === -1 || option > 0 && logoboardLightColor[i][logoboardLightNowNumber-1] >= option ) {
             logoboardLightChangeColor[i] = logoboardLightColor[i][logoboardLightNowNumber-1];
-        } else {
-            logoboardLightUseAnimateColorNumber[i] = logoboardLightUseNumber[1];
-        }
+        }/* else if ( option === 1 ) {
+            logoboardLightChangeColor[i] = ( logoboardLightColor[i][logoboardLightNowNumber-1] + logoboardLightChangeColor[i] * 2 ) / 3;
+        }*/
 
         if ( logoboardLightChangeColor[i] > maxColor ) maxColor = logoboardLightChangeColor[i];
     }
 
-    opacity *= maxColor / 255;
+    //opacity *= maxColor / 255;
 
     if ( logoboardLightUseNumber[1] > 1 ) fadePermission = 0;
 
@@ -2802,15 +2772,8 @@ function logoboardLightAnimateChange(logoboardLightNowNumber,colorRed,colorGreen
         }
     }
 
-    logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3]);
-    for ( var i = 0 ; i < 4 ; i++ ) {
-        logoboardLightAnimateColor[i][logoboardLightNowNumber-1] = logoboardLightChangeColor[i];
-        logoboraLightZIndex += logoboardLightChangeColor[i];
-    }
-    logoboardCoordinateNumber.style.zIndex = logoboraLightZIndex;
-    logoboardCoordinateNumber.style.opacity = opacity;
-
-    logoboardLightOpacity[logoboardLightNowNumber-1] = opacity;
+    logoboardLightColorDecision(logoboardLightNowNumber,logoboardLightChangeColor[0],logoboardLightChangeColor[1],logoboardLightChangeColor[2],logoboardLightChangeColor[3],opacity);
+    for ( var i = 0 ; i < 4 ; i++ ) logoboardLightAnimateColor[i][logoboardLightNowNumber-1] = logoboardLightChangeColor[i];
 }
 
 //スモーク, スノウマシン
