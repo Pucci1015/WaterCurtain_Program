@@ -77,7 +77,7 @@ document.addEventListener("keydown", (e) => {
                     logoboardLightSetting(2);
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        logoboardLightOFF(2500);
+                        logoboardLightOFF(2500,1);
                     },0);
 
                     let logoboardLightDelayTime = 4500;
@@ -241,7 +241,7 @@ document.addEventListener("keydown", (e) => {
                     logoboardLightSetting(2);
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        logoboardLightOFF(2500);
+                        logoboardLightOFF(2500,1);
                     },0);
 
                     let logoboardLightDelayTime = 4000;
@@ -583,7 +583,7 @@ document.addEventListener("keydown", (e) => {
                     logoboardLightSetting(2);
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        logoboardLightOFF(1200);
+                        logoboardLightOFF(1200,1);
                     },0);
 
                     let logoboardLightDelayTime = 3200;
@@ -911,7 +911,7 @@ document.addEventListener("keydown", (e) => {
                     logoboardLightSetting(2);
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        logoboardLightOFF(2000);
+                        logoboardLightOFF(2000,1);
                     },0);
 
                     let logoboardLightDelayTime = 3500;
@@ -1169,7 +1169,7 @@ document.addEventListener("keydown", (e) => {
                     logoboardLightSetting(2);
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        logoboardLightOFF(2000);
+                        logoboardLightOFF(2000,1);
                     },0);
 
                     let logoboardLightDelayTime = 3500;
@@ -1803,7 +1803,7 @@ document.addEventListener("keydown", (e) => {
                     logoboardLightSetting(2);
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        logoboardLightOFF(2000);
+                        logoboardLightOFF(2000,1);
                     },0);
 
                     let logoboardLightDelayTime = 3500;
@@ -1906,7 +1906,7 @@ document.addEventListener("keydown", (e) => {
                     logoboardLightSetting(2);
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        logoboardLightOFF(2500);
+                        logoboardLightOFF(2500,1);
                     },0);
 
                     let logoboardLightDelayTime = 4000;
@@ -2101,7 +2101,7 @@ document.addEventListener("keydown", (e) => {
                     logoboardLightSetting(2);
 
                     logoboardLightSetTimeout[0] = setTimeout(function() {
-                        logoboardLightOFF(2000);
+                        logoboardLightOFF(2000,1);
                     },0);
 
                     let logoboardLightDelayTime = 3500;

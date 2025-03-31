@@ -169,14 +169,14 @@ document.addEventListener("keydown", (e) => {
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberSM2_1);
             
                         function logoboardLightNumberSM2_1() {
-                            let nowTime = nowTimeGet(startTime,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
+                            let nowTime = nowTimeGet(startTime+1500,0,logoboardLightUseNumber[0],logoboardLightSetInterval,logoboardLightMyNumber);
                             
                             for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) logoboardLightFadeChage(i,-1,-1,-1,-1,0,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                         }
                     },1500);
 
                     logoboardLightSetTimeout[1] = setTimeout(function() {
-                        logoboardLightOFF(1000);
+                        logoboardLightOFF(1000,1);
                     },4000);
 
                     logoboardLightSetTimeout[2] = setTimeout(function() {
