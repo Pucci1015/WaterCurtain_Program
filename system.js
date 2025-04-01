@@ -166,6 +166,7 @@ let manual = document.getElementById('manual');
 let manualBackground = document.getElementById('manual_background');
 let manualON = 0;
 let musicDefultVolume;
+let scriptFinish = 0;
 music.preload = "auto";
 musicNext.preload = "auto";
 
@@ -399,7 +400,7 @@ function musicChange(musicPN = 1) {
     }
     
     musicScriptNumber = 0;
-    if ( scriptPerformanceNumber !== -1 ) scriptScroll(musicTimeNumber[musicNumber][musicScriptNumber]);
+    if ( scriptFinish === 1 && scriptPerformanceNumber !== -1 ) scriptScroll(musicTimeNumber[musicNumber][musicScriptNumber]);
 }
 
 function performanceMusicChange() {
@@ -417,6 +418,7 @@ function performanceMusicChange() {
     dnMusicSelect = dnNowSelect;
     musicNumber = -1;
     musicNextNumber = -1;
+    scriptFinish = 0;
 
     scriptFetch();
     musicChange();
@@ -785,6 +787,7 @@ function scriptFetch() {
     })
     .then((data) => {
         scriptDisplay(data);
+        scriptFinish = 1;
     })
     .catch((error) => {
         scriptDisplay(-1);
@@ -1220,7 +1223,7 @@ function waterLightColorChange(waterLightNowNumber,colorRed,colorGreen,colorBlue
         colorRed = waterLightFirstColor[0][waterLightNowNumber-1] + ( colorRed - waterLightFirstColor[0][waterLightNowNumber-1] ) / fadeTime * nowTime;
         colorGreen = waterLightFirstColor[1][waterLightNowNumber-1] + ( colorGreen - waterLightFirstColor[1][waterLightNowNumber-1] ) / fadeTime * nowTime;
         colorBlue = waterLightFirstColor[2][waterLightNowNumber-1] + ( colorBlue - waterLightFirstColor[2][waterLightNowNumber-1] ) / fadeTime * nowTime;
-    } else if ( sustainable === 0 && waterLightSetInterval !== 0 ) {
+    } else if ( nowTime > fadeTime + 1000 && sustainable === 0 && waterLightSetInterval !== 0 ) {
         clearInterval(waterLightSetInterval);
     }
 
@@ -1352,12 +1355,12 @@ function parLightColorArrayUpdate(parLightNowNumber,colorRed,colorGreen,colorBlu
 function parLightColorFadeChange(parLightNowNumber,colorRed,colorGreen,colorBlue,nowTime,fadeTime,parLightMyNumber,parLightSetInterval) {
     if ( parLightUseNumber !== parLightMyNumber ) clearInterval(parLightSetInterval);
 
-    if ( nowTime > fadeTime ) {
+    if ( nowTime > fadeTime + 100 ) {
         parLightAnimateON = 0;
         clearInterval(parLightSetInterval);
     } else if ( parLightAnimateON === 1 )  {
         
-    } else {
+    } else if ( nowTime < fadeTime ) {
         let changeTime = Math.sin( nowTime / fadeTime / 2 * Math.PI );
         colorRed = parLightFirstColor[0][parLightNowNumber-1] + ( colorRed - parLightFirstColor[0][parLightNowNumber-1] ) * changeTime;
         colorGreen = parLightFirstColor[1][parLightNowNumber-1] + ( colorGreen - parLightFirstColor[1][parLightNowNumber-1] ) * changeTime;
@@ -2580,7 +2583,6 @@ function logoboardLightColorDecision(logoboardLightNowNumber,colorRed,colorGreen
         if ( logoboardLightChangeColor[i] > maxColor ) maxColor = logoboardLightChangeColor[i];
     }
 
-    //opacity *= maxColor / 255;
     if ( maxColor < 255 ) {
         let correct = 255 / maxColor;
         for ( var i = 0 ; i < 3 ; i++ ) {
@@ -2662,7 +2664,7 @@ function logoboardLightFadeChage(logoboardLightNowNumber,colorRed,colorGreen,col
 
     if ( animateStop === 2 ) fadePermission = 1;
 
-    //opacity *= maxColor / 255;
+    opacity *= maxColor / 255;
 
     if ( nowTime <= changeTime ) {
 
@@ -2753,14 +2755,12 @@ function logoboardLightAnimateChange(logoboardLightNowNumber,colorRed,colorGreen
     for ( var i = 0 ; i < 4 ; i++ ) {
         if ( logoboardLightChangeColor[i] === -1 || option > 0 && logoboardLightColor[i][logoboardLightNowNumber-1] >= option ) {
             logoboardLightChangeColor[i] = logoboardLightColor[i][logoboardLightNowNumber-1];
-        }/* else if ( option === 1 ) {
-            logoboardLightChangeColor[i] = ( logoboardLightColor[i][logoboardLightNowNumber-1] + logoboardLightChangeColor[i] * 2 ) / 3;
-        }*/
+        }
 
         if ( logoboardLightChangeColor[i] > maxColor ) maxColor = logoboardLightChangeColor[i];
     }
 
-    //opacity *= maxColor / 255;
+    opacity *= maxColor / 255;
 
     if ( logoboardLightUseNumber[1] > 1 ) fadePermission = 0;
 
