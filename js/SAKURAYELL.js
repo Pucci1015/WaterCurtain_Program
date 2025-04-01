@@ -6398,12 +6398,12 @@ document.addEventListener("keydown", (e) => {
                                 let logoboardLightColor = [];
 
                                 if ( i <= 6 ) logoboardLightColor = [ 255 , 0 , 150 , 80 ];
-                                else if ( i <= 12 ) logoboardLightColor = [ 255 , 150 , 50 , 255 ];
+                                else if ( i <= 12 ) logoboardLightColor = [ 255 , 100 , 100 , 255 ];
                                 else if ( i <= 18 ) logoboardLightColor = [ 255 , 180 , 240 , 255 ];
                                 else if ( i <= 24 ) logoboardLightColor = [ 255 , 100 , 200 , 150 ];
                                 else if ( i <= 30 ) logoboardLightColor = [ 255 , 50 , 255 , 150 ];
                                 else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 255 , 50 ];
-                                else if ( i <= 42 ) logoboardLightColor = [ 255 , 150 , 50 , 255 ];
+                                else if ( i <= 42 ) logoboardLightColor = [ 255 , 50 , 50 , 255 ];
                                 else logoboardLightColor = [ 255 , 100 , 220 , 200 ];
         
                                 logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
@@ -6618,12 +6618,12 @@ document.addEventListener("keydown", (e) => {
                                 let logoboardLightColor = [];
 
                                 if ( i <= 6 ) logoboardLightColor = [ 255 , 0 , 150 , 80 ];
-                                else if ( i <= 12 ) logoboardLightColor = [ 255 , 150 , 50 , 255 ];
+                                else if ( i <= 12 ) logoboardLightColor = [ 255 , 100 , 100 , 255 ];
                                 else if ( i <= 18 ) logoboardLightColor = [ 255 , 180 , 240 , 255 ];
                                 else if ( i <= 24 ) logoboardLightColor = [ 255 , 100 , 200 , 150 ];
                                 else if ( i <= 30 ) logoboardLightColor = [ 255 , 50 , 255 , 150 ];
                                 else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 255 , 50 ];
-                                else if ( i <= 42 ) logoboardLightColor = [ 255 , 150 , 50 , 255 ];
+                                else if ( i <= 42 ) logoboardLightColor = [ 255 , 50 , 50 , 255 ];
                                 else logoboardLightColor = [ 255 , 100 , 220 , 200 ];
         
                                 logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);

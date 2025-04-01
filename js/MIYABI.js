@@ -182,7 +182,7 @@ document.addEventListener("keydown", (e) => {
                     }
 
                     /***** 看板照明 defult *****/
-                    logoboardLightOFF(3000,1);
+                    logoboardLightOFF(3000);
 
                     /***** ムービングライト MIYABI1 *****/
                     let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];

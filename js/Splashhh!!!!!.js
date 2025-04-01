@@ -1605,7 +1605,7 @@ document.addEventListener("keydown", (e) => {
                         
                         let movingLightAngleFadeTime = 1400;
 
-                        for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,50,100);
+                        for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,100,100);
                         for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightTriplePictureChange(2,i,13,100,50,100);
 
                         movingLightSetInterval[1] = setInterval(movingLightNumberSplash6_1);
