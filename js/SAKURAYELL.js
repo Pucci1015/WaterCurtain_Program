@@ -330,7 +330,7 @@ document.addEventListener("keydown", (e) => {
                             let logoboardRepeatTime = 1500;
                             let logoboardRepeatTimeSplit = logoboardRepeatTime / 2;
                             let logoboardRepeatTimeSplit2 = logoboardRepeatTime / 6;
-                            let logoboardBasicColor = [ [ 255 , 200 , 0 ] , [ 255 , 200 , 100 ] ];
+                            let logoboardBasicColor = [ [ 200 , 0 ] , [ 180 , 80 ] ];
             
                             for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                                 let logoboardColor = [];
@@ -342,12 +342,12 @@ document.addEventListener("keydown", (e) => {
 
                                 for ( var l = 0 ; l < 2 ; l++ ) {
                                     if ( logoboardJudgeTime < logoboardRepeatTimeSplit * ( l + 1 ) ) {
-                                        for ( var k = 0 ; k < 3 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 2 ][k] - logoboardBasicColor[l][k] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
+                                        for ( var k = 0 ; k < 2 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 2 ][k] - logoboardBasicColor[l][k] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
                                         break;
                                     }
                                 }
-            
-                                logoboardLightAnimateChange(i,logoboardColor[0],-1,logoboardColor[1],logoboardColor[2],1,logoboardLightFadeTime,nowTime[0]);
+
+                                logoboardLightAnimateChange(i,255,-1,logoboardColor[0],logoboardColor[1],1,logoboardLightFadeTime,nowTime[0]);
                             }
                         }
                     },logoboardLightDelayTime[0]);
@@ -1833,17 +1833,17 @@ document.addEventListener("keydown", (e) => {
                         function logoboardLightNumberSY4_2() {
                             let nowTime = nowTimeGet(startTime+logoboardLightDelayTime[1],logoboardLightFadeTime,logoboardLightUseNumber[1],logoboardLightSetInterval,logoboardLightMyNumber);
                             let logoboardRepeatTime = 5000;
-                            let logoboardRepeatTimeSplit = logoboardRepeatTime / 4;
+                            let logoboardRepeatTimeSplit = logoboardRepeatTime / 6;
                             let logoboardLapTimeSplit = logoboardRepeatTime / 12;
-                            let logoboardBasicColor = [ [ 255 , 0 , 255 , 150 ] , [ 50 , 255 , 100 , 100 ] , [ 255 , 0 , 255 , 150 ] , [ 50 , 150 , 100 , 50 ] ];
+                            let logoboardBasicColor = [ [ 255 , 0 , 255 , 150 ] , [ 255 , 0 , 200 , 150 ] , [ 50 , 255 , 100 , 100 ] , [ 255 , 0 , 200 , 150 ] , [ 255 , 0 , 255 , 150 ] , [ 50 , 150 , 100 , 50 ] ];
 
                             for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                                 let logoboardColor = [];
                                 let logoboardJudgeTime = ( nowTime[1] + logoboardLapTimeSplit * Math.trunc( ( 48 - i ) / 3 ) ) % logoboardRepeatTime;
 
-                                for ( var l = 0 ; l < 4 ; l++ ) {
+                                for ( var l = 0 ; l < 6 ; l++ ) {
                                     if ( logoboardJudgeTime < logoboardRepeatTimeSplit * ( l + 1 ) ) {
-                                        for ( var k = 0 ; k < 4 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 4 ][k] - logoboardBasicColor[l][k] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
+                                        for ( var k = 0 ; k < 4 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 6 ][k] - logoboardBasicColor[l][k] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
                                         break;
                                     }
                                 }
@@ -1874,17 +1874,17 @@ document.addEventListener("keydown", (e) => {
                         function logoboardLightNumberSY4_2() {
                             let nowTime = nowTimeGet(startTime+logoboardLightDelayTime[3],logoboardLightFadeTime,logoboardLightUseNumber[1],logoboardLightSetInterval,logoboardLightMyNumber);
                             let logoboardRepeatTime = 5000;
-                            let logoboardRepeatTimeSplit = logoboardRepeatTime / 4;
+                            let logoboardRepeatTimeSplit = logoboardRepeatTime / 6;
                             let logoboardLapTimeSplit = logoboardRepeatTime / 12;
-                            let logoboardBasicColor = [ [ 255 , 0 , 255 , 150 ] , [ 50 , 255 , 100 , 100 ] , [ 255 , 0 , 255 , 150 ] , [ 50 , 150 , 100 , 50 ] ];
+                            let logoboardBasicColor = [ [ 255 , 0 , 255 , 150 ] , [ 255 , 0 , 200 , 150 ] , [ 50 , 255 , 100 , 100 ] , [ 255 , 0 , 200 , 150 ] , [ 255 , 0 , 255 , 150 ] , [ 50 , 150 , 100 , 50 ] ];
 
                             for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                                 let logoboardColor = [];
                                 let logoboardJudgeTime = ( nowTime[1] + logoboardLapTimeSplit * Math.trunc( ( 48 - i ) / 3 ) ) % logoboardRepeatTime;
 
-                                for ( var l = 0 ; l < 4 ; l++ ) {
+                                for ( var l = 0 ; l < 6 ; l++ ) {
                                     if ( logoboardJudgeTime < logoboardRepeatTimeSplit * ( l + 1 ) ) {
-                                        for ( var k = 0 ; k < 4 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 4 ][k] - logoboardBasicColor[l][k] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
+                                        for ( var k = 0 ; k < 4 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 6 ][k] - logoboardBasicColor[l][k] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
                                         break;
                                     }
                                 }
@@ -1915,17 +1915,17 @@ document.addEventListener("keydown", (e) => {
                         function logoboardLightNumberSY4_2() {
                             let nowTime = nowTimeGet(startTime+logoboardLightDelayTime[5],logoboardLightFadeTime,logoboardLightUseNumber[1],logoboardLightSetInterval,logoboardLightMyNumber);
                             let logoboardRepeatTime = 5000;
-                            let logoboardRepeatTimeSplit = logoboardRepeatTime / 4;
+                            let logoboardRepeatTimeSplit = logoboardRepeatTime / 6;
                             let logoboardLapTimeSplit = logoboardRepeatTime / 12;
-                            let logoboardBasicColor = [ [ 255 , 0 , 255 , 150 ] , [ 50 , 255 , 100 , 100 ] , [ 255 , 0 , 255 , 150 ] , [ 50 , 150 , 100 , 50 ] ];
+                            let logoboardBasicColor = [ [ 255 , 0 , 255 , 150 ] , [ 255 , 0 , 200 , 150 ] , [ 50 , 255 , 100 , 100 ] , [ 255 , 0 , 200 , 150 ] , [ 255 , 0 , 255 , 150 ] , [ 50 , 150 , 100 , 50 ] ];
 
                             for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                                 let logoboardColor = [];
                                 let logoboardJudgeTime = ( nowTime[1] + logoboardLapTimeSplit * Math.trunc( ( 48 - i ) / 3 ) ) % logoboardRepeatTime;
 
-                                for ( var l = 0 ; l < 4 ; l++ ) {
+                                for ( var l = 0 ; l < 6 ; l++ ) {
                                     if ( logoboardJudgeTime < logoboardRepeatTimeSplit * ( l + 1 ) ) {
-                                        for ( var k = 0 ; k < 4 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 4 ][k] - logoboardBasicColor[l][k] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
+                                        for ( var k = 0 ; k < 4 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 6 ][k] - logoboardBasicColor[l][k] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
                                         break;
                                     }
                                 }
@@ -1956,17 +1956,17 @@ document.addEventListener("keydown", (e) => {
                         function logoboardLightNumberSY4_2() {
                             let nowTime = nowTimeGet(startTime+logoboardLightDelayTime[7],logoboardLightFadeTime,logoboardLightUseNumber[1],logoboardLightSetInterval,logoboardLightMyNumber);
                             let logoboardRepeatTime = 5000;
-                            let logoboardRepeatTimeSplit = logoboardRepeatTime / 4;
+                            let logoboardRepeatTimeSplit = logoboardRepeatTime / 6;
                             let logoboardLapTimeSplit = logoboardRepeatTime / 12;
-                            let logoboardBasicColor = [ [ 255 , 0 , 255 , 150 ] , [ 50 , 255 , 100 , 100 ] , [ 255 , 0 , 255 , 150 ] , [ 50 , 150 , 100 , 50 ] ];
+                            let logoboardBasicColor = [ [ 255 , 0 , 255 , 150 ] , [ 255 , 0 , 200 , 150 ] , [ 50 , 255 , 100 , 100 ] , [ 255 , 0 , 200 , 150 ] , [ 255 , 0 , 255 , 150 ] , [ 50 , 150 , 100 , 50 ] ];
 
                             for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                                 let logoboardColor = [];
                                 let logoboardJudgeTime = ( nowTime[1] + logoboardLapTimeSplit * Math.trunc( ( 48 - i ) / 3 ) ) % logoboardRepeatTime;
 
-                                for ( var l = 0 ; l < 4 ; l++ ) {
+                                for ( var l = 0 ; l < 6 ; l++ ) {
                                     if ( logoboardJudgeTime < logoboardRepeatTimeSplit * ( l + 1 ) ) {
-                                        for ( var k = 0 ; k < 4 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 4 ][k] - logoboardBasicColor[l][k] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
+                                        for ( var k = 0 ; k < 4 ; k++ ) logoboardColor[k] = logoboardBasicColor[l][k] + ( logoboardBasicColor[ ( l + 1 ) % 6 ][k] - logoboardBasicColor[l][k] ) / logoboardRepeatTimeSplit * ( logoboardJudgeTime - logoboardRepeatTimeSplit * l ) ;
                                         break;
                                     }
                                 }
@@ -4879,7 +4879,7 @@ document.addEventListener("keydown", (e) => {
                             }
                             
                             ledRepeatTime = 5000;
-                            ledBasicColor = [ [ 255 , 255 , 255 ] , [ 0 , 255 , 200 ] ];
+                            ledBasicColor = [ [ 220 , 240 , 255 ] , [ 0 , 255 , 200 ] ];
                             ledRepeatTimeSplit = ledRepeatTime / 3;
                             ledArray = [ 12 , 3 , 18 , 34 , 41 , 25 , 43 , 21 , 31 , 37 , 3 , 37 , 6 , 32 , 2 , 28 , 41 , 23 , 7 , 3 , 0 , 13 , 44 , 40 , 9 , 15 , 14 , 7 , 35 , 14 , 35 , 5 , 41 , 4 , 19 , 32 , 32 , 5 , 44 , 28 , 20 , 42 , 37 , 2 , 38 , 45 , 17 , 45 ];
 
@@ -6619,13 +6619,13 @@ document.addEventListener("keydown", (e) => {
 
                                 if ( i <= 6 ) logoboardLightColor = [ 255 , 0 , 150 , 80 ];
                                 else if ( i <= 12 ) logoboardLightColor = [ 255 , 100 , 100 , 255 ];
-                                else if ( i <= 18 ) logoboardLightColor = [ 255 , 180 , 240 , 255 ];
+                                else if ( i <= 18 ) logoboardLightColor = [ 255 , 120 , 220 , 220 ];
                                 else if ( i <= 24 ) logoboardLightColor = [ 255 , 100 , 200 , 150 ];
-                                else if ( i <= 30 ) logoboardLightColor = [ 255 , 50 , 255 , 150 ];
-                                else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 255 , 50 ];
+                                else if ( i <= 30 ) logoboardLightColor = [ 255 , 50 , 220 , 150 ];
+                                else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 220 , 50 ];
                                 else if ( i <= 42 ) logoboardLightColor = [ 255 , 50 , 50 , 255 ];
                                 else logoboardLightColor = [ 255 , 100 , 220 , 200 ];
-        
+
                                 logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                             }
                         }
@@ -7498,9 +7498,6 @@ document.addEventListener("keydown", (e) => {
 
                 } else if ( key === 't' ) {
                     let startTime = Date.now();
-                    
-                    /***** ウォーターカーテン AF *****/
-                    waterCurtain("AF");
 
                     /***** LED 0 *****/
                     let ledMyNumber = ledSetting();
@@ -8267,6 +8264,82 @@ document.addEventListener("keydown", (e) => {
                 if ( key === 'f' ) {
                     let startTime = Date.now();
                     
+                    /***** ウォーターカーテン AF *****/
+                    waterCurtain("AF");
+
+                    /***** LED 0 *****/
+                    let ledMyNumber = ledSetting();
+                    let ledSetInterval = setInterval(ledNumber0);
+
+                    function ledNumber0() {
+                        let ledFadeTime = 2700;
+                        let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
+
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,0,0,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                    }
+
+                    /***** ムービングライト Night2 *****/
+                    let movingLightSetTimeout = [], movingLightSetTimeoutDelay = [], movingLightSetInterval = [];
+                    let movingLightMyNumber = movingLightSetting(movingLightSetTimeout);
+
+                    movingLightSetTimeoutDelay[0] = 10;
+                    movingLightSetTimeout[0] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightColorFadeTime = 2800;
+
+                        movingLightSetInterval[1] = setInterval(movingLightNumberNight2_1);
+
+                        function movingLightNumberNight2_1() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[0],0,movingLightUseNumber,movingLightSetInterval[1],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightColorFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) {
+                                    movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleChange(1,i,0,50,movingLightColorFadeTime,nowTime[0]);
+                                }
+                                for ( var i = 1 ; i <= 4 ; i++ ) {
+                                    movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                    movingLightAngleChange(2,i,0,70,movingLightColorFadeTime,nowTime[0]);
+                                }
+                                movingLightColorChange(2,5,0,0,0,0);
+                                movingLightAngleChange(2,5,0,0,movingLightColorFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[1]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[0]);
+
+                    movingLightSetTimeoutDelay[1] = 2810;
+                    movingLightSetTimeout[1] = setTimeout( function() {
+                        movingLightSetting(0);
+
+                        let movingLightAngleFadeTime = 800;
+
+                        movingLightSetInterval[2] = setInterval(movingLightNumberNight2_2);
+
+                        function movingLightNumberNight2_2() {
+                            let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[1],0,movingLightUseNumber,movingLightSetInterval[2],movingLightMyNumber);
+
+                            if ( nowTime[0] <= movingLightAngleFadeTime ) {
+                                for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightAngleChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightAngleChange(2,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                            } else {
+                                clearInterval(movingLightSetInterval[2]);
+                            }
+                            
+                        }
+
+                    },movingLightSetTimeoutDelay[1]);
+
+                } else if ( key === 'g' ) {
+                    let startTime = Date.now();
+                    
                     /***** ウォーターカーテン A *****/
                     waterCurtain("A");
 
@@ -8295,7 +8368,7 @@ document.addEventListener("keydown", (e) => {
                         for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,240,200,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
-                } else if ( key === 'g' ) {
+                } else if ( key === 'h' ) {
                     let startTime = Date.now();
                     
                     /***** ウォーターカーテン D *****/
@@ -8373,7 +8446,7 @@ document.addEventListener("keydown", (e) => {
 
                     },movingLightSetTimeoutDelay[1]);
 
-                } else if ( key === 'h' ) {
+                } else if ( key === 'i' ) {
                     let startTime = Date.now();
                     
                     /***** ウォーターカーテン AG *****/
@@ -8393,7 +8466,7 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                } else if ( key === 'i' ) {
+                } else if ( key === 'j' ) {
                     let startTime = Date.now();
                     
                     /***** ウォーターカーテン BC *****/
@@ -8468,7 +8541,7 @@ document.addEventListener("keydown", (e) => {
 
                     },movingLightSetTimeoutDelay[1]);
 
-                } else if ( key === 'j' ) {
+                } else if ( key === 'k' ) {
                     let startTime = Date.now();
                     
                     /***** ウォーターカーテン A *****/
@@ -8544,7 +8617,7 @@ document.addEventListener("keydown", (e) => {
 
                     },movingLightSetTimeoutDelay[1]);
 
-                } else if ( key === 'k' ) {
+                } else if ( key === 'l' ) {
                     let startTime = Date.now();
 
                     /***** ウォーターカーテン A *****/
@@ -8598,7 +8671,7 @@ document.addEventListener("keydown", (e) => {
 
                     },movingLightSetTimeoutDelay[0]);
 
-                } else if ( key === 'l' ) {
+                } else if ( key === 'm' ) {
                     let startTime = Date.now();
 
                     /***** ムービングライト Night1 *****/
@@ -8659,7 +8732,7 @@ document.addEventListener("keydown", (e) => {
 
                     },movingLightSetTimeoutDelay[1]);
 
-                } else if ( key === 'm' ) {
+                } else if ( key === 'n' ) {
                     let startTime = Date.now();
 
                     /***** ムービングライト Night2 *****/
