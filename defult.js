@@ -757,7 +757,7 @@ document.addEventListener("keydown", (e) => {
         if ( subCode === 0 ) { //Esc
             let startTime = Date.now();
 
-            spotLightChange(0,1300,startTime);
+            spotLightChange(0,2800,startTime);
 
             let parLightMyNumber = parLightSetting();
             var parLightSetInterval = setInterval(parLightNumber0);
@@ -770,7 +770,7 @@ document.addEventListener("keydown", (e) => {
                 }
             }
 
-            stageLightChange(0,2500,startTime);
+            stageLightChange(0,2800,startTime);
             
             logoboardLightOFF(2500);
 
@@ -794,12 +794,12 @@ document.addEventListener("keydown", (e) => {
 
         } else if ( subCode === 3 ) { 
             let startTime = Date.now();
-            let fadeTime = 2200;
+            let fadeTime = [ 2800 , 1500 ];
             
             if ( spotLightShadowStrength > 0 ) spotON = 0;
             else spotON = 1;
 
-            spotLightChange(spotON,fadeTime,startTime);
+            spotLightChange(spotON,fadeTime[spotON],startTime);
 
         } else if ( subCode === 4 ) { 
             let startTime = Date.now();
