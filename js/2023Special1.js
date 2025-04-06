@@ -6803,8 +6803,7 @@ document.addEventListener("keydown", (e) => {
 
                                 for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,255,255,1,movingLightColorFadeTime,nowTime[0]);
 
-                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,255,255,255,1,movingLightColorFadeTime,nowTime[0]);
-                                movingLightColorChange(2,5,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
                             } else {
                                 clearInterval(movingLightSetInterval[26]);
                             }
@@ -8385,11 +8384,11 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                    /***** パーライト SK3 *****/
+                    /***** パーライト SE3 *****/
                     let parLightMyNumber = parLightSetting();
-                    let parLightSetInterval = setInterval(parLightNumberSK3);
+                    let parLightSetInterval = setInterval(parLightNumberSE3);
 
-                    function parLightNumberSK3() {
+                    function parLightNumberSE3() {
                         let parLightFadeTime = 1000;
                         var nowTime = nowTimeGet(startTime,0);
 

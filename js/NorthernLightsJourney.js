@@ -4021,17 +4021,19 @@ document.addEventListener("keydown", (e) => {
                     function ledNumber103() {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet( startTime , fadeTime , ledUseNumber ,  ledSetInterval , ledMyNumber );
-        
                         let repeatTime = 900;
+                        let repeatTimeSplit = repeatTime / 2;
+        
+                        let lapTimeSplit = repeatTime * 8 / ledNumberInside;
         
                         for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
                             let j = ledNumberInside - i;
-                            let ledColorRed1 = ( nowTime[1] + repeatTime * 8 / ledNumberInside * j ) % repeatTime;
+                            let ledColorRed1 = ( nowTime[1] + lapTimeSplit * j ) % repeatTime;
                             let ledColorRed2;
                             if ( ledColorRed1 < repeatTime / 2 ) {
-                                ledColorRed2 = 255 / repeatTime * 2 * ledColorRed1;
+                                ledColorRed2 = 255 / repeatTimeSplit * ledColorRed1;
                             } else {
-                                ledColorRed2 = 255 - 255 / repeatTime * 2 * ( ledColorRed1 - repeatTime / 2 );
+                                ledColorRed2 = 255 - 255 / repeatTimeSplit * ( ledColorRed1 - repeatTimeSplit );
                             }
         
                             ledColorChange(1,i,ledColorRed2,255,255,nowTime[0],fadeTime);

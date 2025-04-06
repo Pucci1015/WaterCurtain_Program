@@ -6376,7 +6376,7 @@ document.addEventListener("keydown", (e) => {
                                 if ( i <= 6 ) logoboardLightColor = [ 255 , 0 , 150 , 80 ];
                                 else if ( i <= 12 ) logoboardLightColor = [ 0 , 50 , 50 , 255 ];
                                 else if ( i <= 24 ) logoboardLightColor = [ 255 , 100 , 200 , 150 ];
-                                else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 255 , 50 ];
+                                else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 220 , 50 ];
                                 else if ( i <= 42 ) logoboardLightColor = [ 0 , 50 , 50 , 255 ];
                                 else logoboardLightColor = [ 255 , 100 , 220 , 200 ];
         
@@ -6399,10 +6399,10 @@ document.addEventListener("keydown", (e) => {
 
                                 if ( i <= 6 ) logoboardLightColor = [ 255 , 0 , 150 , 80 ];
                                 else if ( i <= 12 ) logoboardLightColor = [ 255 , 100 , 100 , 255 ];
-                                else if ( i <= 18 ) logoboardLightColor = [ 255 , 180 , 240 , 255 ];
+                                else if ( i <= 18 ) logoboardLightColor = [ 255 , 120 , 220 , 220 ];
                                 else if ( i <= 24 ) logoboardLightColor = [ 255 , 100 , 200 , 150 ];
-                                else if ( i <= 30 ) logoboardLightColor = [ 255 , 50 , 255 , 150 ];
-                                else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 255 , 50 ];
+                                else if ( i <= 30 ) logoboardLightColor = [ 255 , 50 , 220 , 150 ];
+                                else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 220 , 50 ];
                                 else if ( i <= 42 ) logoboardLightColor = [ 255 , 50 , 50 , 255 ];
                                 else logoboardLightColor = [ 255 , 100 , 220 , 200 ];
         

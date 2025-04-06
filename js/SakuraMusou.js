@@ -2157,15 +2157,15 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** 水中照明 SM4 *****/
+                    /***** 水中照明 HI1 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberSM4);
+                    let waterLightSetInterval = setInterval(waterLightNumberHI1);
 
-                    function waterLightNumberSM4() {
+                    function waterLightNumberHI1() {
                         let fadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 
-                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,200,0,255,nowTime[0],fadeTime,0,waterLightSetInterval);
+                        for ( var i = 1 ; i <= waterLightNumber ; i++ ) waterLightColorChange(i,150,0,255,nowTime[0],fadeTime,0,waterLightSetInterval);
                     }
 
                     /***** ムービングライト SM4 *****/
@@ -2775,16 +2775,16 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** 水中照明 SM5 *****/
+                    /***** 水中照明 SM4 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberSM5);
+                    let waterLightSetInterval = setInterval(waterLightNumberSM4);
 
-                    function waterLightNumberSM5() {
+                    function waterLightNumberSM4() {
                         let waterLightFadeTime = 1500;
                         let nowTime = nowTimeGet(startTime,waterLightFadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
                         let waterLightRepeatTime = 2000;
                         let waterLightRepeatTimeSplit = waterLightRepeatTime / 2;
-                        let waterLightBasicColor = [ [ 255 , 0 , 200 ] , [ 255 , 150 , 220 ]];
+                        let waterLightBasicColor = [ [ 150 , 0 , 255 ] , [ 200 , 180 , 255 ]];
 
                         for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
                             let j = i - 1;
@@ -4952,11 +4952,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン M *****/
                     waterCurtain("M");
 
-                    /***** LED SE7 *****/
+                    /***** LED SE8 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberSE7);
+                    let ledSetInterval = setInterval(ledNumberSE8);
 
-                    function ledNumberSE7() {
+                    function ledNumberSE8() {
                         let ledFadeTime = 1800;
                         let ledRepeatTime = 1800;
                         let ledChangeTime = 500;
@@ -5006,21 +5006,21 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** 水中照明 SM6 *****/
+                    /***** 水中照明 SM5 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberSM6);
+                    let waterLightSetInterval = setInterval(waterLightNumberSM5);
 
-                    function waterLightNumberSM6() {
+                    function waterLightNumberSM5() {
                         let waterLightFadeTime = 1500;
                         let nowTime = nowTimeGet(startTime,waterLightFadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
-                        let waterLightRepeatTime = 2000;
+                        let waterLightRepeatTime = 5000;
                         let waterLightRepeatTimeSplit = waterLightRepeatTime / 2;
-                        let waterLightBasicColor = [ [ 200 , 0 , 255 ] , [ 220 , 180 , 255 ]];
+                        let waterLightBasicColor = [ [ 150 , 0 , 255 ] , [ 200 , 180 , 255 ]];
 
                         for ( var i = 1 ; i <= waterLightNumber ; i++ ) {
                             let j = i - 1;
                             let waterLightColor = [];
-                            let waterLightJudgeTime = ( nowTime[1] + 420 * j ) % waterLightRepeatTime;
+                            let waterLightJudgeTime = ( nowTime[1] + 1050 * j ) % waterLightRepeatTime;
 
                             for ( var l = 0 ; l < 2 ; l++ ) {
                                 if ( waterLightJudgeTime < waterLightRepeatTimeSplit * ( l + 1 ) ) {
