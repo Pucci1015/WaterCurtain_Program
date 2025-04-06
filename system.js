@@ -892,11 +892,120 @@ const SEffectUrlCheck = async function(url) {
 
 let SEffect = document.getElementById("SEffect");
 
+//白色照明
+var whiteLightArray = [];
+for ( var i = 0 ; i < whiteLightNumber ; i++ ) {
+    whiteLightArray[i] = 1;
+}
+
+const whiteLightHalfArray = [ 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 0 ];
+let keyPic = [ '4' , '5' , '6' , '7' , '8' , '9' , '0' , '-' , '^' ];
+let altPermission = 1;
+
 document.addEventListener("keydown", (e) => {
     const key = e.key;
     const code = e.keyCode;
 
     //console.log(key);
+
+    if ( e.altKey ) {
+        altPermission = 0;
+        performanceNowSelect = performanceSelect.value;
+
+        if ( key === '1' || key === '¡' ) {
+            var i = 1;
+            var whiteLightSetInterval = setInterval(function() {
+                for ( var j = i ; j <= whiteLightNumber ; j++ ) {
+                    if ( whiteLightArray[j-1] === 1 ) {
+                        let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${j}`);
+                        whiteLightCoordinateNumber.style.opacity = 0;
+                        whiteLightArray[j-1] = 0;
+                        i = j + 1;
+                        break;
+                    } else if ( j === whiteLightNumber ) {
+                        clearInterval(whiteLightSetInterval);
+                    }
+                }
+            },440);
+        } else if ( key === '2' || key === '™' ) {
+            var i = 1;
+            var whiteLightSetInterval = setInterval(function() {
+                for ( var j = i ; j <= whiteLightNumber ; j++ ) {
+                    if ( whiteLightHalfArray[j-1] === 0 && whiteLightArray[j-1] === 1 ) {
+                        let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${j}`);
+                        whiteLightCoordinateNumber.style.opacity = 0;
+                        whiteLightArray[j-1] = 0;
+                        i = j + 1;
+                        break;
+                    } else if ( whiteLightHalfArray[j-1] === 1 && whiteLightArray[j-1] === 0 ) {
+                        let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${j}`);
+                        whiteLightCoordinateNumber.style.opacity = 1;
+                        whiteLightArray[j-1] = 1;
+                        i = j + 1;
+                        break;
+                    } else if ( j === whiteLightNumber ) {
+                        clearInterval(whiteLightSetInterval);
+                    }
+                }
+            },440);
+        } else if ( key === '3' || key === '£' ) {
+            var i = 1;
+            var whiteLightSetInterval = setInterval(function() {
+                for ( var j = i ; j <= whiteLightNumber ; j++ ) {
+                    if ( whiteLightArray[j-1] === 0 ) {
+                        let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${j}`);
+                        whiteLightCoordinateNumber.style.opacity = 1;
+                        whiteLightArray[j-1] = 1;
+                        i = j + 1;
+                        break;
+                    } else if ( j === whiteLightNumber ) {
+                        clearInterval(whiteLightSetInterval);
+                    }
+                }
+            },440);
+        } else {
+            if ( key === "\\" ) {
+                SEffect.pause();
+                SEffect.src = "";
+            } else {
+                for ( var i = 0 ; i <= 9 ; i++ ) {
+                    if ( key === keyPic[i] ) {
+                        SEffectUrlCheck("SoundEffect/" + performanceMusicSelect + "_" + dnTitle[dnMusicSelect] + "_se_" + ( i + 1 ) + ".mp3");
+                    }
+                }
+            }
+            /*var whiteLightNowNumber = 0;
+
+            switch ( key ) {
+                case '4': whiteLightNowNumber = 1; break;
+                case '5': whiteLightNowNumber = 2; break;
+                case '6': whiteLightNowNumber = 3; break;
+                case '7': whiteLightNowNumber = 4; break;
+                case '8': whiteLightNowNumber = 5; break;
+                case '9': whiteLightNowNumber = 6; break;
+                case '0': whiteLightNowNumber = 7; break;
+                case '-': whiteLightNowNumber = 8; break;
+                case '^': whiteLightNowNumber = 9; break;
+                case 'q': whiteLightNowNumber = 10; break;
+                case 'w': whiteLightNowNumber = 11; break;
+                case 'r': whiteLightNowNumber = 12; break;
+                case 't': whiteLightNowNumber = 13; break;
+                case 'y': whiteLightNowNumber = 14; break;
+                case 'o': whiteLightNowNumber = 15; break;
+                case 'p': whiteLightNowNumber = 16; break;
+            }
+
+            if ( whiteLightNowNumber >= 1 ) {
+                let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${whiteLightNowNumber}`);
+                if ( whiteLightArray[whiteLightNowNumber-1] === 0 ) whiteLightCoordinateNumber.style.opacity = 1;
+                else whiteLightCoordinateNumber.style.opacity = 0;
+
+                whiteLightArray[whiteLightNowNumber-1] = 1 - whiteLightArray[whiteLightNowNumber-1];
+            }*/
+        }
+    } else {
+        altPermission = 1;
+    }
 
     if ( subSelectStyle === 0 ) {
         if ( code >= 112 && code <= 123 ) subCode = code - 111;
@@ -970,7 +1079,7 @@ document.addEventListener("keydown", (e) => {
         performanceNowSelect = performanceSelect.value;
     }
 
-    if ( performanceNowSelect !== -1 && manualON === 0 ) {
+    if ( performanceNowSelect !== -1 && manualON === 0 && altPermission === 1 ) {
         if ( !( e.shiftKey ) ) {
             if ( ( code === 220 || key === '¥' ) ) { // \
                 if ( mainNowPage < mainTotalPage ) {
@@ -1223,120 +1332,6 @@ function waterLightColorChange(waterLightNowNumber,colorRed,colorGreen,colorBlue
     waterLightCoordinateNumber.style.background = "linear-gradient(rgb(" + colorRed + "," + colorGreen + "," + colorBlue + ") , transparent)";
     waterLightColorArrayUpdate(waterLightNowNumber,colorRed,colorGreen,colorBlue);
 }
-
-//白色照明
-var whiteLightArray = [];
-for ( var i = 0 ; i < whiteLightNumber ; i++ ) {
-    whiteLightArray[i] = 1;
-}
-
-const whiteLightHalfArray = [ 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 0 ];
-let keyPic = [ '4' , '5' , '6' , '7' , '8' , '9' , '0' , '-' , '^' ];
-let altPermission = 1;
-
-document.addEventListener("keydown", (e) => {
-    const key = e.key;
-    const code = e.keyCode;
-
-    if ( e.altKey ) {
-        altPermission = 0;
-        performanceNowSelect = performanceSelect.value;
-
-        if ( key === '1' || key === '¡' ) {
-            var i = 1;
-            var whiteLightSetInterval = setInterval(function() {
-                for ( var j = i ; j <= whiteLightNumber ; j++ ) {
-                    if ( whiteLightArray[j-1] === 1 ) {
-                        let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${j}`);
-                        whiteLightCoordinateNumber.style.opacity = 0;
-                        whiteLightArray[j-1] = 0;
-                        i = j + 1;
-                        break;
-                    } else if ( j === whiteLightNumber ) {
-                        clearInterval(whiteLightSetInterval);
-                    }
-                }
-            },440);
-        } else if ( key === '2' || key === '™' ) {
-            var i = 1;
-            var whiteLightSetInterval = setInterval(function() {
-                for ( var j = i ; j <= whiteLightNumber ; j++ ) {
-                    if ( whiteLightHalfArray[j-1] === 0 && whiteLightArray[j-1] === 1 ) {
-                        let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${j}`);
-                        whiteLightCoordinateNumber.style.opacity = 0;
-                        whiteLightArray[j-1] = 0;
-                        i = j + 1;
-                        break;
-                    } else if ( whiteLightHalfArray[j-1] === 1 && whiteLightArray[j-1] === 0 ) {
-                        let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${j}`);
-                        whiteLightCoordinateNumber.style.opacity = 1;
-                        whiteLightArray[j-1] = 1;
-                        i = j + 1;
-                        break;
-                    } else if ( j === whiteLightNumber ) {
-                        clearInterval(whiteLightSetInterval);
-                    }
-                }
-            },440);
-        } else if ( key === '3' || key === '£' ) {
-            var i = 1;
-            var whiteLightSetInterval = setInterval(function() {
-                for ( var j = i ; j <= whiteLightNumber ; j++ ) {
-                    if ( whiteLightArray[j-1] === 0 ) {
-                        let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${j}`);
-                        whiteLightCoordinateNumber.style.opacity = 1;
-                        whiteLightArray[j-1] = 1;
-                        i = j + 1;
-                        break;
-                    } else if ( j === whiteLightNumber ) {
-                        clearInterval(whiteLightSetInterval);
-                    }
-                }
-            },440);
-        } else {
-            if ( key === "\\" ) {
-                SEffect.pause();
-                SEffect.src = "";
-            } else {
-                for ( var i = 0 ; i <= 9 ; i++ ) {
-                    if ( key === keyPic[i] ) {
-                        SEffectUrlCheck("SoundEffect/" + performanceMusicSelect + "_" + dnTitle[dnMusicSelect] + "_se_" + ( i + 1 ) + ".mp3");
-                    }
-                }
-            }
-            /*var whiteLightNowNumber = 0;
-
-            switch ( key ) {
-                case '4': whiteLightNowNumber = 1; break;
-                case '5': whiteLightNowNumber = 2; break;
-                case '6': whiteLightNowNumber = 3; break;
-                case '7': whiteLightNowNumber = 4; break;
-                case '8': whiteLightNowNumber = 5; break;
-                case '9': whiteLightNowNumber = 6; break;
-                case '0': whiteLightNowNumber = 7; break;
-                case '-': whiteLightNowNumber = 8; break;
-                case '^': whiteLightNowNumber = 9; break;
-                case 'q': whiteLightNowNumber = 10; break;
-                case 'w': whiteLightNowNumber = 11; break;
-                case 'r': whiteLightNowNumber = 12; break;
-                case 't': whiteLightNowNumber = 13; break;
-                case 'y': whiteLightNowNumber = 14; break;
-                case 'o': whiteLightNowNumber = 15; break;
-                case 'p': whiteLightNowNumber = 16; break;
-            }
-
-            if ( whiteLightNowNumber >= 1 ) {
-                let whiteLightCoordinateNumber = document.getElementById(`WHITE_LIGHT_${whiteLightNowNumber}`);
-                if ( whiteLightArray[whiteLightNowNumber-1] === 0 ) whiteLightCoordinateNumber.style.opacity = 1;
-                else whiteLightCoordinateNumber.style.opacity = 0;
-
-                whiteLightArray[whiteLightNowNumber-1] = 1 - whiteLightArray[whiteLightNowNumber-1];
-            }*/
-        }
-    } else {
-        altPermission = 1;
-    }
-});
 
 //パーライト
 var parLightColor = [ [], [], [] ];
