@@ -891,7 +891,6 @@ const SEffectUrlCheck = async function(url) {
 };
 
 let SEffect = document.getElementById("SEffect");
-let keyPic = [ '|' , '!' , '"' , '#' , '$' , '%' , '&' , '\'' , '(' , ')' , '0' , '=' , '~' ];
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -965,17 +964,10 @@ document.addEventListener("keydown", (e) => {
         },400);
     }
 
-    if ( e.shiftKey && !(e.metaKey) ) {
-        if ( key === "|" ) {
-            SEffect.pause();
-            SEffect.src = "";
-        } else {
-            for ( var i = 1 ; i <= 12 ; i++ ) {
-                if ( key === keyPic[i] ) {
-                    SEffectUrlCheck("SoundEffect/" + performanceMusicSelect + "_" + dnTitle[dnMusicSelect] + "_se_" + i + ".mp3");
-                }
-            }
-        }
+    if ( e.ctrlKey ) {
+        performanceNowSelect = -1;
+    } else {
+        performanceNowSelect = performanceSelect.value;
     }
 
     if ( performanceNowSelect !== -1 && manualON === 0 ) {
@@ -1239,13 +1231,17 @@ for ( var i = 0 ; i < whiteLightNumber ; i++ ) {
 }
 
 const whiteLightHalfArray = [ 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 1 , 0 , 0 , 1 , 0 , 0 ];
+let keyPic = [ '4' , '5' , '6' , '7' , '8' , '9' , '0' , '-' , '^' ];
+let altPermission = 1;
 
 document.addEventListener("keydown", (e) => {
     const key = e.key;
     const code = e.keyCode;
 
     if ( e.altKey ) {
-        performanceNowSelect = -1;
+        altPermission = 0;
+        performanceNowSelect = performanceSelect.value;
+
         if ( key === '1' || key === '¡' ) {
             var i = 1;
             var whiteLightSetInterval = setInterval(function() {
@@ -1298,7 +1294,17 @@ document.addEventListener("keydown", (e) => {
                 }
             },440);
         } else {
-            var whiteLightNowNumber = 0;
+            if ( key === "\\" ) {
+                SEffect.pause();
+                SEffect.src = "";
+            } else {
+                for ( var i = 0 ; i <= 9 ; i++ ) {
+                    if ( key === keyPic[i] ) {
+                        SEffectUrlCheck("SoundEffect/" + performanceMusicSelect + "_" + dnTitle[dnMusicSelect] + "_se_" + ( i + 1 ) + ".mp3");
+                    }
+                }
+            }
+            /*var whiteLightNowNumber = 0;
 
             switch ( key ) {
                 case '4': whiteLightNowNumber = 1; break;
@@ -1325,12 +1331,10 @@ document.addEventListener("keydown", (e) => {
                 else whiteLightCoordinateNumber.style.opacity = 0;
 
                 whiteLightArray[whiteLightNowNumber-1] = 1 - whiteLightArray[whiteLightNowNumber-1];
-            }
+            }*/
         }
-    } else if ( e.ctrlKey ) {
-        performanceNowSelect = -1;
     } else {
-        performanceNowSelect = performanceSelect.value;
+        altPermission = 1;
     }
 });
 
@@ -1576,14 +1580,17 @@ for ( var i = 0 ; i < waterCannonLightNumber ; i++ ) {
 function waterCannonAngleChange(waterCannonNowNumber,waterCannonNowAngle,waterCannonChangeTime = 0,nowTime = 0) {
     let waterCannonCoordinateNumber = document.getElementById(`WATER_CANNON_${waterCannonNowNumber}`);
     if ( waterCannonChangeTime !== 0 ) {
-        let waterCannonProportion = ( waterCannonNowAngle - waterCannonFirstAngle[waterCannonNowNumber-1] ) / waterCannonChangeTime;
-        /*if ( waterCannonProportion < -0.01 ) {
-            waterCannonProportion = -0.01;
-        }*/
-        waterCannonCoordinateNumber.style.height = ( waterCannonFirstAngle[waterCannonNowNumber-1] + waterCannonProportion * nowTime ) / 90 * 70 + "%";
-        waterCannonCoordinateNumber.style.width = ( waterCannonFirstAngle[waterCannonNowNumber-1] + waterCannonProportion * nowTime ) / 90 * 70 + "%";
-        waterCannonAngle[waterCannonNowNumber-1] = waterCannonFirstAngle[waterCannonNowNumber-1] + waterCannonProportion * nowTime;
+        let waterCannonProportion = waterCannonFirstAngle[waterCannonNowNumber-1] + ( waterCannonNowAngle - waterCannonFirstAngle[waterCannonNowNumber-1] ) / waterCannonChangeTime * nowTime;
+        if ( waterCannonProportion > 90 ) waterCannonProportion = 90;
+        else if ( waterCannonProportion < 0 ) waterCannonProportion = 0;
+
+        waterCannonCoordinateNumber.style.height = waterCannonProportion / 90 * 70 + "%";
+        waterCannonCoordinateNumber.style.width = waterCannonProportion / 90 * 70 + "%";
+        waterCannonAngle[waterCannonNowNumber-1] = waterCannonProportion;
     } else {
+        if ( waterCannonNowAngle > 90 ) waterCannonNowAngle = 90;
+        else if ( waterCannonNowAngle < 0 ) waterCannonNowAngle = 0;
+        
         waterCannonCoordinateNumber.style.height = waterCannonNowAngle / 90 * 70 + "%";
         waterCannonCoordinateNumber.style.width = waterCannonNowAngle / 90 * 70 + "%";
         waterCannonAngle[waterCannonNowNumber-1] = waterCannonNowAngle;
@@ -2800,7 +2807,7 @@ snowSEffect.volume = 0.15;
 document.addEventListener("keydown", (e) => {
     const key = e.key;
 
-    if ( performanceNowSelect !== -1 ) {
+    if ( performanceNowSelect !== -1 && altPermission === 1 ) {
         if ( key === "-" ) {
             smokeON = 1 - smokeON;
             if ( smokeON === 1 ) {
