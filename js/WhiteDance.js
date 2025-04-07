@@ -4387,7 +4387,7 @@ document.addEventListener("keydown", (e) => {
                         let ledRepeatTime = 1400;
                         let ledRepeatTimeSplit = ledRepeatTime / 2;
                         let ledChangeTime = 200;
-                        let ledBasicColor = [ [ 255 , 255 , 180 ] , [ 0 , 255 , 150 ] ];
+                        let ledBasicColor = [ [ 255 , 255 , 200 ] , [ 0 , 255 , 150 ] ];
                         
                         let ledLapTimeSplit = ledRepeatTime * 6 / ledNumberInside;
 
@@ -4771,7 +4771,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+movingLightSetTimeoutDelay[3],0,movingLightUseNumber,movingLightSetInterval[4],movingLightMyNumber);
 
                             if ( nowTime[0] <= movingLightAngleFadeTime ) {
-                                for ( var i = 1 ; i <= 3 ; i++ ) movingLightAngleFadeChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 3 ; i++ ) movingLightAngleChange(1,i,0,0,movingLightAngleFadeTime,nowTime[0]);
                                 for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightAngleChange(2,i,0,0,movingLightAngleFadeTime,nowTime[0]);
                             } else {
                                 clearInterval(movingLightSetInterval[4]);

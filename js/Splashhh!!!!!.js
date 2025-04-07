@@ -2229,8 +2229,7 @@ document.addEventListener("keydown", (e) => {
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledRepeatTime = 1700;
                         let ledRepeatTimeSplit = ledRepeatTime / 4;
-                        let ledChangeTime = 500;
-                        let ledBasicColor = [ [ 255 , 255 , 255 ] , [ 255 , 255 , 255 ] , [ 0 , 100 , 255 ] , [ 100 , 0 , 255 ] ];
+                        let ledBasicColor = [ [ 255 , 255 , 255 ] , [ 255 , 255 , 255 ] , [ 0 , 120 , 255 ] , [ 120 , 0 , 255 ] ];
                         
                         let ledLapTimeSplit = ledRepeatTime * 6 / ledNumberInside;
     
@@ -2240,11 +2239,8 @@ document.addEventListener("keydown", (e) => {
                             let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
     
                             for ( var l = 0 ; l < 4 ; l++ ) {
-                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) - ledChangeTime ) {
-                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k];
-                                    break;
-                                } else if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
-                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 4 ][k] - ledBasicColor[l][k] ) / ledChangeTime * ( ledJudgeTime - ( ledRepeatTimeSplit * ( l + 1 ) - ledChangeTime ) ) ;
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 4 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
                                     break;
                                 }
                             }
@@ -2260,11 +2256,8 @@ document.addEventListener("keydown", (e) => {
                             let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
     
                             for ( var l = 0 ; l < 4 ; l++ ) {
-                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) - ledChangeTime ) {
-                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k];
-                                    break;
-                                } else if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
-                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 4 ][k] - ledBasicColor[l][k] ) / ledChangeTime * ( ledJudgeTime - ( ledRepeatTimeSplit * ( l + 1 ) - ledChangeTime ) ) ;
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 4 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
                                     break;
                                 }
                             }

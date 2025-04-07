@@ -3182,11 +3182,11 @@ document.addEventListener("keydown", (e) => {
                             if ( i <= logoboardLightNumber / 2 ) j = i;
                             else j = logoboardLightNumber - i + 1;
 
-                            if ( j <= 6 ) logoboardLightColor = [ 0 , 0 , 50 , 255 ];
+                            if ( j <= 6 ) logoboardLightColor = [ 0 , 0 , 20 , 255 ];
                             else if ( j <= 12 ) logoboardLightColor = [ 50 , 255 , 100 , 0 ];
                             else if ( j <= 15 ) logoboardLightColor = [ 80 , 50 , 0 , 255 ];
                             else if ( j <= 18 ) logoboardLightColor = [ 0 , 0 , 0 , 255 ];
-                            else logoboardLightColor = [ 255 , 255 , 80 , 0 ];
+                            else logoboardLightColor = [ 255 , 255 , 100 , 0 ];
     
                             logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                         }

@@ -3666,12 +3666,12 @@ document.addEventListener("keydown", (e) => {
                         let nowTime = nowTimeGet(startTime,1000,logoboardLightUseNumber[1],logoboardLightSetInterval,logoboardLightMyNumber);
                         let logoboardRepeatTime = 5000;
                         let logoboardRepeatTimeSplit = logoboardRepeatTime / 6;
-                        let logoboardLapTimeSplit = logoboardRepeatTime / 44;
+                        let logoboardLapTimeSplit = logoboardRepeatTime / 14;
                         let logoboardBasicColor = [ [ 255 , 255 , 0 ] , [ 255 , 150 , 0 ] , [ 255 , 255 , 200 ] , [ 150 , 0 , 255 ] , [ 255 , 255 , 0 ] , [ 255 , 0 , 150 ] ];
         
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                             let logoboardColor = [];
-                            let logoboardJudgeTime = ( nowTime[1] + logoboardLapTimeSplit  * ( 88 - i ) ) % logoboardRepeatTime;
+                            let logoboardJudgeTime = ( nowTime[1] + logoboardLapTimeSplit  * Math.trunc( ( 84 - i ) / 3 ) ) % logoboardRepeatTime;
 
                             for ( var l = 0 ; l < 6 ; l++ ) {
                                 if ( logoboardJudgeTime < logoboardRepeatTimeSplit * ( l + 1 ) ) {
@@ -3744,14 +3744,14 @@ document.addEventListener("keydown", (e) => {
         
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                             let logoboardColor = [ 0 , 0 , 0 ];
-                            let logoboardLapTimeSplit = 160;
+                            let logoboardLapTimeSplit = 480;
                             let logoboardWhiteColor = 100;
 
-                            if ( i <= 18 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * 2 + logoboardLapTimeSplit * ( 18 - i );
-                            else if ( i <= 27 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * 2 + logoboardLapTimeSplit * ( i - 19 );
-                            else if ( i <= 36 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * 5 + logoboardLapTimeSplit * ( 36 - i );
-                            else if ( i <= 42 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * 3.5 + logoboardLapTimeSplit * ( i - 37 );
-                            else logoboardLapTimeSplit = logoboardRepeatTimeSplit * 1.5 + logoboardLapTimeSplit * ( 48 - i );
+                            if ( i <= 18 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * 2 + logoboardLapTimeSplit * Math.trunc( ( 18 - i ) / 3 );
+                            else if ( i <= 27 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * 2 + logoboardLapTimeSplit * Math.trunc( ( i - 19 ) / 3 );
+                            else if ( i <= 36 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * 5 + logoboardLapTimeSplit * Math.trunc( ( 36 - i ) / 3 );
+                            else if ( i <= 42 ) logoboardLapTimeSplit = logoboardRepeatTimeSplit * 3.5 + logoboardLapTimeSplit * Math.trunc( ( i - 37 ) / 3 );
+                            else logoboardLapTimeSplit = logoboardRepeatTimeSplit * 1.5 + logoboardLapTimeSplit * Math.trunc( ( 48 - i ) / 3 );
 
                             let logoboardJudgeTime = ( nowTime[0] + logoboardLapTimeSplit ) % logoboardRepeatTime;
 
