@@ -4632,11 +4632,11 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** 水中照明 SS3 *****/
+                    /***** 水中照明 SS4 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberSS3);
+                    let waterLightSetInterval = setInterval(waterLightNumberSS4);
 
-                    function waterLightNumberSS3() {
+                    function waterLightNumberSS4() {
                         let fadeTime = 3200;
                         let nowTime = nowTimeGet(startTime,fadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
 

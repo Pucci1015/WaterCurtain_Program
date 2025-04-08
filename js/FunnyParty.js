@@ -68,11 +68,11 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
 
-                    /***** 水中照明 SS2 *****/
+                    /***** 水中照明 SS3 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberSS2);
+                    let waterLightSetInterval = setInterval(waterLightNumberSS3);
 
-                    function waterLightNumberSS2() {
+                    function waterLightNumberSS3() {
                         let waterLightFadeTime = 500;
                         let nowTime = nowTimeGet(startTime,waterLightFadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
                         let waterLightRepeatTime = 3000;
@@ -758,7 +758,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[2],0,ledUseNumber,ledSetInterval[2],ledMyNumber,ledUseChildrenNumber,ledMyNumber2);                        
                             let ledRepeatTime = 1500;
                             let ledRepeatTimeSplit = ledRepeatTime / 2;
-                            let ledBasicColor = [ [ 255 , 0 , 240 ] , [ 240 , 200 , 255 ] ];
+                            let ledBasicColor = [ [ 255 , 0 , 240 ] , [ 240 , 220 , 255 ] ];
                             
                             let ledLapTimeSplit = 140;
 
@@ -3056,43 +3056,41 @@ document.addEventListener("keydown", (e) => {
                     function ledNumber58() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 1000;
-                        let ledRepeatTimeSplit = ledRepeatTime / 4;
+                        let ledRepeatTimeSplit = ledRepeatTime / 5;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
-                        let ledBasicColor = [ [ 255 , 180 , 255 ] , [ 255 , 0 , 0 ] ];
+                        let ledBasicColor = [ [ 255 , 180 , 255 ] , [ 255 , 50 , 180 ] , [ 255 , 0 , 0 ] , [ 255 , 180 , 255 ] , [ 255 , 180 , 255 ] ];
                         
                         let ledLapTimeSplit = ledRepeatTime * 5 / ledNumberInside;
-
+    
                         for ( var i = 1 ; i <= ledNumberInside ; i++ ) {
-                            let ledColor = [];
                             let j = ledNumberInside - i;
+                            let ledColor = [];
                             let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
-
-                            if ( ledJudgeTime < ledRepeatTimeSplit ) {
-                                for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[0][k] + ( ledBasicColor[1][k] - ledBasicColor[0][k] ) / ledRepeatTimeSplit * ledJudgeTime ;
-                            } else if ( ledJudgeTime < ledRepeatTimeSplit * 2 ) {
-                                for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[1][k] + ( ledBasicColor[0][k] - ledBasicColor[1][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit ) ;
-                            } else {
-                                for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[0][k];
+    
+                            for ( var l = 0 ; l < 5 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 5 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                    break;
+                                }
                             }
-
+    
                             ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
                         }
                         
                         ledLapTimeSplit = ledRepeatTime * 5 / ledNumberOutside;
-
+    
                         for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
-                            let ledColor = [];
                             let j = ledNumberOutside - i;
+                            let ledColor = [];
                             let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
-
-                            if ( ledJudgeTime < ledRepeatTimeSplit ) {
-                                for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[0][k] + ( ledBasicColor[1][k] - ledBasicColor[0][k] ) / ledRepeatTimeSplit * ledJudgeTime ;
-                            } else if ( ledJudgeTime < ledRepeatTimeSplit * 2 ) {
-                                for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[1][k] + ( ledBasicColor[0][k] - ledBasicColor[1][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit ) ;
-                            } else {
-                                for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[0][k];
+    
+                            for ( var l = 0 ; l < 5 ; l++ ) {
+                                if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 5 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                    break;
+                                }
                             }
-
+    
                             ledColorChange(2,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
                         }
 
@@ -3136,7 +3134,7 @@ document.addEventListener("keydown", (e) => {
                             let nowTime = nowTimeGet(startTime+ledSetTimeoutDelay[2],0,ledUseNumber,ledSetInterval[2],ledMyNumber,ledUseChildrenNumber,ledMyNumber2);                        
                             let ledRepeatTime = 1500;
                             let ledRepeatTimeSplit = ledRepeatTime / 2;
-                            let ledBasicColor = [ [ 255 , 0 , 240 ] , [ 240 , 200 , 255 ] ];
+                            let ledBasicColor = [ [ 255 , 0 , 240 ] , [ 240 , 220 , 255 ] ];
                             
                             let ledLapTimeSplit = 140;
 
@@ -3515,7 +3513,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 FP1 *****/
@@ -3537,7 +3535,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
     
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 FP2 *****/
@@ -3582,7 +3580,7 @@ document.addEventListener("keydown", (e) => {
                         stageLightChange(1,stageFadeTime,startTime + 300);
                     },300);
     
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 FP3 *****/
@@ -3631,7 +3629,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 1000);
                     },1000);
     
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 defult *****/
@@ -3654,7 +3652,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 300);
                     },300);
     
-                } else if ( subCode === 10 ) { //f10
+                } else if ( subCode === 10 ) { 
                     let startTime = Date.now();
                     
                     /***** 客席照明 *****/               
@@ -3671,7 +3669,7 @@ document.addEventListener("keydown", (e) => {
                         audienceLightChange(1,audienceLightFadeTime,startTime + audienceLightSetTimeoutDelay[1],0);
                     },audienceLightSetTimeoutDelay[1]);
     
-                } else if ( subCode === 11 ) { //f11
+                } else if ( subCode === 11 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 FP3 *****/
@@ -3718,7 +3716,7 @@ document.addEventListener("keydown", (e) => {
                     let audienceLightFadeTime = 100;
                     audienceLightChange(1,audienceLightFadeTime,startTime);
     
-                } else if ( subCode === 12 ) { //f12
+                } else if ( subCode === 12 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 FP4 *****/
@@ -3770,7 +3768,7 @@ document.addEventListener("keydown", (e) => {
     
                 }
             } else if ( subNowPage === 2 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 FP5 *****/
@@ -3794,7 +3792,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
     
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 FP6 *****/
@@ -6361,7 +6359,7 @@ document.addEventListener("keydown", (e) => {
             }
 
             if ( subNowPage === 1 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 DoHN1 *****/
@@ -6383,7 +6381,7 @@ document.addEventListener("keydown", (e) => {
                         }
                     }
     
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 DoHN2 *****/
@@ -6424,7 +6422,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 700);
                     },700);
     
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
     
                     /***** パーライト DoHN2 *****/
@@ -6438,7 +6436,7 @@ document.addEventListener("keydown", (e) => {
                         for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,200,0,255,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
                     }
     
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
     
                     /***** パーライト DoHN3 *****/
@@ -6452,14 +6450,14 @@ document.addEventListener("keydown", (e) => {
                         for ( var i = 1 ; i <= 8 ; i++ ) parLightColorFadeChange(i,0,255,150,nowTime[0],parLightFadeTime,parLightMyNumber,parLightSetInterval);
                     }
     
-                } else if ( subCode === 10 ) { //f10
+                } else if ( subCode === 10 ) { 
                     let startTime = Date.now();
     
                     /***** スポットライト *****/
                     let spotFadeTime = 300;
                     spotLightChange(1,spotFadeTime,startTime);
                     
-                } else if ( subCode === 11 ) { //f11
+                } else if ( subCode === 11 ) { 
                     let startTime = Date.now();
                     
                     /***** 客席照明 *****/               
@@ -6476,7 +6474,7 @@ document.addEventListener("keydown", (e) => {
                         audienceLightChange(0,audienceLightFadeTime,startTime + audienceLightSetTimeoutDelay[1],0);
                     },audienceLightSetTimeoutDelay[1]);
     
-                } else if ( subCode === 12 ) { //f12
+                } else if ( subCode === 12 ) { 
                     let startTime = Date.now();
     
                     /***** パーライト DoHN4 *****/
@@ -6506,7 +6504,7 @@ document.addEventListener("keydown", (e) => {
     
                 }
             } else if ( subNowPage === 2 ) {
-                if ( subCode === 6 ) { //f6
+                if ( subCode === 6 ) { 
                     let startTime = Date.now();
     
                     /***** 看板照明 DoHN3 *****/
@@ -6554,7 +6552,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 1000);
                     },1000);
     
-                } else if ( subCode === 7 ) { //f7
+                } else if ( subCode === 7 ) { 
                     let startTime = Date.now();
     
                     /***** パーライト DoHN6 *****/
@@ -6574,7 +6572,7 @@ document.addEventListener("keydown", (e) => {
                         spotLightChange(1,spotFadeTime,startTime + 500);
                     },500);
     
-                } else if ( subCode === 8 ) { //f8
+                } else if ( subCode === 8 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 defult *****/
@@ -6595,7 +6593,7 @@ document.addEventListener("keydown", (e) => {
                     let spotFadeTime = 1800;
                     spotLightChange(0,spotFadeTime,startTime);
     
-                } else if ( subCode === 9 ) { //f9
+                } else if ( subCode === 9 ) { 
                     let startTime = Date.now();
 
                     /***** 看板照明 DoHN4 *****/

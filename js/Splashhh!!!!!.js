@@ -2569,11 +2569,11 @@ document.addEventListener("keydown", (e) => {
                 } else if ( key === '/' ) {
                     let startTime = Date.now();
 
-                    /***** 水中照明 SS2 *****/
+                    /***** 水中照明 SS3 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberSS2);
+                    let waterLightSetInterval = setInterval(waterLightNumberSS3);
 
-                    function waterLightNumberSS2() {
+                    function waterLightNumberSS3() {
                         let waterLightFadeTime = 500;
                         let nowTime = nowTimeGet(startTime,waterLightFadeTime,waterLightUseNumber,waterLightSetInterval,waterLightMyNumber);
                         let waterLightRepeatTime = 3000;
@@ -4107,11 +4107,11 @@ document.addEventListener("keydown", (e) => {
 
                     }
 
-                    /***** 水中照明 SS4 *****/
+                    /***** 水中照明 SS5 *****/
                     let waterLightMyNumber = waterLightSetting();
-                    let waterLightSetInterval = setInterval(waterLightNumberSS4);
+                    let waterLightSetInterval = setInterval(waterLightNumberSS5);
 
-                    function waterLightNumberSS4() {
+                    function waterLightNumberSS5() {
                         let waterLightFadeTime = 3000;
                         let waterLightRepeatTime = 5000;
                         let waterLightRepeatTimeSplit = waterLightRepeatTime / 4;
@@ -4670,7 +4670,7 @@ document.addEventListener("keydown", (e) => {
                         let logoboardChangeTime = 200;
                         let logoboardRepeatTimeSplit = logoboardRepeatTime / 2;
                         let logoboardRepeatTimeSplit2 = logoboardRepeatTime / 4;
-                        let logoboardBasicColor = [ [ 0 , 150 , 255 ] , [ 0 , 255 , 0 ] ];
+                        let logoboardBasicColor = [ [ 0 , 180 , 255 ] , [ 0 , 255 , 0 ] ];
         
                         for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                             let logoboardColor = [];

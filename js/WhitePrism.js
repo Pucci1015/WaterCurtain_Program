@@ -2176,7 +2176,7 @@ document.addEventListener("keydown", (e) => {
                             if ( i <= logoboardLightNumber / 4 || ( i > logoboardLightNumber / 4 * 2 && i <= logoboardLightNumber / 4 * 3) ) j = ( i - 1 ) % 12;
                             else j = 11 - ( i - 1 ) % 12;
     
-                            if ( j < 6 ) logoboardLightColor = [ 255 , 180 , 0 , 150 ];
+                            if ( j < 6 ) logoboardLightColor = [ 255 , 200 , 0 , 150 ];
                             else logoboardLightColor = [ 0 , 0 , 0 , 255 ];
     
                             logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);

@@ -328,7 +328,7 @@ document.addEventListener("keydown", (e) => {
                             nowTime[1] %= 5000;
 
                             let logoboardRepeatTime = 1500;
-                            let logoboardChangeTime = 500;
+                            let logoboardChangeTime = 300;
                             let logoboardRepeatTimeSplit = logoboardRepeatTime / 4;
                             let logoboardBasicColor = [ [ 200 , 100 , 255 , 50 ] , [ 255 , 50 , 150 , 100 ] ];
             
@@ -6388,7 +6388,7 @@ document.addEventListener("keydown", (e) => {
                     logoboardLightDelayTime[0] = 0;
                     logoboardLightSetTimeout[0] = setTimeout(function() {
                         let logoboardLightMyNumber = logoboardLightSetting(0);
-                        let logoboardLightFadeTime = 8000;
+                        let logoboardLightFadeTime = 1000//8000;
                         let logoboardLightSetInterval = setInterval(logoboardLightNumberSY1_1);
             
                         function logoboardLightNumberSY1_1() {
@@ -6399,10 +6399,10 @@ document.addEventListener("keydown", (e) => {
 
                                 if ( i <= 6 ) logoboardLightColor = [ 255 , 0 , 180 , 80 ];
                                 else if ( i <= 12 ) logoboardLightColor = [ 0 , 50 , 20 , 255 ];
-                                else if ( i <= 24 ) logoboardLightColor = [ 255 , 120 , 220 , 200 ];
+                                else if ( i <= 24 ) logoboardLightColor = [ 200 , 80 , 180 , 255 ];
                                 else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 255 , 80 ];
                                 else if ( i <= 42 ) logoboardLightColor = [ 0 , 50 , 20 , 255 ];
-                                else logoboardLightColor = [ 255 , 100 , 220 , 200 ];
+                                else logoboardLightColor = [ 180 , 50 , 180 , 255 ];
         
                                 logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                             }
@@ -6421,14 +6421,14 @@ document.addEventListener("keydown", (e) => {
                             for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                                 let logoboardLightColor = [];
 
-                                if ( i <= 6 ) logoboardLightColor = [ 255 , 80 , 200 , 100 ];
-                                else if ( i <= 12 ) logoboardLightColor = [ 255 , 100 , 100 , 255 ];
-                                else if ( i <= 18 ) logoboardLightColor = [ 255 , 180 , 240 , 240 ];
-                                else if ( i <= 24 ) logoboardLightColor = [ 255 , 120 , 240 , 200 ];
+                                if ( i <= 6 ) logoboardLightColor = [ 240 , 80 , 255 , 100 ];
+                                else if ( i <= 12 ) logoboardLightColor = [ 255 , 100 , 50 , 255 ];
+                                else if ( i <= 18 ) logoboardLightColor = [ 255 , 150 , 240 , 255 ];
+                                else if ( i <= 24 ) logoboardLightColor = [ 200 , 80 , 180 , 255 ];
                                 else if ( i <= 30 ) logoboardLightColor = [ 255 , 50 , 255 , 150 ];
                                 else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 255 , 80 ];
-                                else if ( i <= 42 ) logoboardLightColor = [ 255 , 50 , 50 , 255 ];
-                                else logoboardLightColor = [ 255 , 100 , 255 , 255 ];
+                                else if ( i <= 42 ) logoboardLightColor = [ 255 , 50 , 20 , 255 ];
+                                else logoboardLightColor = [ 220 , 50 , 200 , 255 ];
         
                                 logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                             }
@@ -6641,14 +6641,14 @@ document.addEventListener("keydown", (e) => {
                             for ( var i = 1 ; i <= logoboardLightNumber ; i++ ) {
                                 let logoboardLightColor = [];
 
-                                if ( i <= 6 ) logoboardLightColor = [ 255 , 80 , 200 , 100 ];
-                                else if ( i <= 12 ) logoboardLightColor = [ 255 , 100 , 100 , 255 ];
-                                else if ( i <= 18 ) logoboardLightColor = [ 255 , 180 , 240 , 240 ];
-                                else if ( i <= 24 ) logoboardLightColor = [ 255 , 120 , 240 , 200 ];
+                                if ( i <= 6 ) logoboardLightColor = [ 240 , 80 , 255 , 100 ];
+                                else if ( i <= 12 ) logoboardLightColor = [ 255 , 100 , 50 , 255 ];
+                                else if ( i <= 18 ) logoboardLightColor = [ 255 , 150 , 240 , 255 ];
+                                else if ( i <= 24 ) logoboardLightColor = [ 200 , 80 , 180 , 255 ];
                                 else if ( i <= 30 ) logoboardLightColor = [ 255 , 50 , 255 , 150 ];
                                 else if ( i <= 36 ) logoboardLightColor = [ 255 , 50 , 255 , 80 ];
-                                else if ( i <= 42 ) logoboardLightColor = [ 255 , 50 , 50 , 255 ];
-                                else logoboardLightColor = [ 255 , 100 , 255 , 255 ];
+                                else if ( i <= 42 ) logoboardLightColor = [ 255 , 50 , 20 , 255 ];
+                                else logoboardLightColor = [ 220 , 50 , 200 , 255 ];
 
                                 logoboardLightFadeChage(i,logoboardLightColor[0],logoboardLightColor[1],logoboardLightColor[2],logoboardLightColor[3],1,logoboardLightFadeTime,nowTime[0],logoboardLightSetInterval);
                             }
@@ -7256,8 +7256,8 @@ document.addEventListener("keydown", (e) => {
                     function ledNumber89() {
                         let ledFadeTime = 2000;
                         let ledRepeatTime = 2500;
-                        let ledRepeatTimeSplit = ledRepeatTime / 3;
-                        let ledBasicColor = [ [ 240 , 200 , 255 ] , [ 220 , 255 , 200 ] , [ 255 , 230 , 200 ] ];
+                        let ledRepeatTimeSplit = ledRepeatTime / 4;
+                        let ledBasicColor = [ [ 240 , 200 , 255 ] , [ 255 , 255 , 240 ] , [ 220 , 255 , 200 ] , [ 255 , 220 , 200 ] ];
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
                         let ledLapTimeSplit = ledRepeatTime * 4 / ledNumberInside;
 
@@ -7266,9 +7266,9 @@ document.addEventListener("keydown", (e) => {
                             let j = ledNumberInside - i;
                             let ledJudgeTime = ( nowTime[1] + ledLapTimeSplit * j ) % ledRepeatTime;
 
-                            for ( var l = 0 ; l < 3 ; l++ ) {
+                            for ( var l = 0 ; l < 4 ; l++ ) {
                                 if ( ledJudgeTime < ledRepeatTimeSplit * ( l + 1 ) ) {
-                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 3 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
+                                    for ( var k = 0 ; k < 3 ; k++ ) ledColor[k] = ledBasicColor[l][k] + ( ledBasicColor[ ( l + 1 ) % 4 ][k] - ledBasicColor[l][k] ) / ledRepeatTimeSplit * ( ledJudgeTime - ledRepeatTimeSplit * l ) ;
                                     break;
                                 }
                             }
@@ -8217,7 +8217,7 @@ document.addEventListener("keydown", (e) => {
                         let ledFadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
 
-                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,255,240,255,nowTime[0],ledFadeTime,0,ledSetInterval);
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,230,255,245,nowTime[0],ledFadeTime,0,ledSetInterval);
         
                         for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,255,0,220,nowTime[0],ledFadeTime,0,ledSetInterval);
 
@@ -8502,7 +8502,7 @@ document.addEventListener("keydown", (e) => {
                         let ledFadeTime = 2000;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
 
-                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,255,240,255,nowTime[0],ledFadeTime,0,ledSetInterval);
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,230,255,245,nowTime[0],ledFadeTime,0,ledSetInterval);
         
                         for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,255,0,220,nowTime[0],ledFadeTime,0,ledSetInterval);
 
