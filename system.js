@@ -2576,7 +2576,7 @@ function logoboardLightColorDecision(logoboardLightNowNumber,colorRed,colorGreen
     let logoboraLightZIndex = 0;
 
     logoboardLightChangeColor[0] = ( colorRed + colorWhite ) / 2;
-    logoboardLightChangeColor[1] = ( colorGreen * 7 + colorWhite * 5 ) / 12;
+    logoboardLightChangeColor[1] = ( colorGreen * 11 + colorWhite * 9 ) / 20;
     logoboardLightChangeColor[2] = ( colorBlue * 2 + colorWhite ) / 3;
     
     let maxColor = 0;
