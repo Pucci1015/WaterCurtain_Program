@@ -4952,11 +4952,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン M *****/
                     waterCurtain("M");
 
-                    /***** LED SE8 *****/
+                    /***** LED SE7 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberSE8);
+                    let ledSetInterval = setInterval(ledNumberSE7);
 
-                    function ledNumberSE8() {
+                    function ledNumberSE7() {
                         let ledFadeTime = 1800;
                         let ledRepeatTime = 1800;
                         let ledChangeTime = 500;

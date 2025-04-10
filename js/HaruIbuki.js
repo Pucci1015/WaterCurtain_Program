@@ -712,7 +712,7 @@ document.addEventListener("keydown", (e) => {
                         
                         let movingLightAngleFadeTime = 1000;
 
-                        for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,50,100);
+                        for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightPictureChange(1,i,0,100,100);
                         for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightPictureChange(2,i,0,50,100);
 
                         movingLightSetInterval[1] = setInterval(movingLightNumberHI7_1);
@@ -880,7 +880,7 @@ document.addEventListener("keydown", (e) => {
                             if ( nowTime[0] <= movingLightColorFadeTime ) {
                                 for ( var i = 1 ; i <= movingLightInsideNumber ; i++ ) movingLightColorChange(1,i,255,0,200,1,movingLightColorFadeTime,nowTime[0],1);
 
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,200,0,255,1,movingLightColorFadeTime,nowTime[0],1);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,200,0,255,1,movingLightColorFadeTime,nowTime[0],1);
                             } else {
                                 clearInterval(movingLightSetInterval[8]);
                             }
@@ -906,7 +906,7 @@ document.addEventListener("keydown", (e) => {
                                     movingLightColorChange(1,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
                                 }
 
-                                for ( var i = 1 ; i <= movingLightOutsideNumber ; i++ ) movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
+                                for ( var i = 1 ; i <= 4 ; i++ ) movingLightColorChange(2,i,-1,-1,-1,0,movingLightColorFadeTime,nowTime[0]);
                             } else {
                                 clearInterval(movingLightSetInterval[9]);
                             }
@@ -2249,7 +2249,7 @@ document.addEventListener("keydown", (e) => {
     
                         for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,200,0,255,nowTime[0],ledFadeTime,0,ledSetInterval);
     
-                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,255,200,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,255,255,0,nowTime[0],ledFadeTime,0,ledSetInterval);
     
                     }
     
@@ -2264,12 +2264,12 @@ document.addEventListener("keydown", (e) => {
                     let ledSetInterval = setInterval(ledNumberSE7);
     
                     function ledNumberSE7() {
-                        let ledFadeTime = 1500;
+                        let ledFadeTime = 1200;
                         let nowTime = nowTimeGet(startTime,ledFadeTime,ledUseNumber,ledSetInterval,ledMyNumber);
     
-                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,220,0,255,nowTime[0],ledFadeTime,0,ledSetInterval);
-    
-                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,220,0,255,nowTime[0],ledFadeTime,0,ledSetInterval);
+                        for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,255,150,255,nowTime[0],ledFadeTime,0,ledSetInterval);
+
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,255,150,255,nowTime[0],ledFadeTime,0,ledSetInterval);
     
                     }
     
@@ -3462,11 +3462,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン BI *****/
                     waterCurtain("BI");
 
-                    /***** LED SE8 *****/
+                    /***** LED SE7 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberSE8);
+                    let ledSetInterval = setInterval(ledNumberSE7);
 
-                    function ledNumberSE8() {
+                    function ledNumberSE7() {
                         let ledFadeTime = 1800;
                         let ledRepeatTime = 1800;
                         let ledChangeTime = 500;
@@ -4085,11 +4085,11 @@ document.addEventListener("keydown", (e) => {
                     /***** ウォーターカーテン M *****/
                     waterCurtain("M");
 
-                    /***** LED SE8 *****/
+                    /***** LED SE7 *****/
                     let ledMyNumber = ledSetting();
-                    let ledSetInterval = setInterval(ledNumberSE8);
+                    let ledSetInterval = setInterval(ledNumberSE7);
 
-                    function ledNumberSE8() {
+                    function ledNumberSE7() {
                         let ledFadeTime = 1800;
                         let ledRepeatTime = 1800;
                         let ledChangeTime = 500;

@@ -736,7 +736,7 @@ document.addEventListener("keydown", (e) => {
     
                         for ( var i = 1 ; i <= ledNumberInside ; i++ ) ledColorChange(1,i,200,0,255,nowTime[0],ledFadeTime,0,ledSetInterval);
     
-                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,255,200,0,nowTime[0],ledFadeTime,0,ledSetInterval);
+                        for ( var i = 1 ; i <= ledNumberOutside ; i++ ) ledColorChange(2,i,255,255,0,nowTime[0],ledFadeTime,0,ledSetInterval);
     
                     }
 
