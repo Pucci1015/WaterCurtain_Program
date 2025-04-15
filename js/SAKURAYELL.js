@@ -4875,9 +4875,10 @@ document.addEventListener("keydown", (e) => {
                                 ledColorChange(1,i,ledColor[0],ledColor[1],ledColor[2],nowTime[0],ledFadeTime);
                             }
                             
-                            ledRepeatTime = 5000;
+                            ledRepeatTime = 1500;
                             ledBasicColor = [ [ 255 , 255 , 255 ] , [ 0 , 255 , 200 ] ];
                             ledRepeatTimeSplit = ledRepeatTime / 3;
+                            ledLapTimeSplit = ledRepeatTime / 50;
                             ledArray = [ 12 , 3 , 18 , 34 , 41 , 25 , 43 , 21 , 31 , 37 , 3 , 37 , 6 , 32 , 2 , 28 , 41 , 23 , 7 , 3 , 0 , 13 , 44 , 40 , 9 , 15 , 14 , 7 , 35 , 14 , 35 , 5 , 41 , 4 , 19 , 32 , 32 , 5 , 44 , 28 , 20 , 42 , 37 , 2 , 38 , 45 , 17 , 45 ];
 
                             for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
@@ -5060,7 +5061,6 @@ document.addEventListener("keydown", (e) => {
                             
                             ledBasicColor1 = [ 255 , 255 , 255 ];
                             ledBasicColor2 = [ [ 255 , 150 , 0 ] , [ 0 , 120 , 255 ] ];
-                            ledRepeatTimeSplit = ledRepeatTime / 4;
                             ledLapTimeSplit = ledRepeatTime * 1.5 / 44;
         
                             for ( var i = 1 ; i <= ledNumberOutside ; i++ ) {
